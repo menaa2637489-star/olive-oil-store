@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+     content="width=device-width, initial-scale=1.0">
+
+    <title>زيت زيتون دكتور أبو النصر</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="main-header">
+
+        <!-- اللوجو واسم البراند -->
+        <div class="brand">
+
+            <div class="logo">
+                <img src="images/ابو النصر 1.png" alt="زيت زيتون دكتور أبو النصر">
+            </div>
+
+            <div class="brand-name" data-ar="زيت زيتون دكتور أبو النصر"
+                data-en="Dr. Abu El Nasr Olive Oil">
+                زيت زيتون دكتور أبو النصر
+            </div>
+
+        </div>
+
+
+        <!-- أزرار الـ Header -->
+        <nav class="header-actions">
+
+            <!-- اللغة -->
+            <button class="header-btn language-btn" id="languageBtn">
+                <span id="languageText">English</span>
+            </button>
+
+
+            <!-- تسجيل الدخول -->
+            <button class="header-btn" id="loginBtn">
+                <span data-ar="تسجيل الدخول" data-en="Login">
+                    تسجيل الدخول
+                </span>
+            </button>
+
+
+            <!-- التواصل -->
+            <a href="tel:01277371995" class="header-btn contact-btn">
+
+                <span class="phone-icon">☎</span>
+
+                <span data-ar="تواصل معنا" data-en="Contact Us">
+                    تواصل معنا
+                </span>
+
+            </a>
+
+
+            <!-- السلة -->
+            <button class="header-btn cart-btn" id="cartBtn">
+
+                <span class="cart-icon">🛒</span>
+
+                <span data-ar="السلة" data-en="Cart">
+                    السلة
+                </span>
+
+                <span class="cart-count" id="cartCount">0</span>
+
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1 data-ar="من قلب الزيتون... نصنع الفرق"
+                    data-en="From the Heart of the Olive... We Make the Difference">
+
+                    من قلب الزيتون... نصنع الفرق
+
+                </h1>
+
+
+                <p class="hero-season"
+                   data-ar="عصرة موسم ٢٠٢٦"
+                   data-en="2026 Harvest Season">
+
+                    عصرة موسم ٢٠٢٦
+
+                </p>
+
+
+                <!-- المنتج -->
+  <div class="hero-product">
+
+    <!-- الصورة الرئيسية -->
+    <div class="product-stage" id="productStage">
+
+        <img
+            id="mainProductImage"
+            src="images/نصف لتر.png"
+            alt="زيت زيتون دكتور أبو النصر"
+        >
+
+    </div>
+
+
+    <!-- اسم المنتج -->
+    <h2 id="productName">
+        زيت زيتون دكتور أبو النصر
+    </h2>
+    <p class="product-type"
+   data-ar="زيت زيتون بكر ممتاز"
+   data-en="Extra Virgin Olive Oil">
+    زيت زيتون بكر ممتاز
+</p>
+
+<div class="sizes-title"
+     data-ar="اختاري الحجم"
+     data-en="Choose Size">
+    اختاري الحجم
+</div>
+
+<div class="product-sizes">
+
+    <button
+        class="size-btn active"
+        data-size="half"
+        data-ar="نصف لتر"
+        data-en="Half Liter"
+    >
+        نصف لتر
+    </button>
+
+    <button
+        class="size-btn"
+        data-size="one"
+        data-ar="1 لتر"
+        data-en="1 Liter"
+    >
+        1 لتر
+    </button>
+
+    <button
+        class="size-btn"
+        data-size="two"
+        data-ar="2 لتر"
+        data-en="2 Liters"
+    >
+        2 لتر
+    </button>
+
+    <button
+        class="size-btn"
+        data-size="five"
+        data-ar="5 لتر"
+        data-en="5 Liters"
+    >
+        5 لتر
+    </button>
+
+</div>
+
+
+   <div class="product-price">
+
+    <span
+        data-ar="السعر:"
+        data-en="Price:"
+    >
+        السعر:
+    </span>
+
+    <strong id="productPrice">
+        0 ج.م
+    </strong>
+
+</div>
+
+
+    <!-- الأزرار -->
+    <div class="product-buttons">
+
+    <button
+        class="buy-btn"
+        id="buyNowBtn"
+        data-ar="اشتر الآن"
+        data-en="Buy Now"
+    >
+        اشتر الآن
+    </button>
+
+    <button
+        class="add-cart-btn"
+        id="addCartBtn"
+        data-ar="أضف للسلة"
+        data-en="Add to Cart"
+    >
+        أضف للسلة
+    </button>
+
+</div>
+
+</div>
+
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= LOGIN SIDE PANEL ================= -->
+
+    <div class="overlay" id="loginOverlay"></div>
+
+    <aside class="side-panel login-panel" id="loginPanel">
+
+        <button class="close-btn" id="closeLogin">
+            ×
+        </button>
+
+
+        <div class="panel-content">
+
+            <h2 data-ar="تسجيل الدخول"
+                data-en="Login">
+
+                تسجيل الدخول
+
+            </h2>
+
+
+            <p class="panel-subtitle"
+               data-ar="سجل دخولك للوصول إلى حسابك"
+               data-en="Login to access your account">
+
+                سجل دخولك للوصول إلى حسابك
+
+            </p>
+
+
+            <!-- البريد أو الهاتف -->
+            <input
+                type="text"
+                class="login-input"
+                data-placeholder-ar="البريد الإلكتروني أو رقم الهاتف"
+                data-placeholder-en="Email or Phone Number"
+                placeholder="البريد الإلكتروني أو رقم الهاتف"
+            >
+
+
+            <!-- كلمة المرور -->
+            <input
+                type="password"
+                class="login-input"
+                data-placeholder-ar="كلمة المرور"
+                data-placeholder-en="Password"
+                placeholder="كلمة المرور"
+            >
+
+
+            <div class="login-options">
+
+                <label>
+                    <input type="checkbox">
+
+                    <span data-ar="تذكرني"
+                          data-en="Remember me">
+
+                        تذكرني
+
+                    </span>
+                </label>
+
+
+                <a href="#"
+                   data-ar="نسيت كلمة المرور؟"
+                   data-en="Forgot Password?">
+
+                    نسيت كلمة المرور؟
+
+                </a>
+
+            </div>
+
+
+            <button class="login-submit"
+                    data-ar="تسجيل الدخول"
+                    data-en="Login">
+
+                تسجيل الدخول
+
+            </button>
+
+
+            <div class="or-line">
+
+                <span data-ar="أو" data-en="OR">أو</span>
+
+            </div>
+
+
+            <!-- Google -->
+            <button class="social-login google-login">
+
+                <span class="google-icon">G</span>
+
+                <span data-ar="تسجيل الدخول باستخدام جوجل"
+                      data-en="Continue with Google">
+
+                    تسجيل الدخول باستخدام جوجل
+
+                </span>
+
+            </button>
+
+
+            <!-- Facebook -->
+            <button class="social-login facebook-login">
+
+                <span class="facebook-icon">f</span>
+
+                <span data-ar="تسجيل الدخول باستخدام فيسبوك"
+                      data-en="Continue with Facebook">
+
+                    تسجيل الدخول باستخدام فيسبوك
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= CART SIDE PANEL ================= -->
+
+    <div class="overlay" id="cartOverlay"></div>
+
+    <aside class="side-panel cart-panel" id="cartPanel">
+
+        <button class="close-btn" id="closeCart">
+            ×
+        </button>
+
+
+        <div class="panel-content">
+
+            <h2 data-ar="عربة التسوق"
+                data-en="Shopping Cart">
+
+                عربة التسوق
+
+            </h2>
+
+
+            <div class="cart-items" id="cartItems">
+
+                <p class="empty-cart"
+                   data-ar="السلة فارغة حاليًا"
+                   data-en="Your cart is currently empty">
+
+                    السلة فارغة حاليًا
+
+                </p>
+
+            </div>
+
+
+            <div class="cart-footer">
+
+                <div class="cart-total">
+
+                    <span data-ar="الإجمالي"
+                          data-en="Total">
+
+                        الإجمالي
+
+                    </span>
+
+                    <strong id="cartTotal">
+                        0 ج.م
+                    </strong>
+
+                </div>
+
+
+                <button class="checkout-btn"
+                        data-ar="إتمام الطلب"
+                        data-en="Checkout">
+
+                    إتمام الطلب
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
+<!-- ================= ORDER MODAL ================= -->
+
+<div class="order-modal" id="orderModal">
+
+    <div class="order-box">
+
+        <!-- عنوان النافذة -->
+        <div class="order-header">
+            <h2>إتمام الطلب</h2>
+        </div>
+
+        <!-- ملخص الطلب -->
+        <div class="order-summary">
+
+            <div class="order-item">
+                <span>زيت زيتون 1 لتر × 1</span>
+                <span>٣٢٠ ج.م</span>
+            </div>
+
+            <div class="order-total">
+                <strong>الإجمالي</strong>
+                <strong>٣٢٠ ج.م</strong>
+            </div>
+
+        </div>
+
+
+        <!-- بيانات العميل -->
+        <div class="order-form">
+
+            <label for="fullName">الاسم بالكامل</label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="مثال: أحمد محمد"
+            >
+
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="phone">رقم الهاتف</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="01xxxxxxxxx"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="governorate">المحافظة</label>
+
+                    <select id="governorate">
+
+                        <option value="">اختر المحافظة</option>
+                       <option>القاهرة</option>
+    <option>الجيزة</option>
+    <option>الإسكندرية</option>
+    <option>القليوبية</option>
+    <option>الدقهلية</option>
+    <option>الشرقية</option>
+    <option>الغربية</option>
+    <option>المنوفية</option>
+    <option>البحيرة</option>
+    <option>كفر الشيخ</option>
+    <option>دمياط</option>
+    <option>بورسعيد</option>
+    <option>الإسماعيلية</option>
+    <option>السويس</option>
+    <option>شمال سيناء</option>
+    <option>جنوب سيناء</option>
+    <option>البحر الأحمر</option>
+    <option>مطروح</option>
+    <option>الوادي الجديد</option>
+    <option>الفيوم</option>
+    <option>بني سويف</option>
+    <option>المنيا</option>
+    <option>أسيوط</option>
+    <option>سوهاج</option>
+    <option>قنا</option>
+    <option>الأقصر</option>
+    <option>أسوان</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- العنوان -->
+            <label for="address">العنوان بالتفصيل</label>
+
+            <textarea
+                id="address"
+                placeholder="الشارع، رقم العمارة، الحي، علامة مميزة"
+            ></textarea>
+
+
+            <!-- الملاحظات -->
+            <label for="notes">ملاحظات (اختياري)</label>
+
+            <textarea
+                id="notes"
+                placeholder="مثال: التسليم مساءً"
+            ></textarea>
+
+
+            <!-- طريقة الدفع -->
+            <div class="payment-section">
+
+                <h3>طريقة الدفع</h3>
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="cash"
+                        checked
+                    >
+
+                    <span>💵 الدفع عند الاستلام (كاش)</span>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="card"
+                    >
+
+                    <span>💳 بطاقة ائتمان / فيزا</span>
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="wallet"
+                    >
+
+                    <span>📱 محفظة إلكترونية</span>
+
+                </label>
+
+            </div>
+
+
+            <!-- الأزرار -->
+            <div class="order-buttons">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="backBtn"
+                >
+                    رجوع
+                </button>
+
+
+                <button
+                    type="button"
+                    class="confirm-btn"
+                    id="confirmOrderBtn"
+                >
+                    تأكيد الطلب
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =========================
+     FAQ SECTION
+========================= -->
+
+<section class="faq-section" id="faq">
+
+    <div class="faq-container">
+
+        <!-- السؤال الأول -->
+
+        <div class="faq-item">
+
+           <button class="faq-question">
+
+    <span
+        data-ar='ليه "زيت زيتون أبو النصر" هو الاستثمار الصح في صحتك وصحة عيلتك؟'
+        data-en='Why is Abu El Nasr Olive Oil the right choice for your health and your family?'>
+
+        ليه "زيت زيتون أبو النصر" هو الاستثمار الصح في صحتك وصحة عيلتك؟
+
+    </span>
+
+    <span class="faq-arrow">▼</span>
+
+</button>
+<div class="faq-answer">
+
+    <div class="faq-ar">
+
+        <p>
+            لو بتدور على زيت زيتون يجمع بين الفايدة الطبية اللي بجد والطعم الأصيل اللي يظبط الأكل، يبقى إنت في المكان الصح. خلينا نقولك ليه "أبو النصر" مش مجرد قزازة زيت عادية في مطبخك:
+        </p>
+
+        <p>
+            <strong>1. لغة الأرقام مابتكدبش (حموضة أقل من 0.3%):</strong><br>
+            عالمياً، أي زيت عشان يتقال عليه "بكر ممتاز Extra Virgin" لازم حموضته تكون أقل من 0.8%. إحنا بقى في "أبو النصر" كسرنا القاعدة دي، وبنقدملك زيت نسبة حموضته (أقل من 0.3%)!
+            يعني إيه الكلام ده؟ يعني الزيت ده في قمة نقائه، متأكسدش، ومحتفظ بكل مضادات الأكسدة اللي بتحمي خلايا جسمك.
+        </p>
+
+        <p>
+            <strong>2. سر الصنعة.. زيتون "الكورونيكي" (Koroneiki):</strong><br>
+            إحنا مابنستخدمش أي زيتون والسلام! إحنا بنعصر سلالة "الكورونيكي"، ودي من أجود أنواع الزيتون لإنتاج زيت عالي الجودة.
+        </p>
+
+        <p>
+            <strong>3. صافي 100%.. من الشجرة لسفرتك دايركت:</strong><br>
+            بنضمنلك زيت زيتون نقي 100% جاي من أجود المزارع مباشرة، من غير خلط أو إضافات صناعية.
+        </p>
+
+        <p>
+            <strong>4. طعم أصيل.. هيضيف روح لكل أكلة:</strong><br>
+            بفضل العصرة الباردة وزيتون الكورونيكي، بنضمنلك نكهة غنية ومميزة تضيف فرق واضح لطعامك.
+        </p>
+
+        <p>
+            زيت زيتون أبو النصر...
+            مش بس زيت للأكل، ده أسلوب حياة صحي ليك ولعيلتك.
+            <br>
+            (اختار الجودة اللي تستاهلها.. اختار أبو النصر).
+        </p>
+
+    </div>
+
+
+    <div class="faq-en">
+
+        <p>
+            If you are looking for olive oil that combines authentic taste with high quality, you are in the right place. Abu El Nasr is more than just an ordinary bottle of oil in your kitchen.
+        </p>
+
+        <p>
+            <strong>1. The numbers speak for themselves (acidity below 0.3%):</strong><br>
+            Extra Virgin Olive Oil is internationally classified with an acidity below 0.8%. Abu El Nasr offers oil with an acidity below 0.3%, reflecting a high level of purity and quality.
+        </p>
+
+        <p>
+            <strong>2. The secret is Koroneiki olives:</strong><br>
+            We use Koroneiki olives, a variety known for producing high-quality olive oil with a rich flavor and valuable natural compounds.
+        </p>
+
+        <p>
+            <strong>3. 100% pure:</strong><br>
+            We provide pure olive oil sourced directly from carefully selected farms, without mixing or artificial additives.
+        </p>
+
+        <p>
+            <strong>4. Authentic taste:</strong><br>
+            Cold extraction and carefully selected olives give the oil a rich and distinctive flavor that adds a special touch to your meals.
+        </p>
+
+        <p>
+            Abu El Nasr Olive Oil...
+            More than just cooking oil, it is a commitment to quality for you and your family.
+            <br>
+            (Choose the quality you deserve... Choose Abu El Nasr.)
+        </p>
+
+    </div>
+
+</div>
+            
+        
+
+
+        <!-- السؤال الثاني -->
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+    data-ar='ليه الزيت بتاعنا في عبوة "صاج"؟'
+    data-en='Why does our oil come in a tin container?'>
+
+    ليه الزيت بتاعنا في عبوة "صاج"؟
+
+</span>
+
+                <span class="faq-arrow">▼</span>
+
+            </button>
+<div class="faq-answer">
+
+    <!-- العربي -->
+    <div class="faq-ar">
+
+        <p>
+            عشان جودة الزيت مابتكملش غير بطريقة حفظ صح تحميه، العبوة الصاج مش مجرد شكل، دي اختيار علمي مدروس عشان الأسباب دي:
+        </p>
+
+        <p>
+            <strong>1. حماية 100% من الضوء (عشان نمنع الأكسدة):</strong><br>
+            الضوء خصوصاً الأشعة فوق البنفسجية ممكن يسرّع أكسدة زيت الزيتون ويؤثر على جودته ونكهته. العبوة الصاج بتعمل عزل قوي عن الضوء وتحافظ على الزيت.
+        </p>
+
+        <p>
+            <strong>2. أمان وحماية للزيت:</strong><br>
+            العبوة الصاج المخصصة لحفظ الأغذية تساعد على حماية الزيت من العوامل الخارجية وتحافظ على نقائه وجودته أثناء التخزين.
+        </p>
+
+        <p>
+            <strong>3. الحفاظ على الطعم والنكهة:</strong><br>
+            الحماية من الضوء والهواء تساعد الزيت على الاحتفاظ بمركباته العطرية ونكهته المميزة لأطول فترة ممكنة.
+        </p>
+
+        <p>
+            <strong>4. متانة وأمان في النقل والتخزين:</strong><br>
+            العبوة الصاج قوية وتتحمل النقل والتخزين بشكل أفضل من العبوات القابلة للكسر، مما يساعد على وصول المنتج بأمان.
+        </p>
+
+    </div>
+
+
+    <!-- الإنجليزي -->
+    <div class="faq-en">
+
+        <p>
+            The quality of olive oil also depends on proper storage. Our tin container is not just about appearance; it is carefully chosen to help protect the oil and preserve its quality.
+        </p>
+
+        <p>
+            <strong>1. 100% protection from light:</strong><br>
+            Light, especially ultraviolet light, can accelerate olive oil oxidation and affect its quality and flavor. The tin container provides strong protection from light.
+        </p>
+
+        <p>
+            <strong>2. Protection and safety:</strong><br>
+            Food-grade tin packaging helps protect the oil from external factors and preserve its purity and quality during storage.
+        </p>
+
+        <p>
+            <strong>3. Preserving the original flavor:</strong><br>
+            Protection from light and air helps the oil maintain its aromatic compounds and distinctive flavor for a longer period.
+        </p>
+
+        <p>
+            <strong>4. Durable and safe for transportation:</strong><br>
+            Tin containers are strong and durable, making them practical for transportation and storage while helping the product arrive safely.
+        </p>
+
+    </div>
+
+</div>
+
+            
+
+        <!-- السؤال الثالث -->
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+            <span
+    data-ar="إزاي تختار زيت الزيتون الصح وتضمن إنه أصلي 100%؟"
+    data-en="How do you choose the right olive oil and make sure it is 100% authentic?">
+
+    إزاي تختار زيت الزيتون الصح وتضمن إنه أصلي 100%؟
+
+</span>
+
+                <span class="faq-arrow">▼</span>
+
+            </button>
+
+<div class="faq-answer">
+
+    <!-- العربي -->
+    <div class="faq-ar">
+
+        <p>
+            عشان تشتري زيت زيتون وإنت مطمن إنه أصلي وجودته عالية، في شوية قواعد مهمة لازم تاخد بالك منها:
+        </p>
+
+        <p>
+            <strong>1. دور على نسبة الحموضة الأقل:</strong><br>
+            زيت الزيتون البكر الممتاز Extra Virgin لازم يحقق معايير جودة محددة، ومن أهم المؤشرات نسبة الحموضة. كلما كانت الحموضة منخفضة مع استيفاء باقي معايير الجودة، كان ذلك مؤشرًا جيدًا على جودة الزيت.
+        </p>
+
+        <p>
+            <strong>2. ركز في طريقة العصر:</strong><br>
+            طريقة الاستخلاص والتعامل مع الزيتون بتأثر على جودة الزيت ومكوناته الطبيعية، لذلك مهم اختيار زيت موثوق ومصدره واضح.
+        </p>
+
+        <p>
+            <strong>3. اختبر الطعم والريحة:</strong><br>
+            زيت الزيتون الجيد بيكون له رائحة ونكهة مميزة مرتبطة بالزيتون الطازج، وقد يكون فيه مرارة أو لسعة خفيفة، وده ممكن يكون جزءًا طبيعيًا من خصائص الزيت.
+        </p>
+
+        <p>
+            <strong>4. شوف نوع العبوة وطريقة التخزين:</strong><br>
+            زيت الزيتون حساس للضوء والحرارة، لذلك العبوة المعتمة أو الصاج تساعد على حمايته من الضوء، مع ضرورة تخزينه في مكان مناسب بعيدًا عن الحرارة.
+        </p>
+
+    </div>
+
+
+    <!-- الإنجليزي -->
+    <div class="faq-en">
+
+        <p>
+            To choose high-quality olive oil and make sure you are buying an authentic product, there are several important things to look for.
+        </p>
+
+        <p>
+            <strong>1. Look for low acidity:</strong><br>
+            Extra Virgin Olive Oil must meet specific quality standards. Acidity is one of the important indicators, and lower acidity, together with other quality standards, can be a positive sign.
+        </p>
+
+        <p>
+            <strong>2. Pay attention to the extraction method:</strong><br>
+            The way olives are processed and the way the oil is extracted can affect its quality and natural compounds. Choosing a trusted and clearly sourced product is important.
+        </p>
+
+        <p>
+            <strong>3. Check the taste and aroma:</strong><br>
+            Good olive oil usually has a distinctive aroma and flavor associated with fresh olives. A slight bitterness or peppery sensation can be a natural characteristic of olive oil.
+        </p>
+
+        <p>
+            <strong>4. Check the packaging and storage:</strong><br>
+            Olive oil is sensitive to light and heat. Dark or tin packaging can help protect it from light, while proper storage away from heat is also important.
+        </p>
+
+    </div>
+
+</div>
+
+
+        <!-- السؤال الرابع -->
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+    data-ar="لو هتستخدمه صح.. هتستخدمه إزاي؟"
+    data-en="How should you use olive oil properly?">
+
+    لو هتستخدمه صح.. هتستخدمه إزاي؟
+
+</span>
+
+                <span class="faq-arrow">▼</span>
+
+            </button>
+        <div class="faq-answer">
+
+    <!-- العربي -->
+    <div class="faq-ar">
+
+        <p>
+            <strong>1. الاستخدام الغذائي:</strong><br>
+            زيت الزيتون البكر الممتاز مناسب للاستخدام اليومي في الأكل، مثل السلطات والجبنة والأطباق المختلفة، ويمكن استخدامه في طرق طهي مناسبة حسب درجة الحرارة.
+        </p>
+
+        <p>
+            <strong>2. استخدامه في العناية بالشعر:</strong><br>
+            ممكن استخدام زيت الزيتون كجزء من روتين العناية بالشعر، خصوصًا لترطيب الشعر الجاف. جربي كمية صغيرة أولًا وتجنبي استخدامه إذا سبب لكِ تهيجًا.
+        </p>
+
+        <p>
+            <strong>3. استخدامه في العناية بالبشرة:</strong><br>
+            زيت الزيتون ممكن يستخدم كمرطب لبعض أنواع البشرة، لكن الأفضل تجربة كمية صغيرة على جزء محدود من الجلد أولًا للتأكد من عدم حدوث تهيج.
+        </p>
+
+        <p>
+            <strong>4. التدليك:</strong><br>
+            يمكن استخدام كمية مناسبة من زيت الزيتون للتدليك الخارجي، مع تجنب استخدامه على الجلد المتهيج أو المصاب.
+        </p>
+
+    </div>
+
+
+    <!-- الإنجليزي -->
+    <div class="faq-en">
+
+        <p>
+            <strong>1. Food use:</strong><br>
+            Extra Virgin Olive Oil is suitable for everyday cooking and meals, including salads, cheese, and many different dishes. It can also be used for suitable cooking methods depending on the temperature.
+        </p>
+
+        <p>
+            <strong>2. Hair care:</strong><br>
+            Olive oil can be used as part of a hair-care routine, especially for moisturizing dry hair. Start with a small amount and stop using it if it causes irritation.
+        </p>
+
+        <p>
+            <strong>3. Skin care:</strong><br>
+            Olive oil can work as a moisturizer for some skin types. It is best to test a small amount on a limited area first to make sure it does not cause irritation.
+        </p>
+
+        <p>
+            <strong>4. Massage:</strong><br>
+            A suitable amount of olive oil can be used for external massage. Avoid applying it to irritated or damaged skin.
+        </p>
+
+    </div>
+
+</div>
+
+
+
+
+        <!-- السؤال الخامس -->
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+    data-ar="عهد أبو النصر"
+    data-en="The Abu El Nasr Promise">
+
+    عهد أبو النصر
+
+</span>
+
+                <span class="faq-arrow">▼</span>
+
+            </button>
+
+<div class="faq-answer">
+
+    <!-- العربي -->
+    <div class="faq-ar">
+
+        <p>
+            عهدنا ليك إن كل قطرة بتستخدمها هي 100% صافية، جاية من الشجرة لمعصرتنا لعبوتك مباشرة خالية تماماً من أي خلط أو زيوت مهدرجة أو إضافات.
+            إحنا في "أبو النصر" بنبيعلك ثقة وأمان قبل ما نبيعلك زيت.
+        </p>
+
+        <p>
+            <strong>
+                ((زيت زيتون أبو النصر.. النقاء العلمي، والطعم الأصيل))
+            </strong>
+        </p>
+
+    </div>
+
+
+    <!-- الإنجليزي -->
+    <div class="faq-en">
+
+        <p>
+            Our promise to you is that every drop is pure and carefully handled from the olive tree to our mill and then to your bottle, without unnecessary mixing or artificial additives.
+            At Abu El Nasr, we offer you trust and quality before anything else.
+        </p>
+
+        <p>
+            <strong>
+                ((Abu El Nasr Olive Oil... Scientific Purity, Authentic Taste))
+            </strong>
+        </p>
+
+    </div>
+
+</div>
+
+    </div>
+
+</section>
+<!-- =========================
+     ABOUT US
+========================= -->
+
+<section class="about-section">
+
+    <div class="about-box">
+
+        <!-- العربي -->
+        <div class="about-ar">
+
+            <h2>من نحن</h2>
+
+            <h3>رحلة زيت زيتون دكتور ابو النصر</h3>
+
+            <p>
+                إحنا مش مجرد علامة تجارية بتبيع زيت، إحنا كيان بدأ من إيمان حقيقي إن
+                "صحتك وصحة عيلتك تستاهل أنقى حاجة في الطبيعة".
+                رحلتنا بدأت لما قررنا ندمج بين خير الأرض والأصول الزراعية،
+                وبين أدق المعايير العلمية، عشان نوصلك "إكسير صحة" متكامل،
+                مش مجرد مكون عادي في مطبخك.
+            </p>
+
+            <h3>رؤيتنا وفلسفتنا</h3>
+
+            <p>
+                في "أبو النصر"، هدفنا نكون همزة الوصل الموثوقة بين أجود المزارع
+                وبين سفرتك. إحنا بنشوف زيت الزيتون كاستثمار يومي في صحة القلب،
+                قوة المناعة، ونضارة الجسم.
+                وعشان نحقق ده مبنقبلش بأي تنازلات في الجودة،
+                وبنطبق معايير صارمة من أول قطف الثمرة لحد ما الزيت يوصل لباب بيتك.
+            </p>
+
+        </div>
+
+
+        <!-- الإنجليزي -->
+        <div class="about-en">
+
+            <h2>About Us</h2>
+
+            <h3>The Journey of Dr. Abu El-Nasr Olive Oil</h3>
+
+            <p>
+                We are not just a brand that sells olive oil.
+                We are an entity built on a genuine belief that
+                "your health and your family's health deserve the purest
+                that nature has to offer."
+                Our journey began when we decided to combine the goodness
+                of the land and agricultural heritage with the highest
+                scientific standards, to bring you a complete "elixir of health",
+                not just an ordinary ingredient in your kitchen.
+            </p>
+
+            <h3>Our Vision & Philosophy</h3>
+
+            <p>
+                At "Abu El-Nasr", our goal is to be the trusted bridge between
+                the finest farms and your table.
+                We see olive oil as a daily investment in heart health,
+                strong immunity, and overall wellness.
+                To achieve this, we never compromise on quality and apply
+                strict standards from the moment the fruit is picked
+                until the oil reaches your doorstep.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+ <!-- =========================
+     QUALITY VIDEO SECTION
+========================= -->
+
+<section class="quality-video-section">
+
+    <div class="quality-video-container">
+
+        <!-- VIDEO -->
+        <div class="quality-video">
+            <video
+                id="qualityVideo"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto">
+
+                <source src="images/VID-20260821-WA0030.mp4" type="video/mp4">
+
+            </video>
+        </div>
+
+
+        <!-- ARABIC -->
+        <div class="quality-text quality-ar">
+
+            <h2>لأن الجودة تبدأ من المصدر</h2>
+
+            <p>
+                نحرص على اختيار ثمار الزيتون بعناية<br>
+                والاهتمام بكل مرحلة لتقدم لكم بجودة تليق بثقتكم<br>
+                من قلب الزيتون...<br>
+                نصنع الفرق
+            </p>
+
+        </div>
+
+
+        <!-- ENGLISH -->
+        <div class="quality-text quality-en">
+
+            <h2>Because Quality Starts at the Source</h2>
+
+            <p>
+                We carefully select the finest olive fruits<br>
+                and pay attention to every stage to deliver quality worthy of your trust<br>
+                From the heart of the olive...<br>
+                We make the difference
+            </p>
+
+        </div>
+
+    </div>
+
+</section>  
+
+
+
+    
+
+
+<!-- =========================
+     QUALITY CARDS
+========================= -->
+
+<section class="quality-cards-section">
+
+    <div class="quality-cards-container">
+
+        <!-- CARD 1 -->
+        <div class="quality-card">
+
+            <div class="quality-icon">🌿</div>
+
+            <div class="quality-ar">
+                <h3>اختيار بعناية</h3>
+                <p>اختيار ثمار الزيتون بعناية في كل موسم</p>
+            </div>
+
+            <div class="quality-en">
+                <h3>Carefully Selected</h3>
+                <p>Carefully selecting olive fruits every season</p>
+            </div>
+
+        </div>
+
+
+        <!-- CARD 2 -->
+        <div class="quality-card">
+
+            <div class="quality-icon">🫒</div>
+
+            <div class="quality-ar">
+                <h3>عصرة موسم ٢٠٢٦</h3>
+                <p>نهتم بكل تفاصيل موسم العصر</p>
+            </div>
+
+            <div class="quality-en">
+                <h3>2026 Harvest</h3>
+                <p>We care about every detail of the harvest</p>
+            </div>
+
+        </div>
+
+
+        <!-- CARD 3 -->
+        <div class="quality-card">
+
+            <div class="quality-icon">✨</div>
+
+            <div class="quality-ar">
+                <h3>جودة نهتم بها</h3>
+                <p>كل خطوة تتم بعناية واهتمام</p>
+            </div>
+
+            <div class="quality-en">
+                <h3>Quality We Care About</h3>
+                <p>Every step is done with care and attention</p>
+            </div>
+
+        </div>
+
+
+        <!-- CARD 4 -->
+        <div class="quality-card">
+
+            <div class="quality-icon">✓</div>
+
+            <div class="quality-ar">
+                <h3>ثقة تستحقها</h3>
+                <p>تقديم منتج تثق بيه</p>
+            </div>
+
+            <div class="quality-en">
+                <h3>Trust You Deserve</h3>
+                <p>Delivering a product you can trust</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- الجانب اليمين -->
+        <div class="contact-links">
+
+            <button type="button" onclick="openAboutSection()">
+                <span class="contact-ar">من نحن</span>
+                <span class="contact-en">About Us</span>
+            </button>
+
+            <a href="https://wa.me/201272154551" target="_blank">
+                <span class="contact-ar">تواصل معنا</span>
+                <span class="contact-en">Contact Us</span>
+            </a>
+
+        </div>
+
+
+        <!-- الجانب الشمال -->
+        <div class="social-area">
+
+            <div class="social-content">
+
+                <h3>
+                    <span class="contact-ar">تابعنا على صفحاتنا</span>
+                    <span class="contact-en">Follow Us</span>
+                </h3>
+
+                <div class="social-icons">
+
+                    <a
+                        href="https://www.instagram.com/drabuelnasrproducts?igsi=MWl1YzI4bHl4a21pbA=="
+                        target="_blank"
+                        aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/share/1ckPpM1Tov/"
+                        target="_blank"
+                        aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@dr.ahmedabouelnasr?_r=1&_t=ZS-990oCE4h9S1"
+                        target="_blank"
+                        aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a
+                    href="https://youtube.com/@drahmedabuelnasr?si=T_Mye-c9jZSYGli5"
+                    target="_blank"
+                    aria-label="youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a 
+                href="https://x.com/drahmedabuelnsr"
+                target="_blank"
+                aria-label="X">
+                <i class="fa-brands fa-x-twitter"></i>
+
+            </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- اللوجو -->
+            <div class="contact-logo">
+                <img src="images/ابو النصر 1.png" alt="زيت زيتون دكتور ابو النصر">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+   </section> 
+ <script src="script.js"></script>
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <p>
+        <span class="footer-ar">جميع الحقوق محفوظة ٢٠٢٦</span>
+        <span class="footer-en">All Rights Reserved 2026</span>
+    </p>
+
+    <span
+    class="dashboard-access"
+    onclick="openDashboardLogin()">
+
+    <span class="footer-ar">لوحة التحكم</span>
+    <span class="footer-en">Dashboard</span>
+
+</span>
+
+</footer>
+</body>
+
+</html>
