@@ -1229,42 +1229,20 @@ document.addEventListener("keydown", function (event) {
    FAQ ACCORDION
 ========================= */
 
-const faqQuestions =
-    document.querySelectorAll(".faq-question");
+const faqQuestions = document.querySelectorAll(".faq-question");
 
 faqQuestions.forEach(function (question) {
 
     question.addEventListener("click", function () {
 
-        const faqItem =
-            question.closest(".faq-item");
+        const faqItem = question.closest(".faq-item");
 
-        const isOpen =
-            faqItem.classList.contains("active");
-
-
-        /* قفل كل المستطيلات */
-
-        document.querySelectorAll(".faq-item").forEach(function (item) {
-
-            item.classList.remove("active");
-
-        });
-
-
-        /* لو المستطيل اللي ضغطنا عليه كان مقفول
-           نفتحه */
-
-        if (!isOpen) {
-
-            faqItem.classList.add("active");
-
-        }
+        /* فتح / قفل المستطيل الذي تم الضغط عليه فقط */
+        faqItem.classList.toggle("active");
 
     });
 
 });
-
 
 
 /* =========================
