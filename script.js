@@ -1229,21 +1229,34 @@ document.addEventListener("keydown", function (event) {
    FAQ ACCORDION
 ========================= */
 
-const faqQuestions = document.querySelectorAll(".faq-question");
+document.querySelectorAll(".faq-question").forEach(function (question) {
 
-faqQuestions.forEach(function (question) {
+    question.addEventListener("click", function (event) {
 
-    question.addEventListener("click", function () {
+        event.stopPropagation();
 
-        const faqItem = question.closest(".faq-item");
+        const item = this.parentElement;
+        const answer = item.querySelector(".faq-answer");
 
-        /* فتح / قفل المستطيل الذي تم الضغط عليه فقط */
-        faqItem.classList.toggle("active");
+        /* لو مفتوح يقفل */
+        if (item.classList.contains("active")) {
+
+            item.classList.remove("active");
+            answer.style.maxHeight = null;
+
+        }
+
+        /* لو مقفول يفتح */
+        else {
+
+            item.classList.add("active");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+
+        }
 
     });
 
 });
-
 
 /* =========================
    INITIAL
