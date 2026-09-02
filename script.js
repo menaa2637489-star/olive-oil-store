@@ -1229,19 +1229,24 @@ document.addEventListener("keydown", function (event) {
    FAQ ACCORDION
 ========================= */
 
-const faqQuestions = document.querySelectorAll(".faq-question");
+document.addEventListener("DOMContentLoaded", function () {
 
-faqQuestions.forEach(function (question) {
+    const faqItems =
+        document.querySelectorAll(".faq-item");
 
-    question.addEventListener("click", function (event) {
+    faqItems.forEach(function (item) {
 
-        event.preventDefault();
+        const question =
+            item.querySelector(".faq-question");
 
-        const faqItem = question.closest(".faq-item");
+        if (!question) return;
 
-        if (!faqItem) return;
+        question.addEventListener("click", function () {
 
-        faqItem.classList.toggle("active");
+            // يفتح أو يقفل المستطيل الذي تم الضغط عليه فقط
+            item.classList.toggle("active");
+
+        });
 
     });
 
