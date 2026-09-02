@@ -28,7 +28,6 @@ a {
 }
 
 
-
 /* =========================
    HEADER
 ========================= */
@@ -50,10 +49,6 @@ a {
     position: relative;
     z-index: 100;
 }
-
-
-
-/* البراند */
 
 .brand {
     display: flex;
@@ -79,20 +74,14 @@ a {
 .logo img {
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
 
 .brand-name {
     font-size: 21px;
     font-weight: bold;
-
     color: #ffffff;
 }
-
-
-
-/* أزرار الهيدر */
 
 .header-actions {
     display: flex;
@@ -122,7 +111,7 @@ a {
 
 .header-btn:hover {
     background: #f3f5ed;
-    color: #f7f8f3;
+    color: #3f4a20;
 }
 
 .language-btn {
@@ -139,8 +128,9 @@ a {
 }
 
 
-
-/* السلة */
+/* =========================
+   CART BUTTON
+========================= */
 
 .cart-btn {
     position: relative;
@@ -157,7 +147,7 @@ a {
     border-radius: 50%;
 
     background: #f3f5ed;
-    color: #ffffff;
+    color: #3f4a20;
 
     font-size: 11px;
 
@@ -165,7 +155,6 @@ a {
     align-items: center;
     justify-content: center;
 }
-
 
 
 /* =========================
@@ -191,10 +180,6 @@ a {
     max-width: 1000px;
 }
 
-
-
-/* العنوان */
-
 .hero h1 {
     font-size: 38px;
     font-weight: 600;
@@ -212,8 +197,9 @@ a {
 }
 
 
-
-/* المنتج */
+/* =========================
+   PRODUCT
+========================= */
 
 .hero-product {
     display: flex;
@@ -221,13 +207,58 @@ a {
     align-items: center;
 }
 
-.product-image {
-    width: 260px;
-    height: 330px;
+.product-stage {
+    width: 340px;
+    height: 390px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1000px;
+
+    margin-bottom: 10px;
+
+    overflow: hidden;
+}
+
+.product-stage img {
+    width: 100%;
+    height: 100%;
 
     object-fit: contain;
 
-    margin-bottom: 15px;
+    transition:
+        transform 0.7s ease,
+        opacity 0.35s ease;
+}
+
+.product-stage img.product-out {
+    transform: rotateY(90deg) scale(0.85);
+    opacity: 0;
+}
+
+.product-stage img.product-in {
+    animation: productIn 0.7s ease forwards;
+}
+
+@keyframes productIn {
+
+    0% {
+        transform: rotateY(-90deg) scale(0.85);
+        opacity: 0;
+    }
+
+    60% {
+        transform: rotateY(15deg) scale(1.03);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateY(0deg) scale(1);
+        opacity: 1;
+    }
+
 }
 
 .hero-product h2 {
@@ -235,32 +266,102 @@ a {
 
     font-size: 24px;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
 
-.hero-product p {
+.product-type {
     color: #777;
+
+    font-size: 15px;
+
+    margin-bottom: 18px;
+}
+
+.sizes-title {
+    color: #555;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+}
+
+.product-sizes {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.size-btn {
+    min-width: 80px;
+
+    padding: 10px 14px;
+
+    border: 1px solid #d8dccb;
+
+    background: #ffffff;
+
+    color: #3f4a20;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.size-btn:hover {
+    border-color: #68743a;
+}
+
+.size-btn.active {
+    background: #68743a;
+
+    border-color: #68743a;
+
+    color: #ffffff;
+}
+
+.product-price {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
 
     font-size: 16px;
 
-    margin-bottom: 22px;
+    color: #555;
 }
 
+.product-price strong {
+    color: #68743a;
 
-
-/* أزرار المنتج */
+    font-size: 21px;
+}
 
 .product-buttons {
     display: flex;
+
     justify-content: center;
+
     gap: 12px;
 }
 
 .buy-btn,
 .add-cart-btn {
+    min-width: 140px;
+
     border: none;
 
-    padding: 13px 30px;
+    padding: 13px 25px;
 
     border-radius: 6px;
 
@@ -288,7 +389,6 @@ a {
 }
 
 
-
 /* =========================
    OVERLAY
 ========================= */
@@ -312,7 +412,6 @@ a {
     opacity: 1;
     visibility: visible;
 }
-
 
 
 /* =========================
@@ -347,10 +446,6 @@ a {
     transform: translateX(0);
 }
 
-
-
-/* زرار الإغلاق */
-
 .close-btn {
     position: absolute;
 
@@ -376,10 +471,6 @@ a {
     color: #ffffff;
 }
 
-
-
-/* محتوى اللوحة */
-
 .panel-content {
     padding: 70px 30px 30px;
 }
@@ -403,7 +494,6 @@ a {
 
     margin-bottom: 30px;
 }
-
 
 
 /* =========================
@@ -434,10 +524,6 @@ a {
     border-color: #68743a;
 }
 
-
-
-/* خيارات الدخول */
-
 .login-options {
     display: flex;
 
@@ -462,10 +548,6 @@ a {
     color: #68743a;
 }
 
-
-
-/* زر تسجيل الدخول */
-
 .login-submit {
     width: 100%;
 
@@ -487,10 +569,6 @@ a {
 .login-submit:hover {
     background: #55612f;
 }
-
-
-
-/* أو */
 
 .or-line {
     display: flex;
@@ -514,10 +592,6 @@ a {
 
     background: #dddddd;
 }
-
-
-
-/* تسجيل Google / Facebook */
 
 .social-login {
     width: 100%;
@@ -560,7 +634,6 @@ a {
 }
 
 
-
 /* =========================
    CART
 ========================= */
@@ -577,6 +650,87 @@ a {
     color: #999;
 
     padding-top: 80px;
+}
+
+.cart-product {
+    padding: 15px;
+    margin-bottom: 12px;
+
+    border: 1px solid #e5e7df;
+
+    border-radius: 8px;
+
+    background: #fafbf8;
+}
+
+.cart-product p {
+    margin: 0 0 8px;
+
+    color: #444;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.cart-product p:first-child {
+    color: #3f4a20;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+.cancel-cart-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 9px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #777;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+.cancel-cart-btn:hover {
+    background: #f8eeee;
+
+    border-color: #d9aaaa;
+
+    color: #a33;
+}
+
+.clear-cart-btn {
+    width: 100%;
+
+    height: 45px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid #d9aaaa;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #a33;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.clear-cart-btn:hover {
+    background: #f8eeee;
 }
 
 .cart-footer {
@@ -613,476 +767,6 @@ a {
     color: white;
 
     font-size: 16px;
-}
-
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .main-header {
-        padding: 12px 4%;
-
-        flex-wrap: wrap;
-
-        gap: 12px;
-    }
-
-    .brand-name {
-        font-size: 16px;
-    }
-
-    .logo {
-        width: 43px;
-        height: 43px;
-    }
-
-    .header-actions {
-        width: 100%;
-
-        justify-content: center;
-
-        gap: 3px;
-    }
-
-    .header-btn {
-        padding: 8px 7px;
-
-        font-size: 12px;
-    }
-
-    .hero {
-        padding-top: 45px;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .hero-season {
-        font-size: 15px;
-    }
-
-    .product-image {
-        width: 210px;
-        height: 270px;
-    }
-
-    .hero-product h2 {
-        font-size: 20px;
-    }
-
-    .product-buttons {
-        width: 100%;
-        padding: 0 20px;
-    }
-
-    .buy-btn,
-    .add-cart-btn {
-        flex: 1;
-
-        padding: 12px 10px;
-    }
-
-    .side-panel {
-        width: 90%;
-    }
-}
-/* =========================
-   PRODUCT DISPLAY
-========================= */
-
-.hero-product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-/* مكان الزجاجة */
-
-.product-stage {
-    width: 340px;
-    height: 390px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    perspective: 1000px;
-
-    margin-bottom: 10px;
-
-    overflow: hidden;
-}
-
-
-/* صورة الزجاجة */
-
-.product-stage img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    transition:
-        transform 0.7s ease,
-        opacity 0.35s ease;
-}
-
-
-/* حركة خروج الزجاجة */
-
-.product-stage img.product-out {
-    transform: rotateY(90deg) scale(0.85);
-    opacity: 0;
-}
-
-
-/* حركة دخول الزجاجة */
-
-.product-stage img.product-in {
-    animation: productIn 0.7s ease forwards;
-}
-
-
-@keyframes productIn {
-
-    0% {
-        transform: rotateY(-90deg) scale(0.85);
-        opacity: 0;
-    }
-
-    60% {
-        transform: rotateY(15deg) scale(1.03);
-        opacity: 1;
-    }
-
-    100% {
-        transform: rotateY(0deg) scale(1);
-        opacity: 1;
-    }
-
-}
-
-
-/* اسم المنتج */
-
-.hero-product h2 {
-    color: #3f4a20;
-
-    font-size: 24px;
-
-    margin-bottom: 7px;
-}
-
-
-/* نوع الزيت */
-
-.product-type {
-    color: #777;
-
-    font-size: 15px;
-
-    margin-bottom: 18px;
-}
-
-
-/* عنوان اختيار الحجم */
-
-.sizes-title {
-    color: #555;
-
-    font-size: 15px;
-
-    margin-bottom: 10px;
-}
-
-
-/* المقاسات */
-
-.product-sizes {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-bottom: 18px;
-}
-
-
-/* زر المقاس */
-
-.size-btn {
-    min-width: 80px;
-
-    padding: 10px 14px;
-
-    border: 1px solid #d8dccb;
-
-    background: #ffffff;
-
-    color: #3f4a20;
-
-    border-radius: 6px;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-/* عند اختيار المقاس */
-
-.size-btn:hover {
-    border-color: #68743a;
-}
-
-
-.size-btn.active {
-    background: #68743a;
-
-    border-color: #68743a;
-
-    color: #ffffff;
-}
-
-
-/* السعر */
-
-.product-price {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    margin-bottom: 20px;
-
-    font-size: 16px;
-
-    color: #555;
-}
-
-
-.product-price strong {
-    color: #68743a;
-
-    font-size: 21px;
-}
-
-
-/* أزرار المنتج */
-
-.product-buttons {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-}
-
-
-.buy-btn,
-.add-cart-btn {
-    min-width: 140px;
-
-    border: none;
-
-    padding: 13px 25px;
-
-    border-radius: 6px;
-
-    font-size: 15px;
-
-    transition: 0.3s;
-}
-
-
-.buy-btn {
-    background: #68743a;
-
-    color: #ffffff;
-}
-
-
-.buy-btn:hover {
-    background: #55612f;
-}
-
-
-.add-cart-btn {
-    background: #eeeeee;
-
-    color: #3f4a20;
-}
-
-
-.add-cart-btn:hover {
-    background: #e1e5d7;
-}
-
-
-/* =========================
-   PRODUCT MOBILE
-========================= */
-
-@media (max-width: 768px) {
-
-    .product-stage {
-        width: 260px;
-        height: 330px;
-    }
-
-    .product-sizes {
-        gap: 5px;
-        width: 100%;
-    }
-
-    .size-btn {
-        min-width: 65px;
-
-        padding: 9px 7px;
-
-        font-size: 12px;
-    }
-
-    .product-buttons {
-        width: 100%;
-
-        padding: 0 20px;
-    }
-
-    .buy-btn,
-    .add-cart-btn {
-        min-width: 0;
-
-        flex: 1;
-
-        padding: 12px 8px;
-    }
-
-}
-/* =========================
-   CART PRODUCTS
-========================= */
-
-.cart-product {
-    padding: 15px;
-    margin-bottom: 12px;
-
-    border: 1px solid #e5e7df;
-    border-radius: 8px;
-
-    background: #fafbf8;
-}
-
-.cart-product p {
-    margin: 0 0 8px;
-
-    color: #444;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.cart-product p:first-child {
-    color: #3f4a20;
-
-    font-size: 16px;
-
-    font-weight: bold;
-}
-
-
-/* زر إلغاء المنتج */
-
-.cancel-cart-btn {
-    width: 100%;
-
-    margin-top: 8px;
-
-    padding: 9px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 6px;
-
-    background: #ffffff;
-
-    color: #777;
-
-    font-size: 13px;
-
-    transition: 0.3s;
-}
-
-.cancel-cart-btn:hover {
-    background: #f8eeee;
-
-    border-color: #d9aaaa;
-
-    color: #a33;
-}
-
-
-/* =========================
-   CLEAR CART
-========================= */
-
-.clear-cart-btn {
-    width: 100%;
-
-    height: 45px;
-
-    margin-bottom: 12px;
-
-    border: 1px solid #d9aaaa;
-
-    border-radius: 6px;
-
-    background: #ffffff;
-
-    color: #a33;
-
-    font-size: 14px;
-
-    transition: 0.3s;
-}
-
-.clear-cart-btn:hover {
-    background: #f8eeee;
-}
-
-
-/* =========================
-   CHECKOUT BUTTON
-========================= */
-
-.checkout-btn {
-    width: 100%;
-
-    height: 50px;
-
-    border: none;
-
-    border-radius: 6px;
-
-    background: #68743a;
-
-    color: #ffffff;
-
-    font-size: 16px;
 
     font-weight: bold;
 
@@ -1095,11 +779,12 @@ a {
 
 
 /* =========================
-   ORDER MODAL - NEW DESIGN
+   ORDER MODAL
 ========================= */
 
 .order-modal {
     position: fixed;
+
     inset: 0;
 
     z-index: 1000;
@@ -1107,12 +792,15 @@ a {
     background: rgba(35, 40, 25, 0.45);
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition: 0.3s ease;
@@ -1123,14 +811,13 @@ a {
     visibility: visible;
 }
 
-
-/* صندوق الطلب */
-
 .order-box {
     width: 100%;
+
     max-width: 620px;
 
     max-height: 90vh;
+
     overflow-y: auto;
 
     background: #ffffff;
@@ -1150,11 +837,6 @@ a {
     transform: translateY(0) scale(1);
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 .order-header {
     text-align: center;
 
@@ -1168,17 +850,12 @@ a {
 .order-header h2 {
     color: #3f4a20;
 
-    font-size: 24px;
+    font-size: 25px;
 
     font-weight: 700;
 
     margin: 0;
 }
-
-
-/* =========================
-   ORDER SUMMARY
-========================= */
 
 .order-summary {
     background: #f7f8f3;
@@ -1246,11 +923,6 @@ a {
     font-size: 19px;
 }
 
-
-/* =========================
-   FORM
-========================= */
-
 .order-form {
     display: flex;
 
@@ -1286,9 +958,9 @@ a {
 
     font-size: 14px;
 
-    color: #e1d5d5;
+    color: #444;
 
-    background: #b2b2b2;
+    background: #ffffff;
 
     transition: 0.25s;
 }
@@ -1311,11 +983,6 @@ a {
 
     box-shadow: 0 0 0 3px rgba(104, 116, 58, 0.08);
 }
-
-
-/* =========================
-   PHONE + GOVERNORATE
-========================= */
 
 .form-row {
     display: flex;
@@ -1390,7 +1057,7 @@ a {
 
 
 /* =========================
-   BUTTONS
+   ORDER BUTTONS
 ========================= */
 
 .order-buttons {
@@ -1446,10 +1113,787 @@ a {
 
 
 /* =========================
+   FAQ SECTION
+========================= */
+
+.faq-section {
+    width: 100%;
+
+    padding: 70px 20px;
+
+    background: #cad3c0;
+}
+
+.faq-container {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   FAQ CARD
+========================= */
+
+.faq-item {
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #9da99f;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: #f7f7f7;
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+.faq-question {
+    width: 100%;
+
+    min-height: 70px;
+
+    padding: 18px 25px;
+
+    border: none;
+
+    background: #e1e1dd;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #0b0404;
+
+    text-align: right;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.faq-arrow {
+    flex-shrink: 0;
+
+    font-size: 18px;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================
+   ANSWER
+========================= */
+
+.faq-answer {
+    max-height: 0;
+
+    overflow: hidden;
+
+    padding: 0 25px;
+
+    line-height: 2;
+
+    font-size: 16px;
+
+    color: #555;
+
+    transition:
+        max-height 0.4s ease,
+        padding 0.4s ease;
+}
+
+
+/* =========================
+   ACTIVE
+========================= */
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+
+    padding: 15px 25px 25px;
+}
+
+.faq-item.active .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-answer p {
+    margin: 0 0 15px;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   FAQ LANGUAGE
+========================= */
+
+.faq-en {
+    display: none;
+}
+
+html[dir="ltr"] .faq-ar {
+    display: none;
+}
+
+html[dir="ltr"] .faq-en {
+    display: block;
+}
+
+
+/* =========================
+   ABOUT US
+========================= */
+
+.about-section {
+    width: 100%;
+
+    padding: 70px 5%;
+
+    background: #f5f3ea;
+}
+
+.about-box {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 50px 60px;
+
+    background: #2b4815;
+
+    border-radius: 14px;
+
+    color: #ffffff;
+
+    text-align: center;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.about-box h2 {
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 32px;
+
+    font-weight: 700;
+}
+
+.about-box h3 {
+    margin: 25px 0 12px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 600;
+}
+
+.about-box p {
+    margin: 0 auto;
+
+    max-width: 900px;
+
+    color: #f1f3ec;
+
+    font-size: 16px;
+
+    line-height: 2;
+
+    text-align: center;
+}
+
+.about-en {
+    display: none;
+}
+
+html[dir="ltr"] .about-ar {
+    display: none;
+}
+
+html[dir="ltr"] .about-en {
+    display: block;
+}
+
+html[dir="ltr"] .about-box {
+    direction: ltr;
+    text-align: center;
+}
+
+
+/* =========================
+   QUALITY VIDEO SECTION
+========================= */
+
+.quality-video-section {
+    width: 100%;
+
+    padding: 80px 6%;
+
+    background: #f5f3ea;
+}
+
+.quality-video-container {
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+
+/* =========================
+   VIDEO
+========================= */
+
+.quality-video {
+    width: 50%;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.quality-video video {
+    width: 100%;
+
+    height: 390px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================
+   QUALITY TEXT
+========================= */
+
+.quality-text {
+    width: 50%;
+
+    text-align: right;
+}
+
+.quality-text h2 {
+    margin-bottom: 22px;
+
+    color: #3f4a20;
+
+    font-size: 35px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+.quality-text p {
+    color: #666;
+
+    font-size: 25px;
+
+    line-height: 2.2;
+
+    margin: 0;
+}
+
+
+/* =========================
+   QUALITY VIDEO LANGUAGE
+========================= */
+
+.quality-video-section .quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-en {
+    display: block;
+}
+
+html[dir="ltr"] .quality-video-section .quality-text {
+    direction: ltr;
+
+    text-align: left;
+}
+
+
+/* =========================
+   QUALITY CARDS
+========================= */
+
+.quality-cards-section {
+    width: 100%;
+
+    background: #2b4815;
+
+    padding: 70px 5%;
+}
+
+.quality-cards-container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.quality-card {
+    width: 100%;
+
+    background: #f5f3ea;
+
+    padding: 30px 18px;
+
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+.quality-icon {
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.quality-card h3 {
+    color: #3f4a20;
+
+    font-size: 18px;
+
+    margin: 0 0 10px;
+}
+
+.quality-card p {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+.quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-en {
+    display: block;
+}
+
+html[dir="ltr"] .quality-card {
+    direction: ltr;
+
+    text-align: center;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    width: 100%;
+
+    padding: 60px 6%;
+
+    background: #f5f3ea;
+}
+
+.contact-container {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.contact-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    min-width: 180px;
+}
+
+.contact-links button,
+.contact-links a {
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    color: #2b4815;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.contact-links button:hover,
+.contact-links a:hover {
+    color: #68743a;
+}
+
+.social-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.contact-logo {
+    width: 85px;
+
+    height: 85px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.contact-logo img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.social-content {
+    text-align: center;
+}
+
+.social-content h3 {
+    margin: 0 0 16px;
+
+    color: #2b4815;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.social-icons {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.social-icons a {
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #2b4815;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #68743a;
+
+    transform: translateY(-3px);
+}
+
+.contact-en {
+    display: none;
+}
+
+html[dir="ltr"] .contact-ar {
+    display: none;
+}
+
+html[dir="ltr"] .contact-en {
+    display: inline;
+}
+
+html[dir="ltr"] .contact-container {
+    direction: ltr;
+}
+
+html[dir="ltr"] .contact-links button,
+html[dir="ltr"] .contact-links a {
+    text-align: left;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+    width: 100%;
+
+    padding: 28px 20px;
+
+    background: #2b4815;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+.site-footer p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.site-footer a:hover {
+    opacity: 0.7;
+}
+
+.dashboard-access {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.dashboard-access:hover {
+    opacity: 0.7;
+}
+
+.footer-en {
+    display: none;
+}
+
+html[dir="ltr"] .footer-ar {
+    display: none;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline;
+}
+
+
+/* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
+    /* HEADER */
+
+    .main-header {
+        padding: 12px 4%;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 43px;
+
+        height: 43px;
+    }
+
+    .header-actions {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 3px;
+    }
+
+    .header-btn {
+        padding: 8px 7px;
+
+        font-size: 12px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero-season {
+        font-size: 15px;
+    }
+
+    .product-stage {
+        width: 260px;
+
+        height: 330px;
+    }
+
+    .hero-product h2 {
+        font-size: 20px;
+    }
+
+    .product-sizes {
+        gap: 5px;
+
+        width: 100%;
+    }
+
+    .size-btn {
+        min-width: 65px;
+
+        padding: 9px 7px;
+
+        font-size: 12px;
+    }
+
+    .product-buttons {
+        width: 100%;
+
+        padding: 0 20px;
+    }
+
+    .buy-btn,
+    .add-cart-btn {
+        min-width: 0;
+
+        flex: 1;
+
+        padding: 12px 8px;
+    }
+
+
+    /* SIDE PANEL */
+
+    .side-panel {
+        width: 90%;
+    }
+
+
+    /* ORDER */
 
     .order-modal {
         padding: 10px;
@@ -1488,253 +1932,27 @@ a {
         font-size: 14px;
     }
 
-}
 
-/* عنوان الطلب */
-
-.order-header {
-    text-align: center;
-
-    margin-bottom: 25px;
-
-    border-bottom: 1px solid #eeeeee;
-
-    padding-bottom: 18px;
-}
-
-.order-header h2 {
-    color: #3f4a20;
-
-    font-size: 25px;
-}
-
-
-/* =========================
-   ORDER SUMMARY
-========================= */
-
-.order-summary {
-    background: #f7f8f3;
-
-    border-radius: 8px;
-
-    padding: 18px;
-
-    margin-bottom: 25px;
-}
-
-.order-item {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 15px;
-
-    padding-bottom: 12px;
-
-    margin-bottom: 12px;
-
-    border-bottom: 1px solid #e3e5dc;
-
-    color: #555;
-
-    font-size: 14px;
-}
-
-.order-total {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    color: #3f4a20;
-
-    font-size: 16px;
-}
-
-
-/* =========================
-   ORDER FORM
-========================= */
-
-.order-form {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 9px;
-}
-
-.order-form label {
-    color: #444;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    margin-top: 5px;
-}
-
-.order-form input,
-.order-form select,
-.order-form textarea {
-    width: 100%;
-
-    border: 1px solid #dddddd;
-
-    border-radius: 6px;
-
-    padding:
-}
-/* =========================
-   FAQ SECTION
-========================= */
-
-.faq-section {
-    width: 100%;
-    padding: 60px 20px;
-    background: #cad3c0;
-}
-
-.faq-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-
-/* =========================
-   FAQ ITEM
-========================= */
-
-.faq-item {
-    width: 100%;
-    margin-bottom: 15px;
-
-    border: 1px solid #9da99f;
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    background: #f7f7f7;
-}
-
-
-/* =========================
-   QUESTION
-========================= */
-
-.faq-question {
-    width: 100%;
-    min-height: 70px;
-
-    padding: 18px 25px;
-
-    border: none;
-    background: #e1e1ddc6;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    cursor: pointer;
-
-    font-family: inherit;
-    font-size: 18px;
-    font-weight: 700;
-
-    color: #0b0404;
-
-    text-align: right;
-}
-
-
-/* =========================
-   ARROW
-========================= */
-
-.faq-arrow {
-    flex-shrink: 0;
-
-    font-size: 18px;
-
-    transition: transform 0.3s ease;
-}
-
-
-/* =========================
-   ANSWER
-========================= */
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-
-    padding: 0 25px;
-
-    line-height: 2;
-    font-size: 16px;
-
-    color: #555;
-
-    transition:
-        max-height 0.4s ease,
-        padding 0.4s ease;
-}
-
-
-/* =========================
-   ACTIVE
-========================= */
-
-.faq-item.active .faq-answer {
-    max-height: 500px;
-
-    padding: 10px 25px 25px;
-}
-
-
-.faq-item.active .faq-arrow {
-    transform: rotate(180deg);
-}
-
-
-/* =========================
-   ANSWER TEXT
-========================= */
-
-.faq-answer p {
-    margin: 0 0 20px;
-}
-
-.faq-answer p:last-child {
-    margin-bottom: 0;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
+    /* FAQ */
 
     .faq-section {
         padding: 45px 12px;
     }
 
+    .faq-item {
+        margin-bottom: 12px;
+
+        border-radius: 10px;
+    }
+
     .faq-question {
         min-height: 65px;
 
-        padding: 16px 18px;
+        padding: 15px 16px;
 
-        font-size: 15px;
+        font-size: 14px;
 
-        gap: 12px;
+        gap: 10px;
     }
 
     .faq-arrow {
@@ -1742,7 +1960,7 @@ a {
     }
 
     .faq-answer {
-        padding: 0 18px;
+        padding: 0 16px;
 
         font-size: 14px;
 
@@ -1750,131 +1968,13 @@ a {
     }
 
     .faq-item.active .faq-answer {
-        padding: 10px 18px 20px;
+        max-height: 700px;
 
-        max-height: 600px;
+        padding: 10px 16px 20px;
     }
-}
-
-/* =========================
-   FAQ LANGUAGE
-========================= */
-
-.faq-en {
-    display: none;
-}
-
-html[dir="ltr"] .faq-ar {
-    display: none;
-}
-
-html[dir="ltr"] .faq-en {
-    display: block;
-}
 
 
-/* =========================
-   ABOUT US
-========================= */
-
-.about-section {
-    width: 100%;
-
-    padding: 70px 5%;
-
-    background: #f5f3ea;
-}
-
-
-.about-box {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding: 50px 60px;
-
-    background: #2b4815;
-
-    border-radius: 14px;
-
-    color: #ffffff;
-
-    text-align: center;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-
-/* العنوان الرئيسي */
-
-.about-box h2 {
-    margin: 0 0 12px;
-
-    color: #ffffff;
-
-    font-size: 32px;
-
-    font-weight: 700;
-}
-
-
-/* العناوين الفرعية */
-
-.about-box h3 {
-    margin: 25px 0 12px;
-
-    color: #ffffff;
-
-    font-size: 20px;
-
-    font-weight: 600;
-}
-
-
-/* الكلام */
-
-.about-box p {
-    margin: 0 auto;
-
-    max-width: 900px;
-
-    color: #f1f3ec;
-
-    font-size: 16px;
-
-    line-height: 2;
-
-    text-align: center;
-}
-
-
-/* =========================
-   LANGUAGE
-========================= */
-
-.about-en {
-    display: none;
-}
-
-html[dir="ltr"] .about-ar {
-    display: none;
-}
-
-html[dir="ltr"] .about-en {
-    display: block;
-}
-
-html[dir="ltr"] .about-box {
-    direction: ltr;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
+    /* ABOUT */
 
     .about-section {
         padding: 45px 10px;
@@ -1902,130 +2002,43 @@ html[dir="ltr"] .about-box {
         line-height: 2;
     }
 
-}
 
-
-
-
-/* =========================
-   QUALITY VIDEO SECTION
-========================= */
-
-.quality-video-section {
-    width: 100%;
-    padding: 80px 6%;
-
-    background: #f5f3ea;
-}
-
-
-/* الحاوية */
-
-.quality-video-container {
-    width: 100%;
-    max-width: 1150px;
-
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-
-    gap: 70px;
-}
-
-
-/* =========================
-   VIDEO
-========================= */
-
-.quality-video {
-    width: 50%;
-
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-}
-
-.quality-video video {
-    width: 100%;
-    height: 390px;
-
-    display: block;
-
-    object-fit: cover;
-}
-
-
-/* =========================
-   TEXT
-========================= */
-
-.quality-text {
-    width: 50%;
-
-    text-align: right;
-}
-
-.quality-text h2 {
-    margin-bottom: 22px;
-
-    color: #3f4a20;
-
-    font-size: 35px;
-    font-weight: 700;
-
-    line-height: 1.5;
-}
-
-.quality-text p {
-    color: #666;
-
-    font-size: 25px;
-
-    line-height: 2.2;
-
-    margin: 0;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
+    /* QUALITY VIDEO */
 
     .quality-video-section {
-        padding: 50px 15px;
+        padding: 45px 15px;
     }
 
     .quality-video-container {
-        gap: 20px;
+        display: flex;
 
-        flex-direction: row;
+        flex-direction: column;
 
-        align-items: center;
+        gap: 25px;
     }
 
     .quality-video {
-        width: 50%;
+        width: 100%;
 
         border-radius: 12px;
     }
 
     .quality-video video {
+        width: 100%;
+
         height: 300px;
+
+        object-fit: cover;
     }
 
     .quality-text {
-        width: 50%;
+        width: 100%;
 
-        text-align: right;
+        text-align: center;
     }
 
     .quality-text h2 {
-        font-size: 20px;
+        font-size: 22px;
 
         margin-bottom: 12px;
     }
@@ -2036,349 +2049,51 @@ html[dir="ltr"] .about-box {
         line-height: 1.9;
     }
 
-}
-
-/* =========================
-   QUALITY VIDEO LANGUAGE
-========================= */
-
-.quality-video-section .quality-en {
-    display: none;
-}
-
-html[dir="ltr"] .quality-video-section .quality-ar {
-    display: none;
-}
-
-html[dir="ltr"] .quality-video-section .quality-en {
-    display: block;
-}
-
-html[dir="ltr"] .quality-video-section .quality-text {
-    direction: ltr;
-    text-align: left;
-}
-
-/* =========================
-   QUALITY CARDS
-========================= */
-
-.quality-cards-section {
-    width: 100%;
-    background: #2b4815;
-    padding: 70px 5%;
-}
-
-.quality-cards-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    gap: 20px;
-}
-
-.quality-card {
-    flex: 1 1 0;
-    min-width: 0;
-
-    background: #f5f3ea;
-
-    padding: 30px 15px;
-
-    border-radius: 14px;
-
-    text-align: center;
-}
-
-.quality-icon {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.quality-card h3 {
-    color: #3f4a20;
-    font-size: 18px;
-    margin: 0 0 10px;
-}
-
-.quality-card p {
-    color: #777;
-    font-size: 13px;
-    line-height: 1.8;
-    margin: 0;
-}
+    html[dir="ltr"] .quality-video-section .quality-text {
+        text-align: center;
+    }
 
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
+    /* QUALITY CARDS */
 
     .quality-cards-section {
-        padding: 40px 6px;
+        padding: 40px 12px;
     }
 
     .quality-cards-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        grid-template-columns: repeat(2, 1fr);
 
-        gap: 5px;
+        gap: 10px;
     }
 
     .quality-card {
-        flex: 1 1 0;
-        min-width: 0;
+        padding: 20px 10px;
 
-        padding: 16px 4px;
-
-        border-radius: 8px;
+        border-radius: 10px;
     }
 
     .quality-icon {
-        font-size: 23px;
-        margin-bottom: 7px;
+        font-size: 27px;
+
+        margin-bottom: 8px;
     }
 
     .quality-card h3 {
-        font-size: 10px;
+        font-size: 13px;
+
         line-height: 1.5;
-        margin-bottom: 5px;
+
+        margin-bottom: 6px;
     }
 
     .quality-card p {
-        font-size: 7px;
+        font-size: 10px;
+
         line-height: 1.7;
     }
-}
 
 
-
-
-/* =========================
-   QUALITY LANGUAGE
-========================= */
-
-.quality-en {
-    display: none;
-}
-
-html[dir="ltr"] .quality-ar {
-    display: none;
-}
-
-html[dir="ltr"] .quality-en {
-    display: block;
-}
-
-
-/* الإنجليزي يكون من الشمال لليمين */
-
-html[dir="ltr"] .quality-card {
-    direction: ltr;
-    text-align: center;
-}
-
-/* =========================
-   CONTACT SECTION
-========================= */
-
-.contact-section {
-    width: 100%;
-    padding: 60px 6%;
-
-    background: #f5f3ea;
-}
-
-.contact-container {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 50px;
-}
-
-
-/* =========================
-   RIGHT SIDE
-   من نحن + تواصل معنا
-========================= */
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-
-    gap: 22px;
-
-    min-width: 180px;
-}
-
-.contact-links button,
-.contact-links a {
-    border: none;
-    background: none;
-
-    padding: 0;
-
-    color: #2b4815;
-
-    font-family: inherit;
-
-    font-size: 18px;
-    font-weight: 700;
-
-    text-align: right;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.contact-links button:hover,
-.contact-links a:hover {
-    color: #68743a;
-}
-
-
-/* =========================
-   LEFT SIDE
-   اللوجو + السوشيال
-========================= */
-
-.social-area {
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-}
-
-
-/* اللوجو */
-
-.contact-logo {
-    width: 85px;
-    height: 85px;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.contact-logo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-}
-
-
-/* =========================
-   FOLLOW US
-========================= */
-
-.social-content {
-    text-align: center;
-}
-
-.social-content h3 {
-    margin: 0 0 16px;
-
-    color: #2b4815;
-
-    font-size: 19px;
-    font-weight: 700;
-}
-
-
-/* =========================
-   SOCIAL ICONS
-========================= */
-
-.social-icons {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-}
-
-.social-icons a {
-    width: 43px;
-    height: 43px;
-
-    border-radius: 50%;
-
-    background: #2b4815;
-
-    color: #ffffff;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 19px;
-
-    transition: 0.3s;
-}
-
-.social-icons a:hover {
-    background: #68743a;
-
-    transform: translateY(-3px);
-}
-
-
-/* =========================
-   LANGUAGE
-========================= */
-
-.contact-en {
-    display: none;
-}
-
-html[dir="ltr"] .contact-ar {
-    display: none;
-}
-
-html[dir="ltr"] .contact-en {
-    display: inline;
-}
-
-html[dir="ltr"] .contact-container {
-    direction: ltr;
-}
-
-html[dir="ltr"] .contact-links button,
-html[dir="ltr"] .contact-links a {
-    text-align: left;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 768px) {
+    /* CONTACT */
 
     .contact-section {
         padding: 45px 12px;
@@ -2390,6 +2105,7 @@ html[dir="ltr"] .contact-links a {
 
     .contact-links {
         min-width: 110px;
+
         gap: 17px;
     }
 
@@ -2404,90 +2120,22 @@ html[dir="ltr"] .contact-links a {
 
     .social-content h3 {
         font-size: 13px;
+
         margin-bottom: 10px;
     }
 
-    .social-icons a { 
+    .social-icons a {
         width: 32px;
+
         height: 32px;
-        font-size:14px;
+
+        font-size: 14px;
     }
-    .contact-logo  {
+
+    .contact-logo {
         width: 62px;
+
         height: 62px;
-
     }
+
 }
-
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer {
-    width: 100%;
-
-    padding: 28px 20px;
-
-    background: #2b4815;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    text-align: center;
-
-    color: #ffffff;
-}
-
-.site-footer p {
-    margin: 0;
-
-    font-size: 14px;
-}
-
-.site-footer a {
-    color: #ffffff;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    text-decoration: none;
-
-    transition: 0.3s;
-}
-
-.site-footer a:hover {
-    opacity: 0.7;
-}
-
-.dashboard-access {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.dashboard-access:hover {
-    opacity: 0.7;
-}
-/* =========================
-   LANGUAGE
-========================= */
-
-.footer-en {
-    display: none;
-}
-
-html[dir="ltr"] .footer-ar {
-    display: none;
-}
-
-html[dir="ltr"] .footer-en {
-    display: inline;
-}
-
