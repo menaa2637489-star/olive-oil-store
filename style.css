@@ -1607,19 +1607,20 @@ html[dir="ltr"] .quality-video-section .quality-text {
    MOBILE
 ========================= */
 
-@media (max-width: 600px) {
-
-    .quality-cards-section {
-        padding: 35px 15px;
-    }
+@media (max-width: 768px) {
 
     .quality-cards-container {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        width: 100%;
     }
 
     .quality-card {
-        min-height: 210px;
+        flex: 1 1 0;
+        width: 25%;
+        min-width: 0;
+        margin: 0;
     }
 
 }
