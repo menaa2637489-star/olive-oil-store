@@ -232,7 +232,7 @@ const productData = {
     },
 
     one: {
-        image: "500ml.jpeg",
+        image: "1liter.jpeg",
         name: "زيت زيتون دكتور أبو النصر",
         price: 580
     },
