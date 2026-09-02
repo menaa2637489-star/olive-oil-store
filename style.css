@@ -1456,39 +1456,35 @@ html[dir="ltr"] .quality-video-section .quality-text {
     text-align: left;
 }
 
-
 /* =========================
    QUALITY CARDS
 ========================= */
 
 .quality-cards-section {
     width: 100%;
-
     background: #2b4815;
-
     padding: 70px 5%;
 }
 
 .quality-cards-container {
     width: 100%;
-
     max-width: 1200px;
-
     margin: 0 auto;
 
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
 
     gap: 20px;
 }
 
 .quality-card {
-    width: 100%;
+    width: calc(25% - 15px) !important;
+    flex: 1 1 0 !important;
 
     background: #f5f3ea;
 
-    padding: 30px 18px;
+    padding: 30px 15px;
 
     border-radius: 14px;
 
@@ -1497,45 +1493,69 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
 .quality-icon {
     font-size: 35px;
-
     margin-bottom: 15px;
 }
 
 .quality-card h3 {
     color: #3f4a20;
-
     font-size: 18px;
-
     margin: 0 0 10px;
 }
 
 .quality-card p {
     color: #777;
-
     font-size: 13px;
-
     line-height: 1.8;
-
     margin: 0;
 }
 
-.quality-en {
-    display: none;
+
+/* =========================
+   QUALITY CARDS MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .quality-cards-section {
+        padding: 40px 6px;
+    }
+
+    .quality-cards-container {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+
+        gap: 5px;
+    }
+
+    .quality-card {
+        width: calc(25% - 4px) !important;
+        flex: 1 1 0 !important;
+
+        padding: 16px 4px;
+
+        border-radius: 8px;
+    }
+
+    .quality-icon {
+        font-size: 23px;
+        margin-bottom: 7px;
+    }
+
+    .quality-card h3 {
+        font-size: 10px;
+        line-height: 1.5;
+        margin-bottom: 5px;
+    }
+
+    .quality-card p {
+        font-size: 7px;
+        line-height: 1.7;
+    }
 }
 
-html[dir="ltr"] .quality-ar {
-    display: none;
-}
 
-html[dir="ltr"] .quality-en {
-    display: block;
-}
 
-html[dir="ltr"] .quality-card {
-    direction: ltr;
-
-    text-align: center;
-}
 
 
 /* =========================
