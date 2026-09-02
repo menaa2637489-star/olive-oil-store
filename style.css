@@ -1462,8 +1462,8 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
 .quality-cards-section {
     width: 100%;
-    background: #2b4815;
-    padding: 70px 5%;
+    padding: 50px 20px;
+    background: #f8f6ee;
 }
 
 .quality-cards-container {
@@ -1471,92 +1471,157 @@ html[dir="ltr"] .quality-video-section .quality-text {
     max-width: 1200px;
     margin: 0 auto;
 
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+
+    align-items: stretch;
 }
-
-.quality-card {
-    width: calc(25% - 15px) !important;
-    flex: 1 1 0 !important;
-
-    background: #f5f3ea;
-
-    padding: 30px 15px;
-
-    border-radius: 14px;
-
-    text-align: center;
-}
-
-.quality-icon {
-    font-size: 35px;
-    margin-bottom: 15px;
-}
-
-.quality-card h3 {
-    color: #3f4a20;
-    font-size: 18px;
-    margin: 0 0 10px;
-}
-
-.quality-card p {
-    color: #777;
-    font-size: 13px;
-    line-height: 1.8;
-    margin: 0;
-}
-
 
 /* =========================
-   QUALITY CARDS MOBILE
+   QUALITY CARD
 ========================= */
 
-@media (max-width: 768px) {
+.quality-card {
+    background: #ffffff;
+
+    border: 2px solid #718c3a;
+    border-radius: 18px;
+
+    padding: 25px 18px;
+
+    min-height: 230px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    box-shadow: 0 5px 15px rgba(43, 72, 21, 0.12);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.quality-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 10px 25px rgba(43, 72, 21, 0.20);
+}
+
+/* =========================
+   ICON
+========================= */
+
+.quality-icon {
+    width: 65px;
+    height: 65px;
+
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8eddc;
+
+    border-radius: 50%;
+
+    color: #2b4815;
+
+    font-size: 30px;
+}
+
+/* =========================
+   ARABIC
+========================= */
+
+.quality-ar h3 {
+    margin: 0 0 10px;
+
+    color: #2b4815;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.quality-ar p {
+    margin: 0;
+
+    color: #5f6f48;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+/* =========================
+   ENGLISH
+========================= */
+
+.quality-en h3 {
+    margin: 0 0 10px;
+
+    color: #2b4815;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.quality-en p {
+    margin: 0;
+
+    color: #5f6f48;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+/* =========================
+   LANGUAGE
+========================= */
+
+.quality-en {
+    display: none;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .quality-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
 
     .quality-cards-section {
-        padding: 40px 6px;
+        padding: 35px 15px;
     }
 
     .quality-cards-container {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-
-        gap: 5px;
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .quality-card {
-        width: calc(25% - 4px) !important;
-        flex: 1 1 0 !important;
-
-        padding: 16px 4px;
-
-        border-radius: 8px;
+        min-height: 210px;
     }
 
-    .quality-icon {
-        font-size: 23px;
-        margin-bottom: 7px;
-    }
-
-    .quality-card h3 {
-        font-size: 10px;
-        line-height: 1.5;
-        margin-bottom: 5px;
-    }
-
-    .quality-card p {
-        font-size: 7px;
-        line-height: 1.7;
-    }
 }
-
-
-
-
 
 /* =========================
    CONTACT
