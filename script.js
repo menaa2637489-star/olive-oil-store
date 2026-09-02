@@ -226,25 +226,25 @@ cartOverlay.addEventListener("click", closeCartPanel);
 const productData = {
 
     half: {
-        image: "images/نصف لتر.png",
+        image: "250ml.jpeg",
         name: "زيت زيتون دكتور أبو النصر",
         price: 320
     },
 
     one: {
-        image: "images/1لتر.png",
+        image: "500ml.jpeg",
         name: "زيت زيتون دكتور أبو النصر",
         price: 580
     },
 
     two: {
-        image: "images/2لتر.png",
+        image: "1liter",
         name: "زيت زيتون دكتور أبو النصر",
         price: 1080
     },
 
     five: {
-        image: "images/5لتر.png",
+        image: "5liter.jpeg",
         name: "زيت زيتون دكتور أبو النصر",
         price: 2600
     }
