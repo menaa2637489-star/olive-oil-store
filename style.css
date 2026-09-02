@@ -2224,3 +2224,51 @@ html[dir="ltr"] .footer-en {
     }
 
 }
+/* =========================
+   FORCE QUALITY CARDS
+========================= */
+
+.quality-cards-section .quality-cards-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+.quality-cards-section .quality-card {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 0 !important;
+    width: 25% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+}
+
+/* الموبايل */
+@media (max-width: 700px) {
+
+    .quality-cards-section .quality-cards-container {
+        flex-wrap: wrap !important;
+    }
+
+    .quality-cards-section .quality-card {
+        width: calc(50% - 10px) !important;
+        flex: 0 0 calc(50% - 10px) !important;
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .quality-cards-section .quality-card {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+
+}
