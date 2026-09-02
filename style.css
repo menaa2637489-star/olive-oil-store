@@ -1463,7 +1463,8 @@ html[dir="ltr"] .quality-video-section .quality-text {
 .quality-cards-section {
     width: 100%;
     padding: 50px 20px;
-    background: #f8f6ee;
+    background: #2b4815;
+   margin: 0;
 }
 
 .quality-cards-container {
