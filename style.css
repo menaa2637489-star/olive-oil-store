@@ -1455,7 +1455,6 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
     text-align: left;
 }
-
 /* =========================
    QUALITY CARDS
 ========================= */
@@ -1464,7 +1463,7 @@ html[dir="ltr"] .quality-video-section .quality-text {
     width: 100%;
     padding: 50px 20px;
     background: #2b4815;
-   margin: 0;
+    margin: 0;
 }
 
 .quality-cards-container {
@@ -1504,6 +1503,8 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
     transition: transform 0.3s ease,
                 box-shadow 0.3s ease;
+
+    min-width: 0;
 }
 
 .quality-card:hover {
@@ -1536,51 +1537,27 @@ html[dir="ltr"] .quality-video-section .quality-text {
 }
 
 /* =========================
-   ARABIC
+   TEXT
 ========================= */
 
-.quality-ar h3 {
+.quality-card h3 {
     margin: 0 0 10px;
 
-    color: #2b4815;
+    color: #ffffff;
 
     font-size: 19px;
 
     font-weight: 700;
 }
 
-.quality-ar p {
+.quality-card p {
     margin: 0;
 
-    color: #5f6f48;
+    color: #e8eddc;
 
     font-size: 15px;
 
     line-height: 1.8;
-}
-
-/* =========================
-   ENGLISH
-========================= */
-
-.quality-en h3 {
-    margin: 0 0 10px;
-
-    color: #2b4815;
-
-    font-size: 18px;
-
-    font-weight: 700;
-}
-
-.quality-en p {
-    margin: 0;
-
-    color: #5f6f48;
-
-    font-size: 14px;
-
-    line-height: 1.7;
 }
 
 /* =========================
@@ -1598,7 +1575,12 @@ html[dir="ltr"] .quality-video-section .quality-text {
 @media (max-width: 900px) {
 
     .quality-cards-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .quality-card {
+        padding: 20px 8px;
     }
 
 }
@@ -1610,17 +1592,34 @@ html[dir="ltr"] .quality-video-section .quality-text {
 @media (max-width: 768px) {
 
     .quality-cards-container {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 8px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
         width: 100%;
     }
 
     .quality-card {
-        flex: 1 1 0;
-        width: 25%;
+        width: 100%;
         min-width: 0;
-        margin: 0;
+        padding: 15px 4px;
+        min-height: 200px;
+    }
+
+    .quality-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .quality-card h3 {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .quality-card p {
+        font-size: 8px;
+        line-height: 1.5;
     }
 
 }
