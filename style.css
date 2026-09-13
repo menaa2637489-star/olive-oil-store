@@ -2465,3 +2465,8 @@ html[dir="ltr"] .footer-en {
     }
 
 }
+.whatsapp-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
