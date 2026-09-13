@@ -2456,6 +2456,12 @@ html[dir="ltr"] .footer-en {
 
         font-size: 12px;
     }
+.whatsapp-float {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .whatsapp-icon {
     width: 32px;
     height: 32px;
@@ -2466,8 +2472,13 @@ html[dir="ltr"] .footer-en {
 }
 
 .whatsapp-icon img {
-    width: 10px !important;
-    height: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
     object-fit: contain;
     display: block;
+}
+
+.whatsapp-text {
+    font-size: 14px;
+    white-space: nowrap;
 }
