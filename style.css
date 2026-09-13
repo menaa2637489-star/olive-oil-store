@@ -4936,3 +4936,35 @@ html[dir="ltr"] .footer-en {
 
 }
 
+/* =========================
+   WHATSAPP - LARGE SCREENS
+========================= */
+
+@media (min-width: 601px) {
+
+    .whatsapp-float {
+        right: 15px;
+        bottom: 18px;
+
+        padding: 6px 10px;
+
+        gap: 6px;
+
+        font-size: 12px;
+    }
+
+    .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .whatsapp-icon img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .whatsapp-text {
+        font-size: 12px;
+    }
+
+}
