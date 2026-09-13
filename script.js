@@ -17,6 +17,7 @@ const languageText = document.getElementById("languageText");
 
 const addCartBtn = document.getElementById("addCartBtn");
 const buyNowBtn = document.getElementById("buyNowBtn");
+const plusOneBtn = document.getElementById("plusOneBtn");
 
 const cartCount = document.getElementById("cartCount");
 const cartItems = document.getElementById("cartItems");
@@ -515,7 +516,15 @@ addCartBtn.addEventListener("click", function () {
 
 });
 
+/* =========================
+   PLUS ONE
+========================= */
 
+plusOneBtn.addEventListener("click", function () {
+
+    addSelectedProductToCart();
+
+});
 /* =========================
    ORDER MODAL
 ========================= */
