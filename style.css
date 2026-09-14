@@ -5188,3 +5188,23 @@ html[dir="ltr"] .footer-en {
         color: #ffffff !important;
     }
 }
+/* =========================
+   TIN CARD - DESKTOP TEXT
+========================= */
+
+.quality-cards-container .quality-card .package-name,
+.quality-cards-container .quality-card .package-description {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.quality-cards-container .quality-card .package-name {
+    font-size: 19px !important;
+    font-weight: 700 !important;
+}
+
+.quality-cards-container .quality-card .package-description {
+    font-size: 15px !important;
+    font-weight: 400 !important;
+}
