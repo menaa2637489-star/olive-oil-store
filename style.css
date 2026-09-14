@@ -5041,21 +5041,47 @@ html[dir="ltr"] .footer-en {
 
 
 /* =========================
-   PACKAGE OPTION
+   PACKAGE OPTION - CARD 4
 ========================= */
 
 .package-option {
-    width: 100%;
+    width: 100% !important;
+    min-width: 0 !important;
 
-    display: flex;
+    min-height: 230px;
 
-    flex-direction: column;
+    padding: 25px 18px;
+
+    background: #2b4815;
+
+    border: 2px solid #718c3a;
+    border-radius: 18px;
+
+    display: flex !important;
+    flex-direction: column !important;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 5px 15px rgba(43, 72, 21, 0.12);
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.package-option:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 10px 25px rgba(43, 72, 21, 0.20);
 }
 
 
@@ -5065,11 +5091,9 @@ html[dir="ltr"] .footer-en {
 
 .package-option .tin-icon {
     width: 65px !important;
-
     height: 65px !important;
 
     max-width: 65px !important;
-
     max-height: 65px !important;
 
     object-fit: contain !important;
@@ -5085,15 +5109,15 @@ html[dir="ltr"] .footer-en {
 ========================= */
 
 .package-option .package-name {
-    color: #2b4815;
+    color: #ffffff;
 
-    font-size: 16px;
+    font-size: 19px;
 
     font-weight: 700;
 
     line-height: 1.4;
 
-    margin: 0 0 6px;
+    margin: 0 0 10px;
 }
 
 
@@ -5102,11 +5126,11 @@ html[dir="ltr"] .footer-en {
 ========================= */
 
 .package-option .package-description {
-    color: #68743a;
+    color: #e8eddc;
 
-    font-size: 13px;
+    font-size: 15px;
 
-    line-height: 1.6;
+    line-height: 1.8;
 
     max-width: 180px;
 
@@ -5115,33 +5139,45 @@ html[dir="ltr"] .footer-en {
 
 
 /* =========================
-   PACKAGE OPTION - MOBILE
+   MOBILE
 ========================= */
 
 @media (max-width: 768px) {
 
+    .package-option {
+        width: 100% !important;
+        min-width: 0 !important;
+
+        min-height: 200px;
+
+        padding: 15px 4px;
+
+        border-radius: 12px;
+    }
+
     .package-option .tin-icon {
-        width: 50px !important;
+        width: 45px !important;
+        height: 45px !important;
 
-        height: 50px !important;
-
-        max-width: 50px !important;
-
-        max-height: 50px !important;
+        max-width: 45px !important;
+        max-height: 45px !important;
 
         margin-bottom: 8px;
     }
 
     .package-option .package-name {
-        font-size: 12px;
+        font-size: 11px;
+
+        line-height: 1.4;
+
+        margin-bottom: 6px;
     }
 
     .package-option .package-description {
-        font-size: 9px;
+        font-size: 8px;
 
         line-height: 1.5;
 
         max-width: 100px;
     }
-
 }
