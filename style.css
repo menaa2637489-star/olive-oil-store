@@ -5188,23 +5188,17 @@ html[dir="ltr"] .footer-en {
         color: #ffffff !important;
     }
 }
-/* =========================
-   TIN CARD - DESKTOP TEXT
-========================= */
+/* CARD 4 - SAME STYLE AS OTHER QUALITY CARDS */
 
-.quality-cards-container .quality-card .package-name,
-.quality-cards-container .quality-card .package-description {
+.quality-cards-container .quality-card h3,
+.quality-cards-container .quality-card p {
     color: #ffffff !important;
-    opacity: 1 !important;
-    visibility: visible !important;
 }
 
-.quality-cards-container .quality-card .package-name {
-    font-size: 19px !important;
-    font-weight: 700 !important;
-}
-
-.quality-cards-container .quality-card .package-description {
-    font-size: 15px !important;
-    font-weight: 400 !important;
+.quality-cards-container .quality-card .tin-icon {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
 }
