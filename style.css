@@ -5133,3 +5133,58 @@ html[dir="ltr"] .footer-en {
         max-width: 100px !important;
     }
 }
+/* =========================
+   TIN CAN CARD - FINAL FIX
+========================= */
+
+.quality-cards-container .quality-card {
+    box-sizing: border-box !important;
+}
+
+.quality-cards-container .quality-card .tin-icon {
+    width: 42px !important;
+    height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto 10px !important;
+}
+
+.quality-cards-container .quality-card .package-name {
+    color: #ffffff !important;
+    font-size: 19px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin: 0 0 8px !important;
+    line-height: 1.4 !important;
+}
+
+.quality-cards-container .quality-card .package-description {
+    color: #ffffff !important;
+    font-size: 15px !important;
+    text-align: center !important;
+    margin: 0 !important;
+    line-height: 1.6 !important;
+}
+
+@media (max-width: 768px) {
+
+    .quality-cards-container .quality-card .tin-icon {
+        width: 38px !important;
+        height: 38px !important;
+        max-width: 38px !important;
+        max-height: 38px !important;
+        margin-bottom: 7px !important;
+    }
+
+    .quality-cards-container .quality-card .package-name {
+        font-size: 9px !important;
+        color: #ffffff !important;
+    }
+
+    .quality-cards-container .quality-card .package-description {
+        font-size: 7px !important;
+        color: #ffffff !important;
+    }
+}
