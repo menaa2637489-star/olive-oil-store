@@ -2377,6 +2377,28 @@ html[dir="ltr"] .footer-en {
     }
 
 }
+.package-option {
+    text-align: center;
+}
+
+.tin-icon {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 6px;
+}
+
+.package-name {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.package-description {
+    font-size: 12px;
+    line-height: 1.4;
+}
 /* =========================
    WHATSAPP FLOATING BUTTON
 ========================= */
