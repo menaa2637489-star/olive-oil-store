@@ -58,6 +58,8 @@ button {
     height: 70px;
     object-fit: contain;
     border-radius: 50%;
+    background: #ffffff;
+    padding: 6px;
 }
 
 .header-brand span {
