@@ -342,9 +342,6 @@ body {
     border-color: #244b0b;
 }
 
-
-
-
 /* =========================
    MOBILE
 ========================= */
@@ -366,9 +363,9 @@ body {
         align-items: center;
         justify-content: space-between;
 
-        padding: 10px 15px;
+        padding: 10px 12px;
 
-        gap: 10px;
+        gap: 15px;
     }
 
     .header-brand {
@@ -379,6 +376,8 @@ body {
         gap: 8px;
 
         min-width: 0;
+
+        flex: 1;
     }
 
     .header-brand img {
@@ -403,13 +402,13 @@ body {
 
         justify-content: flex-end;
 
-        gap: 5px;
+        gap: 6px;
 
         flex-shrink: 0;
     }
 
     .header-nav button {
-        padding: 7px 9px;
+        padding: 7px 8px;
 
         font-size: 11px;
 
@@ -485,15 +484,19 @@ body {
     .products-container {
         width: 100%;
 
-        grid-template-columns: 1fr;
+        display: grid;
 
-        gap: 20px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
     }
 
     .product-card {
         min-height: 260px;
 
-        padding: 25px 18px;
+        padding: 25px 10px;
+
+        width: 100%;
     }
 
     .product-card img {
@@ -509,3 +512,7 @@ body {
         font-size: 15px;
     }
 }
+
+
+
+
