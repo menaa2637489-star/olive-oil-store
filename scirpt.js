@@ -75,3 +75,21 @@ if (heroProductsBtn) {
     });
 
 }
+if (heroProductsBtn) {
+
+    heroProductsBtn.addEventListener("click", function () {
+
+        const productsSection =
+            document.getElementById("products");
+
+        if (productsSection) {
+            productsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+    });
+
+}
+
+alert("JavaScript is working");
