@@ -359,19 +359,21 @@ function addSelectedProductToCart() {
     const selectedProduct =
         productData[selectedSize];
 
+    for (let i = 0; i < quantity; i++) {
 
-    cart.push({
+        cart.push({
 
-        id: Date.now(),
+            id: Date.now() + i,
 
-        size: selectedSize,
+            size: selectedSize,
 
-        name: selectedProduct.name,
+            name: selectedProduct.name,
 
-        price: selectedProduct.price
+            price: selectedProduct.price
 
-    });
+        });
 
+    }
 
     updateCart();
 
@@ -517,12 +519,28 @@ addCartBtn.addEventListener("click", function () {
 });
 
 /* =========================
-   PLUS ONE
+   QUANTITY CONTROL
 ========================= */
+
+let quantity = 1;
+
+const plusOneBtn = document.getElementById("plusOneBtn");
+const minusOneBtn = document.getElementById("minusOneBtn");
+const quantityValue = document.getElementById("quantityValue");
 
 plusOneBtn.addEventListener("click", function () {
 
-    addSelectedProductToCart();
+    quantity++;
+    quantityValue.textContent = quantity;
+
+});
+
+minusOneBtn.addEventListener("click", function () {
+
+    if (quantity > 1) {
+        quantity--;
+        quantityValue.textContent = quantity;
+    }
 
 });
 /* =========================
