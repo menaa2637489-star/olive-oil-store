@@ -6,41 +6,52 @@ const languageBtn = document.getElementById("languageBtn");
 
 let currentLanguage = "ar";
 
-languageBtn.addEventListener("click", function () {
+if (languageBtn) {
 
-    if (currentLanguage === "ar") {
+    languageBtn.addEventListener("click", function () {
 
-        currentLanguage = "en";
+        if (currentLanguage === "ar") {
 
-        document.documentElement.lang = "en";
-        document.documentElement.dir = "ltr";
+            currentLanguage = "en";
 
-        languageBtn.textContent = "العربية";
+            document.documentElement.lang = "en";
+            document.documentElement.dir = "ltr";
 
-    } else {
+            languageBtn.textContent = "العربية";
 
-        currentLanguage = "ar";
+        } else {
 
-        document.documentElement.lang = "ar";
-        document.documentElement.dir = "rtl";
+            currentLanguage = "ar";
 
-        languageBtn.textContent = "English";
-    }
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
 
-    const elements = document.querySelectorAll("[data-ar][data-en]");
+            languageBtn.textContent = "English";
 
-    elements.forEach(function (element) {
+        }
 
-        element.textContent =
-            currentLanguage === "ar"
-                ? element.getAttribute("data-ar")
-                : element.getAttribute("data-en");
+        const elements =
+            document.querySelectorAll("[data-ar][data-en]");
+
+        elements.forEach(function (element) {
+
+            if (currentLanguage === "en") {
+
+                element.textContent =
+                    element.getAttribute("data-en");
+
+            } else {
+
+                element.textContent =
+                    element.getAttribute("data-ar");
+
+            }
+
+        });
 
     });
 
-});
-
-
+}
 /* =========================
    DISCOVER PRODUCTS
 ========================= */
