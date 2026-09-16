@@ -4,7 +4,9 @@
 
 const languageBtn = document.getElementById("languageBtn");
 
-let currentLanguage = "ar";
+let currentLanguage =
+    localStorage.getItem("siteLanguage") || "ar";
+
 
 function updateLanguage() {
 
@@ -36,8 +38,11 @@ function updateLanguage() {
        ABOUT US
     ========================= */
 
-    const aboutAr = document.querySelector(".about-ar");
-    const aboutEn = document.querySelector(".about-en");
+    const aboutAr =
+        document.querySelector(".about-ar");
+
+    const aboutEn =
+        document.querySelector(".about-en");
 
     if (aboutAr && aboutEn) {
 
@@ -57,7 +62,7 @@ function updateLanguage() {
 
 
     /* =========================
-       PAGE LANGUAGE
+       PAGE DIRECTION
     ========================= */
 
     if (currentLanguage === "en") {
@@ -65,14 +70,18 @@ function updateLanguage() {
         document.documentElement.lang = "en";
         document.documentElement.dir = "ltr";
 
-        languageBtn.textContent = "العربية";
+        if (languageBtn) {
+            languageBtn.textContent = "العربية";
+        }
 
     } else {
 
         document.documentElement.lang = "ar";
         document.documentElement.dir = "rtl";
 
-        languageBtn.textContent = "English";
+        if (languageBtn) {
+            languageBtn.textContent = "English";
+        }
 
     }
 
@@ -97,11 +106,24 @@ if (languageBtn) {
 
         }
 
+        /* حفظ اللغة للموقع كله */
+        localStorage.setItem(
+            "siteLanguage",
+            currentLanguage
+        );
+
         updateLanguage();
 
     });
 
 }
+
+
+/* =========================
+   APPLY SAVED LANGUAGE
+========================= */
+
+updateLanguage();
 /* =========================
    DISCOVER PRODUCTS
 ========================= */
@@ -125,21 +147,3 @@ if (heroProductsBtn) {
     });
 
 }
-if (heroProductsBtn) {
-
-    heroProductsBtn.addEventListener("click", function () {
-
-        const productsSection =
-            document.getElementById("products");
-
-        if (productsSection) {
-            productsSection.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-
-    });
-
-}
-
-alert("JavaScript is working");
