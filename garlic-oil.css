@@ -8,10 +8,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: Arial, Tahoma, sans-serif;
     background: #2a4f0e;
@@ -19,9 +15,7 @@ body {
 }
 
 button,
-input,
-select,
-textarea {
+input {
     font-family: inherit;
 }
 
@@ -41,7 +35,6 @@ a {
 .main-header {
     width: 100%;
     min-height: 85px;
-
     background: #1a2a016a;
 
     display: flex;
@@ -80,21 +73,18 @@ a {
 .logo img {
     width: 100%;
     height: 100%;
-
     object-fit: contain;
 }
 
 .brand-name {
     font-size: 21px;
     font-weight: bold;
-
     color: #ffffff;
 }
 
 .header-actions {
     display: flex;
     align-items: center;
-
     gap: 10px;
 }
 
@@ -213,7 +203,6 @@ a {
 .hero-product {
     display: flex;
     flex-direction: column;
-
     align-items: center;
 }
 
@@ -272,25 +261,19 @@ a {
 
 .hero-product h2 {
     color: #3f4a20;
-
     font-size: 24px;
-
     margin-bottom: 7px;
 }
 
 .product-type {
     color: #777;
-
     font-size: 15px;
-
     margin-bottom: 18px;
 }
 
 .sizes-title {
     color: #555;
-
     font-size: 15px;
-
     margin-bottom: 10px;
 }
 
@@ -329,9 +312,7 @@ a {
 
 .size-btn.active {
     background: #68743a;
-
     border-color: #68743a;
-
     color: #ffffff;
 }
 
@@ -352,68 +333,12 @@ a {
 
 .product-price strong {
     color: #68743a;
-
     font-size: 21px;
 }
 
-
-/* =========================
-   QUANTITY
-========================= */
-
-.quantity-control {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 24px;
-
-    margin: 15px 0;
-
-    direction: ltr;
-}
-
-.quantity-control button {
-    border: none;
-
-    background: transparent;
-
-    padding: 0;
-    margin: 0;
-
-    width: auto;
-    height: auto;
-
-    font-size: 20px;
-    font-weight: normal;
-
-    color: #222;
-
-    cursor: pointer;
-}
-
-.quantity-control span {
-    font-size: 18px;
-    font-weight: normal;
-
-    color: #222;
-
-    min-width: 12px;
-
-    text-align: center;
-}
-
-
-/* =========================
-   PRODUCT BUTTONS
-========================= */
-
 .product-buttons {
     display: flex;
-
     justify-content: center;
-
     gap: 12px;
 }
 
@@ -434,7 +359,6 @@ a {
 
 .buy-btn {
     background: #68743a;
-
     color: #ffffff;
 }
 
@@ -444,12 +368,82 @@ a {
 
 .add-cart-btn {
     background: #eeeeee;
-
     color: #3f4a20;
 }
 
 .add-cart-btn:hover {
     background: #e1e5d7;
+}
+
+.plus-one-btn {
+    border: none;
+
+    background: #68743a;
+
+    color: #ffffff;
+
+    width: 42px;
+    height: 34px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plus-one-btn:hover {
+    background: #55612f;
+    transform: scale(1.05);
+}
+
+.plus-one-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================
+   QUANTITY CONTROL
+========================= */
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 15px 0;
+    direction: ltr;
+}
+
+.quantity-control button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+
+    font-size: 20px;
+    font-weight: normal;
+    color: #222;
+
+    cursor: pointer;
+}
+
+.quantity-control span {
+    font-size: 18px;
+    font-weight: normal;
+    color: #222;
+
+    min-width: 12px;
+    text-align: center;
 }
 
 
@@ -465,7 +459,6 @@ a {
     background: rgba(0, 0, 0, 0.45);
 
     opacity: 0;
-
     visibility: hidden;
 
     transition: 0.3s;
@@ -475,7 +468,6 @@ a {
 
 .overlay.active {
     opacity: 1;
-
     visibility: visible;
 }
 
@@ -534,7 +526,6 @@ a {
 
 .close-btn:hover {
     background: #68743a;
-
     color: #ffffff;
 }
 
@@ -686,6 +677,20 @@ a {
     color: #333;
 }
 
+.social-login:hover {
+    background: #f7f7f7;
+}
+
+.google-icon {
+    font-weight: bold;
+    color: #4285f4;
+}
+
+.facebook-icon {
+    font-weight: bold;
+    color: #1877f2;
+}
+
 
 /* =========================
    CART
@@ -693,21 +698,17 @@ a {
 
 .cart-items {
     min-height: 300px;
-
     padding: 20px 0;
 }
 
 .empty-cart {
     text-align: center;
-
     color: #999;
-
     padding-top: 80px;
 }
 
 .cart-product {
     padding: 15px;
-
     margin-bottom: 12px;
 
     border: 1px solid #e5e7df;
@@ -848,6 +849,7 @@ a {
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     padding: 20px;
@@ -861,7 +863,6 @@ a {
 
 .order-modal.active {
     opacity: 1;
-
     visibility: visible;
 }
 
@@ -907,6 +908,8 @@ a {
     font-size: 25px;
 
     font-weight: 700;
+
+    margin: 0;
 }
 
 .order-summary {
@@ -974,11 +977,6 @@ a {
 
     font-size: 19px;
 }
-
-
-/* =========================
-   ORDER FORM
-========================= */
 
 .order-form {
     display: flex;
@@ -1170,7 +1168,7 @@ a {
 
 
 /* =========================
-   FAQ
+   FAQ SECTION
 ========================= */
 
 .faq-section {
@@ -1189,6 +1187,11 @@ a {
     margin: 0 auto;
 }
 
+
+/* =========================
+   FAQ CARD
+========================= */
+
 .faq-item {
     width: 100%;
 
@@ -1202,6 +1205,11 @@ a {
 
     background: #f7f7f7;
 }
+
+
+/* =========================
+   QUESTION
+========================= */
 
 .faq-question {
     width: 100%;
@@ -1231,7 +1239,14 @@ a {
     color: #0b0404;
 
     text-align: right;
+
+    cursor: pointer;
 }
+
+
+/* =========================
+   ARROW
+========================= */
 
 .faq-arrow {
     flex-shrink: 0;
@@ -1240,6 +1255,11 @@ a {
 
     transition: transform 0.3s ease;
 }
+
+
+/* =========================
+   ANSWER
+========================= */
 
 .faq-answer {
     max-height: 0;
@@ -1258,6 +1278,11 @@ a {
         max-height 0.4s ease,
         padding 0.4s ease;
 }
+
+
+/* =========================
+   ACTIVE
+========================= */
 
 .faq-item.active .faq-answer {
     max-height: 500px;
@@ -1279,33 +1304,24 @@ a {
 
 
 /* =========================
-   LANGUAGE
+   FAQ LANGUAGE
 ========================= */
 
-.faq-en,
-.quality-en,
-.contact-en,
-.footer-en {
+.faq-en {
     display: none;
 }
 
-html[dir="ltr"] .faq-ar,
-html[dir="ltr"] .quality-ar,
-html[dir="ltr"] .contact-ar,
-html[dir="ltr"] .footer-ar {
+html[dir="ltr"] .faq-ar {
     display: none;
 }
 
-html[dir="ltr"] .faq-en,
-html[dir="ltr"] .quality-en,
-html[dir="ltr"] .contact-en,
-html[dir="ltr"] .footer-en {
+html[dir="ltr"] .faq-en {
     display: block;
 }
 
 
 /* =========================
-   QUALITY VIDEO
+   QUALITY VIDEO SECTION
 ========================= */
 
 .quality-video-section {
@@ -1378,16 +1394,29 @@ html[dir="ltr"] .footer-en {
     margin: 0;
 }
 
-html[dir="ltr"] .quality-text {
+.quality-video-section .quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-en {
+    display: block;
+}
+
+html[dir="ltr"] .quality-video-section .quality-text {
     direction: ltr;
 
     text-align: left;
 }
 
 
-/* =========================
+/* =====================================================
    QUALITY CARDS
-========================= */
+   الأربع كروت في صف واحد
+===================================================== */
 
 .quality-cards-section {
     width: 100%;
@@ -1445,6 +1474,11 @@ html[dir="ltr"] .quality-text {
     min-height: 230px;
 }
 
+
+/* =========================
+   QUALITY CARD ICONS
+========================= */
+
 .quality-card .quality-icon {
     width: 65px;
 
@@ -1475,11 +1509,63 @@ html[dir="ltr"] .quality-text {
     overflow: hidden;
 }
 
+
+/* =====================================================
+   CARD 4 ICON
+===================================================== */
+
+.quality-card:nth-child(4) .package-option {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+}
+
+.quality-card:nth-child(4) .tin-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    flex: 0 0 65px;
+
+    padding: 7px;
+
+    margin: 0 0 15px 0;
+
+    display: block;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    background: #e8eddc;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   QUALITY CARD TEXT
+========================= */
+
 .quality-card h3,
 .quality-card .package-name {
     margin: 0 0 10px;
 
     color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
 
     font-size: 19px;
 
@@ -1494,13 +1580,51 @@ html[dir="ltr"] .quality-text {
 
     color: #ffffff !important;
 
+    -webkit-text-fill-color: #ffffff !important;
+
     font-size: 15px;
 
     line-height: 1.8;
 }
 
+
+/* =========================
+   PACKAGE
+========================= */
+
 .package-option {
     text-align: center;
+}
+
+.package-name {
+    font-weight: bold;
+
+    font-size: 15px;
+
+    margin-bottom: 3px;
+}
+
+.package-description {
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   QUALITY LANGUAGE
+========================= */
+
+.quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-en {
+    display: block;
 }
 
 
@@ -1658,6 +1782,27 @@ html[dir="ltr"] .quality-text {
     transform: translateY(-3px);
 }
 
+.contact-en {
+    display: none;
+}
+
+html[dir="ltr"] .contact-ar {
+    display: none;
+}
+
+html[dir="ltr"] .contact-en {
+    display: inline;
+}
+
+html[dir="ltr"] .contact-container {
+    direction: ltr;
+}
+
+html[dir="ltr"] .contact-links button,
+html[dir="ltr"] .contact-links a {
+    text-align: left;
+}
+
 
 /* =========================
    FOOTER
@@ -1723,10 +1868,36 @@ html[dir="ltr"] .quality-text {
     opacity: 0.7;
 }
 
+.footer-en {
+    display: none;
+}
 
-/* =========================
+html[dir="ltr"] .footer-ar {
+    display: none;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline;
+}
+
+
+/* =====================================================
+   CARD 4 - FINAL FORCE
+===================================================== */
+
+.quality-cards-container > .quality-card:nth-child(4) .package-name,
+.quality-cards-container > .quality-card:nth-child(4) .package-description,
+.quality-cards-container > .quality-card:nth-child(4) .package-option,
+.quality-cards-container > .quality-card:nth-child(4) .package-option * {
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* =====================================================
    TABLET
-========================= */
+===================================================== */
 
 @media (max-width: 900px) {
 
@@ -1740,9 +1911,9 @@ html[dir="ltr"] .quality-text {
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media (max-width: 768px) {
 
@@ -1785,10 +1956,6 @@ html[dir="ltr"] .quality-text {
 
     .hero {
         padding-top: 45px;
-
-        padding-left: 10px;
-
-        padding-right: 10px;
     }
 
     .hero h1 {
@@ -1927,6 +2094,35 @@ html[dir="ltr"] .quality-text {
     }
 
 
+    /* ABOUT */
+
+    .about-section {
+        padding: 45px 10px;
+    }
+
+    .about-box {
+        padding: 35px 18px;
+
+        border-radius: 12px;
+    }
+
+    .about-box h2 {
+        font-size: 25px;
+    }
+
+    .about-box h3 {
+        font-size: 17px;
+
+        margin-top: 22px;
+    }
+
+    .about-box p {
+        font-size: 13px;
+
+        line-height: 2;
+    }
+
+
     /* QUALITY VIDEO */
 
     .quality-video-section {
@@ -1973,7 +2169,7 @@ html[dir="ltr"] .quality-text {
         line-height: 1.9;
     }
 
-    html[dir="ltr"] .quality-text {
+    html[dir="ltr"] .quality-video-section .quality-text {
         text-align: center;
     }
 
@@ -2024,7 +2220,7 @@ html[dir="ltr"] .quality-text {
     }
 
 
-    /* QUALITY CARDS */
+    /* MOBILE QUALITY CARDS */
 
     .quality-cards-section {
         padding: 40px 10px;
@@ -2052,7 +2248,11 @@ html[dir="ltr"] .quality-text {
         padding: 14px 3px !important;
 
         min-height: 200px;
+
+        justify-content: flex-start !important;
     }
+
+    /* الأيقونات الثلاثة الأولى */
 
     .quality-card .quality-icon {
         width: 45px;
@@ -2070,6 +2270,26 @@ html[dir="ltr"] .quality-text {
         font-size: 22px;
     }
 
+    /* أيقونة الكارت الرابع */
+
+    .quality-card:nth-child(4) .tin-icon {
+        width: 45px;
+
+        height: 45px;
+
+        min-width: 45px;
+
+        min-height: 45px;
+
+        flex-basis: 45px;
+
+        padding: 5px;
+
+        margin-bottom: 8px;
+
+        border-radius: 50%;
+    }
+
     .quality-card h3,
     .quality-card .package-name {
         font-size: 9px;
@@ -2079,6 +2299,8 @@ html[dir="ltr"] .quality-text {
         margin-bottom: 6px;
 
         color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
     }
 
     .quality-card p,
@@ -2088,13 +2310,15 @@ html[dir="ltr"] .quality-text {
         line-height: 1.4;
 
         color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
     }
 }
 
 
-/* =========================
+/* =====================================================
    SMALL MOBILE
-========================= */
+===================================================== */
 
 @media (max-width: 600px) {
 
@@ -2103,12 +2327,13 @@ html[dir="ltr"] .quality-text {
 
         height: 420px;
     }
+
 }
 
 
-/* =========================
-   WHATSAPP
-========================= */
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
 
 .whatsapp-float {
     position: fixed;
