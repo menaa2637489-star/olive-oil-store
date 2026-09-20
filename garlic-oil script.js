@@ -43,8 +43,8 @@ const translations = {
 
     ar: {
 
-        productName: "زيت الثوم من دكتور أبو النصر",
-        productType: "زيت ثوم طبيعي",
+        productName: "زيت زيتون دكتور أبو النصر",
+        productType: "زيت زيتون بكر ممتاز",
         chooseSize: "اختاري الحجم",
         price: "السعر:",
         buyNow: "اشتر الآن",
@@ -106,8 +106,8 @@ const translations = {
 
     en: {
 
-        productName: "Dr. Abu El Nasr Garlic Oil",
-        productType: "Natural Garlic Oil",
+        productName: "Dr. Abu El Nasr Olive Oil",
+        productType: "Extra Virgin Olive Oil",
         chooseSize: "Choose Size",
         price: "Price:",
         buyNow: "Buy Now",
@@ -226,27 +226,27 @@ cartOverlay.addEventListener("click", closeCartPanel);
 const productData = {
 
     half: {
-        image: "garlic-250ml.jpeg",
-        name: "زيت الثوم من دكتور أبو النصر",
-        price: 350
+        image: "250ml.jpeg",
+        name: "زيت زيتون دكتور أبو النصر",
+        price: 320
     },
 
     one: {
-        image: "garlic-1liter.jpeg",
-        name: "زيت الثوم من دكتور أبو النصر",
-        price: 650
+        image: "1liter.jpeg",
+        name: "زيت زيتون دكتور أبو النصر",
+        price: 580
     },
 
     two: {
-        image: "garlic-2liter.jpeg",
-        name: "زيت الثوم من دكتور أبو النصر",
-        price: 1200
+        image: "1liter.jpeg",
+        name: "زيت زيتون دكتور أبو النصر",
+        price: 1080
     },
 
     five: {
-        image: "garlic-5liter.jpeg",
-        name: "زيت الثوم من دكتور أبو النصر",
-        price: 2800
+        image: "5liter.jpeg",
+        name: "زيت زيتون دكتور أبو النصر",
+        price: 2600
     }
 
 };
@@ -418,6 +418,8 @@ function addSelectedProductToCart() {
 
     updateCart();
 
+
+    /* إعادة الكمية إلى 1 بعد الإضافة */
 
     quantity = 1;
 
@@ -770,14 +772,12 @@ confirmOrderBtn.addEventListener("click", function () {
 
 
     const orderId =
-        "GARLIC-ORD-" + Date.now();
+        "ORD-" + Date.now();
 
 
     const newOrder = {
 
         id: orderId,
-
-        productType: "garlic-oil",
 
         name: fullName,
 
@@ -817,11 +817,6 @@ confirmOrderBtn.addEventListener("click", function () {
 
     };
 
-
-    /*
-       بنستخدم نفس مفتاح الطلبات
-       علشان الطلب يظهر في لوحة التحكم
-    */
 
     const savedOrders =
         localStorage.getItem("oliveOilOrders");
@@ -961,9 +956,7 @@ function changeLanguage(language) {
     }
 
 
-    /* =========================
-       SIZE BUTTONS
-    ========================= */
+    /* أسماء الأحجام */
 
     sizeButtons.forEach(function (button) {
 
@@ -976,9 +969,7 @@ function changeLanguage(language) {
     });
 
 
-    /* =========================
-       PRODUCT BUTTONS
-    ========================= */
+    /* أزرار المنتج */
 
     addCartBtn.textContent =
         t.addCart;
@@ -1159,9 +1150,7 @@ function changeLanguage(language) {
             t.notes;
 
 
-    /* =========================
-       PLACEHOLDERS
-    ========================= */
+    /* Placeholders */
 
     const fullNameInput =
         document.getElementById("fullName");
@@ -1193,9 +1182,7 @@ function changeLanguage(language) {
             t.notesPlaceholder;
 
 
-    /* =========================
-       GOVERNORATE
-    ========================= */
+    /* المحافظة */
 
     const governorate =
         document.getElementById("governorate");
@@ -1209,9 +1196,7 @@ function changeLanguage(language) {
     }
 
 
-    /* =========================
-       PAYMENT
-    ========================= */
+    /* طريقة الدفع */
 
     const paymentTitle =
         document.querySelector(
@@ -1243,9 +1228,7 @@ function changeLanguage(language) {
             t.wallet;
 
 
-    /* =========================
-       ORDER BUTTONS
-    ========================= */
+    /* أزرار الطلب */
 
     backBtn.textContent =
         t.back;
@@ -1254,9 +1237,7 @@ function changeLanguage(language) {
         t.confirm;
 
 
-    /* =========================
-       UPDATE CART
-    ========================= */
+    /* تحديث السلة والطلب */
 
     updateCart();
 
@@ -1434,13 +1415,3 @@ function openDashboardLogin() {
     }
 
 }
-
-ده كده نسخة الثوم، والبيانات الوهمية كلها موجودة في جزء واحد اسمه PRODUCT DATA عشان لما نجيب الأسعار والصور الحقيقية نغيرهم بسهولة.
-
-مهم: أسماء الصور اللي الكود مستنيها حاليًا:
-"garlic-250ml.jpeg"
-"garlic-1liter.jpeg"
-"garlic-2liter.jpeg"
-"garlic-5liter.jpeg"
-
-بعد ما تحطي ملف الـJS، الخطوة اللي بعدها نربطه بـ "garlic-oil.html" ونجرب الأحجام + الكمية + السلة + الطلب واحدة واحدة.
