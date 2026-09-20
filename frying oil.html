@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>زيت زيتون للقلي - دكتور أبو النصر</title>
+
+    <link rel="stylesheet"
+          href="frying oil style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="main-header">
+
+    <div class="brand">
+
+        <div class="logo">
+
+            <img src="ابو النصر 1.png"
+                 alt="زيت زيتون دكتور أبو النصر">
+
+        </div>
+
+        <div class="brand-name"
+             data-ar="زيت زيتون دكتور أبو النصر"
+             data-en="Dr. Abu El Nasr Olive Oil">
+
+            زيت زيتون دكتور أبو النصر
+
+        </div>
+
+    </div>
+
+
+    <nav class="header-actions">
+
+        <button class="header-btn language-btn"
+                id="languageBtn">
+
+            <span id="languageText">
+                English
+            </span>
+
+        </button>
+
+
+        <button class="header-btn"
+                id="loginBtn">
+
+            <span
+                data-ar="تسجيل الدخول"
+                data-en="Login">
+
+                تسجيل الدخول
+
+            </span>
+
+        </button>
+
+
+        <a href="tel:01277371995"
+           class="header-btn contact-btn">
+
+            <span class="phone-icon">
+                ☎
+            </span>
+
+            <span
+                data-ar="تواصل معنا"
+                data-en="Contact Us">
+
+                تواصل معنا
+
+            </span>
+
+        </a>
+
+
+        <button class="header-btn cart-btn"
+                id="cartBtn">
+
+            <span class="cart-icon">
+                🛒
+            </span>
+
+            <span
+                data-ar="السلة"
+                data-en="Cart">
+
+                السلة
+
+            </span>
+
+            <span class="cart-count"
+                  id="cartCount">
+
+                0
+
+            </span>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <h1
+            data-ar="من قلب الزيتون... نصنع الفرق"
+            data-en="From the Heart of the Olive... We Make the Difference">
+
+            من قلب الزيتون... نصنع الفرق
+
+        </h1>
+
+
+        <p class="hero-season"
+           data-ar="عصرة موسم ٢٠٢٦"
+           data-en="2026 Harvest Season">
+
+            عصرة موسم ٢٠٢٦
+
+        </p>
+
+
+
+        <!-- PRODUCT -->
+
+        <div class="hero-product">
+
+
+            <div class="product-stage"
+                 id="productStage">
+
+                <img id="mainProductImage"
+                     src="frying.jpeg"
+                     alt="زيت زيتون للقلي">
+
+            </div>
+
+
+
+            <h2 id="productName">
+
+                زيت زيتون للقلي
+
+            </h2>
+
+
+
+            <p class="product-type"
+               data-ar="زيت زيتون للقلي - منقى من الألياف"
+               data-en="Olive Oil for Frying - Fiber Filtered">
+
+                زيت زيتون للقلي - منقى من الألياف
+
+            </p>
+
+
+
+            <!-- SIZES -->
+
+            <div class="sizes-title"
+                 data-ar="اختاري الحجم"
+                 data-en="Choose Size">
+
+                اختاري الحجم
+
+            </div>
+
+
+            <div class="product-sizes">
+
+
+                <button class="size-btn active"
+                        data-size="half"
+                        data-ar="نصف لتر"
+                        data-en="Half Liter">
+
+                    نصف لتر
+
+                </button>
+
+
+                <button class="size-btn"
+                        data-size="one"
+                        data-ar="1 لتر"
+                        data-en="1 Liter">
+
+                    1 لتر
+
+                </button>
+
+
+                <button class="size-btn"
+                        data-size="two"
+                        data-ar="2 لتر"
+                        data-en="2 Liters">
+
+                    2 لتر
+
+                </button>
+
+
+                <button class="size-btn"
+                        data-size="five"
+                        data-ar="5 لتر"
+                        data-en="5 Liters">
+
+                    5 لتر
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="product-price">
+
+                <span
+                    data-ar="السعر:"
+                    data-en="Price:">
+
+                    السعر:
+
+                </span>
+
+                <strong id="productPrice">
+                    0 ج.م
+                </strong>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="product-buttons">
+
+
+                <button class="buy-btn"
+                        id="buyNowBtn"
+                        data-ar="اشتر الآن"
+                        data-en="Buy Now">
+
+                    اشتر الآن
+
+                </button>
+
+
+
+                <div class="quantity-control">
+
+                    <button id="minusOneBtn"
+                            type="button">
+
+                        −
+
+                    </button>
+
+
+                    <span id="quantityValue">
+                        1
+                    </span>
+
+
+                    <button id="plusOneBtn"
+                            type="button">
+
+                        +
+
+                    </button>
+
+                </div>
+
+
+
+                <button class="add-cart-btn"
+                        id="addCartBtn"
+                        data-ar="أضف للسلة"
+                        data-en="Add to Cart">
+
+                    أضف للسلة
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================
+     LOGIN PANEL
+========================= -->
+
+<div class="overlay"
+     id="loginOverlay">
+
+</div>
+
+
+<div class="side-panel login-panel"
+     id="loginPanel">
+
+
+    <button class="close-panel"
+            id="closeLogin">
+
+        ×
+
+    </button>
+
+
+    <h2
+        data-ar="تسجيل الدخول"
+        data-en="Login">
+
+        تسجيل الدخول
+
+    </h2>
+
+
+    <input
+        type="text"
+        class="login-input"
+        placeholder="البريد الإلكتروني أو رقم الهاتف"
+        data-placeholder-ar="البريد الإلكتروني أو رقم الهاتف"
+        data-placeholder-en="Email or Phone Number">
+
+
+    <input
+        type="password"
+        class="login-input"
+        placeholder="كلمة المرور"
+        data-placeholder-ar="كلمة المرور"
+        data-placeholder-en="Password">
+
+
+    <button class="login-submit"
+            data-ar="تسجيل الدخول"
+            data-en="Login">
+
+        تسجيل الدخول
+
+    </button>
+
+
+    <div class="social-login">
+
+        <button class="google-login">
+
+            <i class="fab fa-google"></i>
+
+            Google
+
+        </button>
+
+
+        <button class="facebook-login">
+
+            <i class="fab fa-facebook-f"></i>
+
+            Facebook
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================
+     CART PANEL
+========================= -->
+
+<div class="overlay"
+     id="cartOverlay">
+
+</div>
+
+
+<div class="side-panel cart-panel"
+     id="cartPanel">
+
+
+    <button class="close-panel"
+            id="closeCart">
+
+        ×
+
+    </button>
+
+
+    <h2
+        data-ar="سلة المشتريات"
+        data-en="Shopping Cart">
+
+        سلة المشتريات
+
+    </h2>
+
+
+    <div id="cartItems">
+
+    </div>
+
+
+    <div class="cart-total">
+
+        <span
+            data-ar="الإجمالي:"
+            data-en="Total:">
+
+            الإجمالي:
+
+        </span>
+
+
+        <strong id="cartTotal">
+            0 ج.م
+        </strong>
+
+    </div>
+
+
+    <button id="checkoutBtn"
+            class="checkout-btn"
+            data-ar="إتمام الطلب"
+            data-en="Checkout">
+
+        إتمام الطلب
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     ORDER MODAL
+========================= -->
+
+<div class="order-modal"
+     id="orderModal">
+
+
+    <div class="order-box">
+
+
+        <button class="close-panel"
+                id="backBtn">
+
+            ×
+
+        </button>
+
+
+        <h2
+            data-ar="تأكيد الطلب"
+            data-en="Confirm Order">
+
+            تأكيد الطلب
+
+        </h2>
+
+
+        <input
+            type="text"
+            id="fullName"
+            placeholder="الاسم بالكامل"
+            data-placeholder-ar="الاسم بالكامل"
+            data-placeholder-en="Full Name">
+
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="رقم الهاتف"
+            data-placeholder-ar="رقم الهاتف"
+            data-placeholder-en="Phone Number">
+
+
+        <select id="governorate">
+
+            <option value=""
+                    data-ar="اختاري المحافظة"
+                    data-en="Choose Governorate">
+
+                اختاري المحافظة
+
+            </option>
+
+            <option value="Cairo">
+                القاهرة
+            </option>
+
+            <option value="Giza">
+                الجيزة
+            </option>
+
+            <option value="Qalyubia">
+                القليوبية
+            </option>
+
+            <option value="Alexandria">
+                الإسكندرية
+            </option>
+
+            <option value="Other">
+                محافظة أخرى
+            </option>
+
+        </select>
+
+
+        <textarea
+            id="address"
+            placeholder="العنوان بالتفصيل"
+            data-placeholder-ar="العنوان بالتفصيل"
+            data-placeholder-en="Full Address">
+        </textarea>
+
+
+        <textarea
+            id="notes"
+            placeholder="ملاحظات إضافية"
+            data-placeholder-ar="ملاحظات إضافية"
+            data-placeholder-en="Additional Notes">
+        </textarea>
+
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment-title"
+             data-ar="طريقة الدفع"
+             data-en="Payment Method">
+
+            طريقة الدفع
+
+        </div>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment"
+                value="cash"
+                checked>
+
+            <span
+                data-ar="الدفع عند الاستلام"
+                data-en="Cash on Delivery">
+
+                الدفع عند الاستلام
+
+            </span>
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment"
+                value="card">
+
+            <span
+                data-ar="الدفع بالبطاقة"
+                data-en="Card Payment">
+
+                الدفع بالبطاقة
+
+            </span>
+
+        </label>
+
+
+        <label>
+
+            <input
+                type="radio"
+                name="payment"
+                value="wallet">
+
+            <span
+                data-ar="المحفظة الإلكترونية"
+                data-en="E-Wallet">
+
+                المحفظة الإلكترونية
+
+            </span>
+
+        </label>
+
+
+
+        <button id="confirmOrderBtn"
+                class="confirm-order-btn"
+                data-ar="تأكيد الطلب"
+                data-en="Confirm Order">
+
+            تأكيد الطلب
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="faq-section">
+
+
+    <h2
+        data-ar="الأسئلة الشائعة"
+        data-en="Frequently Asked Questions">
+
+        الأسئلة الشائعة
+
+    </h2>
+
+
+
+    <div class="faq-container">
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+                    data-ar="ما هو زيت الزيتون للقلي؟"
+                    data-en="What is Olive Oil for Frying?">
+
+                    ما هو زيت الزيتون للقلي؟
+
+                </span>
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p
+                    data-ar="هو زيت زيتون مخصص للاستخدام في القلي، ومنقى من الألياف للحصول على قوام مناسب للاستخدام."
+                    data-en="It is olive oil intended for frying, filtered from fibers for a suitable texture and use.">
+
+                    هو زيت زيتون مخصص للاستخدام في القلي، ومنقى من الألياف للحصول على قوام مناسب للاستخدام.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+                    data-ar="ماذا يعني منقى من الألياف؟"
+                    data-en="What does fiber filtered mean?">
+
+                    ماذا يعني منقى من الألياف؟
+
+                </span>
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p
+                    data-ar="يعني أن الزيت خضع لعملية تنقية لإزالة الألياف والشوائب المرتبطة بها."
+                    data-en="It means the oil has undergone a filtration process to remove fibers and associated particles.">
+
+                    يعني أن الزيت خضع لعملية تنقية لإزالة الألياف والشوائب المرتبطة بها.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+                    data-ar="ما هي أحجام العبوات؟"
+                    data-en="What bottle sizes are available?">
+
+                    ما هي أحجام العبوات؟
+
+                </span>
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p
+                    data-ar="يتوفر المنتج بأحجام نصف لتر، 1 لتر، 2 لتر و5 لتر."
+                    data-en="The product is available in Half Liter, 1 Liter, 2 Liter and 5 Liter sizes.">
+
+                    يتوفر المنتج بأحجام نصف لتر، 1 لتر، 2 لتر و5 لتر.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+                    data-ar="كيف يتم حفظ الزيت؟"
+                    data-en="How should the oil be stored?">
+
+                    كيف يتم حفظ الزيت؟
+
+                </span>
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p
+                    data-ar="يفضل حفظه في مكان بارد وجاف بعيدًا عن الحرارة والضوء المباشر."
+                    data-en="Store it in a cool, dry place away from heat and direct light.">
+
+                    يفضل حفظه في مكان بارد وجاف بعيدًا عن الحرارة والضوء المباشر.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span
+                    data-ar="هل يمكن استخدامه في القلي؟"
+                    data-en="Can it be used for frying?">
+
+                    هل يمكن استخدامه في القلي؟
+
+                </span>
+
+                <span>+</span>
+
+            </button>
+
+
+            <div class="faq-answer">
+
+                <p
+                    data-ar="نعم، هذا المنتج مخصص للاستخدام في القلي وفقًا لطريقة الطهي والوصفة."
+                    data-en="Yes, this product is intended for frying according to the cooking method and recipe.">
+
+                    نعم، هذا المنتج مخصص للاستخدام في القلي وفقًا لطريقة الطهي والوصفة.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     QUALITY VIDEO
+========================= -->
+
+<section class="quality-video-section">
+
+
+    <h2
+        data-ar="جودة نحرص عليها"
+        data-en="Quality We Care About">
+
+        جودة نحرص عليها
+
+    </h2>
+
+
+    <div class="quality-video">
+
+        <video controls>
+
+            <source
+                src="VID-20260821-WA0030.mp4"
+                type="video/mp4">
+
+        </video>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     QUALITY CARDS
+========================= -->
+
+<section class="quality-section">
+
+
+    <h2
+        data-ar="لماذا زيت زيتون دكتور أبو النصر؟"
+        data-en="Why Dr. Abu El Nasr Olive Oil?">
+
+        لماذا زيت زيتون دكتور أبو النصر؟
+
+    </h2>
+
+
+    <div class="quality-cards">
+
+
+        <div class="quality-card">
+
+            <i class="fas fa-leaf"></i>
+
+            <h3
+                data-ar="جودة مختارة"
+                data-en="Selected Quality">
+
+                جودة مختارة
+
+            </h3>
+
+            <p
+                data-ar="نختار زيت الزيتون بعناية لنقدم لك منتجًا بجودة عالية."
+                data-en="We carefully select our olive oil to provide a high-quality product.">
+
+                نختار زيت الزيتون بعناية لنقدم لك منتجًا بجودة عالية.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="quality-card">
+
+            <i class="fas fa-filter"></i>
+
+            <h3
+                data-ar="منقى من الألياف"
+                data-en="Fiber Filtered">
+
+                منقى من الألياف
+
+            </h3>
+
+            <p
+                data-ar="يتم تنقية الزيت من الألياف والشوائب المرتبطة بها."
+                data-en="The oil is filtered from fibers and associated particles.">
+
+                يتم تنقية الزيت من الألياف والشوائب المرتبطة بها.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="quality-card">
+
+            <i class="fas fa-fire"></i>
+
+            <h3
+                data-ar="مناسب للقلي"
+                data-en="Suitable for Frying">
+
+                مناسب للقلي
+
+            </h3>
+
+            <p
+                data-ar="مصمم ليكون مناسبًا للاستخدام في القلي والطهي."
+                data-en="Designed to be suitable for frying and cooking.">
+
+                مصمم ليكون مناسبًا للاستخدام في القلي والطهي.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="quality-card">
+
+            <i class="fas fa-box"></i>
+
+            <h3
+                data-ar="عبوة آمنة"
+                data-en="Safe Packaging">
+
+                عبوة آمنة
+
+            </h3>
+
+            <p
+                data-ar="عبوة مصممة للمساعدة في الحفاظ على جودة المنتج."
+                data-en="Packaging designed to help preserve product quality.">
+
+                عبوة مصممة للمساعدة في الحفاظ على جودة المنتج.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact-section">
+
+
+    <h2
+        data-ar="تواصل معنا"
+        data-en="Contact Us">
+
+        تواصل معنا
+
+    </h2>
+
+
+    <p
+        data-ar="يسعدنا استقبال استفساراتكم وطلباتكم."
+        data-en="We are happy to receive your questions and orders.">
+
+        يسعدنا استقبال استفساراتكم وطلباتكم.
+
+    </p>
+
+
+    <div class="contact-buttons">
+
+
+        <a href="https://wa.me/201272154551"
+           target="_blank">
+
+            <i class="fab fa-whatsapp"></i>
+
+            WhatsApp
+
+        </a>
+
+
+        <a href="https://www.instagram.com/drabuelnasrproducts?igsi=MWl1YzI4bHl4a21pbA=="
+           target="_blank">
+
+            <i class="fab fa-instagram"></i>
+
+            Instagram
+
+        </a>
+
+
+        <a href="https://www.facebook.com/share/1ckPpM1Tov/"
+           target="_blank">
+
+            <i class="fab fa-facebook"></i>
+
+            Facebook
+
+        </a>
+
+
+        <a href="https://www.tiktok.com/@dr.ahmedabouelnasr?_r=1&_t=ZS-990oCE4h9S1"
+           target="_blank">
+
+            <i class="fab fa-tiktok"></i>
+
+            TikTok
+
+        </a>
+
+
+        <a href="https://youtube.com/@drahmedabuelnasr?si=T_Mye-c9jZSYGli5"
+           target="_blank">
+
+            <i class="fab fa-youtube"></i>
+
+            YouTube
+
+        </a>
+
+
+        <a href="https://x.com/drahmedabuelnsr"
+           target="_blank">
+
+            <i class="fab fa-x-twitter"></i>
+
+            X
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="main-footer">
+
+
+    <p
+        data-ar="© 2026 زيت زيتون دكتور أبو النصر - جميع الحقوق محفوظة"
+        data-en="© 2026 Dr. Abu El Nasr Olive Oil - All Rights Reserved">
+
+        © 2026 زيت زيتون دكتور أبو النصر - جميع الحقوق محفوظة
+
+    </p>
+
+
+    <button
+        class="dashboard-link"
+        onclick="openDashboardLogin()">
+
+        <i class="fas fa-lock"></i>
+
+        Dashboard
+
+    </button>
+
+
+</footer>
+
+
+
+<!-- =========================
+     WHATSAPP FLOAT
+========================= -->
+
+<a href="https://wa.me/201277371995"
+   class="whatsapp-float"
+   target="_blank">
+
+    <i class="fab fa-whatsapp"></i>
+
+    <span
+        data-ar="تواصل معنا"
+        data-en="Contact Us">
+
+        تواصل معنا
+
+    </span>
+
+</a>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="frying oil script.js"></script>
+
+
+</body>
+
+</html>
