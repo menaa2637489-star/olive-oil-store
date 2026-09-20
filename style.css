@@ -605,3 +605,1155 @@ html[dir="ltr"] .about-box {
     direction: ltr;
     text-align: center;
 }
+/* =========================
+   QUALITY VIDEO SECTION
+========================= */
+
+.quality-video-section {
+    width: 100%;
+
+    padding: 80px 6%;
+
+    background: #f5f3ea;
+}
+
+.quality-video-container {
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 70px;
+}
+
+.quality-video {
+    width: 50%;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+.quality-video video {
+    width: 100%;
+
+    height: 390px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.quality-text {
+    width: 50%;
+
+    text-align: right;
+}
+
+.quality-text h2 {
+    margin-bottom: 22px;
+
+    color: #3f4a20;
+
+    font-size: 35px;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+}
+
+.quality-text p {
+    color: #666;
+
+    font-size: 25px;
+
+    line-height: 2.2;
+
+    margin: 0;
+}
+
+.quality-video-section .quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-video-section .quality-en {
+    display: block;
+}
+
+html[dir="ltr"] .quality-video-section .quality-text {
+    direction: ltr;
+
+    text-align: left;
+}
+
+
+/* =====================================================
+   QUALITY CARDS
+   الأربع كروت في صف واحد
+===================================================== */
+
+.quality-cards-section {
+    width: 100%;
+
+    padding: 40px 10px;
+
+    background: #2b4815;
+}
+
+.quality-cards-container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    gap: 8px !important;
+
+    align-items: stretch !important;
+}
+
+.quality-card {
+    flex: 1 1 0 !important;
+
+    width: 25% !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 18px 5px;
+
+    background: #2b4815;
+
+    border: 2px solid #718c3a;
+
+    border-radius: 12px;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    text-align: center;
+
+    min-height: 230px;
+}
+
+
+/* =========================
+   QUALITY CARD ICONS
+========================= */
+
+.quality-card .quality-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    flex: 0 0 65px;
+
+    margin: 0 0 15px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #e8eddc;
+
+    border-radius: 50%;
+
+    color: #2b4815;
+
+    font-size: 30px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   CARD 4 ICON
+===================================================== */
+
+.quality-card:nth-child(4) .package-option {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+}
+
+.quality-card:nth-child(4) .tin-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    flex: 0 0 65px;
+
+    padding: 7px;
+
+    margin: 0 0 15px 0;
+
+    display: block;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    background: #e8eddc;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   QUALITY CARD TEXT
+========================= */
+
+.quality-card h3,
+.quality-card .package-name {
+    margin: 0 0 10px;
+
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+.quality-card p,
+.quality-card .package-description {
+    margin: 0;
+
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   PACKAGE
+========================= */
+
+.package-option {
+    text-align: center;
+}
+
+.package-name {
+    font-weight: bold;
+
+    font-size: 15px;
+
+    margin-bottom: 3px;
+}
+
+.package-description {
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   QUALITY LANGUAGE
+========================= */
+
+.quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-en {
+    display: block;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    width: 100%;
+
+    padding: 60px 6%;
+
+    background: #f5f3ea;
+}
+
+.contact-container {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.contact-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    min-width: 180px;
+}
+
+.contact-links button,
+.contact-links a {
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    color: #2b4815;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.contact-links button:hover,
+.contact-links a:hover {
+    color: #68743a;
+}
+
+.social-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+.contact-logo {
+    width: 85px;
+
+    height: 85px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.contact-logo img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.social-content {
+    text-align: center;
+}
+
+.social-content h3 {
+    margin: 0 0 16px;
+
+    color: #2b4815;
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.social-icons {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.social-icons a {
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 50%;
+
+    background: #2b4815;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #68743a;
+
+    transform: translateY(-3px);
+}
+
+.contact-en {
+    display: none;
+}
+
+html[dir="ltr"] .contact-ar {
+    display: none;
+}
+
+html[dir="ltr"] .contact-en {
+    display: inline;
+}
+
+html[dir="ltr"] .contact-container {
+    direction: ltr;
+}
+
+html[dir="ltr"] .contact-links button,
+html[dir="ltr"] .contact-links a {
+    text-align: left;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+    width: 100%;
+
+    padding: 28px 20px;
+
+    background: #2b4815;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+.site-footer p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.site-footer a:hover {
+    opacity: 0.7;
+}
+
+.dashboard-access {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.dashboard-access:hover {
+    opacity: 0.7;
+}
+
+.footer-en {
+    display: none;
+}
+
+html[dir="ltr"] .footer-ar {
+    display: none;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline;
+}
+
+
+/* =====================================================
+   CARD 4 - FINAL FORCE
+===================================================== */
+
+.quality-cards-container > .quality-card:nth-child(4) .package-name,
+.quality-cards-container > .quality-card:nth-child(4) .package-description,
+.quality-cards-container > .quality-card:nth-child(4) .package-option,
+.quality-cards-container > .quality-card:nth-child(4) .package-option * {
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .quality-cards-container {
+        gap: 8px !important;
+    }
+
+    .quality-card {
+        padding: 18px 5px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    /* HEADER */
+
+    .main-header {
+        padding: 12px 4%;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 43px;
+
+        height: 43px;
+    }
+
+    .header-actions {
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 3px;
+    }
+
+    .header-btn {
+        padding: 8px 7px;
+
+        font-size: 12px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero-season {
+        font-size: 15px;
+    }
+
+    .product-stage {
+        width: 260px;
+
+        height: 330px;
+    }
+
+    .hero-product h2 {
+        font-size: 20px;
+    }
+
+    .product-sizes {
+        gap: 5px;
+
+        width: 100%;
+    }
+
+    .size-btn {
+        min-width: 65px;
+
+        padding: 9px 7px;
+
+        font-size: 12px;
+    }
+
+    .product-buttons {
+        width: 100%;
+
+        padding: 0 20px;
+    }
+
+    .buy-btn,
+    .add-cart-btn {
+        min-width: 0;
+
+        flex: 1;
+
+        padding: 12px 8px;
+    }
+
+
+    /* SIDE PANEL */
+
+    .side-panel {
+        width: 90%;
+    }
+
+
+    /* ORDER */
+
+    .order-modal {
+        padding: 10px;
+    }
+
+    .order-box {
+        max-height: 94vh;
+
+        padding: 22px 18px;
+
+        border-radius: 14px;
+    }
+
+    .order-header h2 {
+        font-size: 21px;
+    }
+
+    .form-row {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .order-item {
+        font-size: 13px;
+    }
+
+    .order-buttons {
+        gap: 8px;
+    }
+
+    .back-btn,
+    .confirm-btn {
+        height: 46px;
+
+        font-size: 14px;
+    }
+
+
+    /* FAQ */
+
+    .faq-section {
+        padding: 45px 12px;
+    }
+
+    .faq-item {
+        margin-bottom: 12px;
+
+        border-radius: 10px;
+    }
+
+    .faq-question {
+        min-height: 65px;
+
+        padding: 15px 16px;
+
+        font-size: 14px;
+
+        gap: 10px;
+    }
+
+    .faq-arrow {
+        font-size: 15px;
+    }
+
+    .faq-answer {
+        padding: 0 16px;
+
+        font-size: 14px;
+
+        line-height: 1.9;
+    }
+
+    .faq-item.active .faq-answer {
+        max-height: 700px;
+
+        padding: 10px 16px 20px;
+    }
+
+
+    /* ABOUT */
+
+    .about-section {
+        padding: 45px 10px;
+    }
+
+    .about-box {
+        padding: 35px 18px;
+
+        border-radius: 12px;
+    }
+
+    .about-box h2 {
+        font-size: 25px;
+    }
+
+    .about-box h3 {
+        font-size: 17px;
+
+        margin-top: 22px;
+    }
+
+    .about-box p {
+        font-size: 13px;
+
+        line-height: 2;
+    }
+
+
+    /* QUALITY VIDEO */
+
+    .quality-video-section {
+        padding: 45px 15px;
+    }
+
+    .quality-video-container {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 25px;
+    }
+
+    .quality-video {
+        width: 100%;
+
+        border-radius: 12px;
+    }
+
+    .quality-video video {
+        width: 100%;
+
+        height: 300px;
+
+        object-fit: cover;
+    }
+
+    .quality-text {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .quality-text h2 {
+        font-size: 22px;
+
+        margin-bottom: 12px;
+    }
+
+    .quality-text p {
+        font-size: 15px;
+
+        line-height: 1.9;
+    }
+
+    html[dir="ltr"] .quality-video-section .quality-text {
+        text-align: center;
+    }
+
+
+    /* CONTACT */
+
+    .contact-section {
+        padding: 45px 12px;
+    }
+
+    .contact-container {
+        gap: 20px;
+    }
+
+    .contact-links {
+        min-width: 110px;
+
+        gap: 17px;
+    }
+
+    .contact-links button,
+    .contact-links a {
+        font-size: 14px;
+    }
+
+    .social-area {
+        gap: 12px;
+    }
+
+    .social-content h3 {
+        font-size: 13px;
+
+        margin-bottom: 10px;
+    }
+
+    .social-icons a {
+        width: 32px;
+
+        height: 32px;
+
+        font-size: 14px;
+    }
+
+    .contact-logo {
+        width: 62px;
+
+        height: 62px;
+    }
+
+
+    /* MOBILE QUALITY CARDS */
+
+    .quality-cards-section {
+        padding: 40px 10px;
+    }
+
+    .quality-cards-container {
+        display: flex !important;
+
+        flex-direction: row !important;
+
+        flex-wrap: nowrap !important;
+
+        gap: 5px !important;
+
+        width: 100% !important;
+    }
+
+    .quality-card {
+        flex: 1 1 0 !important;
+
+        width: 25% !important;
+
+        min-width: 0 !important;
+
+        padding: 14px 3px !important;
+
+        min-height: 200px;
+
+        justify-content: flex-start !important;
+    }
+
+    /* الأيقونات الثلاثة الأولى */
+
+    .quality-card .quality-icon {
+        width: 45px;
+
+        height: 45px;
+
+        min-width: 45px;
+
+        min-height: 45px;
+
+        flex-basis: 45px;
+
+        margin-bottom: 8px;
+
+        font-size: 22px;
+    }
+
+    /* أيقونة الكارت الرابع */
+
+    .quality-card:nth-child(4) .tin-icon {
+        width: 45px;
+
+        height: 45px;
+
+        min-width: 45px;
+
+        min-height: 45px;
+
+        flex-basis: 45px;
+
+        padding: 5px;
+
+        margin-bottom: 8px;
+
+        border-radius: 50%;
+    }
+
+    .quality-card h3,
+    .quality-card .package-name {
+        font-size: 9px;
+
+        line-height: 1.35;
+
+        margin-bottom: 6px;
+
+        color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .quality-card p,
+    .quality-card .package-description {
+        font-size: 7px;
+
+        line-height: 1.4;
+
+        color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .product-stage {
+        width: 350px;
+
+        height: 420px;
+    }
+
+}
+
+
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
+
+.whatsapp-float {
+    position: fixed;
+
+    right: 22px;
+
+    bottom: 25px;
+
+    z-index: 9999;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: auto;
+
+    height: 42px;
+
+    padding: 6px 12px;
+
+    background: #25D366;
+
+    color: #ffffff;
+
+    border-radius: 25px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+
+    text-decoration: none;
+
+    gap: 7px;
+
+    box-sizing: border-box;
+
+    animation: whatsappFloat 2.5s ease-in-out infinite;
+}
+
+.whatsapp-icon {
+    width: 25px;
+
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 25px;
+}
+
+.whatsapp-icon img {
+    width: 22px !important;
+
+    height: 22px !important;
+
+    max-width: 22px !important;
+
+    max-height: 22px !important;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+.whatsapp-text {
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    line-height: 1;
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-4px);
+}
+
+@keyframes whatsappFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =========================
+   WHATSAPP MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .whatsapp-float {
+        right: 12px;
+
+        bottom: 18px;
+
+        height: 38px;
+
+        padding: 5px 9px;
+
+        gap: 6px;
+
+        font-size: 12px;
+    }
+
+    .whatsapp-icon {
+        width: 23px;
+
+        height: 23px;
+
+        flex-basis: 23px;
+    }
+
+    .whatsapp-icon img {
+        width: 20px !important;
+
+        height: 20px !important;
+
+        max-width: 20px !important;
+
+        max-height: 20px !important;
+    }
+
+    .whatsapp-text {
+        font-size: 12px;
+    }
+}
