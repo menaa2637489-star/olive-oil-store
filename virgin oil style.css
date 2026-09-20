@@ -2442,3 +2442,39 @@ html[dir="ltr"] .footer-en {
 
     -webkit-text-fill-color: #ffffff !important;
 }
+/* =========================
+   QUANTITY CONTROL
+========================= */
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 15px 0;
+    direction: ltr;
+}
+
+.quantity-control button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+
+    font-size: 20px;
+    font-weight: normal;
+    color: #222;
+
+    cursor: pointer;
+}
+
+.quantity-control span {
+    font-size: 18px;
+    font-weight: normal;
+    color: #222;
+
+    min-width: 12px;
+    text-align: center;
+}
