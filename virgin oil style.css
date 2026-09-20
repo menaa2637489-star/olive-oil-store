@@ -410,6 +410,44 @@ a {
 
 
 /* =========================
+   QUANTITY CONTROL
+========================= */
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 15px 0;
+    direction: ltr;
+}
+
+.quantity-control button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+
+    font-size: 20px;
+    font-weight: normal;
+    color: #222;
+
+    cursor: pointer;
+}
+
+.quantity-control span {
+    font-size: 18px;
+    font-weight: normal;
+    color: #222;
+
+    min-width: 12px;
+    text-align: center;
+}
+
+
+/* =========================
    OVERLAY
 ========================= */
 
@@ -1282,8 +1320,6 @@ html[dir="ltr"] .faq-en {
 }
 
 
-
-
 /* =========================
    QUALITY VIDEO SECTION
 ========================= */
@@ -1441,7 +1477,6 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
 /* =========================
    QUALITY CARD ICONS
-   نفس الارتفاع لكل الأيقونات
 ========================= */
 
 .quality-card .quality-icon {
@@ -1477,7 +1512,6 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
 /* =====================================================
    CARD 4 ICON
-   tin-icon.png تصبح دائرة بنفس مقاس باقي الأيقونات
 ===================================================== */
 
 .quality-card:nth-child(4) .package-option {
@@ -1591,135 +1625,6 @@ html[dir="ltr"] .quality-cards-section .quality-ar {
 
 html[dir="ltr"] .quality-cards-section .quality-en {
     display: block;
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 900px) {
-
-    .quality-cards-container {
-        gap: 8px !important;
-    }
-
-    .quality-card {
-        padding: 18px 5px;
-    }
-}
-
-
-/* =====================================================
-   MOBILE QUALITY CARDS
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .quality-cards-section {
-        padding: 40px 10px;
-    }
-
-    .quality-cards-container {
-        display: flex !important;
-
-        flex-direction: row !important;
-
-        flex-wrap: nowrap !important;
-
-        gap: 5px !important;
-
-        width: 100% !important;
-    }
-
-    .quality-card {
-        flex: 1 1 0 !important;
-
-        width: 25% !important;
-
-        min-width: 0 !important;
-
-        padding: 14px 3px !important;
-
-        min-height: 200px;
-
-        justify-content: flex-start !important;
-    }
-
-    /* الأيقونات الثلاثة الأولى */
-    .quality-card .quality-icon {
-        width: 45px;
-
-        height: 45px;
-
-        min-width: 45px;
-
-        min-height: 45px;
-
-        flex-basis: 45px;
-
-        margin-bottom: 8px;
-
-        font-size: 22px;
-    }
-
-    /* أيقونة الكارت الرابع */
-    .quality-card:nth-child(4) .tin-icon {
-        width: 45px;
-
-        height: 45px;
-
-        min-width: 45px;
-
-        min-height: 45px;
-
-        flex-basis: 45px;
-
-        padding: 5px;
-
-        margin-bottom: 8px;
-
-        border-radius: 50%;
-    }
-
-    .quality-card h3,
-    .quality-card .package-name {
-        font-size: 9px;
-
-        line-height: 1.35;
-
-        margin-bottom: 6px;
-
-        color: #ffffff !important;
-
-        -webkit-text-fill-color: #ffffff !important;
-    }
-
-    .quality-card p,
-    .quality-card .package-description {
-        font-size: 7px;
-
-        line-height: 1.4;
-
-        color: #ffffff !important;
-
-        -webkit-text-fill-color: #ffffff !important;
-    }
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-    .product-stage {
-        width: 350px;
-
-        height: 420px;
-    }
-
 }
 
 
@@ -1973,6 +1878,36 @@ html[dir="ltr"] .footer-ar {
 
 html[dir="ltr"] .footer-en {
     display: inline;
+}
+
+
+/* =====================================================
+   CARD 4 - FINAL FORCE
+===================================================== */
+
+.quality-cards-container > .quality-card:nth-child(4) .package-name,
+.quality-cards-container > .quality-card:nth-child(4) .package-description,
+.quality-cards-container > .quality-card:nth-child(4) .package-option,
+.quality-cards-container > .quality-card:nth-child(4) .package-option * {
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .quality-cards-container {
+        gap: 8px !important;
+    }
+
+    .quality-card {
+        padding: 18px 5px;
+    }
 }
 
 
@@ -2283,6 +2218,116 @@ html[dir="ltr"] .footer-en {
 
         height: 62px;
     }
+
+
+    /* MOBILE QUALITY CARDS */
+
+    .quality-cards-section {
+        padding: 40px 10px;
+    }
+
+    .quality-cards-container {
+        display: flex !important;
+
+        flex-direction: row !important;
+
+        flex-wrap: nowrap !important;
+
+        gap: 5px !important;
+
+        width: 100% !important;
+    }
+
+    .quality-card {
+        flex: 1 1 0 !important;
+
+        width: 25% !important;
+
+        min-width: 0 !important;
+
+        padding: 14px 3px !important;
+
+        min-height: 200px;
+
+        justify-content: flex-start !important;
+    }
+
+    /* الأيقونات الثلاثة الأولى */
+
+    .quality-card .quality-icon {
+        width: 45px;
+
+        height: 45px;
+
+        min-width: 45px;
+
+        min-height: 45px;
+
+        flex-basis: 45px;
+
+        margin-bottom: 8px;
+
+        font-size: 22px;
+    }
+
+    /* أيقونة الكارت الرابع */
+
+    .quality-card:nth-child(4) .tin-icon {
+        width: 45px;
+
+        height: 45px;
+
+        min-width: 45px;
+
+        min-height: 45px;
+
+        flex-basis: 45px;
+
+        padding: 5px;
+
+        margin-bottom: 8px;
+
+        border-radius: 50%;
+    }
+
+    .quality-card h3,
+    .quality-card .package-name {
+        font-size: 9px;
+
+        line-height: 1.35;
+
+        margin-bottom: 6px;
+
+        color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .quality-card p,
+    .quality-card .package-description {
+        font-size: 7px;
+
+        line-height: 1.4;
+
+        color: #ffffff !important;
+
+        -webkit-text-fill-color: #ffffff !important;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .product-stage {
+        width: 350px;
+
+        height: 420px;
+    }
+
 }
 
 
@@ -2426,55 +2471,4 @@ html[dir="ltr"] .footer-en {
     .whatsapp-text {
         font-size: 12px;
     }
-}
-
-
-/* =====================================================
-   CARD 4 - FINAL FORCE
-   النص أبيض على كل الشاشات
-===================================================== */
-
-.quality-cards-container > .quality-card:nth-child(4) .package-name,
-.quality-cards-container > .quality-card:nth-child(4) .package-description,
-.quality-cards-container > .quality-card:nth-child(4) .package-option,
-.quality-cards-container > .quality-card:nth-child(4) .package-option * {
-    color: #ffffff !important;
-
-    -webkit-text-fill-color: #ffffff !important;
-}
-/* =========================
-   QUANTITY CONTROL
-========================= */
-
-.quantity-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    margin: 15px 0;
-    direction: ltr;
-}
-
-.quantity-control button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    width: auto;
-    height: auto;
-
-    font-size: 20px;
-    font-weight: normal;
-    color: #222;
-
-    cursor: pointer;
-}
-
-.quantity-control span {
-    font-size: 18px;
-    font-weight: normal;
-    color: #222;
-
-    min-width: 12px;
-    text-align: center;
 }
