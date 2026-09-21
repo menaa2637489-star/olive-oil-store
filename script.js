@@ -763,3 +763,12 @@ if (heroProductsBtn) {
 updateLanguage();
 
 renderCart();
+/* =========================
+   DASHBOARD
+========================= */
+
+function openDashboardLogin() {
+
+    window.location.href = "dashboard.html";
+
+}
