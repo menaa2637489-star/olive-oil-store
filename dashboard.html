@@ -16,89 +16,239 @@
 <body>
 
 
-<!-- =========================
+<!-- =========================================================
      LOGIN
-========================= -->
+========================================================= -->
 
 <div id="dashboardLogin" class="dashboard-login">
 
     <div class="login-box">
 
-        <h1>لوحة التحكم</h1>
+        <h2>لوحة التحكم</h2>
 
-        <p>أدخل كلمة المرور للدخول</p>
+        <p>
+            زيت زيتون دكتور ابو النصر
+        </p>
 
         <input
             type="password"
             id="dashboardPassword"
-            placeholder="كلمة المرور"
-        >
+            placeholder="كلمة المرور">
 
         <button onclick="loginDashboard()">
             دخول
         </button>
 
-        <p id="loginError" class="login-error"></p>
+        <p
+            id="loginError"
+            class="login-error">
+        </p>
 
     </div>
 
 </div>
 
 
-<!-- =========================
+<!-- =========================================================
      DASHBOARD
-========================= -->
+========================================================= -->
 
-<div id="dashboardPage" class="dashboard-page">
+<div
+    id="dashboardPage"
+    class="dashboard-page"
+    style="display: none;">
 
 
-    <!-- HEADER -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <header class="dashboard-header">
 
-        <div>
+        <div class="dashboard-header-title">
 
-            <h1>لوحة التحكم</h1>
+            <h1>
+                لوحة التحكم
+            </h1>
 
-            <p>زيت زيتون دكتور ابو النصر</p>
+            <p>
+                زيت زيتون دكتور ابو النصر
+            </p>
 
         </div>
 
+
         <div class="dashboard-header-actions">
 
-    <button
-    class="view-store-btn"
-    onclick="openStoreWithPassword()">
+            <button
+                class="store-btn"
+                onclick="openStoreWithPassword()">
 
-    🛍️ عرض المتجر
+                عرض المتجر
 
-</button>
+            </button>
 
-    <button
-        class="logout-btn"
-        onclick="logoutDashboard()">
 
-        تسجيل الخروج
+            <button
+                class="logout-btn"
+                onclick="logoutDashboard()">
 
-    </button>
+                تسجيل الخروج
 
-</div>
+            </button>
+
+        </div>
 
     </header>
 
 
+    <!-- =====================================================
+         PRODUCT SELECTOR
+    ====================================================== -->
 
-    <!-- =========================
-         8 BUTTONS
-    ========================= -->
+    <section class="product-selector-section">
 
-    <div class="dashboard-tabs">
+        <div class="section-title">
+
+            <h2>
+                اختيار الصفحة
+            </h2>
+
+            <p>
+                اختاري الصفحة التي تريدين تعديل بياناتها
+            </p>
+
+        </div>
+
+
+        <div class="product-selector">
+
+            <button
+                class="product-selector-btn active"
+                data-product="home"
+                onclick="selectDashboardProduct('home')">
+
+                🏠
+                <span>
+                    الرئيسية
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="virgin"
+                onclick="selectDashboardProduct('virgin')">
+
+                🫒
+                <span>
+                    زيت الزيتون البكر
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="garlic"
+                onclick="selectDashboardProduct('garlic')">
+
+                🧄
+                <span>
+                    زيت الزيتون بالثوم
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="onion"
+                onclick="selectDashboardProduct('onion')">
+
+                🧅
+                <span>
+                    زيت الزيتون بالبصل
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="vitamin"
+                onclick="selectDashboardProduct('vitamin')">
+
+                💊
+                <span>
+                    فيتامين D و E
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="rosemary"
+                onclick="selectDashboardProduct('rosemary')">
+
+                🌿
+                <span>
+                    زيت الزيتون بالروزماري
+                </span>
+
+            </button>
+
+
+            <button
+                class="product-selector-btn"
+                data-product="frying"
+                onclick="selectDashboardProduct('frying')">
+
+                🍳
+                <span>
+                    زيت الزيتون للقلي
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CURRENT PRODUCT TITLE
+    ====================================================== -->
+
+    <div
+        id="selectedProductTitle"
+        class="selected-product-title">
+
+        <h2>
+            الرئيسية
+        </h2>
+
+        <p>
+            تعديل بيانات الصفحة الرئيسية
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         DASHBOARD TABS
+    ====================================================== -->
+
+    <nav class="dashboard-tabs">
+
 
         <button
             class="dashboard-tab active"
             onclick="showDashboardSection('identity')">
 
-            الهوية والشعار
+            الهوية
 
         </button>
 
@@ -107,409 +257,277 @@
             class="dashboard-tab"
             onclick="showDashboardSection('add-product')">
 
-            إضافة منتج
+            محتوى الصفحة
 
         </button>
+
+
         <button
-    class="dashboard-tab"
-    onclick="showDashboardSection('sizes-prices')">
+            class="dashboard-tab"
+            onclick="showDashboardSection('sizes-prices')">
 
-    الأحجام والأسعار
+            الأحجام والأسعار
 
-</button>
-<button
-class="dashboard-tab"
-onclick="showDashboardSection('about-us')">
-
-من نحن
-
-</button>
+        </button>
 
 
+        <button
+            class="dashboard-tab"
+            onclick="showDashboardSection('about-us')">
 
-<button
-    class="dashboard-tab"
-    onclick="showDashboardSection('customer-reviews')">
+            من نحن
 
-    تقييمات العملاء
-
-</button>
-
-<button
-    class="dashboard-tab"
-    onclick="showDashboardSection('social-media')">
-
-    السوشيال ميديا
-
-</button>
-
-<button
-    class="dashboard-tab"
-    onclick="showDashboardSection('paymentSection')">
-
-    الدفع
-
-</button>
-
-<button
-    class="dashboard-tab"
-    onclick="showDashboardSection('ordersSection')">
-
-    الطلبات
-
-</button>
-    </div>
+        </button>
 
 
+        <button
+            class="dashboard-tab"
+            onclick="showDashboardSection('customer-reviews')">
 
-    <!-- =========================
+            آراء العملاء
+
+        </button>
+
+
+        <button
+            class="dashboard-tab"
+            onclick="showDashboardSection('social-media')">
+
+            السوشيال ميديا
+
+        </button>
+
+
+        <button
+            class="dashboard-tab"
+            onclick="showDashboardSection('paymentSection')">
+
+            الدفع
+
+        </button>
+
+
+        <button
+            class="dashboard-tab"
+            onclick="showDashboardSection('ordersSection')">
+
+            الطلبات
+
+        </button>
+
+
+    </nav>
+
+
+    <!-- =====================================================
          IDENTITY
-    ========================= -->
+    ====================================================== -->
 
     <section
         id="identity"
-        class="dashboard-section active-section">
+        class="dashboard-section active">
 
         <div class="section-title">
 
-            <h2>الهوية والشعار</h2>
+            <h2>
+                الهوية
+            </h2>
 
             <p>
-                التحكم في اسم العلامة والشعار والنصوص الرئيسية
+                تعديل اسم المتجر والشعار والعناوين
             </p>
 
         </div>
 
 
-
-        <!-- اسم المتجر -->
-
         <div class="dashboard-card">
 
+
             <label>
-                اسم المتجر / العلامة
+                اسم المتجر
             </label>
 
             <input
                 type="text"
                 id="storeName"
-                value="زيت زيتون دكتور ابو النصر"
-                class="warm-input"
-            >
+                placeholder="اسم المتجر">
 
-        </div>
-
-
-
-        <!-- الشعار -->
-
-        <div class="dashboard-card">
 
             <label>
-                شعار الشركة (يفضل PNG مفرغ)
+                الشعار
             </label>
 
-
-            <div class="logo-preview">
+            <div class="logo-upload-area">
 
                 <img
                     id="dashboardLogoPreview"
-                    src="images/ابو النصر 1.png"
-                    alt="شعار الشركة"
-                >
+                    src="ابو النصر 1.png"
+                    alt="شعار المتجر">
+
+                <input
+                    type="file"
+                    id="logoInput"
+                    accept="image/*">
 
             </div>
 
 
-            <input
-                type="file"
-                id="logoInput"
-                accept="image/png,image/jpeg,image/webp"
-                hidden
-            >
-
-
-            <button
-                class="file-btn"
-                onclick="document.getElementById('logoInput').click()">
-
-                اختيار ملف
-
-            </button>
-
-        </div>
-
-
-
-        <!-- عنوان الواجهة -->
-
-        <div class="dashboard-card">
-
             <label>
-                عنوان الواجهة الرئيسي
+                العنوان الرئيسي
             </label>
 
             <input
                 type="text"
                 id="mainTitle"
-                value="من قلب الزيتون... نصنع الفرق"
-                class="warm-input"
-            >
+                placeholder="العنوان الرئيسي">
 
-        </div>
-
-
-
-        <!-- نص الواجهة -->
-
-        <div class="dashboard-card">
 
             <label>
-                نص الواجهة الرئيسي
+                العنوان الفرعي
             </label>
 
-            <input
-                type="text"
+            <textarea
                 id="mainSubtitle"
-                value="عصرة موسم ٢٠٢٦"
-                class="warm-input"
-            >
+                rows="4"
+                placeholder="العنوان الفرعي"></textarea>
+
+
+            <button
+                class="save-btn"
+                onclick="saveIdentity()">
+
+                حفظ الهوية
+
+            </button>
+
+
+            <p
+                id="identityMessage"
+                class="save-message">
+            </p>
 
         </div>
-
-
-
-        <!-- حفظ -->
-
-        <button
-            class="save-btn"
-            onclick="saveIdentity()">
-
-            حفظ
-
-        </button>
-
-
-        <p
-            id="identityMessage"
-            class="save-message">
-        </p>
 
     </section>
 
 
-
-    <!-- =========================
-         ADD PRODUCT
-    ========================= -->
+    <!-- =====================================================
+         PAGE CONTENT
+    ====================================================== -->
 
     <section
         id="add-product"
         class="dashboard-section">
 
-
         <div class="section-title">
 
-            <h2>إضافة منتج</h2>
+            <h2>
+                محتوى الصفحة
+            </h2>
 
             <p>
-                إضافة محتوى ووصف المنتج
+                تعديل النصوص والمحتوى الخاص بالصفحة المختارة
             </p>
 
         </div>
 
 
-
-        <!-- المربع الأول -->
-
-        <div class="content-card">
-
-            <textarea
-                class="content-textarea"
-                data-content="1">ليه "زيت زيتون دكتور ابو النصر" هو الاستثمار الصح في صحتك وصحة عيلتك ؟</textarea>
-
-        </div>
+        <div id="contentCardsContainer">
 
 
+            <!-- CONTENT CARD 1 -->
 
-        <div class="content-card">
+            <div class="content-card">
 
-            <textarea
-                class="content-textarea"
-                data-content="2">لو بتدور على زيت زيتون يجمع بين الفايدة الطبية اللي بجد والطعم الأصيل اللي يظبط الأكل، يبقى إنت في المكان الصح. خلينا نقولك ليه "أبو النصر" مش مجرد قزازة زيت عادية في مطبخك:
+                <label>
+                    عنوان القسم
+                </label>
 
-1. لغة الأرقام مابتكدبش (حموضة أقل من 0.3%):
-عالمياً، أي زيت عشان يتقال عليه "بكر ممتاز Extra Virgin" لازم حموضته تكون أقل من 0.8%. إحنا بقى في "أبو النصر" كسرنا القاعدة دي، وبنقدملك زيت نسبة حموضته (أقل من 0.3%)!
-
-2. سر الصنعة.. زيتون "الكورونيكي" (Koroneiki):
-إحنا مابنستخدمش أي زيتون والسلام! إحنا بنعصر سلالة "الكورونيكي".
-
-3. صافي 100%.. من الشجرة لسفرتك دايركت:
-عشان صحتك مفيهاش هزار، بنضمنلك زيت زيتون نقي 100% جاي من أجود المزارع مباشرة.
-
-4. طعم أصيل.. هيضيف روح لكل أكلة:
-بفضل العصرة الباردة وزيتون الكورونيكي الفاخر، بنضمنلك نكهة غنية وقوية.
-
-زيت زيتون أبو النصر...
-مش بس زيت للأكل، ده أسلوب حياة صحي ليك ولعيلتك.
-
-(اختار الجودة اللي تستاهلها.. اختار أبو النصر).</textarea>
-
-        </div>
+                <input
+                    type="text"
+                    class="content-title"
+                    data-content="1"
+                    placeholder="عنوان القسم">
 
 
+                <label>
+                    محتوى القسم
+                </label>
 
-        <!-- المربع الثالث -->
+                <textarea
+                    class="content-text"
+                    data-content="1"
+                    rows="5"
+                    placeholder="اكتبي محتوى القسم هنا"></textarea>
 
-        <div class="content-card">
-
-            <div class="card-header">
-
-                <h3>ليه الزيت بتاعنا في عبوة صاج ؟</h3>
 
                 <button
-                    class="delete-btn"
+                    type="button"
+                    class="delete-card-btn"
                     onclick="deleteContentCard(this)">
 
-                    حذف
+                    حذف القسم
 
                 </button>
 
             </div>
 
 
-            <textarea
-                class="content-textarea"
-                data-content="3">عشان جودة الزيت مابتكملش غير بطريقة حفظ صح تحميه، العبوة الصاج مش مجرد شكل، دي اختيار علمي مدروس عشان الأسباب دي:
+            <!-- CONTENT CARD 2 -->
 
-1. حماية 100% من الضوء (عشان نمنع الأكسدة).
+            <div class="content-card">
 
-2. أمان كيميائي تام (مفيش تفاعل مع البلاستيك).
+                <label>
+                    عنوان القسم
+                </label>
 
-3. حبس الطعم والنكهة الأصلية.
+                <input
+                    type="text"
+                    class="content-title"
+                    data-content="2"
+                    placeholder="عنوان القسم">
 
-4. متانة وأمان في النقل والتخزين.</textarea>
 
-        </div>
+                <label>
+                    محتوى القسم
+                </label>
 
+                <textarea
+                    class="content-text"
+                    data-content="2"
+                    rows="5"
+                    placeholder="اكتبي محتوى القسم هنا"></textarea>
 
-
-        <!-- المربع الرابع -->
-
-        <div class="content-card">
-
-            <div class="card-header">
-
-                <h3>إزاي تختار زيت الزيتون الصح وتضمن إنه أصلي 100 ٪؟</h3>
 
                 <button
-                    class="delete-btn"
+                    type="button"
+                    class="delete-card-btn"
                     onclick="deleteContentCard(this)">
 
-                    حذف
+                    حذف القسم
 
                 </button>
 
             </div>
 
 
-            <textarea
-                class="content-textarea"
-                data-content="4">عشان تشتري زيت زيتون وإنت مطمن إنه هيفيد صحتك بجد ومش مغشوش، في 4 قواعد ذهبية لازم تمشي عليهم:
-
-1. دور على نسبة الحموضة الأقل.
-
-2. ركز في طريقة العصر (على البارد).
-
-3. اختبر الطعم والريحة (اللسعة الصحية).
-
-4. شوف نوع العبوة (الحماية من الأكسدة).</textarea>
-
         </div>
 
-
-
-        <!-- المربع الخامس -->
-
-        <div class="content-card">
-
-            <div class="card-header">
-
-                <h3>لو هتستخدمه صح.. هتستخدمه إزاي ؟</h3>
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteContentCard(this)">
-
-                    حذف
-
-                </button>
-
-            </div>
-
-
-            <textarea
-                class="content-textarea"
-                data-content="5">1. الاستخدام الغذائي (صحة القلب والجهاز الهضمي).
-
-2. العناية بالشعر (الترطيب العميق).
-
-3. العناية بالبشرة (مقاومة التجاعيد).
-
-4. تدليك المفاصل.</textarea>
-
-        </div>
-
-
-
-        <!-- المربع السادس -->
-
-        <div class="content-card">
-
-            <div class="card-header">
-
-                <h3>عهد أبو النصر</h3>
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteContentCard(this)">
-
-                    حذف
-
-                </button>
-
-            </div>
-
-
-            <textarea
-                class="content-textarea"
-                data-content="6">عهدنا ليك إن كل قطرة بتستخدمها هي 100% صافية، جاية من الشجرة لمعصرتنا لعبوتك مباشرة خالية تماماً من أي خلط أو زيوت مهدرجة، أو إضافات. إحنا في "أبو النصر" بنبيعلك ثقة وأمان قبل ما نبيعلك زيت.
-
-((زيت زيتون أبو النصر.. النقاء العلمي، والطعم الأصيل))</textarea>
-
-        </div>
-
-
-
-        <!-- إضافة مربع -->
 
         <button
-            class="add-box-btn"
+            class="add-card-btn"
             onclick="addNewContentCard()">
 
-            + إضافة مربع جديد
+            + إضافة قسم جديد
 
         </button>
 
 
-
-        <!-- حفظ المربعات -->
-
         <button
-            class="save-btn save-content-btn"
+            class="save-btn"
             onclick="saveContentCards()">
 
-            حفظ المربعات
+            حفظ محتوى الصفحة
 
         </button>
 
@@ -519,947 +537,710 @@ onclick="showDashboardSection('about-us')">
             class="save-message">
         </p>
 
-
     </section>
-<!-- =========================
-     SIZES & PRICES
-========================= -->
 
-<section
-    id="sizes-prices"
-    class="dashboard-section">
 
-    <div class="section-title">
+    <!-- =====================================================
+         SIZES & PRICES
+    ====================================================== -->
 
-        <h2>الأحجام والأسعار</h2>
+    <section
+        id="sizes-prices"
+        class="dashboard-section">
 
-        <p>
-            التحكم في أحجام العبوات والأسعار والصور
+        <div class="section-title">
+
+            <h2>
+                الأحجام والأسعار
+            </h2>
+
+            <p>
+                تعديل أحجام وأسعار المنتج المحدد
+            </p>
+
+        </div>
+
+
+        <div class="sizes-grid">
+
+
+            <!-- SIZE 1 -->
+
+            <div class="size-card">
+
+                <h3>
+                    الحجم الأول
+                </h3>
+
+
+                <label>
+                    صورة الحجم
+                </label>
+
+                <input
+                    type="file"
+                    id="sizeImage1"
+                    accept="image/*">
+
+
+                <img
+                    id="sizeImagePreview1"
+                    class="size-image-preview"
+                    src=""
+                    alt="صورة الحجم">
+
+
+                <label>
+                    اسم الحجم
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeName1"
+                    placeholder="مثال: 250 مل">
+
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    type="number"
+                    id="sizePrice1"
+                    placeholder="السعر">
+
+            </div>
+
+
+            <!-- SIZE 2 -->
+
+            <div class="size-card">
+
+                <h3>
+                    الحجم الثاني
+                </h3>
+
+
+                <label>
+                    صورة الحجم
+                </label>
+
+                <input
+                    type="file"
+                    id="sizeImage2"
+                    accept="image/*">
+
+
+                <img
+                    id="sizeImagePreview2"
+                    class="size-image-preview"
+                    src=""
+                    alt="صورة الحجم">
+
+
+                <label>
+                    اسم الحجم
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeName2"
+                    placeholder="مثال: 1 لتر">
+
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    type="number"
+                    id="sizePrice2"
+                    placeholder="السعر">
+
+            </div>
+
+
+            <!-- SIZE 3 -->
+
+            <div class="size-card">
+
+                <h3>
+                    الحجم الثالث
+                </h3>
+
+
+                <label>
+                    صورة الحجم
+                </label>
+
+                <input
+                    type="file"
+                    id="sizeImage3"
+                    accept="image/*">
+
+
+                <img
+                    id="sizeImagePreview3"
+                    class="size-image-preview"
+                    src=""
+                    alt="صورة الحجم">
+
+
+                <label>
+                    اسم الحجم
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeName3"
+                    placeholder="مثال: 2 لتر">
+
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    type="number"
+                    id="sizePrice3"
+                    placeholder="السعر">
+
+            </div>
+
+
+            <!-- SIZE 4 -->
+
+            <div class="size-card">
+
+                <h3>
+                    الحجم الرابع
+                </h3>
+
+
+                <label>
+                    صورة الحجم
+                </label>
+
+                <input
+                    type="file"
+                    id="sizeImage4"
+                    accept="image/*">
+
+
+                <img
+                    id="sizeImagePreview4"
+                    class="size-image-preview"
+                    src=""
+                    alt="صورة الحجم">
+
+
+                <label>
+                    اسم الحجم
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeName4"
+                    placeholder="مثال: 5 لتر">
+
+
+                <label>
+                    السعر
+                </label>
+
+                <input
+                    type="number"
+                    id="sizePrice4"
+                    placeholder="السعر">
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            onclick="saveSizesPrices()">
+
+            حفظ الأحجام والأسعار
+
+        </button>
+
+
+        <p
+            id="sizesPricesMessage"
+            class="save-message">
         </p>
 
-    </div>
+    </section>
 
 
-    <!-- ½ LITER -->
+    <!-- =====================================================
+         ABOUT US
+    ====================================================== -->
 
-    <div class="size-price-card">
+    <section
+        id="about-us"
+        class="dashboard-section">
 
-        <div class="size-price-header">
+        <div class="section-title">
 
-            <h3>½ لتر</h3>
+            <h2>
+                من نحن
+            </h2>
 
-        </div>
-
-
-        <div class="product-image-preview">
-
-            <img
-                id="sizeImagePreview1"
-                src="images/نصف لتر.png"
-                alt="صورة عبوة ½ لتر">
-
-        </div>
-
-
-        <input
-            type="file"
-            id="sizeImage1"
-            accept="image/png,image/jpeg,image/webp"
-            hidden
-        >
-
-        <button
-            class="file-btn"
-            onclick="document.getElementById('sizeImage1').click()">
-
-            اختيار صورة
-
-        </button>
-
-
-        <label>اسم الحجم</label>
-
-        <input
-            type="text"
-            id="sizeName1"
-            value="½ لتر"
-            class="warm-input"
-        >
-
-
-        <label>السعر</label>
-
-        <input
-            type="number"
-            id="sizePrice1"
-            placeholder="اكتب السعر"
-            class="warm-input"
-        >
-
-    </div>
-
-
-
-    <!-- 1 LITER -->
-
-    <div class="size-price-card">
-
-        <div class="size-price-header">
-
-            <h3>1 لتر</h3>
+            <p>
+                تعديل قسم من نحن
+            </p>
 
         </div>
 
 
-        <div class="product-image-preview">
+        <div class="dashboard-card">
 
-            <img
-                id="sizeImagePreview2"
-                src="images/1لتر.png"
-                alt="صورة عبوة 1 لتر">
 
-        </div>
+            <label>
+                عنوان من نحن
+            </label>
 
+            <input
+                type="text"
+                id="aboutTitle"
+                placeholder="من نحن">
 
-        <input
-            type="file"
-            id="sizeImage2"
-            accept="image/png,image/jpeg,image/webp"
-            hidden
-        >
-
-        <button
-            class="file-btn"
-            onclick="document.getElementById('sizeImage2').click()">
-
-            اختيار صورة
-
-        </button>
-
-
-        <label>اسم الحجم</label>
-
-        <input
-            type="text"
-            id="sizeName2"
-            value="1 لتر"
-            class="warm-input"
-        >
-
-
-        <label>السعر</label>
-
-        <input
-            type="number"
-            id="sizePrice2"
-            placeholder="اكتب السعر"
-            class="warm-input"
-        >
-
-    </div>
-
-
-
-    <!-- 2 LITER -->
-
-    <div class="size-price-card">
-
-        <div class="size-price-header">
-
-            <h3>2 لتر</h3>
-
-        </div>
-
-
-        <div class="product-image-preview">
-
-            <img
-                id="sizeImagePreview3"
-                src="images/2لتر.png"
-                alt="صورة عبوة 2 لتر">
-
-        </div>
-
-
-        <input
-            type="file"
-            id="sizeImage3"
-            accept="image/png,image/jpeg,image/webp"
-            hidden
-        >
-
-        <button
-            class="file-btn"
-            onclick="document.getElementById('sizeImage3').click()">
-
-            اختيار صورة
-
-        </button>
-
-
-        <label>اسم الحجم</label>
-
-        <input
-            type="text"
-            id="sizeName3"
-            value="2 لتر"
-            class="warm-input"
-        >
-
-
-        <label>السعر</label>
-
-        <input
-            type="number"
-            id="sizePrice3"
-            placeholder="اكتب السعر"
-            class="warm-input"
-        >
-
-    </div>
-
-
-
-    <!-- 5 LITER -->
-
-    <div class="size-price-card">
-
-        <div class="size-price-header">
-
-            <h3>5 لتر</h3>
-
-        </div>
-
-
-        <div class="product-image-preview">
-
-            <img
-                id="sizeImagePreview4"
-                src="images/5لتر.png"
-                alt="صورة عبوة 5 لتر">
-
-        </div>
-
-
-        <input
-            type="file"
-            id="sizeImage4"
-            accept="image/png,image/jpeg,image/webp"
-            hidden
-        >
-
-        <button
-            class="file-btn"
-            onclick="document.getElementById('sizeImage4').click()">
-
-            اختيار صورة
-
-        </button>
-
-
-        <label>اسم الحجم</label>
-
-        <input
-            type="text"
-            id="sizeName4"
-            value="5 لتر"
-            class="warm-input"
-        >
-
-
-        <label>السعر</label>
-
-        <input
-            type="number"
-            id="sizePrice4"
-            placeholder="اكتب السعر"
-            class="warm-input"
-        >
-
-    </div>
-
-
-
-    <!-- SAVE -->
-
-    <button
-        class="save-btn"
-        onclick="saveSizesPrices()">
-
-        حفظ الأحجام والأسعار
-
-    </button>
-
-
-    <p
-        id="sizesPricesMessage"
-        class="save-message">
-    </p>
-
-</section>
-
-<!-- =========================
-     ABOUT US
-========================= --><section
-    id="about-us"
-    class="dashboard-section"><div class="section-title">
-
-    <h2>من نحن</h2>
-
-    <p>
-        التحكم في عنوان ونص قسم من نحن
-    </p>
-
-</div>
-
-
-<!-- =========================
-     TITLE
-========================= -->
-
-<div class="about-field">
-
-    <label>العنوان :</label>
-
-    <div class="about-box about-title-box">
-
-        <input
-            type="text"
-            id="aboutTitle"
-            value="من نحن"
-            class="about-input"
-        >
-
-        <button
-            type="button"
-            class="delete-btn about-delete-btn"
-            onclick="deleteAboutTitle()">
-
-            حذف
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     COMPANY TEXT
-========================= -->
-
-<div class="about-field">
-
-    <label>نص عن الشركة</label>
-
-    <div class="about-box about-text-box">
-
-        <textarea
-            id="aboutText"
-            class="about-textarea"
-            rows="14">رحلة زيت زيتون دكتور ابو النصر
-
-إحنا مش مجرد علامة تجارية بتبيع زيت، إحنا كيان بدأ من إيمان حقيقي إن "صحتك وصحة عيلتك تستاهل أنقى حاجة في الطبيعة". رحلتنا بدأت لما قررنا ندمج بين خير الأرض والأصول الزراعية، وبين أدق المعايير العلمية، عشان نوصلك "إكسير صحة" متكامل، مش مجرد مكون عادي في مطبخك.
-
-رؤيتنا وفلسفتنا
-
-في "أبو النصر"، هدفنا نكون همزة الوصل الموثوقة بين أجود المزارع وبين سفرتك. إحنا بنشوف زيت الزيتون كاستثمار يومي في صحة القلب، قوة المناعة، ونضارة الجسم. وعشان نحقق ده مبنقبلش بأي تنازلات في الجودة، وبنطبق معايير صارمة من أول قطف الثمرة لحد ما الزيت يوصل لباب بيتك.</textarea>
-
-        <button
-            type="button"
-            class="delete-btn about-delete-btn"
-            onclick="deleteAboutText()">
-
-            حذف
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     SAVE
-========================= -->
-
-<button
-    type="button"
-    class="save-btn about-save-btn"
-    onclick="saveAboutUs()">
-
-    حفظ التعديلات
-
-</button>
-
-
-<p
-    id="aboutMessage"
-    class="save-message">
-</p>
-
-</section>
-
-<!-- =========================
-     CUSTOMER REVIEWS
-========================= --><section
-    id="customer-reviews"
-    class="dashboard-section"><div class="section-title">
-
-    <h2>تقييمات العملاء</h2>
-
-    <p>
-        إضافة وإدارة آراء وتجارب عملائنا
-    </p>
-
-</div>
-
-
-<!-- =========================
-     REVIEWS CONTAINER
-========================= -->
-
-<div id="reviewsContainer">
-
-
-    <!-- REVIEW -->
-
-    <div class="review-card">
-
-        <div class="review-header">
-
-            <h3>تقييم عميل</h3>
 
             <button
                 type="button"
-                class="delete-btn"
-                onclick="deleteReview(this)">
+                class="delete-small-btn"
+                onclick="deleteAboutTitle()">
 
-                حذف
+                حذف العنوان
 
             </button>
 
+
+            <label>
+                النص
+            </label>
+
+            <textarea
+                id="aboutText"
+                rows="8"
+                placeholder="اكتبي نبذة عن المتجر"></textarea>
+
+
+            <button
+                type="button"
+                class="delete-small-btn"
+                onclick="deleteAboutText()">
+
+                حذف النص
+
+            </button>
+
+
+            <button
+                class="save-btn"
+                onclick="saveAboutUs()">
+
+                حفظ قسم من نحن
+
+            </button>
+
+
+            <p
+                id="aboutMessage"
+                class="save-message">
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CUSTOMER REVIEWS
+    ====================================================== -->
+
+    <section
+        id="customer-reviews"
+        class="dashboard-section">
+
+        <div class="section-title">
+
+            <h2>
+                آراء العملاء
+            </h2>
+
+            <p>
+                إضافة وتعديل آراء العملاء
+            </p>
+
         </div>
 
 
-        <!-- IMAGE -->
+        <div id="reviewsContainer">
 
-        <label>
-            صورة تعليق العميل
-        </label>
 
-        <div class="review-image-preview">
+            <div class="review-card">
 
-            <span>
-                لم يتم اختيار صورة
-            </span>
 
-            <img
-                class="review-preview-img"
-                alt="صورة تعليق العميل"
-                hidden>
+                <label>
+                    صورة العميل
+                </label>
+
+                <input
+                    type="file"
+                    class="review-image"
+                    accept="image/*">
+
+
+                <label>
+                    اسم العميل
+                </label>
+
+                <input
+                    type="text"
+                    class="review-name"
+                    placeholder="اسم العميل">
+
+
+                <label>
+                    التقييم
+                </label>
+
+                <input
+                    type="number"
+                    class="review-rating"
+                    min="1"
+                    max="5"
+                    value="5">
+
+
+                <label>
+                    رأي العميل
+                </label>
+
+                <textarea
+                    class="review-comment"
+                    rows="5"
+                    placeholder="اكتب رأي العميل"></textarea>
+
+
+                <button
+                    type="button"
+                    class="delete-card-btn"
+                    onclick="deleteReview(this)">
+
+                    حذف الرأي
+
+                </button>
+
+
+            </div>
+
 
         </div>
-
-
-        <input
-            type="file"
-            class="review-image-input"
-            accept="image/png,image/jpeg,image/webp"
-            hidden>
 
 
         <button
-            type="button"
-            class="file-btn review-upload-btn">
+            class="add-card-btn"
+            onclick="addReview()">
 
-            رفع صورة
+            + إضافة رأي عميل
 
         </button>
 
 
-        <!-- NAME -->
+        <button
+            class="save-btn"
+            onclick="saveReviews()">
 
-        <label>
-            اسم العميل <span>(اختياري)</span>
-        </label>
+            حفظ آراء العملاء
 
-        <input
-            type="text"
-            class="warm-input review-name"
-            placeholder="اكتب اسم العميل">
+        </button>
 
 
-        <!-- RATING -->
+        <p
+            id="reviewsMessage"
+            class="save-message">
+        </p>
 
-        <label>
-            التقييم
-        </label>
-
-        <div class="rating-stars">
-
-            <button type="button" data-rating="1">★</button>
-            <button type="button" data-rating="2">★</button>
-            <button type="button" data-rating="3">★</button>
-            <button type="button" data-rating="4">★</button>
-            <button type="button" data-rating="5">★</button>
-
-        </div>
+    </section>
 
 
-        <input
-            type="hidden"
-            class="review-rating"
-            value="5">
+    <!-- =====================================================
+         SOCIAL MEDIA
+    ====================================================== -->
 
+    <section
+        id="social-media"
+        class="dashboard-section">
 
-        <!-- COMMENT -->
+        <div class="section-title">
 
-        <label>
-            تعليق مختصر <span>(اختياري)</span>
-        </label>
-
-        <textarea
-            class="content-textarea review-comment"
-            rows="5"
-            placeholder="اكتب تعليق العميل هنا..."></textarea>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     ADD REVIEW
-========================= -->
-
-<button
-    type="button"
-    class="add-box-btn"
-    onclick="addReview()">
-
-    + إضافة تقييم جديد
-
-</button>
-
-
-<!-- =========================
-     INFO BOX
-========================= -->
-
-<div class="reviews-info-box">
-
-    <p>
-        ارفع صورة (سكرين شوت) لتعليق العميل ، ويمكنك إضافة اسمه وتعليق مختصر اختيارياً تظهر التقييمات في قسم"اراء عملائنا" أسفل صفحة المتجر
-    </p>
-
-</div>
-
-
-<!-- =========================
-     SAVE
-========================= -->
-
-<button
-    type="button"
-    class="save-btn"
-    onclick="saveReviews()">
-
-    حفظ التقييمات
-
-</button>
-
-
-<p
-    id="reviewsMessage"
-    class="save-message">
-</p>
-
-</section>
-
-
-<!-- =========================
-     SOCIAL MEDIA SECTION
-========================= --><section
-    id="social-media"
-    class="dashboard-section"><div class="section-title">
-
-    <h2>السوشيال ميديا</h2>
-
-    <p>
-        التحكم في روابط صفحات وحسابات العلامة التجارية
-    </p>
-
-</div>
-
-
-<!-- FACEBOOK -->
-
-<div class="social-card">
-
-    <div class="social-card-header">
-
-        <div class="social-icon">
-            f
-        </div>
-
-        <div>
-
-            <h3>Facebook</h3>
+            <h2>
+                السوشيال ميديا
+            </h2>
 
             <p>
-                رابط صفحة Facebook
+                تعديل روابط صفحات التواصل الاجتماعي
             </p>
 
         </div>
 
-    </div>
 
+        <div class="dashboard-card">
 
-    <label>
-        رابط الصفحة
-    </label>
 
-    <input
-        type="url"
-        id="facebookLink"
-        class="warm-input"
-        placeholder="https://www.facebook.com/share/1ckPpM1Tov/">
+            <label>
+                Facebook
+            </label>
 
-</div>
+            <input
+                type="url"
+                id="facebookLink"
+                placeholder="رابط Facebook">
 
 
+            <label>
+                Instagram
+            </label>
 
-<!-- INSTAGRAM -->
+            <input
+                type="url"
+                id="instagramLink"
+                placeholder="رابط Instagram">
 
-<div class="social-card">
 
-    <div class="social-card-header">
+            <label>
+                TikTok
+            </label>
 
-        <div class="social-icon">
-            ◎
-        </div>
+            <input
+                type="url"
+                id="tiktokLink"
+                placeholder="رابط TikTok">
 
-        <div>
 
-            <h3>Instagram</h3>
+            <label>
+                X / Twitter
+            </label>
 
-            <p>
-                رابط حساب Instagram
-            </p>
+            <input
+                type="url"
+                id="twitterLink"
+                placeholder="رابط X / Twitter">
 
-        </div>
 
-    </div>
+            <label>
+                WhatsApp
+            </label>
 
+            <input
+                type="url"
+                id="whatsappLink"
+                placeholder="رابط WhatsApp">
 
-    <label>
-        رابط الحساب
-    </label>
 
-    <input
-        type="url"
-        id="instagramLink"
-        class="warm-input"
-        placeholder="https://www.instagram.com/drabuelnasrproducts?igsi=MWl1YzI4bHl4a21pbA==">
+            <label>
+                YouTube
+            </label>
 
-</div>
+            <input
+                type="url"
+                id="youtubeLink"
+                placeholder="رابط YouTube">
 
 
+            <button
+                class="save-btn"
+                onclick="saveSocialMedia()">
 
-<!-- TIKTOK -->
+                حفظ روابط التواصل
 
-<div class="social-card">
-
-    <div class="social-card-header">
-
-        <div class="social-icon">
-            ♪
-        </div>
-
-        <div>
-
-            <h3>TikTok</h3>
-
-            <p>
-                رابط حساب TikTok
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <label>
-        رابط الحساب
-    </label>
-
-    <input
-        type="url"
-        id="tiktokLink"
-        class="warm-input"
-        placeholder="https://www.tiktok.com/@dr.ahmedabouelnasr?_r=1&_t=ZS-990oCE4h9S1">
-
-</div>
-
-
-
-<!-- TWITTER / X -->
-
-<div class="social-card">
-
-    <div class="social-card-header">
-
-        <div class="social-icon">
-            𝕏
-        </div>
-
-        <div>
-
-            <h3>Twitter / X</h3>
-
-            <p>
-                رابط حساب Twitter / X
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <label>
-        رابط الحساب
-    </label>
-
-    <input
-        type="url"
-        id="twitterLink"
-        class="warm-input"
-        placeholder="https://x.com/drahmedabuelnsr">
-
-</div>
-
-
-
-<!-- WHATSAPP -->
-
-<div class="social-card">
-
-    <div class="social-card-header">
-
-        <div class="social-icon">
-            ☎
-        </div>
-
-        <div>
-
-            <h3>WhatsApp</h3>
-
-            <p>
-                رابط WhatsApp للتواصل
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <label>
-        رابط WhatsApp
-    </label>
-
-    <input
-        type="url"
-        id="whatsappLink"
-        class="warm-input"
-        placeholder="https://wa.me/201277371995">
-
-</div>
-
-
-
-<!-- YOUTUBE -->
-
-<div class="social-card">
-
-    <div class="social-card-header">
-
-        <div class="social-icon">
-            ▶
-        </div>
-
-        <div>
-
-            <h3>YouTube</h3>
-
-            <p>
-                رابط قناة YouTube
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <label>
-        رابط القناة
-    </label>
-
-    <input
-        type="url"
-        id="youtubeLink"
-        class="warm-input"
-        placeholder="https://youtube.com/@drahmedabuelnasr?si=T_Mye-c9jZSYGli5">
-
-</div>
-
-
-
-<!-- SAVE -->
-
-<button
-    type="button"
-    class="save-btn"
-    onclick="saveSocialMedia()">
-
-    حفظ روابط السوشيال ميديا
-
-</button>
-
-
-<p
-    id="socialMessage"
-    class="save-message">
-</p>
-
-</section>
-
-   <!-- ================= PAYMENT SECTION ================= -->
-
-<section id="paymentSection" class="dashboard-section">
-
-    <div class="payment-layout">
-
-        <!-- طرق الدفع -->
-        <div class="payment-card">
-
-            <h2>طرق الدفع الظاهرة للعميل</h2>
-
-            <div class="payment-method">
-                <span>💵 الدفع عند الاستلام (كاش)</span>
-
-                <label class="payment-check">
-                    <input type="checkbox" checked data-payment="cash">
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="payment-method">
-                <span>💳 بطاقة ائتمان / فيزا</span>
-
-                <label class="payment-check">
-                    <input type="checkbox" checked data-payment="card">
-                    <span></span>
-                </label>
-            </div>
-
-            <div class="payment-method">
-                <span>📱 محفظة إلكترونية</span>
-
-                <label class="payment-check">
-                    <input type="checkbox" checked data-payment="wallet">
-                    <span></span>
-                </label>
-            </div>
-
-            <button class="payment-save-btn" id="savePaymentMethods">
-                حفظ طرق الدفع
             </button>
 
-            <div class="payment-success" id="paymentMethodsSuccess">
-                تم الحفظ ✓
-            </div>
+
+            <p
+                id="socialMessage"
+                class="save-message">
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PAYMENT
+    ====================================================== -->
+
+    <section
+        id="paymentSection"
+        class="dashboard-section">
+
+        <div class="section-title">
+
+            <h2>
+                طرق الدفع
+            </h2>
+
+            <p>
+                اختيار طرق الدفع المتاحة للعملاء
+            </p>
 
         </div>
 
 
-        <!-- إعدادات Kashier -->
-        <div class="payment-card">
+        <div class="dashboard-card">
 
-            <h2>إعدادات الدفع الإلكتروني _ Kashier</h2>
 
-            <label class="payment-label">
-                رقم المنشأة - Marchant ID
+            <h3>
+                طرق الدفع المتاحة
+            </h3>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    data-payment="cash">
+
+                الدفع عند الاستلام
+
+            </label>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    data-payment="card">
+
+                الدفع بالبطاقة
+
+            </label>
+
+
+            <label class="checkbox-row">
+
+                <input
+                    type="checkbox"
+                    data-payment="wallet">
+
+                المحافظ الإلكترونية
+
+            </label>
+
+
+            <button
+                class="save-btn"
+                onclick="savePaymentMethods()">
+
+                حفظ طرق الدفع
+
+            </button>
+
+
+            <hr>
+
+
+            <h3>
+                إعدادات Kashier
+            </h3>
+
+
+            <label>
+                Merchant ID
             </label>
 
             <input
                 type="text"
                 id="merchantId"
-                class="payment-input"
-                placeholder="MID-xx-xx"
-            >
+                placeholder="Kashier Merchant ID">
 
-            <label class="payment-label">
-                وضع التشغيل
+
+            <label>
+                وضع الدفع
             </label>
 
-            <select id="paymentMode" class="payment-input">
-                <option value="test">تجريبي (Test)</option>
-                <option value="live">مباشر (Live)</option>
+            <select id="paymentMode">
+
+                <option value="test">
+                    Test
+                </option>
+
+                <option value="live">
+                    Live
+                </option>
+
             </select>
 
-            <button class="payment-save-btn" id="saveKashier">
-                حفظ
+
+            <button
+                class="save-btn"
+                onclick="saveKashier()">
+
+                حفظ إعدادات Kashier
+
             </button>
 
-            <div class="payment-success" id="kashierSuccess">
-                تم الحفظ ✓
-            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ORDERS
+    ====================================================== -->
+
+    <section
+        id="ordersSection"
+        class="dashboard-section">
+
+        <div class="section-title">
+
+            <h2>
+                الطلبات
+            </h2>
+
+            <p>
+                متابعة طلبات العملاء
+            </p>
 
         </div>
 
-    </div>
 
+        <div class="orders-header">
 
-    <!-- معلومات Kashier -->
+            <h3>
+                الطلبات الحالية
+            </h3>
 
-    <div class="kashier-info">
+            <span id="ordersCount">
+                0
+            </span>
 
-        يشمل ربط Kashier طريقتي "البطاقة" و"المحفظة الإلكترونية"
-        معاً عبر نفس صفحة الدفع المستضافة.
-        Kashier تتطلب حساب "بصمة" (hash) بتقنية HMAC-SHA256
-        باستخدام المفتاح السري لمنشأتك، وهذه العملية يجب أن تتم من
-        خادم خلفي وليس من المتصفح حفاظاً على أمان المفتاح.
-        لتفعيل الدفع الفعلي: أنشئ حساباً على kashier.io،
-        وفعّل نقطة نهاية على خادمك تستقبل بيانات الطلب وتُرجع رابط
-        الدفع الجاهز، ثم اربطها بهذه الصفحة.
-        حالياً تُنشأ طلبات البطاقة/المحفظة وتُحفظ بحالة
-        "بانتظار الدفع" لحين ربط الخادم، بينما تُؤكَّد طلبات الكاش مباشرة.
-
-    </div>
-
-</section>
-
-<!------------ordars--------->
-<!-- ================= ORDERS SECTION ================= -->
-
-<section id="ordersSection" class="dashboard-section" >
-
-    <div class="orders-header">
-        <h2>الطلبات</h2>
-        <span id="ordersCount">0 طلب</span>
-    </div>
-
-    <div id="ordersContainer">
-
-        <div class="no-orders">
-            لا توجد طلبات حتى الآن
         </div>
 
-    </div>
 
-</section>
+        <div id="ordersContainer">
+
+            <!-- Orders are loaded by JavaScript -->
+
+        </div>
+
+    </section>
+
+
 </div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="dashboard.js"></script>
 
