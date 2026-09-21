@@ -240,9 +240,8 @@ function renderCart() {
     if (!cartItems) return;
 
 
-    /* COUNT */
-
     let totalQuantity = 0;
+
 
     cart.forEach(function (item) {
 
@@ -258,8 +257,6 @@ function renderCart() {
 
     }
 
-
-    /* EMPTY */
 
     if (cart.length === 0) {
 
@@ -278,7 +275,9 @@ function renderCart() {
         `;
 
         if (cartTotal) {
+
             cartTotal.textContent = "0";
+
         }
 
         return;
@@ -286,10 +285,7 @@ function renderCart() {
     }
 
 
-    /* PRODUCTS */
-
     cartItems.innerHTML = "";
-
 
     let total = 0;
 
@@ -576,6 +572,368 @@ if (contactForm) {
 
 
 /* =========================
+   DASHBOARD DATA
+========================= */
+
+function getDashboardIdentity() {
+
+    return JSON.parse(
+        localStorage.getItem("oliveOilIdentity")
+    ) || null;
+
+}
+
+
+function getDashboardContent() {
+
+    return JSON.parse(
+        localStorage.getItem("oliveOil_content_home")
+    ) || null;
+
+}
+
+
+function getDashboardAbout() {
+
+    return JSON.parse(
+        localStorage.getItem("oliveOil_aboutUs_home")
+    ) || null;
+
+}
+
+
+/* =========================
+   APPLY DASHBOARD IDENTITY
+========================= */
+
+function applyDashboardIdentity() {
+
+    const identity =
+        getDashboardIdentity();
+
+
+    if (!identity) return;
+
+
+    const brandName =
+        document.querySelector(".brand-name");
+
+
+    if (brandName && identity.storeName) {
+
+        brandName.textContent =
+            identity.storeName;
+
+    }
+
+
+    const heroTitle =
+        document.getElementById(
+            "dashboardHeroTitle"
+        );
+
+
+    if (heroTitle && identity.mainTitle) {
+
+        heroTitle.setAttribute(
+            "data-ar",
+            identity.mainTitle
+        );
+
+        heroTitle.textContent =
+            identity.mainTitle;
+
+    }
+
+
+    const heroSubtitle =
+        document.getElementById(
+            "dashboardHeroSubtitle"
+        );
+
+
+    if (heroSubtitle && identity.mainSubtitle) {
+
+        heroSubtitle.setAttribute(
+            "data-ar",
+            identity.mainSubtitle
+        );
+
+    }
+
+
+    const logo =
+        document.querySelector(
+            ".header-brand img"
+        );
+
+
+    if (
+        logo &&
+        identity.logo
+    ) {
+
+        logo.src =
+            identity.logo;
+
+    }
+
+}
+
+
+/* =========================
+   APPLY DASHBOARD HERO
+========================= */
+
+function applyDashboardHero() {
+
+    const identity =
+        getDashboardIdentity();
+
+
+    if (!identity) return;
+
+
+    const heroTitle =
+        document.getElementById(
+            "dashboardHeroTitle"
+        );
+
+
+    const heroSubtitle =
+        document.getElementById(
+            "dashboardHeroSubtitle"
+        );
+
+
+    if (heroTitle && identity.mainTitle) {
+
+        heroTitle.setAttribute(
+            "data-ar",
+            identity.mainTitle
+        );
+
+        if (currentLanguage === "ar") {
+
+            heroTitle.textContent =
+                identity.mainTitle;
+
+        }
+
+    }
+
+
+    if (
+        heroSubtitle &&
+        identity.mainSubtitle
+    ) {
+
+        heroSubtitle.setAttribute(
+            "data-ar",
+            identity.mainSubtitle
+        );
+
+        if (currentLanguage === "ar") {
+
+            heroSubtitle.textContent =
+                identity.mainSubtitle;
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   APPLY DASHBOARD ABOUT
+========================= */
+
+function applyDashboardAbout() {
+
+    const aboutData =
+        getDashboardAbout();
+
+
+    if (
+        !aboutData ||
+        !Array.isArray(aboutData)
+    ) return;
+
+
+    const aboutAr =
+        document.querySelector(".about-ar");
+
+
+    const aboutEn =
+        document.querySelector(".about-en");
+
+
+    if (!aboutAr) return;
+
+
+    if (aboutData.length > 0) {
+
+        const firstCard =
+            aboutData[0];
+
+
+        const title =
+            firstCard.title ||
+            firstCard.heading ||
+            "";
+
+
+        const text =
+            firstCard.text ||
+            firstCard.description ||
+            "";
+
+
+        if (title) {
+
+            const titleElement =
+                aboutAr.querySelector("h2, h3");
+
+
+            if (titleElement) {
+
+                titleElement.textContent =
+                    title;
+
+            }
+
+        }
+
+
+        if (text) {
+
+            const textElement =
+                aboutAr.querySelector("p");
+
+
+            if (textElement) {
+
+                textElement.textContent =
+                    text;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   APPLY DASHBOARD CONTENT
+========================= */
+
+function applyDashboardContent() {
+
+    const contentData =
+        getDashboardContent();
+
+
+    if (
+        !contentData ||
+        !Array.isArray(contentData)
+    ) return;
+
+
+    const cards =
+        document.querySelectorAll(
+            "#products .product-card"
+        );
+
+
+    if (!cards.length) return;
+
+
+    contentData.forEach(
+        function (item, index) {
+
+            if (!cards[index]) return;
+
+
+            const card =
+                cards[index];
+
+
+            const title =
+                card.querySelector("h3");
+
+
+            const description =
+                card.querySelector("p");
+
+
+            if (
+                title &&
+                item.title
+            ) {
+
+                title.setAttribute(
+                    "data-ar",
+                    item.title
+                );
+
+
+                if (currentLanguage === "ar") {
+
+                    title.textContent =
+                        item.title;
+
+                }
+
+            }
+
+
+            if (
+                description &&
+                item.text
+            ) {
+
+                description.setAttribute(
+                    "data-ar",
+                    item.text
+                );
+
+
+                if (currentLanguage === "ar") {
+
+                    description.textContent =
+                        item.text;
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   APPLY ALL DASHBOARD DATA
+========================= */
+
+function applyDashboardData() {
+
+    applyDashboardIdentity();
+
+    applyDashboardHero();
+
+    applyDashboardAbout();
+
+    applyDashboardContent();
+
+}
+
+
+/* =========================
    LANGUAGE UPDATE
 ========================= */
 
@@ -604,8 +962,6 @@ function updateLanguage() {
     });
 
 
-    /* ABOUT */
-
     const aboutAr =
         document.querySelector(".about-ar");
 
@@ -631,8 +987,6 @@ function updateLanguage() {
 
     }
 
-
-    /* DIRECTION */
 
     if (currentLanguage === "en") {
 
@@ -665,8 +1019,6 @@ function updateLanguage() {
     }
 
 
-    /* PLACEHOLDERS */
-
     document
         .querySelectorAll(
             "[data-placeholder-ar][data-placeholder-en]"
@@ -684,6 +1036,8 @@ function updateLanguage() {
 
         });
 
+
+    applyDashboardData();
 
     renderCart();
 
@@ -757,18 +1111,23 @@ if (heroProductsBtn) {
 
 
 /* =========================
-   APPLY SAVED LANGUAGE
-========================= */
-
-updateLanguage();
-
-renderCart();
-/* =========================
    DASHBOARD
 ========================= */
 
 function openDashboardLogin() {
 
-    window.location.href = "dashboard.html";
+    window.location.href =
+        "dashboard.html";
 
 }
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+applyDashboardData();
+
+updateLanguage();
+
+renderCart();
