@@ -333,149 +333,215 @@
      LOGIN PANEL
 ========================= -->
 
-<div class="overlay"
-     id="loginOverlay">
+ <div class="overlay" id="loginOverlay"></div>
 
-</div>
+    <aside class="side-panel login-panel" id="loginPanel">
 
-
-<div class="side-panel login-panel"
-     id="loginPanel">
-
-
-    <button class="close-panel"
-            id="closeLogin">
-
-        ×
-
-    </button>
-
-
-    <h2
-        data-ar="تسجيل الدخول"
-        data-en="Login">
-
-        تسجيل الدخول
-
-    </h2>
-
-
-    <input
-        type="text"
-        class="login-input"
-        placeholder="البريد الإلكتروني أو رقم الهاتف"
-        data-placeholder-ar="البريد الإلكتروني أو رقم الهاتف"
-        data-placeholder-en="Email or Phone Number">
-
-
-    <input
-        type="password"
-        class="login-input"
-        placeholder="كلمة المرور"
-        data-placeholder-ar="كلمة المرور"
-        data-placeholder-en="Password">
-
-
-    <button class="login-submit"
-            data-ar="تسجيل الدخول"
-            data-en="Login">
-
-        تسجيل الدخول
-
-    </button>
-
-
-    <div class="social-login">
-
-        <button class="google-login">
-
-            <i class="fab fa-google"></i>
-
-            Google
-
+        <button class="close-btn" id="closeLogin">
+            ×
         </button>
 
 
-        <button class="facebook-login">
+        <div class="panel-content">
 
-            <i class="fab fa-facebook-f"></i>
+            <h2
+                data-ar="تسجيل الدخول"
+                data-en="Login">
 
-            Facebook
+                تسجيل الدخول
 
-        </button>
-
-    </div>
-
-
-</div>
+            </h2>
 
 
+            <p
+                class="panel-subtitle"
+                data-ar="سجل دخولك للوصول إلى حسابك"
+                data-en="Login to access your account">
+
+                سجل دخولك للوصول إلى حسابك
+
+            </p>
+
+
+            <input
+                type="text"
+                class="login-input"
+                data-placeholder-ar="البريد الإلكتروني أو رقم الهاتف"
+                data-placeholder-en="Email or Phone Number"
+                placeholder="البريد الإلكتروني أو رقم الهاتف"
+            >
+
+
+            <input
+                type="password"
+                class="login-input"
+                data-placeholder-ar="كلمة المرور"
+                data-placeholder-en="Password"
+                placeholder="كلمة المرور"
+            >
+
+
+            <div class="login-options">
+
+                <label>
+
+                    <input type="checkbox">
+
+                    <span
+                        data-ar="تذكرني"
+                        data-en="Remember me">
+
+                        تذكرني
+
+                    </span>
+
+                </label>
+
+
+                <a
+                    href="#"
+                    data-ar="نسيت كلمة المرور؟"
+                    data-en="Forgot Password?">
+
+                    نسيت كلمة المرور؟
+
+                </a>
+
+            </div>
+
+
+            <button
+                class="login-submit"
+                data-ar="تسجيل الدخول"
+                data-en="Login">
+
+                تسجيل الدخول
+
+            </button>
+
+
+            <div class="or-line">
+
+                <span
+                    data-ar="أو"
+                    data-en="OR">
+
+                    أو
+
+                </span>
+
+            </div>
+
+
+            <button class="social-login google-login">
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                <span
+                    data-ar="تسجيل الدخول باستخدام جوجل"
+                    data-en="Continue with Google">
+
+                    تسجيل الدخول باستخدام جوجل
+
+                </span>
+
+            </button>
+
+
+            <button class="social-login facebook-login">
+
+                <span class="facebook-icon">
+                    f
+                </span>
+
+                <span
+                    data-ar="تسجيل الدخول باستخدام فيسبوك"
+                    data-en="Continue with Facebook">
+
+                    تسجيل الدخول باستخدام فيسبوك
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
 
 <!-- =========================
      CART PANEL
 ========================= -->
 
-<div class="overlay"
-     id="cartOverlay">
+<div class="overlay" id="cartOverlay"></div>
 
-</div>
+    <aside class="side-panel cart-panel" id="cartPanel">
 
-
-<div class="side-panel cart-panel"
-     id="cartPanel">
-
-
-    <button class="close-panel"
-            id="closeCart">
-
-        ×
-
-    </button>
+        <button class="close-btn" id="closeCart">
+            ×
+        </button>
 
 
-    <h2
-        data-ar="سلة المشتريات"
-        data-en="Shopping Cart">
+        <div class="panel-content">
 
-        سلة المشتريات
+            <h2
+                data-ar="عربة التسوق"
+                data-en="Shopping Cart">
 
-    </h2>
+                عربة التسوق
 
-
-    <div id="cartItems">
-
-    </div>
+            </h2>
 
 
-    <div class="cart-total">
+            <div class="cart-items" id="cartItems">
 
-        <span
-            data-ar="الإجمالي:"
-            data-en="Total:">
+                <p
+                    class="empty-cart"
+                    data-ar="السلة فارغة حاليًا"
+                    data-en="Your cart is currently empty">
 
-            الإجمالي:
+                    السلة فارغة حاليًا
 
-        </span>
+                </p>
 
-
-        <strong id="cartTotal">
-            0 ج.م
-        </strong>
-
-    </div>
+            </div>
 
 
-    <button id="checkoutBtn"
-            class="checkout-btn"
-            data-ar="إتمام الطلب"
-            data-en="Checkout">
+            <div class="cart-footer">
 
-        إتمام الطلب
+                <div class="cart-total">
 
-    </button>
+                    <span
+                        data-ar="الإجمالي"
+                        data-en="Total">
+
+                        الإجمالي
+
+                    </span>
+
+                    <strong id="cartTotal">
+                        0 ج.م
+                    </strong>
+
+                </div>
 
 
-</div>
+                <button
+                    class="checkout-btn"
+                    id="checkoutBtn"
+                    data-ar="إتمام الطلب"
+                    data-en="Checkout">
+
+                    إتمام الطلب
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </aside>
 
 
 
@@ -483,176 +549,231 @@
      ORDER MODAL
 ========================= -->
 
-<div class="order-modal"
-     id="orderModal">
+   <div class="order-modal" id="orderModal">
+
+        <div class="order-box">
+
+            <div class="order-header">
+
+                <h2>
+                    إتمام الطلب
+                </h2>
+
+            </div>
 
 
-    <div class="order-box">
+            <div class="order-summary">
+
+                <div class="order-item">
+
+                    <span>
+                        زيت زيتون بالثوم × 1
+                    </span>
+
+                    <span>
+                        ٣٢٠ ج.م
+                    </span>
+
+                </div>
 
 
-        <button class="close-panel"
-                id="backBtn">
+                <div class="order-total">
 
-            ×
+                    <strong>
+                        الإجمالي
+                    </strong>
 
-        </button>
+                    <strong>
+                        ٣٢٠ ج.م
+                    </strong>
 
+                </div>
 
-        <h2
-            data-ar="تأكيد الطلب"
-            data-en="Confirm Order">
-
-            تأكيد الطلب
-
-        </h2>
+            </div>
 
 
-        <input
-            type="text"
-            id="fullName"
-            placeholder="الاسم بالكامل"
-            data-placeholder-ar="الاسم بالكامل"
-            data-placeholder-en="Full Name">
+            <div class="order-form">
+
+                <label for="fullName">
+                    الاسم بالكامل
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="مثال: أحمد محمد"
+                >
 
 
-        <input
-            type="tel"
-            id="phone"
-            placeholder="رقم الهاتف"
-            data-placeholder-ar="رقم الهاتف"
-            data-placeholder-en="Phone Number">
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            رقم الهاتف
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="01xxxxxxxxx"
+                        >
+
+                    </div>
 
 
-        <select id="governorate">
+                    <div class="form-group">
 
-            <option value=""
-                    data-ar="اختاري المحافظة"
-                    data-en="Choose Governorate">
+                        <label for="governorate">
+                            المحافظة
+                        </label>
 
-                اختاري المحافظة
+                        <select id="governorate">
 
-            </option>
+                            <option value="">
+                                اختر المحافظة
+                            </option>
 
-            <option value="Cairo">
-                القاهرة
-            </option>
+                            <option>القاهرة</option>
+                            <option>الجيزة</option>
+                            <option>الإسكندرية</option>
+                            <option>القليوبية</option>
+                            <option>الدقهلية</option>
+                            <option>الشرقية</option>
+                            <option>الغربية</option>
+                            <option>المنوفية</option>
+                            <option>البحيرة</option>
+                            <option>كفر الشيخ</option>
+                            <option>دمياط</option>
+                            <option>بورسعيد</option>
+                            <option>الإسماعيلية</option>
+                            <option>السويس</option>
+                            <option>شمال سيناء</option>
+                            <option>جنوب سيناء</option>
+                            <option>البحر الأحمر</option>
+                            <option>مطروح</option>
+                            <option>الوادي الجديد</option>
+                            <option>الفيوم</option>
+                            <option>بني سويف</option>
+                            <option>المنيا</option>
+                            <option>أسيوط</option>
+                            <option>سوهاج</option>
+                            <option>قنا</option>
+                            <option>الأقصر</option>
+                            <option>أسوان</option>
 
-            <option value="Giza">
-                الجيزة
-            </option>
+                        </select>
 
-            <option value="Qalyubia">
-                القليوبية
-            </option>
+                    </div>
 
-            <option value="Alexandria">
-                الإسكندرية
-            </option>
-
-            <option value="Other">
-                محافظة أخرى
-            </option>
-
-        </select>
-
-
-        <textarea
-            id="address"
-            placeholder="العنوان بالتفصيل"
-            data-placeholder-ar="العنوان بالتفصيل"
-            data-placeholder-en="Full Address">
-        </textarea>
-
-
-        <textarea
-            id="notes"
-            placeholder="ملاحظات إضافية"
-            data-placeholder-ar="ملاحظات إضافية"
-            data-placeholder-en="Additional Notes">
-        </textarea>
+                </div>
 
 
+                <label for="address">
+                    العنوان بالتفصيل
+                </label>
 
-        <!-- PAYMENT -->
+                <textarea
+                    id="address"
+                    placeholder="الشارع، رقم العمارة، الحي، علامة مميزة">
+                </textarea>
 
-        <div class="payment-title"
-             data-ar="طريقة الدفع"
-             data-en="Payment Method">
 
-            طريقة الدفع
+                <label for="notes">
+                    ملاحظات (اختياري)
+                </label>
+
+                <textarea
+                    id="notes"
+                    placeholder="مثال: التسليم مساءً">
+                </textarea>
+
+
+                <div class="payment-section">
+
+                    <h3>
+                        طريقة الدفع
+                    </h3>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cash"
+                            checked
+                        >
+
+                        <span>
+                            💵 الدفع عند الاستلام (كاش)
+                        </span>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="card"
+                        >
+
+                        <span>
+                            💳 بطاقة ائتمان / فيزا
+                        </span>
+
+                    </label>
+
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="wallet"
+                        >
+
+                        <span>
+                            📱 محفظة إلكترونية
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <div class="order-buttons">
+
+                    <button
+                        type="button"
+                        class="back-btn"
+                        id="backBtn">
+
+                        رجوع
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="confirm-btn"
+                        id="confirmOrderBtn">
+
+                        تأكيد الطلب
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-
-        <label>
-
-            <input
-                type="radio"
-                name="payment"
-                value="cash"
-                checked>
-
-            <span
-                data-ar="الدفع عند الاستلام"
-                data-en="Cash on Delivery">
-
-                الدفع عند الاستلام
-
-            </span>
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="radio"
-                name="payment"
-                value="card">
-
-            <span
-                data-ar="الدفع بالبطاقة"
-                data-en="Card Payment">
-
-                الدفع بالبطاقة
-
-            </span>
-
-        </label>
-
-
-        <label>
-
-            <input
-                type="radio"
-                name="payment"
-                value="wallet">
-
-            <span
-                data-ar="المحفظة الإلكترونية"
-                data-en="E-Wallet">
-
-                المحفظة الإلكترونية
-
-            </span>
-
-        </label>
-
-
-
-        <button id="confirmOrderBtn"
-                class="confirm-order-btn"
-                data-ar="تأكيد الطلب"
-                data-en="Confirm Order">
-
-            تأكيد الطلب
-
-        </button>
-
-
     </div>
 
-</div>
+
 
 
 
