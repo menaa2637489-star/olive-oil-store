@@ -2682,10 +2682,10 @@ function loadDashboardOrders() {
 
 
 /* =========================================================
-   REFRESH ORDERS
+   REFRESH ORDERS FROM MYSQL API
 ========================================================= */
 
-function refreshDashboardOrders() {
+async function refreshDashboardOrders() {
 
     const container =
         document.getElementById(
@@ -2704,241 +2704,366 @@ function refreshDashboardOrders() {
     }
 
 
-    const savedOrders =
-        localStorage.getItem(
-            "oliveOilOrders"
-        );
+    try {
+
+        const response =
+            await fetch(
+                "api/orders.php"
+            );
 
 
-    let orders =
-        savedOrders
-            ? JSON.parse(savedOrders)
-            : [];
+        if (!response.ok) {
+
+            throw new Error(
+                "Failed to load orders"
+            );
+
+        }
 
 
-    if (count) {
-
-        count.textContent =
-            orders.length + " طلب";
-
-    }
+        const data =
+            await response.json();
 
 
-    if (
-        orders.length === 0
-    ) {
-
-        container.innerHTML = `
-
-            <div class="no-orders">
-
-                لا توجد طلبات حتى الآن
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML = "";
-
-
-    orders.forEach(
-        function (
-            order,
-            index
+        if (
+            !data.success ||
+            !Array.isArray(data.orders)
         ) {
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+            throw new Error(
+                "Invalid orders response"
+            );
 
+        }
 
-            card.className =
-                "order-card";
 
+        const orders =
+            data.orders;
 
-            const paymentNames = {
 
-                cash:
-                    "💵 الدفع عند الاستلام",
+        /* =========================
+           ORDERS COUNT
+        ========================= */
 
-                card:
-                    "💳 بطاقة ائتمان / فيزا",
+        if (count) {
 
-                wallet:
-                    "📱 محفظة إلكترونية"
+            count.textContent =
+                orders.length + " طلب";
 
-            };
+        }
 
 
-            const payment =
-                paymentNames[
-                    order.paymentMethod
-                ] ||
-                "غير محددة";
+        /* =========================
+           NO ORDERS
+        ========================= */
 
+        if (
+            orders.length === 0
+        ) {
 
-            card.innerHTML = `
+            container.innerHTML = `
 
-                <div class="order-card-header">
+                <div class="no-orders">
 
-                    <span class="order-number">
-
-                        طلب رقم #${order.id || index + 1}
-
-                    </span>
-
-
-                    <span class="order-status">
-
-                        ${order.status || "جديد"}
-
-                    </span>
-
-                </div>
-
-
-                <div class="order-info">
-
-                    <div>
-
-                        <strong>
-                            اسم العميل:
-                        </strong>
-
-                        ${escapeHTML(
-                            order.name ||
-                            "غير محدد"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            رقم الهاتف:
-                        </strong>
-
-                        ${escapeHTML(
-                            order.phone ||
-                            "غير محدد"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            المحافظة:
-                        </strong>
-
-                        ${escapeHTML(
-                            order.governorate ||
-                            "غير محددة"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            العنوان:
-                        </strong>
-
-                        ${escapeHTML(
-                            order.address ||
-                            "غير محدد"
-                        )}
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            طريقة الدفع:
-                        </strong>
-
-                        ${payment}
-
-                    </div>
-
-
-                    <div>
-
-                        <strong>
-                            التاريخ:
-                        </strong>
-
-                        ${escapeHTML(
-                            order.date ||
-                            "غير محدد"
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="order-total">
-
-                    الإجمالي:
-
-                    ${order.total || 0}
-
-                    جنيه
-
-                </div>
-
-
-                <div class="order-actions">
-
-                    ${
-                        order.status === "ملغي"
-
-                        ?
-
-                        `<span class="cancelled-label">
-                            ملغي ❌
-                        </span>`
-
-                        :
-
-                        `
-                        <button
-                            type="button"
-                            class="cancel-order-btn"
-                            onclick="cancelOrder('${order.id}')">
-
-                            إلغاء الطلب
-
-                        </button>
-                        `
-
-                    }
+                    لا توجد طلبات حتى الآن
 
                 </div>
 
             `;
 
-
-            container.appendChild(
-                card
-            );
+            return;
 
         }
-    );
+
+
+        /* =========================
+           CLEAR CONTAINER
+        ========================= */
+
+        container.innerHTML = "";
+
+
+        /* =========================
+           PAYMENT NAMES
+        ========================= */
+
+        const paymentNames = {
+
+            cash:
+                "💵 الدفع عند الاستلام",
+
+            card:
+                "💳 بطاقة ائتمان / فيزا",
+
+            wallet:
+                "📱 محفظة إلكترونية"
+
+        };
+
+
+        /* =========================
+           DISPLAY ORDERS
+        ========================= */
+
+        orders.forEach(
+            function (order) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "order-card";
+
+
+                const payment =
+                    paymentNames[
+                        order.payment_method
+                    ] ||
+                    order.payment_method ||
+                    "غير محددة";
+
+
+                const status =
+                    order.status ||
+                    "جديد";
+
+
+                card.innerHTML = `
+
+                    <div class="order-card-header">
+
+                        <span class="order-number">
+
+                            طلب رقم #${escapeHTML(
+                                order.order_code ||
+                                order.id ||
+                                ""
+                            )}
+
+                        </span>
+
+
+                        <span class="order-status">
+
+                            ${escapeHTML(
+                                status
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-info">
+
+                        <div>
+
+                            <strong>
+                                اسم العميل:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.customer_name ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                رقم الهاتف:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.phone ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                المحافظة:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.governorate ||
+                                "غير محددة"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                العنوان:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.address ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                طريقة الدفع:
+                            </strong>
+
+                            ${escapeHTML(
+                                payment
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                التاريخ:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.created_at ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        ${
+                            order.notes
+
+                            ?
+
+                            `
+                            <div>
+
+                                <strong>
+                                    ملاحظات:
+                                </strong>
+
+                                ${escapeHTML(
+                                    order.notes
+                                )}
+
+                            </div>
+                            `
+
+                            :
+
+                            ""
+                        }
+
+                    </div>
+
+
+                    <div class="order-total">
+
+                        الإجمالي:
+
+                        ${escapeHTML(
+                            order.total || 0
+                        )}
+
+                        جنيه
+
+                    </div>
+
+
+                    <div class="order-items">
+
+                        <strong>
+                            المنتجات:
+                        </strong>
+
+                        ${
+                            Array.isArray(order.items) &&
+                            order.items.length > 0
+
+                            ?
+
+                            order.items.map(
+                                item => `
+
+                                    <div class="order-item">
+
+                                        ${escapeHTML(
+                                            item.product_name_ar ||
+                                            item.product_name_en ||
+                                            "منتج"
+                                        )}
+
+                                        -
+
+                                        ${escapeHTML(
+                                            item.size_ar ||
+                                            item.size_en ||
+                                            ""
+                                        )}
+
+                                        ×
+
+                                        ${escapeHTML(
+                                            item.quantity ||
+                                            1
+                                        )}
+
+                                    </div>
+
+                                `
+                            ).join("")
+
+                            :
+
+                            "<div>لا توجد منتجات</div>"
+                        }
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Orders API Error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="no-orders">
+
+                حدث خطأ أثناء تحميل الطلبات
+
+            </div>
+
+        `;
+
+    }
 
 }
-
 
 /* =========================================================
    CANCEL ORDER
