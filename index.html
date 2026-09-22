@@ -21,58 +21,67 @@
 
     <header class="main-header">
 
-        <div class="header-brand">
+        <!-- اللوجو واسم البراند -->
+        <div class="brand">
 
-            <img src="ابو النصر 1.png" alt="زيت زيتون دكتور أبو النصر">
+            <div class="logo">
+                <img src="ابو النصر 1.png" alt="زيت زيتون دكتور أبو النصر">
+            </div>
 
-            <span
-                data-ar="زيت زيتون دكتور أبو النصر"
+            <div class="brand-name" data-ar="زيت زيتون دكتور أبو النصر"
                 data-en="Dr. Abu El Nasr Olive Oil">
                 زيت زيتون دكتور أبو النصر
-            </span>
+            </div>
 
         </div>
-        <nav class="header-nav">
-
-    <button id="languageBtn">
-        English
-    </button>
-
-    <button
-        id="loginBtn"
-        data-ar="تسجيل الدخول"
-        data-en="Login">
-        تسجيل الدخول
-    </button>
-
-    <button
-        id="contactBtn"
-        data-ar="تواصل معنا"
-        data-en="Contact Us">
-        تواصل معنا
-    </button>
-
-    <button
-        id="cartBtn"
-        class="cart-header-btn">
-
-        🛒
-        <span
-            data-ar="السلة"
-            data-en="Cart">
-            السلة
-        </span>
-
-        <span id="cartCount">0</span>
-
-    </button>
-
-</nav>
 
 
-       
+        <!-- أزرار الـ Header -->
+        <nav class="header-actions">
+
+            <!-- اللغة -->
+            <button class="header-btn language-btn" id="languageBtn">
+                <span id="languageText">English</span>
+            </button>
+
+
+            <!-- تسجيل الدخول -->
+            <button class="header-btn" id="loginBtn">
+                <span data-ar="تسجيل الدخول" data-en="Login">
+                    تسجيل الدخول
+                </span>
+            </button>
+
+
+            <!-- التواصل -->
+            <a href="tel:01277371995" class="header-btn contact-btn">
+
+                <span class="phone-icon">☎</span>
+
+                <span data-ar="تواصل معنا" data-en="Contact Us">
+                    تواصل معنا
+                </span>
+
+            </a>
+
+
+            <!-- السلة -->
+            <button class="header-btn cart-btn" id="cartBtn">
+
+                <span class="cart-icon">🛒</span>
+
+                <span data-ar="السلة" data-en="Cart">
+                    السلة
+                </span>
+
+                <span class="cart-count" id="cartCount">0</span>
+
+            </button>
+
+        </nav>
 
     </header>
+
 
 
     <!-- HERO SECTION -->
@@ -824,105 +833,208 @@
      CART PANEL
 ========================= -->
 
-<aside id="cartPanel" class="side-panel">
+ <div class="overlay" id="cartOverlay"></div>
 
-    <button class="close-panel" onclick="closeAllPanels()">
-        ×
-    </button>
+    <aside class="side-panel cart-panel" id="cartPanel">
 
-    <h2
-        data-ar="السلة"
-        data-en="Cart">
-        السلة
-    </h2>
+        <button class="close-btn" id="closeCart">
+            ×
+        </button>
 
-    <div id="cartItems" class="cart-items">
 
-        <p
-            class="empty-cart"
-            data-ar="السلة فارغة حاليًا"
-            data-en="Your cart is currently empty">
-            السلة فارغة حاليًا
-        </p>
+        <div class="panel-content">
 
-    </div>
+            <h2 data-ar="عربة التسوق"
+                data-en="Shopping Cart">
 
-    <div class="cart-bottom">
+                عربة التسوق
 
-        <div class="cart-total">
+            </h2>
 
-            <span
-                data-ar="الإجمالي"
-                data-en="Total">
-                الإجمالي
-            </span>
 
-            <strong>
-                <span id="cartTotal">0</span> ج.م
-            </strong>
+            <div class="cart-items" id="cartItems">
+
+                <p class="empty-cart"
+                   data-ar="السلة فارغة حاليًا"
+                   data-en="Your cart is currently empty">
+
+                    السلة فارغة حاليًا
+
+                </p>
+
+            </div>
+
+
+            <div class="cart-footer">
+
+                <div class="cart-total">
+
+                    <span data-ar="الإجمالي"
+                          data-en="Total">
+
+                        الإجمالي
+
+                    </span>
+
+                    <strong id="cartTotal">
+                        0 ج.م
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="checkout-btn"
+                    id="checkoutBtn"
+                    data-ar="إتمام الطلب"
+                    data-en="Checkout">
+
+                    إتمام الطلب
+
+                </button>
+
+            </div>
 
         </div>
 
-        <button
-            id="checkoutBtn"
-            class="checkout-btn"
-            data-ar="إتمام الطلب"
-            data-en="Checkout">
+    </aside>
 
-            إتمام الطلب
-
-        </button>
-
-    </div>
-
-</aside>
 
 
 <!-- =========================
      LOGIN PANEL
 ========================= -->
 
-<aside id="loginPanel" class="side-panel">
+ <div class="overlay" id="loginOverlay"></div>
 
-    <button class="close-panel" onclick="closeAllPanels()">
-        ×
-    </button>
+    <aside class="side-panel login-panel" id="loginPanel">
 
-    <h2
-        data-ar="تسجيل الدخول"
-        data-en="Login">
-        تسجيل الدخول
-    </h2>
-
-    <form id="loginForm">
-
-        <input
-            type="email"
-            id="loginEmail"
-            placeholder="البريد الإلكتروني"
-            data-placeholder-ar="البريد الإلكتروني"
-            data-placeholder-en="Email">
-
-        <input
-            type="password"
-            id="loginPassword"
-            placeholder="كلمة المرور"
-            data-placeholder-ar="كلمة المرور"
-            data-placeholder-en="Password">
-
-        <button
-            type="submit"
-            class="panel-submit"
-            data-ar="تسجيل الدخول"
-            data-en="Login">
-
-            تسجيل الدخول
-
+        <button class="close-btn" id="closeLogin">
+            ×
         </button>
 
-    </form>
 
-</aside>
+        <div class="panel-content">
+
+            <h2 data-ar="تسجيل الدخول"
+                data-en="Login">
+
+                تسجيل الدخول
+
+            </h2>
+
+
+            <p class="panel-subtitle"
+               data-ar="سجل دخولك للوصول إلى حسابك"
+               data-en="Login to access your account">
+
+                سجل دخولك للوصول إلى حسابك
+
+            </p>
+
+
+            <!-- البريد أو الهاتف -->
+            <input
+                type="text"
+                class="login-input"
+                data-placeholder-ar="البريد الإلكتروني أو رقم الهاتف"
+                data-placeholder-en="Email or Phone Number"
+                placeholder="البريد الإلكتروني أو رقم الهاتف"
+            >
+
+
+            <!-- كلمة المرور -->
+            <input
+                type="password"
+                class="login-input"
+                data-placeholder-ar="كلمة المرور"
+                data-placeholder-en="Password"
+                placeholder="كلمة المرور"
+            >
+
+
+            <div class="login-options">
+
+                <label>
+
+                    <input type="checkbox">
+
+                    <span data-ar="تذكرني"
+                          data-en="Remember me">
+
+                        تذكرني
+
+                    </span>
+
+                </label>
+
+
+                <a href="#"
+                   data-ar="نسيت كلمة المرور؟"
+                   data-en="Forgot Password?">
+
+                    نسيت كلمة المرور؟
+
+                </a>
+
+            </div>
+
+
+            <button class="login-submit"
+                    data-ar="تسجيل الدخول"
+                    data-en="Login">
+
+                تسجيل الدخول
+
+            </button>
+
+
+            <div class="or-line">
+
+                <span data-ar="أو" data-en="OR">
+                    أو
+                </span>
+
+            </div>
+
+
+            <!-- Google -->
+            <button class="social-login google-login">
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                <span data-ar="تسجيل الدخول باستخدام جوجل"
+                      data-en="Continue with Google">
+
+                    تسجيل الدخول باستخدام جوجل
+
+                </span>
+
+            </button>
+
+
+            <!-- Facebook -->
+            <button class="social-login facebook-login">
+
+                <span class="facebook-icon">
+                    f
+                </span>
+
+                <span data-ar="تسجيل الدخول باستخدام فيسبوك"
+                      data-en="Continue with Facebook">
+
+                    تسجيل الدخول باستخدام فيسبوك
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
 
 
 <!-- =========================
