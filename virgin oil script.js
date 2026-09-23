@@ -27,6 +27,10 @@ const checkoutBtn = document.querySelector(".checkout-btn");
 const backBtn = document.getElementById("backBtn");
 const confirmOrderBtn = document.getElementById("confirmOrderBtn");
 
+/* PAGE BACK BUTTON */
+const pageBackBtn =
+    document.getElementById("pageBackBtn");
+
 
 /* =========================
    LANGUAGE
@@ -400,20 +404,82 @@ sizeButtons.forEach(function (button) {
    QUANTITY
 ========================= */
 
+/*
+   زر + هنا يضيف قطعة واحدة
+   مباشرة إلى السلة من المقاس
+   المختار حاليًا.
+*/
+
 if (plusOneBtn) {
 
     plusOneBtn.addEventListener(
         "click",
         function () {
 
-            quantity++;
+            const product =
+                productData[selectedSize];
 
-            if (quantityValue) {
+            if (!product) {
+                return;
+            }
 
-                quantityValue.textContent =
-                    quantity;
+
+            const existingItem =
+                cart.find(function (item) {
+
+                    return (
+                        item.productId === "virgin-oil" &&
+                        item.size === selectedSize
+                    );
+
+                });
+
+
+            if (existingItem) {
+
+                existingItem.quantity =
+                    Number(existingItem.quantity || 1) + 1;
+
+            } else {
+
+                cart.push({
+
+                    cartItemId:
+                        "virgin-oil-" +
+                        selectedSize,
+
+                    productId:
+                        "virgin-oil",
+
+                    nameAr:
+                        product.nameAr,
+
+                    nameEn:
+                        product.nameEn,
+
+                    size:
+                        selectedSize,
+
+                    sizeAr:
+                        translations.ar[selectedSize],
+
+                    sizeEn:
+                        translations.en[selectedSize],
+
+                    price:
+                        product.price,
+
+                    quantity:
+                        1
+
+                });
 
             }
+
+
+            saveCart();
+
+            updateCart();
 
         }
     );
@@ -498,9 +564,7 @@ function addSelectedProductToCart() {
                 selectedSize,
 
             sizeAr:
-                getSizeName("half") === translations.ar.half
-                    ? translations.ar[selectedSize]
-                    : translations.ar[selectedSize],
+                translations.ar[selectedSize],
 
             sizeEn:
                 translations.en[selectedSize],
@@ -1279,6 +1343,24 @@ if (cartOverlay) {
         "click",
         closeCartPanel
     );
+}
+
+
+/* =========================
+   PAGE BACK BUTTON
+========================= */
+
+if (pageBackBtn) {
+
+    pageBackBtn.addEventListener(
+        "click",
+        function () {
+
+            window.history.back();
+
+        }
+    );
+
 }
 
 
