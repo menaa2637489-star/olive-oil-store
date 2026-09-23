@@ -1,215 +1,49 @@
-/* =========================
-   LANGUAGE
-========================= */
+/* =========================================================
+   DR. ABU EL NASR OLIVE OIL
+   MAIN WEBSITE SCRIPT
+========================================================= */
 
-const languageBtn =
-    document.getElementById("languageBtn");
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 let currentLanguage =
     localStorage.getItem("siteLanguage") || "ar";
 
 
-/* =========================
+const languageBtn =
+    document.getElementById("languageBtn");
+
+
+const languageText =
+    document.getElementById("languageText");
+
+
+/* =========================================================
    CART
-========================= */
+   ONE CART FOR THE WHOLE WEBSITE
+========================================================= */
 
-let cart =
-    JSON.parse(localStorage.getItem("oliveOilCart")) || [];
+let cart = [];
 
+try {
 
-/* =========================
-   PANELS
-========================= */
+    cart =
+        JSON.parse(
+            localStorage.getItem("oliveOilCart")
+        ) || [];
 
-const cartPanel =
-    document.getElementById("cartPanel");
+} catch (error) {
 
-const loginPanel =
-    document.getElementById("loginPanel");
-
-const contactPanel =
-    document.getElementById("contactPanel");
-
-const panelOverlay =
-    document.getElementById("panelOverlay");
-
-
-function closeAllPanels() {
-
-    if (cartPanel) {
-        cartPanel.classList.remove("active");
-    }
-
-    if (loginPanel) {
-        loginPanel.classList.remove("active");
-    }
-
-    if (contactPanel) {
-        contactPanel.classList.remove("active");
-    }
-
-    if (panelOverlay) {
-        panelOverlay.classList.remove("active");
-    }
+    cart = [];
 
 }
 
 
-/* =========================
-   OPEN PANEL
-========================= */
-
-function openPanel(panel) {
-
-    closeAllPanels();
-
-    if (panel) {
-        panel.classList.add("active");
-    }
-
-    if (panelOverlay) {
-        panelOverlay.classList.add("active");
-    }
-
-}
-
-
-/* =========================
-   CART BUTTON
-========================= */
-
-const cartBtn =
-    document.getElementById("cartBtn");
-
-if (cartBtn) {
-
-    cartBtn.addEventListener("click", function () {
-
-        renderCart();
-
-        openPanel(cartPanel);
-
-    });
-
-}
-
-
-/* =========================
-   LOGIN BUTTON
-========================= */
-
-const loginBtn =
-    document.getElementById("loginBtn");
-
-if (loginBtn) {
-
-    loginBtn.addEventListener("click", function () {
-
-        openPanel(loginPanel);
-
-    });
-
-}
-
-
-/* =========================
-   CONTACT BUTTON
-========================= */
-
-const contactBtn =
-    document.getElementById("contactBtn");
-
-if (contactBtn) {
-
-    contactBtn.addEventListener("click", function () {
-
-        openPanel(contactPanel);
-
-    });
-
-}
-
-
-/* =========================
-   CLOSE OVERLAY
-========================= */
-
-if (panelOverlay) {
-
-    panelOverlay.addEventListener(
-        "click",
-        closeAllPanels
-    );
-
-}
-
-
-/* =========================
-   ADD PRODUCT
-========================= */
-
-const addProductButtons =
-    document.querySelectorAll(".add-product-btn");
-
-
-addProductButtons.forEach(function (button) {
-
-    button.addEventListener("click", function () {
-
-        const productName =
-            currentLanguage === "en"
-                ? button.getAttribute("data-product-en")
-                : button.getAttribute("data-product");
-
-
-        const existingProduct =
-            cart.find(function (item) {
-
-                return item.nameAr ===
-                    button.getAttribute("data-product");
-
-            });
-
-
-        if (existingProduct) {
-
-            existingProduct.quantity++;
-
-        } else {
-
-            cart.push({
-
-                id: Date.now(),
-
-                nameAr:
-                    button.getAttribute("data-product"),
-
-                nameEn:
-                    button.getAttribute("data-product-en"),
-
-                quantity: 1,
-
-                price: 0
-
-            });
-
-        }
-
-
-        saveCart();
-
-        renderCart();
-
-        openPanel(cartPanel);
-
-    });
-
-});
-
-
-/* =========================
-   SAVE CART
-========================= */
+/* =========================================================
+   CART STORAGE
+========================================================= */
 
 function saveCart() {
 
@@ -221,23 +55,17 @@ function saveCart() {
 }
 
 
-/* =========================
-   RENDER CART
-========================= */
+/* =========================================================
+   CART COUNT
+========================================================= */
 
-function renderCart() {
-
-    const cartItems =
-        document.getElementById("cartItems");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
+function updateCartCount() {
 
     const cartCount =
         document.getElementById("cartCount");
 
 
-    if (!cartItems) return;
+    if (!cartCount) return;
 
 
     let totalQuantity = 0;
@@ -245,18 +73,504 @@ function renderCart() {
 
     cart.forEach(function (item) {
 
-        totalQuantity += item.quantity;
+        totalQuantity +=
+            Number(item.quantity) || 0;
 
     });
 
 
-    if (cartCount) {
+    cartCount.textContent =
+        totalQuantity;
 
-        cartCount.textContent =
-            totalQuantity;
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+const cartPanel =
+    document.getElementById("cartPanel");
+
+
+const loginPanel =
+    document.getElementById("loginPanel");
+
+
+const contactPanel =
+    document.getElementById("contactPanel");
+
+
+const panelOverlay =
+    document.getElementById("panelOverlay");
+
+
+function closeAllPanels() {
+
+    if (cartPanel) {
+
+        cartPanel.classList.remove("active");
 
     }
 
+
+    if (loginPanel) {
+
+        loginPanel.classList.remove("active");
+
+    }
+
+
+    if (contactPanel) {
+
+        contactPanel.classList.remove("active");
+
+    }
+
+
+    if (panelOverlay) {
+
+        panelOverlay.classList.remove("active");
+
+    }
+
+}
+
+
+window.closeAllPanels =
+    closeAllPanels;
+
+
+/* =========================================================
+   OPEN PANEL
+========================================================= */
+
+function openPanel(panel) {
+
+    if (!panel) return;
+
+
+    closeAllPanels();
+
+
+    panel.classList.add("active");
+
+
+    if (panelOverlay) {
+
+        panelOverlay.classList.add("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   CART BUTTON
+========================================================= */
+
+const cartBtn =
+    document.getElementById("cartBtn");
+
+
+if (cartBtn) {
+
+    cartBtn.addEventListener(
+        "click",
+        function () {
+
+            renderCart();
+
+            openPanel(cartPanel);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+const closeCart =
+    document.getElementById("closeCart");
+
+
+if (closeCart) {
+
+    closeCart.addEventListener(
+        "click",
+        closeAllPanels
+    );
+
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+
+if (loginBtn) {
+
+    loginBtn.addEventListener(
+        "click",
+        function () {
+
+            openPanel(loginPanel);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE LOGIN
+========================================================= */
+
+const closeLogin =
+    document.getElementById("closeLogin");
+
+
+if (closeLogin) {
+
+    closeLogin.addEventListener(
+        "click",
+        closeAllPanels
+    );
+
+}
+
+
+/* =========================================================
+   CONTACT BUTTON
+========================================================= */
+
+const contactBtn =
+    document.getElementById("contactBtn");
+
+
+if (contactBtn) {
+
+    contactBtn.addEventListener(
+        "click",
+        function () {
+
+            openPanel(contactPanel);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+if (panelOverlay) {
+
+    panelOverlay.addEventListener(
+        "click",
+        closeAllPanels
+    );
+
+}
+
+
+/* =========================================================
+   PRODUCT DATA
+   Used by the + buttons on the homepage
+========================================================= */
+
+const homepageProducts = {
+
+    "زيت زيتون بكر ممتاز": {
+
+        id: "virgin",
+
+        nameAr: "زيت زيتون بكر ممتاز",
+
+        nameEn: "Extra Virgin Olive Oil",
+
+        page: "virgin oil.html"
+
+    },
+
+
+    "زيت زيتون بالثوم": {
+
+        id: "garlic",
+
+        nameAr: "زيت زيتون بالثوم",
+
+        nameEn: "Garlic Infused Olive Oil",
+
+        page: "garlic-oil.html"
+
+    },
+
+
+    "زيت زيتون بالبصل": {
+
+        id: "onion",
+
+        nameAr: "زيت زيتون بالبصل",
+
+        nameEn: "Onion Infused Olive Oil",
+
+        page: "onion oil.html"
+
+    },
+
+
+    "زيت زيتون بفيتامين E و D": {
+
+        id: "vitamin",
+
+        nameAr: "زيت زيتون بفيتامين E و D",
+
+        nameEn: "Olive Oil with Vitamin E & D",
+
+        page: "vitamin oil.html"
+
+    },
+
+
+    "زيت زيتون بالروزماري": {
+
+        id: "rosemary",
+
+        nameAr: "زيت زيتون بالروزماري",
+
+        nameEn: "Rosemary Infused Olive Oil",
+
+        page: "rosemary oil.html"
+
+    },
+
+
+    "زيت زيتون للقلي (منقى من الألياف)": {
+
+        id: "frying",
+
+        nameAr: "زيت زيتون للقلي (منقى من الألياف)",
+
+        nameEn: "Olive Oil for Frying (Fiber Purified)",
+
+        page: "frying oil.html"
+
+    }
+
+};
+
+
+/* =========================================================
+   ADD PRODUCT TO CART
+========================================================= */
+
+function addProductToCart(productData) {
+
+    if (!productData) return;
+
+
+    /*
+       Products from the homepage do not have
+       a selected size yet.
+
+       We therefore create the product in the cart
+       and keep price = 0 until a size is selected
+       from the product page.
+    */
+
+
+    const existingProduct =
+        cart.find(function (item) {
+
+            return (
+                item.productId === productData.id &&
+                !item.size
+            );
+
+        });
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity =
+            Number(existingProduct.quantity) + 1;
+
+    } else {
+
+        cart.push({
+
+            cartItemId:
+                Date.now().toString() +
+                Math.random()
+                    .toString(36)
+                    .substring(2, 8),
+
+            productId:
+                productData.id,
+
+            nameAr:
+                productData.nameAr,
+
+            nameEn:
+                productData.nameEn,
+
+            size:
+                "",
+
+            sizeAr:
+                "",
+
+            sizeEn:
+                "",
+
+            price:
+                0,
+
+            quantity:
+                1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   HOMEPAGE + BUTTONS
+========================================================= */
+
+const addProductButtons =
+    document.querySelectorAll(
+        ".add-product-btn"
+    );
+
+
+addProductButtons.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                const nameAr =
+                    button.getAttribute(
+                        "data-product"
+                    );
+
+
+                const nameEn =
+                    button.getAttribute(
+                        "data-product-en"
+                    );
+
+
+                let productData =
+                    homepageProducts[nameAr];
+
+
+                /*
+                   Fallback in case a product
+                   is added later from dashboard.
+                */
+
+                if (!productData) {
+
+                    productData = {
+
+                        id:
+                            button.getAttribute(
+                                "data-product-id"
+                            ) ||
+                            nameAr,
+
+                        nameAr:
+                            nameAr || "",
+
+                        nameEn:
+                            nameEn || "",
+
+                        page:
+                            button.getAttribute(
+                                "data-product-page"
+                            ) || ""
+
+                    };
+
+                }
+
+
+                addProductToCart(
+                    productData
+                );
+
+
+                /*
+                   Open the cart after adding.
+                */
+
+                openPanel(cartPanel);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RENDER CART
+========================================================= */
+
+function renderCart() {
+
+    const cartItems =
+        document.getElementById(
+            "cartItems"
+        );
+
+
+    const cartTotal =
+        document.getElementById(
+            "cartTotal"
+        );
+
+
+    if (!cartItems) {
+
+        updateCartCount();
+
+        return;
+
+    }
+
+
+    updateCartCount();
+
+
+    /* EMPTY CART */
 
     if (cart.length === 0) {
 
@@ -274,11 +588,14 @@ function renderCart() {
 
         `;
 
+
         if (cartTotal) {
 
-            cartTotal.textContent = "0";
+            cartTotal.textContent =
+                "0";
 
         }
+
 
         return;
 
@@ -287,80 +604,175 @@ function renderCart() {
 
     cartItems.innerHTML = "";
 
+
     let total = 0;
 
 
-    cart.forEach(function (item) {
+    cart.forEach(
+        function (item) {
 
-        const itemName =
-            currentLanguage === "en"
-                ? item.nameEn
-                : item.nameAr;
-
-
-        total +=
-            (item.price || 0) *
-            item.quantity;
+            const quantity =
+                Number(item.quantity) || 0;
 
 
-        const itemElement =
-            document.createElement("div");
+            const price =
+                Number(item.price) || 0;
 
 
-        itemElement.className =
-            "cart-item";
+            total +=
+                price * quantity;
 
 
-        itemElement.innerHTML = `
+            const itemName =
+                currentLanguage === "en"
+                    ? (
+                        item.nameEn ||
+                        item.nameAr ||
+                        "Product"
+                    )
+                    : (
+                        item.nameAr ||
+                        item.nameEn ||
+                        "منتج"
+                    );
 
-            <div class="cart-item-name">
 
-                ${itemName}
-
-            </div>
+            let sizeText = "";
 
 
-            <div class="cart-item-controls">
+            if (item.size) {
 
-                <div class="quantity-controls">
+                if (currentLanguage === "en") {
 
-                    <button
-                        onclick="changeQuantity(${item.id}, -1)">
-                        −
-                    </button>
+                    sizeText =
+                        item.sizeEn ||
+                        item.size;
 
-                    <span>
-                        ${item.quantity}
-                    </span>
+                } else {
 
-                    <button
-                        onclick="changeQuantity(${item.id}, 1)">
-                        +
-                    </button>
+                    sizeText =
+                        item.sizeAr ||
+                        item.size;
+
+                }
+
+            }
+
+
+            const itemElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            itemElement.className =
+                "cart-item";
+
+
+            itemElement.innerHTML = `
+
+                <div class="cart-item-name">
+
+                    <strong>
+                        ${escapeHTML(itemName)}
+                    </strong>
+
+                    ${
+                        sizeText
+                        ? `
+                            <div class="cart-item-size">
+                                ${
+                                    currentLanguage === "en"
+                                    ? "Size: "
+                                    : "الحجم: "
+                                }
+                                ${escapeHTML(sizeText)}
+                            </div>
+                        `
+                        : ""
+                    }
+
+                    ${
+                        price > 0
+                        ? `
+                            <div class="cart-item-price">
+                                ${
+                                    currentLanguage === "en"
+                                    ? "Price: "
+                                    : "السعر: "
+                                }
+                                ${price}
+                            </div>
+                        `
+                        : `
+                            <div class="cart-item-price">
+
+                                ${
+                                    currentLanguage === "en"
+                                    ? "Choose a size from the product page"
+                                    : "اختاري الحجم من صفحة المنتج"
+                                }
+
+                            </div>
+                        `
+                    }
 
                 </div>
 
 
-                <button
-                    class="remove-item"
-                    onclick="removeFromCart(${item.id})">
+                <div class="cart-item-controls">
 
-                    ${
-                        currentLanguage === "en"
-                        ? "Remove"
-                        : "حذف"
-                    }
+                    <div class="quantity-controls">
 
-                </button>
+                        <button
+                            type="button"
+                            onclick="changeQuantity('${item.cartItemId}', -1)">
 
-            </div>
+                            −
 
-        `;
+                        </button>
 
 
-        cartItems.appendChild(itemElement);
+                        <span>
+                            ${quantity}
+                        </span>
 
-    });
+
+                        <button
+                            type="button"
+                            onclick="changeQuantity('${item.cartItemId}', 1)">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-item"
+                        onclick="removeFromCart('${item.cartItemId}')">
+
+                        ${
+                            currentLanguage === "en"
+                            ? "Remove"
+                            : "حذف"
+                        }
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            cartItems.appendChild(
+                itemElement
+            );
+
+        }
+    );
 
 
     if (cartTotal) {
@@ -373,16 +785,22 @@ function renderCart() {
 }
 
 
-/* =========================
+/* =========================================================
    CHANGE QUANTITY
-========================= */
+========================================================= */
 
-function changeQuantity(id, change) {
+function changeQuantity(
+    cartItemId,
+    change
+) {
 
     const item =
         cart.find(function (product) {
 
-            return product.id === id;
+            return (
+                product.cartItemId ===
+                cartItemId
+            );
 
         });
 
@@ -390,17 +808,24 @@ function changeQuantity(id, change) {
     if (!item) return;
 
 
-    item.quantity += change;
+    item.quantity =
+        Number(item.quantity) +
+        Number(change);
 
 
     if (item.quantity <= 0) {
 
         cart =
-            cart.filter(function (product) {
+            cart.filter(
+                function (product) {
 
-                return product.id !== id;
+                    return (
+                        product.cartItemId !==
+                        cartItemId
+                    );
 
-            });
+                }
+            );
 
     }
 
@@ -412,18 +837,29 @@ function changeQuantity(id, change) {
 }
 
 
-/* =========================
-   REMOVE PRODUCT
-========================= */
+window.changeQuantity =
+    changeQuantity;
 
-function removeFromCart(id) {
+
+/* =========================================================
+   REMOVE ITEM
+========================================================= */
+
+function removeFromCart(
+    cartItemId
+) {
 
     cart =
-        cart.filter(function (item) {
+        cart.filter(
+            function (item) {
 
-            return item.id !== id;
+                return (
+                    item.cartItemId !==
+                    cartItemId
+                );
 
-        });
+            }
+        );
 
 
     saveCart();
@@ -433,64 +869,369 @@ function removeFromCart(id) {
 }
 
 
-/* =========================
-   LOGIN
-========================= */
-
-const loginForm =
-    document.getElementById("loginForm");
+window.removeFromCart =
+    removeFromCart;
 
 
-if (loginForm) {
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
+function escapeHTML(value) {
 
-            event.preventDefault();
+    if (value === null ||
+        value === undefined) {
 
+        return "";
 
-            const email =
-                document.getElementById(
-                    "loginEmail"
-                ).value.trim();
-
-
-            const password =
-                document.getElementById(
-                    "loginPassword"
-                ).value.trim();
+    }
 
 
-            if (!email || !password) {
+    return String(value)
 
-                alert(
-                    currentLanguage === "en"
-                        ? "Please enter your email and password."
-                        : "من فضلك ادخلي البريد الإلكتروني وكلمة المرور."
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function updateLanguage() {
+
+    /*
+       Update all elements that contain
+       data-ar and data-en.
+    */
+
+    const elements =
+        document.querySelectorAll(
+            "[data-ar][data-en]"
+        );
+
+
+    elements.forEach(
+        function (element) {
+
+            const arabic =
+                element.getAttribute(
+                    "data-ar"
                 );
 
-                return;
+
+            const english =
+                element.getAttribute(
+                    "data-en"
+                );
+
+
+            if (
+                currentLanguage === "en"
+            ) {
+
+                if (
+                    english !== null
+                ) {
+
+                    element.textContent =
+                        english;
+
+                }
+
+            } else {
+
+                if (
+                    arabic !== null
+                ) {
+
+                    element.textContent =
+                        arabic;
+
+                }
 
             }
+
+        }
+    );
+
+
+    /*
+       About section
+    */
+
+    const aboutAr =
+        document.querySelector(
+            ".about-ar"
+        );
+
+
+    const aboutEn =
+        document.querySelector(
+            ".about-en"
+        );
+
+
+    if (aboutAr && aboutEn) {
+
+        if (
+            currentLanguage === "en"
+        ) {
+
+            aboutAr.style.display =
+                "none";
+
+            aboutEn.style.display =
+                "block";
+
+        } else {
+
+            aboutAr.style.display =
+                "block";
+
+            aboutEn.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    /*
+       Quality section
+    */
+
+    document
+        .querySelectorAll(
+            ".quality-ar"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "ar"
+                    ? "block"
+                    : "none";
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".quality-en"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "en"
+                    ? "block"
+                    : "none";
+
+            }
+        );
+
+
+    /*
+       Contact section
+    */
+
+    document
+        .querySelectorAll(
+            ".contact-ar"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "ar"
+                    ? "inline"
+                    : "none";
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".contact-en"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "en"
+                    ? "inline"
+                    : "none";
+
+            }
+        );
+
+
+    /*
+       Footer
+    */
+
+    document
+        .querySelectorAll(
+            ".footer-ar"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "ar"
+                    ? "inline"
+                    : "none";
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".footer-en"
+        )
+        .forEach(
+            function (element) {
+
+                element.style.display =
+                    currentLanguage === "en"
+                    ? "inline"
+                    : "none";
+
+            }
+        );
+
+
+    /*
+       HTML direction
+    */
+
+    document.documentElement.lang =
+        currentLanguage === "en"
+        ? "en"
+        : "ar";
+
+
+    document.documentElement.dir =
+        currentLanguage === "en"
+        ? "ltr"
+        : "rtl";
+
+
+    /*
+       Language button
+    */
+
+    if (languageText) {
+
+        languageText.textContent =
+            currentLanguage === "en"
+            ? "العربية"
+            : "English";
+
+    } else if (languageBtn) {
+
+        languageBtn.textContent =
+            currentLanguage === "en"
+            ? "العربية"
+            : "English";
+
+    }
+
+
+    /*
+       Placeholders
+    */
+
+    document
+        .querySelectorAll(
+            "[data-placeholder-ar][data-placeholder-en]"
+        )
+        .forEach(
+            function (input) {
+
+                input.placeholder =
+                    currentLanguage === "en"
+
+                    ? input.getAttribute(
+                        "data-placeholder-en"
+                    )
+
+                    : input.getAttribute(
+                        "data-placeholder-ar"
+                    );
+
+            }
+        );
+
+
+    /*
+       Re-apply dashboard data
+       in the selected language.
+    */
+
+    applyDashboardData();
+
+
+    /*
+       Re-render cart so product names
+       change immediately.
+    */
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   LANGUAGE BUTTON
+========================================================= */
+
+if (languageBtn) {
+
+    languageBtn.addEventListener(
+        "click",
+        function () {
+
+            currentLanguage =
+                currentLanguage === "ar"
+                ? "en"
+                : "ar";
 
 
             localStorage.setItem(
-                "oliveOilUserEmail",
-                email
+                "siteLanguage",
+                currentLanguage
             );
 
 
-            alert(
-                currentLanguage === "en"
-                    ? "Login successful."
-                    : "تم تسجيل الدخول بنجاح."
-            );
-
-
-            loginForm.reset();
-
-            closeAllPanels();
+            updateLanguage();
 
         }
     );
@@ -498,113 +1239,164 @@ if (loginForm) {
 }
 
 
-/* =========================
-   CONTACT
-========================= */
+/* =========================================================
+   DASHBOARD HELPERS
+========================================================= */
 
-const contactForm =
-    document.getElementById("contactForm");
+function readJSON(
+    key,
+    fallback = null
+) {
 
+    try {
 
-if (contactForm) {
-
-    contactForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
+        const value =
+            localStorage.getItem(key);
 
 
-            const name =
-                document.getElementById(
-                    "contactName"
-                ).value.trim();
+        if (!value) {
 
-
-            const phone =
-                document.getElementById(
-                    "contactPhone"
-                ).value.trim();
-
-
-            const message =
-                document.getElementById(
-                    "contactMessage"
-                ).value.trim();
-
-
-            if (!name || !phone || !message) {
-
-                alert(
-                    currentLanguage === "en"
-                        ? "Please complete all fields."
-                        : "من فضلك اكملي جميع البيانات."
-                );
-
-                return;
-
-            }
-
-
-            const whatsappMessage =
-                `الاسم: ${name}\nرقم الهاتف: ${phone}\nالرسالة: ${message}`;
-
-
-            const whatsappUrl =
-                "https://wa.me/201272154551?text=" +
-                encodeURIComponent(
-                    whatsappMessage
-                );
-
-
-            window.open(
-                whatsappUrl,
-                "_blank"
-            );
-
-
-            contactForm.reset();
+            return fallback;
 
         }
-    );
+
+
+        return JSON.parse(value);
+
+    } catch (error) {
+
+        return fallback;
+
+    }
 
 }
 
 
-/* =========================
-   DASHBOARD DATA
-========================= */
+/* =========================================================
+   DASHBOARD IDENTITY
+========================================================= */
 
 function getDashboardIdentity() {
 
-    return JSON.parse(
-        localStorage.getItem("oliveOilIdentity")
-    ) || null;
+    return readJSON(
+        "oliveOilIdentity",
+        null
+    );
 
 }
 
+
+/* =========================================================
+   DASHBOARD HOME CONTENT
+========================================================= */
 
 function getDashboardContent() {
 
-    return JSON.parse(
-        localStorage.getItem("oliveOil_content_home")
-    ) || null;
+    return readJSON(
+        "oliveOil_content_home",
+        null
+    );
 
 }
 
+
+/* =========================================================
+   DASHBOARD ABOUT
+========================================================= */
 
 function getDashboardAbout() {
 
-    return JSON.parse(
-        localStorage.getItem("oliveOil_aboutUs_home")
-    ) || null;
+    return readJSON(
+        "oliveOil_aboutUs_home",
+        null
+    );
 
 }
 
 
-/* =========================
+/* =========================================================
+   GET ARABIC VALUE
+========================================================= */
+
+function getArabicValue(
+    data,
+    arabicKeys
+) {
+
+    if (!data) return "";
+
+
+    for (
+        let i = 0;
+        i < arabicKeys.length;
+        i++
+    ) {
+
+        const key =
+            arabicKeys[i];
+
+
+        if (
+            data[key] !== undefined &&
+            data[key] !== null &&
+            data[key] !== ""
+        ) {
+
+            return data[key];
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   GET ENGLISH VALUE
+========================================================= */
+
+function getEnglishValue(
+    data,
+    englishKeys
+) {
+
+    if (!data) return "";
+
+
+    for (
+        let i = 0;
+        i < englishKeys.length;
+        i++
+    ) {
+
+        const key =
+            englishKeys[i];
+
+
+        if (
+            data[key] !== undefined &&
+            data[key] !== null &&
+            data[key] !== ""
+        ) {
+
+            return data[key];
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
    APPLY DASHBOARD IDENTITY
-========================= */
+========================================================= */
 
 function applyDashboardIdentity() {
 
@@ -615,56 +1407,82 @@ function applyDashboardIdentity() {
     if (!identity) return;
 
 
+    /*
+       Brand name
+    */
+
     const brandName =
-        document.querySelector(".brand-name");
+        document.querySelector(
+            ".brand-name"
+        );
 
 
-    if (brandName && identity.storeName) {
+    const brandAr =
+        getArabicValue(
+            identity,
+            [
+                "storeNameAr",
+                "brandNameAr",
+                "nameAr",
+                "storeName"
+            ]
+        );
+
+
+    const brandEn =
+        getEnglishValue(
+            identity,
+            [
+                "storeNameEn",
+                "brandNameEn",
+                "nameEn"
+            ]
+        );
+
+
+    if (brandName) {
+
+        if (brandAr) {
+
+            brandName.setAttribute(
+                "data-ar",
+                brandAr
+            );
+
+        }
+
+
+        if (brandEn) {
+
+            brandName.setAttribute(
+                "data-en",
+                brandEn
+            );
+
+        }
+
 
         brandName.textContent =
-            identity.storeName;
+            currentLanguage === "en"
+            ? (
+                brandEn ||
+                brandAr
+            )
+            : (
+                brandAr ||
+                brandEn
+            );
 
     }
 
 
-    const heroTitle =
-        document.getElementById(
-            "dashboardHeroTitle"
-        );
-
-
-    if (heroTitle && identity.mainTitle) {
-
-        heroTitle.setAttribute(
-            "data-ar",
-            identity.mainTitle
-        );
-
-        heroTitle.textContent =
-            identity.mainTitle;
-
-    }
-
-
-    const heroSubtitle =
-        document.getElementById(
-            "dashboardHeroSubtitle"
-        );
-
-
-    if (heroSubtitle && identity.mainSubtitle) {
-
-        heroSubtitle.setAttribute(
-            "data-ar",
-            identity.mainSubtitle
-        );
-
-    }
-
+    /*
+       Logo
+    */
 
     const logo =
         document.querySelector(
-            ".header-brand img"
+            ".logo img"
         );
 
 
@@ -681,9 +1499,9 @@ function applyDashboardIdentity() {
 }
 
 
-/* =========================
+/* =========================================================
    APPLY DASHBOARD HERO
-========================= */
+========================================================= */
 
 function applyDashboardHero() {
 
@@ -706,37 +1524,142 @@ function applyDashboardHero() {
         );
 
 
-    if (heroTitle && identity.mainTitle) {
+    /*
+       HERO TITLE
+    */
 
-        heroTitle.setAttribute(
-            "data-ar",
-            identity.mainTitle
-        );
+    if (heroTitle) {
 
-        if (currentLanguage === "ar") {
+        const titleAr =
+            getArabicValue(
+                identity,
+                [
+                    "mainTitleAr",
+                    "heroTitleAr",
+                    "titleAr",
+                    "mainTitle"
+                ]
+            );
+
+
+        const titleEn =
+            getEnglishValue(
+                identity,
+                [
+                    "mainTitleEn",
+                    "heroTitleEn",
+                    "titleEn"
+                ]
+            );
+
+
+        if (titleAr) {
+
+            heroTitle.setAttribute(
+                "data-ar",
+                titleAr
+            );
+
+        }
+
+
+        if (titleEn) {
+
+            heroTitle.setAttribute(
+                "data-en",
+                titleEn
+            );
+
+        }
+
+
+        const finalTitle =
+            currentLanguage === "en"
+            ? (
+                titleEn ||
+                titleAr
+            )
+            : (
+                titleAr ||
+                titleEn
+            );
+
+
+        if (finalTitle) {
 
             heroTitle.textContent =
-                identity.mainTitle;
+                finalTitle;
 
         }
 
     }
 
 
-    if (
-        heroSubtitle &&
-        identity.mainSubtitle
-    ) {
+    /*
+       HERO SUBTITLE
+    */
 
-        heroSubtitle.setAttribute(
-            "data-ar",
-            identity.mainSubtitle
-        );
+    if (heroSubtitle) {
 
-        if (currentLanguage === "ar") {
+        const subtitleAr =
+            getArabicValue(
+                identity,
+                [
+                    "mainSubtitleAr",
+                    "heroSubtitleAr",
+                    "subtitleAr",
+                    "mainSubtitle"
+                ]
+            );
+
+
+        const subtitleEn =
+            getEnglishValue(
+                identity,
+                [
+                    "mainSubtitleEn",
+                    "heroSubtitleEn",
+                    "subtitleEn"
+                ]
+            );
+
+
+        if (subtitleAr) {
+
+            heroSubtitle.setAttribute(
+                "data-ar",
+                subtitleAr
+            );
+
+        }
+
+
+        if (subtitleEn) {
+
+            heroSubtitle.setAttribute(
+                "data-en",
+                subtitleEn
+            );
+
+        }
+
+
+        const finalSubtitle =
+            currentLanguage === "en"
+            ? (
+                subtitleEn ||
+                subtitleAr
+            )
+            : (
+                subtitleAr ||
+                subtitleEn
+            );
+
+
+        if (finalSubtitle) {
 
             heroSubtitle.textContent =
-                identity.mainSubtitle;
+                finalSubtitle;
 
         }
 
@@ -745,90 +1668,9 @@ function applyDashboardHero() {
 }
 
 
-/* =========================
-   APPLY DASHBOARD ABOUT
-========================= */
-
-function applyDashboardAbout() {
-
-    const aboutData =
-        getDashboardAbout();
-
-
-    if (
-        !aboutData ||
-        !Array.isArray(aboutData)
-    ) return;
-
-
-    const aboutAr =
-        document.querySelector(".about-ar");
-
-
-    const aboutEn =
-        document.querySelector(".about-en");
-
-
-    if (!aboutAr) return;
-
-
-    if (aboutData.length > 0) {
-
-        const firstCard =
-            aboutData[0];
-
-
-        const title =
-            firstCard.title ||
-            firstCard.heading ||
-            "";
-
-
-        const text =
-            firstCard.text ||
-            firstCard.description ||
-            "";
-
-
-        if (title) {
-
-            const titleElement =
-                aboutAr.querySelector("h2, h3");
-
-
-            if (titleElement) {
-
-                titleElement.textContent =
-                    title;
-
-            }
-
-        }
-
-
-        if (text) {
-
-            const textElement =
-                aboutAr.querySelector("p");
-
-
-            if (textElement) {
-
-                textElement.textContent =
-                    text;
-
-            }
-
-        }
-
-    }
-
-}
-
-
-/* =========================
-   APPLY DASHBOARD CONTENT
-========================= */
+/* =========================================================
+   APPLY DASHBOARD PRODUCT CONTENT
+========================================================= */
 
 function applyDashboardContent() {
 
@@ -836,10 +1678,7 @@ function applyDashboardContent() {
         getDashboardContent();
 
 
-    if (
-        !contentData ||
-        !Array.isArray(contentData)
-    ) return;
+    if (!contentData) return;
 
 
     const cards =
@@ -851,7 +1690,23 @@ function applyDashboardContent() {
     if (!cards.length) return;
 
 
-    contentData.forEach(
+    /*
+       Support both array and object.
+    */
+
+    let products =
+        Array.isArray(contentData)
+        ? contentData
+        : (
+            Array.isArray(
+                contentData.products
+            )
+            ? contentData.products
+            : []
+        );
+
+
+    products.forEach(
         function (item, index) {
 
             if (!cards[index]) return;
@@ -862,49 +1717,143 @@ function applyDashboardContent() {
 
 
             const title =
-                card.querySelector("h3");
-
-
-            const description =
-                card.querySelector("p");
-
-
-            if (
-                title &&
-                item.title
-            ) {
-
-                title.setAttribute(
-                    "data-ar",
-                    item.title
+                card.querySelector(
+                    "h3"
                 );
 
 
-                if (currentLanguage === "ar") {
+            const description =
+                card.querySelector(
+                    "p"
+                );
+
+
+            if (title) {
+
+                const titleAr =
+                    getArabicValue(
+                        item,
+                        [
+                            "titleAr",
+                            "nameAr",
+                            "title",
+                            "name"
+                        ]
+                    );
+
+
+                const titleEn =
+                    getEnglishValue(
+                        item,
+                        [
+                            "titleEn",
+                            "nameEn"
+                        ]
+                    );
+
+
+                if (titleAr) {
+
+                    title.setAttribute(
+                        "data-ar",
+                        titleAr
+                    );
+
+                }
+
+
+                if (titleEn) {
+
+                    title.setAttribute(
+                        "data-en",
+                        titleEn
+                    );
+
+                }
+
+
+                const finalTitle =
+                    currentLanguage === "en"
+                    ? (
+                        titleEn ||
+                        titleAr
+                    )
+                    : (
+                        titleAr ||
+                        titleEn
+                    );
+
+
+                if (finalTitle) {
 
                     title.textContent =
-                        item.title;
+                        finalTitle;
 
                 }
 
             }
 
 
-            if (
-                description &&
-                item.text
-            ) {
+            if (description) {
 
-                description.setAttribute(
-                    "data-ar",
-                    item.text
-                );
+                const textAr =
+                    getArabicValue(
+                        item,
+                        [
+                            "textAr",
+                            "descriptionAr",
+                            "text",
+                            "description"
+                        ]
+                    );
 
 
-                if (currentLanguage === "ar") {
+                const textEn =
+                    getEnglishValue(
+                        item,
+                        [
+                            "textEn",
+                            "descriptionEn"
+                        ]
+                    );
+
+
+                if (textAr) {
+
+                    description.setAttribute(
+                        "data-ar",
+                        textAr
+                    );
+
+                }
+
+
+                if (textEn) {
+
+                    description.setAttribute(
+                        "data-en",
+                        textEn
+                    );
+
+                }
+
+
+                const finalText =
+                    currentLanguage === "en"
+                    ? (
+                        textEn ||
+                        textAr
+                    )
+                    : (
+                        textAr ||
+                        textEn
+                    );
+
+
+                if (finalText) {
 
                     description.textContent =
-                        item.text;
+                        finalText;
 
                 }
 
@@ -916,9 +1865,189 @@ function applyDashboardContent() {
 }
 
 
-/* =========================
+/* =========================================================
+   APPLY DASHBOARD ABOUT
+========================================================= */
+
+function applyDashboardAbout() {
+
+    const aboutData =
+        getDashboardAbout();
+
+
+    if (!aboutData) return;
+
+
+    /*
+       Support:
+
+       [
+          {...},
+          {...}
+       ]
+
+       or
+
+       {
+          sections: [...]
+       }
+    */
+
+    let sections =
+        Array.isArray(aboutData)
+        ? aboutData
+        : (
+            Array.isArray(
+                aboutData.sections
+            )
+            ? aboutData.sections
+            : []
+        );
+
+
+    if (!sections.length) return;
+
+
+    const aboutAr =
+        document.querySelector(
+            ".about-ar"
+        );
+
+
+    const aboutEn =
+        document.querySelector(
+            ".about-en"
+        );
+
+
+    if (!aboutAr || !aboutEn) return;
+
+
+    /*
+       First section
+    */
+
+    const first =
+        sections[0];
+
+
+    const titleAr =
+        getArabicValue(
+            first,
+            [
+                "titleAr",
+                "headingAr",
+                "title",
+                "heading"
+            ]
+        );
+
+
+    const titleEn =
+        getEnglishValue(
+            first,
+            [
+                "titleEn",
+                "headingEn"
+            ]
+        );
+
+
+    const textAr =
+        getArabicValue(
+            first,
+            [
+                "textAr",
+                "descriptionAr",
+                "text",
+                "description"
+            ]
+        );
+
+
+    const textEn =
+        getEnglishValue(
+            first,
+            [
+                "textEn",
+                "descriptionEn"
+            ]
+        );
+
+
+    const arTitle =
+        aboutAr.querySelector(
+            "h2"
+        );
+
+
+    const enTitle =
+        aboutEn.querySelector(
+            "h2"
+        );
+
+
+    const arParagraph =
+        aboutAr.querySelector(
+            "p"
+        );
+
+
+    const enParagraph =
+        aboutEn.querySelector(
+            "p"
+        );
+
+
+    if (
+        arTitle &&
+        titleAr
+    ) {
+
+        arTitle.textContent =
+            titleAr;
+
+    }
+
+
+    if (
+        enTitle &&
+        titleEn
+    ) {
+
+        enTitle.textContent =
+            titleEn;
+
+    }
+
+
+    if (
+        arParagraph &&
+        textAr
+    ) {
+
+        arParagraph.textContent =
+            textAr;
+
+    }
+
+
+    if (
+        enParagraph &&
+        textEn
+    ) {
+
+        enParagraph.textContent =
+            textEn;
+
+    }
+
+}
+
+
+/* =========================================================
    APPLY ALL DASHBOARD DATA
-========================= */
+========================================================= */
 
 function applyDashboardData() {
 
@@ -926,183 +2055,127 @@ function applyDashboardData() {
 
     applyDashboardHero();
 
-    applyDashboardAbout();
-
     applyDashboardContent();
 
-}
-
-
-/* =========================
-   LANGUAGE UPDATE
-========================= */
-
-function updateLanguage() {
-
-    const elements =
-        document.querySelectorAll(
-            "[data-ar][data-en]"
-        );
-
-
-    elements.forEach(function (element) {
-
-        if (currentLanguage === "en") {
-
-            element.textContent =
-                element.getAttribute("data-en");
-
-        } else {
-
-            element.textContent =
-                element.getAttribute("data-ar");
-
-        }
-
-    });
-
-
-    const aboutAr =
-        document.querySelector(".about-ar");
-
-    const aboutEn =
-        document.querySelector(".about-en");
-
-
-    if (aboutAr && aboutEn) {
-
-        if (currentLanguage === "en") {
-
-            aboutAr.style.display = "none";
-
-            aboutEn.style.display = "block";
-
-        } else {
-
-            aboutAr.style.display = "block";
-
-            aboutEn.style.display = "none";
-
-        }
-
-    }
-
-
-    if (currentLanguage === "en") {
-
-        document.documentElement.lang = "en";
-
-        document.documentElement.dir = "ltr";
-
-
-        if (languageBtn) {
-
-            languageBtn.textContent =
-                "العربية";
-
-        }
-
-    } else {
-
-        document.documentElement.lang = "ar";
-
-        document.documentElement.dir = "rtl";
-
-
-        if (languageBtn) {
-
-            languageBtn.textContent =
-                "English";
-
-        }
-
-    }
-
-
-    document
-        .querySelectorAll(
-            "[data-placeholder-ar][data-placeholder-en]"
-        )
-        .forEach(function (input) {
-
-            input.placeholder =
-                currentLanguage === "en"
-                    ? input.getAttribute(
-                        "data-placeholder-en"
-                    )
-                    : input.getAttribute(
-                        "data-placeholder-ar"
-                    );
-
-        });
-
-
-    applyDashboardData();
-
-    renderCart();
+    applyDashboardAbout();
 
 }
 
 
-/* =========================
-   LANGUAGE BUTTON
-========================= */
+/* =========================================================
+   CONTACT FORM
+========================================================= */
 
-if (languageBtn) {
-
-    languageBtn.addEventListener(
-        "click",
-        function () {
-
-            currentLanguage =
-                currentLanguage === "ar"
-                    ? "en"
-                    : "ar";
-
-
-            localStorage.setItem(
-                "siteLanguage",
-                currentLanguage
-            );
-
-
-            updateLanguage();
-
-        }
-    );
-
-}
-
-
-/* =========================
-   HERO PRODUCTS
-========================= */
-
-const heroProductsBtn =
-    document.querySelector(
-        ".hero-products-btn"
+const contactForm =
+    document.getElementById(
+        "contactForm"
     );
 
 
-if (heroProductsBtn) {
+if (contactForm) {
 
-    heroProductsBtn.addEventListener(
-        "click",
-        function () {
+    contactForm.addEventListener(
+        "submit",
+        function (event) {
 
-            const productsSection =
+            event.preventDefault();
+
+
+            const nameInput =
                 document.getElementById(
-                    "products"
+                    "contactName"
                 );
 
 
-            if (productsSection) {
+            const phoneInput =
+                document.getElementById(
+                    "contactPhone"
+                );
 
-                productsSection.scrollIntoView({
-                    behavior: "smooth"
-                });
+
+            const messageInput =
+                document.getElementById(
+                    "contactMessage"
+                );
+
+
+            const name =
+                nameInput
+                ? nameInput.value.trim()
+                : "";
+
+
+            const phone =
+                phoneInput
+                ? phoneInput.value.trim()
+                : "";
+
+
+            const message =
+                messageInput
+                ? messageInput.value.trim()
+                : "";
+
+
+            if (
+                !name ||
+                !phone ||
+                !message
+            ) {
+
+                alert(
+
+                    currentLanguage === "en"
+
+                    ? "Please complete all fields."
+
+                    : "من فضلك اكملي جميع البيانات."
+
+                );
+
+
+                return;
 
             }
+
+
+            const whatsappMessage =
+
+                currentLanguage === "en"
+
+                ? (
+                    "Name: " +
+                    name +
+                    "\nPhone: " +
+                    phone +
+                    "\nMessage: " +
+                    message
+                )
+
+                : (
+                    "الاسم: " +
+                    name +
+                    "\nرقم الهاتف: " +
+                    phone +
+                    "\nالرسالة: " +
+                    message
+                );
+
+
+            const whatsappURL =
+                "https://wa.me/201272154551?text=" +
+                encodeURIComponent(
+                    whatsappMessage
+                );
+
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+
+            contactForm.reset();
 
         }
     );
@@ -1110,9 +2183,42 @@ if (heroProductsBtn) {
 }
 
 
-/* =========================
+/* =========================================================
+   ABOUT BUTTON
+========================================================= */
+
+function openAboutSection() {
+
+    const aboutSection =
+        document.querySelector(
+            ".about-section"
+        );
+
+
+    closeAllPanels();
+
+
+    if (aboutSection) {
+
+        aboutSection.scrollIntoView({
+
+            behavior:
+                "smooth"
+
+        });
+
+    }
+
+}
+
+
+window.openAboutSection =
+    openAboutSection;
+
+
+/* =========================================================
    DASHBOARD
-========================= */
+========================================================= */
 
 function openDashboardLogin() {
 
@@ -1122,12 +2228,41 @@ function openDashboardLogin() {
 }
 
 
-/* =========================
-   INITIALIZE
-========================= */
+window.openDashboardLogin =
+    openDashboardLogin;
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
 
 applyDashboardData();
 
 updateLanguage();
 
 renderCart();
+
+updateCartCount();
+
+
+/* =========================================================
+   IMPORTANT
+========================================================= */
+
+/*
+   The cart is stored in:
+
+   localStorage key:
+   oliveOilCart
+
+   The language is stored in:
+
+   localStorage key:
+   siteLanguage
+
+   Every product page must use
+   the SAME keys.
+
+   This is what makes the website
+   use ONE cart and ONE language.
+*/
