@@ -285,14 +285,14 @@ if (panelOverlay) {
 
 /* =========================================================
    PRODUCT DATA
-   Used by the + buttons on the homepage
+   USED BY HOMEPAGE + BUTTONS
 ========================================================= */
 
 const homepageProducts = {
 
     "زيت زيتون بكر ممتاز": {
 
-        id: "virgin",
+        id: "virgin-oil",
 
         nameAr: "زيت زيتون بكر ممتاز",
 
@@ -305,7 +305,7 @@ const homepageProducts = {
 
     "زيت زيتون بالثوم": {
 
-        id: "garlic",
+        id: "garlic-oil",
 
         nameAr: "زيت زيتون بالثوم",
 
@@ -318,7 +318,7 @@ const homepageProducts = {
 
     "زيت زيتون بالبصل": {
 
-        id: "onion",
+        id: "onion-oil",
 
         nameAr: "زيت زيتون بالبصل",
 
@@ -331,7 +331,7 @@ const homepageProducts = {
 
     "زيت زيتون بفيتامين E و D": {
 
-        id: "vitamin",
+        id: "vitamin-oil",
 
         nameAr: "زيت زيتون بفيتامين E و D",
 
@@ -344,7 +344,7 @@ const homepageProducts = {
 
     "زيت زيتون بالروزماري": {
 
-        id: "rosemary",
+        id: "rosemary-oil",
 
         nameAr: "زيت زيتون بالروزماري",
 
@@ -357,7 +357,7 @@ const homepageProducts = {
 
     "زيت زيتون للقلي (منقى من الألياف)": {
 
-        id: "frying",
+        id: "frying-oil",
 
         nameAr: "زيت زيتون للقلي (منقى من الألياف)",
 
@@ -371,7 +371,7 @@ const homepageProducts = {
 
 
 /* =========================================================
-   ADD PRODUCT TO CART
+   ADD PRODUCT TO SHARED CART
 ========================================================= */
 
 function addProductToCart(productData) {
@@ -380,14 +380,12 @@ function addProductToCart(productData) {
 
 
     /*
-       Products from the homepage do not have
-       a selected size yet.
+       Homepage has no size selector.
 
-       We therefore create the product in the cart
-       and keep price = 0 until a size is selected
-       from the product page.
+       Therefore the product is added as a pending
+       product until the customer chooses the size
+       from its product page.
     */
-
 
     const existingProduct =
         cart.find(function (item) {
@@ -403,7 +401,7 @@ function addProductToCart(productData) {
     if (existingProduct) {
 
         existingProduct.quantity =
-            Number(existingProduct.quantity) + 1;
+            Number(existingProduct.quantity || 0) + 1;
 
     } else {
 
@@ -454,7 +452,7 @@ function addProductToCart(productData) {
 
 
 /* =========================================================
-   HOMEPAGE + BUTTONS
+   HOMEPAGE PLUS BUTTONS
 ========================================================= */
 
 const addProductButtons =
@@ -491,11 +489,6 @@ addProductButtons.forEach(
                     homepageProducts[nameAr];
 
 
-                /*
-                   Fallback in case a product
-                   is added later from dashboard.
-                */
-
                 if (!productData) {
 
                     productData = {
@@ -526,10 +519,6 @@ addProductButtons.forEach(
                     productData
                 );
 
-
-                /*
-                   Open the cart after adding.
-                */
 
                 openPanel(cartPanel);
 
@@ -2266,3 +2255,163 @@ updateCartCount();
    This is what makes the website
    use ONE cart and ONE language.
 */
+/* =========================================================
+   HERO SLIDER
+========================================================= */
+
+const heroSlides =
+    document.querySelectorAll(
+        ".hero-slide"
+    );
+
+const heroPrev =
+    document.getElementById(
+        "heroPrev"
+    );
+
+const heroNext =
+    document.getElementById(
+        "heroNext"
+    );
+
+
+let currentHeroSlide = 0;
+
+let heroInterval;
+
+
+/* =========================================================
+   SHOW HERO SLIDE
+========================================================= */
+
+function showHeroSlide(index) {
+
+    if (!heroSlides.length) return;
+
+
+    if (index >= heroSlides.length) {
+
+        currentHeroSlide = 0;
+
+    } else if (index < 0) {
+
+        currentHeroSlide =
+            heroSlides.length - 1;
+
+    } else {
+
+        currentHeroSlide = index;
+
+    }
+
+
+    heroSlides.forEach(
+        function (slide, index) {
+
+            slide.classList.toggle(
+                "active",
+                index === currentHeroSlide
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   NEXT HERO
+========================================================= */
+
+function nextHeroSlide() {
+
+    showHeroSlide(
+        currentHeroSlide + 1
+    );
+
+}
+
+
+/* =========================================================
+   PREVIOUS HERO
+========================================================= */
+
+function previousHeroSlide() {
+
+    showHeroSlide(
+        currentHeroSlide - 1
+    );
+
+}
+
+
+/* =========================================================
+   AUTO HERO
+========================================================= */
+
+function startHeroSlider() {
+
+    if (!heroSlides.length) return;
+
+
+    clearInterval(
+        heroInterval
+    );
+
+
+    heroInterval =
+        setInterval(
+            function () {
+
+                nextHeroSlide();
+
+            },
+            5000
+        );
+
+}
+
+
+/* =========================================================
+   HERO ARROWS
+========================================================= */
+
+if (heroNext) {
+
+    heroNext.addEventListener(
+        "click",
+        function () {
+
+            nextHeroSlide();
+
+            startHeroSlider();
+
+        }
+    );
+
+}
+
+
+if (heroPrev) {
+
+    heroPrev.addEventListener(
+        "click",
+        function () {
+
+            previousHeroSlide();
+
+            startHeroSlider();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   START HERO
+========================================================= */
+
+showHeroSlide(0);
+
+startHeroSlider();
