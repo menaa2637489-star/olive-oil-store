@@ -2472,3 +2472,28 @@ html[dir="ltr"] .footer-en {
         font-size: 12px;
     }
 }
+/* =========================
+   PAGE BACK BUTTON
+========================= */
+
+.back-page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 8px 10px;
+    transition: 0.3s ease;
+}
+
+.back-page-btn:hover {
+    opacity: 0.75;
+}
+
+.back-page-btn i {
+    font-size: 14px;
+}
