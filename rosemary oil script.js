@@ -3,6 +3,8 @@
    نفس السلة في كل صفحات الموقع
 ========================================================= */
 
+document.addEventListener("DOMContentLoaded", function () {
+
 
 /* =========================
    ELEMENTS
@@ -59,7 +61,6 @@ const CART_KEY = "oliveOilCart";
 
 /* =========================================================
    PRODUCT ID
-   الروزماري له ID مستقل
 ========================================================= */
 
 const PRODUCT_ID = "rosemary-oil";
@@ -81,101 +82,50 @@ const translations = {
 
     ar: {
 
-        productName:
-            "زيت زيتون بالروزماري",
+        productName: "زيت زيتون بالروزماري",
+        productType: "زيت زيتون بالروزماري",
+        chooseSize: "اختاري الحجم",
+        price: "السعر:",
+        buyNow: "اشتر الآن",
+        addCart: "أضف للسلة",
 
-        productType:
-            "زيت زيتون بالروزماري",
+        half: "نصف لتر",
+        one: "1 لتر",
+        two: "2 لتر",
+        five: "5 لتر",
 
-        chooseSize:
-            "اختاري الحجم",
+        emptyCart: "السلة فارغة حاليًا",
+        cancel: "إلغاء",
+        cancelAll: "إلغاء الكل",
+        total: "الإجمالي",
+        checkout: "إتمام الطلب",
 
-        price:
-            "السعر:",
+        orderTitle: "إتمام الطلب",
 
-        buyNow:
-            "اشتر الآن",
+        fullName: "الاسم بالكامل",
+        fullNamePlaceholder: "مثال: أحمد محمد",
 
-        addCart:
-            "أضف للسلة",
+        phone: "رقم الهاتف",
+        phonePlaceholder: "01xxxxxxxxx",
 
-        half:
-            "نصف لتر",
+        governorate: "المحافظة",
+        chooseGovernorate: "اختر المحافظة",
 
-        one:
-            "1 لتر",
-
-        two:
-            "2 لتر",
-
-        five:
-            "5 لتر",
-
-        emptyCart:
-            "السلة فارغة حاليًا",
-
-        cancel:
-            "إلغاء",
-
-        cancelAll:
-            "إلغاء الكل",
-
-        total:
-            "الإجمالي",
-
-        checkout:
-            "إتمام الطلب",
-
-        orderTitle:
-            "إتمام الطلب",
-
-        fullName:
-            "الاسم بالكامل",
-
-        fullNamePlaceholder:
-            "مثال: أحمد محمد",
-
-        phone:
-            "رقم الهاتف",
-
-        phonePlaceholder:
-            "01xxxxxxxxx",
-
-        governorate:
-            "المحافظة",
-
-        chooseGovernorate:
-            "اختر المحافظة",
-
-        address:
-            "العنوان بالتفصيل",
-
+        address: "العنوان بالتفصيل",
         addressPlaceholder:
             "الشارع، رقم العمارة، الحي، علامة مميزة",
 
-        notes:
-            "ملاحظات (اختياري)",
+        notes: "ملاحظات (اختياري)",
+        notesPlaceholder: "مثال: التسليم مساءً",
 
-        notesPlaceholder:
-            "مثال: التسليم مساءً",
+        payment: "طريقة الدفع",
 
-        payment:
-            "طريقة الدفع",
+        cash: "💵 الدفع عند الاستلام (كاش)",
+        card: "💳 بطاقة ائتمان / فيزا",
+        wallet: "📱 محفظة إلكترونية",
 
-        cash:
-            "💵 الدفع عند الاستلام (كاش)",
-
-        card:
-            "💳 بطاقة ائتمان / فيزا",
-
-        wallet:
-            "📱 محفظة إلكترونية",
-
-        back:
-            "رجوع",
-
-        confirm:
-            "تأكيد الطلب",
+        back: "رجوع",
+        confirm: "تأكيد الطلب",
 
         emptyAlert:
             "السلة فارغة، أضيفي منتج أولًا.",
@@ -186,8 +136,7 @@ const translations = {
         successAlert:
             "تم تأكيد الطلب بنجاح ❤️",
 
-        login:
-            "تسجيل الدخول",
+        login: "تسجيل الدخول",
 
         loginSubtitle:
             "سجل دخولك للوصول إلى حسابك",
@@ -195,17 +144,10 @@ const translations = {
         emailPhone:
             "البريد الإلكتروني أو رقم الهاتف",
 
-        password:
-            "كلمة المرور",
-
-        remember:
-            "تذكرني",
-
-        forgot:
-            "نسيت كلمة المرور؟",
-
-        or:
-            "أو",
+        password: "كلمة المرور",
+        remember: "تذكرني",
+        forgot: "نسيت كلمة المرور؟",
+        or: "أو",
 
         google:
             "تسجيل الدخول باستخدام جوجل",
@@ -363,8 +305,7 @@ const productData = {
 
     half: {
 
-        image:
-            "250ml.jpeg",
+        image: "250ml.jpeg",
 
         nameAr:
             "زيت زيتون بالروزماري",
@@ -372,15 +313,13 @@ const productData = {
         nameEn:
             "Rosemary Infused Olive Oil",
 
-        price:
-            320
+        price: 320
 
     },
 
     one: {
 
-        image:
-            "1liter.jpeg",
+        image: "1liter.jpeg",
 
         nameAr:
             "زيت زيتون بالروزماري",
@@ -388,15 +327,13 @@ const productData = {
         nameEn:
             "Rosemary Infused Olive Oil",
 
-        price:
-            580
+        price: 580
 
     },
 
     two: {
 
-        image:
-            "1liter.jpeg",
+        image: "1liter.jpeg",
 
         nameAr:
             "زيت زيتون بالروزماري",
@@ -404,15 +341,13 @@ const productData = {
         nameEn:
             "Rosemary Infused Olive Oil",
 
-        price:
-            1080
+        price: 1080
 
     },
 
     five: {
 
-        image:
-            "5liter.jpeg",
+        image: "5liter.jpeg",
 
         nameAr:
             "زيت زيتون بالروزماري",
@@ -420,8 +355,7 @@ const productData = {
         nameEn:
             "Rosemary Infused Olive Oil",
 
-        price:
-            2600
+        price: 2600
 
     }
 
@@ -446,16 +380,19 @@ let quantity = 1;
    LOAD SHARED CART
 ========================================================= */
 
-let cart = [];
-
 function loadCart() {
 
     try {
 
-        cart =
+        const savedCart =
             JSON.parse(
                 localStorage.getItem(CART_KEY)
-            ) || [];
+            );
+
+        cart =
+            Array.isArray(savedCart)
+                ? savedCart
+                : [];
 
     } catch (error) {
 
@@ -464,6 +401,13 @@ function loadCart() {
     }
 
 }
+
+
+/* =========================================================
+   CART VARIABLE
+========================================================= */
+
+let cart = [];
 
 
 /* =========================================================
@@ -489,43 +433,12 @@ function getSizeName(size) {
     const t =
         translations[currentLanguage];
 
-    if (size === "half") {
-        return t.half;
-    }
-
-    if (size === "one") {
-        return t.one;
-    }
-
-    if (size === "two") {
-        return t.two;
-    }
-
-    if (size === "five") {
-        return t.five;
-    }
+    if (size === "half") return t.half;
+    if (size === "one") return t.one;
+    if (size === "two") return t.two;
+    if (size === "five") return t.five;
 
     return "";
-
-}
-
-
-/* =========================================================
-   GET PRODUCT NAME
-========================================================= */
-
-function getProductName() {
-
-    const product =
-        productData[selectedSize];
-
-    if (!product) {
-        return "";
-    }
-
-    return currentLanguage === "ar"
-        ? product.nameAr
-        : product.nameEn;
 
 }
 
@@ -700,9 +613,7 @@ sizeButtons.forEach(function (button) {
         function () {
 
             const newSize =
-                button.getAttribute(
-                    "data-size"
-                );
+                button.getAttribute("data-size");
 
             if (!productData[newSize]) {
                 return;
@@ -783,8 +694,147 @@ sizeButtons.forEach(function (button) {
 
 
 /* =========================================================
+   ADD SELECTED PRODUCT TO SHARED CART
+========================================================= */
+
+function addSelectedProductToCart(amount) {
+
+    const selectedProduct =
+        productData[selectedSize];
+
+    if (!selectedProduct) {
+        return;
+    }
+
+
+    amount =
+        Number(amount) || 1;
+
+
+    loadCart();
+
+
+    const existingItem =
+        cart.find(function (item) {
+
+            return (
+
+                item.productId === PRODUCT_ID &&
+
+                item.size === selectedSize
+
+            );
+
+        });
+
+
+    if (existingItem) {
+
+        existingItem.quantity =
+            (Number(existingItem.quantity) || 0) +
+            amount;
+
+
+        existingItem.nameAr =
+            selectedProduct.nameAr;
+
+        existingItem.nameEn =
+            selectedProduct.nameEn;
+
+        existingItem.price =
+            selectedProduct.price;
+
+        existingItem.image =
+            selectedProduct.image;
+
+    } else {
+
+        cart.push({
+
+            id:
+                Date.now() +
+                Math.random(),
+
+            productId:
+                PRODUCT_ID,
+
+            nameAr:
+                selectedProduct.nameAr,
+
+            nameEn:
+                selectedProduct.nameEn,
+
+            name:
+                currentLanguage === "ar"
+                    ? selectedProduct.nameAr
+                    : selectedProduct.nameEn,
+
+            size:
+                selectedSize,
+
+            sizeNameAr:
+                getSizeNameInLanguage(
+                    selectedSize,
+                    "ar"
+                ),
+
+            sizeNameEn:
+                getSizeNameInLanguage(
+                    selectedSize,
+                    "en"
+                ),
+
+            price:
+                selectedProduct.price,
+
+            image:
+                selectedProduct.image,
+
+            quantity:
+                amount
+
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+}
+
+
+/* =========================================================
+   SIZE NAME FOR SAVING
+========================================================= */
+
+function getSizeNameInLanguage(size, language) {
+
+    if (language === "ar") {
+
+        if (size === "half") return "نصف لتر";
+        if (size === "one") return "1 لتر";
+        if (size === "two") return "2 لتر";
+        if (size === "five") return "5 لتر";
+
+    } else {
+
+        if (size === "half") return "Half Liter";
+        if (size === "one") return "1 Liter";
+        if (size === "two") return "2 Liters";
+        if (size === "five") return "5 Liters";
+
+    }
+
+    return "";
+
+}
+
+
+/* =========================================================
    PLUS BUTTON
-   + يضيف وحدة واحدة للسلة فورًا
+   + يضيف مباشرة للسلة
 ========================================================= */
 
 if (plusOneBtn) {
@@ -840,113 +890,6 @@ if (minusOneBtn) {
 
 
 /* =========================================================
-   ADD SELECTED PRODUCT TO SHARED CART
-========================================================= */
-
-function addSelectedProductToCart(amount) {
-
-    const selectedProduct =
-        productData[selectedSize];
-
-    if (!selectedProduct) {
-        return;
-    }
-
-
-    amount =
-        Number(amount) || 1;
-
-
-    loadCart();
-
-
-    const existingItem =
-        cart.find(function (item) {
-
-            return (
-
-                item.productId === PRODUCT_ID &&
-
-                item.size === selectedSize
-
-            );
-
-        });
-
-
-    if (existingItem) {
-
-        existingItem.quantity =
-            (Number(existingItem.quantity) || 0) +
-            amount;
-
-
-        existingItem.name =
-            currentLanguage === "ar"
-                ? selectedProduct.nameAr
-                : selectedProduct.nameEn;
-
-        existingItem.nameAr =
-            selectedProduct.nameAr;
-
-        existingItem.nameEn =
-            selectedProduct.nameEn;
-
-        existingItem.price =
-            selectedProduct.price;
-
-        existingItem.image =
-            selectedProduct.image;
-
-    } else {
-
-        cart.push({
-
-            id:
-                Date.now(),
-
-            productId:
-                PRODUCT_ID,
-
-            name:
-                currentLanguage === "ar"
-                    ? selectedProduct.nameAr
-                    : selectedProduct.nameEn,
-
-            nameAr:
-                selectedProduct.nameAr,
-
-            nameEn:
-                selectedProduct.nameEn,
-
-            size:
-                selectedSize,
-
-            sizeName:
-                getSizeName(selectedSize),
-
-            price:
-                selectedProduct.price,
-
-            image:
-                selectedProduct.image,
-
-            quantity:
-                amount
-
-        });
-
-    }
-
-
-    saveCart();
-
-    updateCart();
-
-}
-
-
-/* =========================================================
    UPDATE SHARED CART
 ========================================================= */
 
@@ -974,9 +917,7 @@ function updateCart() {
         cartItems.innerHTML = `
 
             <p class="empty-cart">
-
                 ${t.emptyCart}
-
             </p>
 
         `;
@@ -1049,12 +990,29 @@ function updateCart() {
         }
 
 
-        const itemSize =
-            item.size
-                ? getSizeName(item.size)
-                : (
-                    item.sizeName || ""
-                );
+        let itemSize = "";
+
+
+        if (item.size) {
+
+            itemSize =
+                currentLanguage === "ar"
+                    ? (
+                        item.sizeNameAr ||
+                        getSizeNameInLanguage(
+                            item.size,
+                            "ar"
+                        )
+                    )
+                    : (
+                        item.sizeNameEn ||
+                        getSizeNameInLanguage(
+                            item.size,
+                            "en"
+                        )
+                    );
+
+        }
 
 
         cartHTML += `
@@ -1074,6 +1032,7 @@ function updateCart() {
                                         ? "الحجم:"
                                         : "Size:"
                                 }
+
                                 ${itemSize}
                             </p>
                         `
@@ -1116,11 +1075,7 @@ function updateCart() {
                     class="cancel-cart-btn"
                     onclick="removeFromCart(${index})">
 
-                    ${
-                        currentLanguage === "ar"
-                            ? "إلغاء"
-                            : "Cancel"
-                    }
+                    ${t.cancel}
 
                 </button>
 
@@ -1211,6 +1166,10 @@ function removeFromCart(index) {
     updateCart();
 
 }
+
+
+window.removeFromCart =
+    removeFromCart;
 
 
 /* =========================================================
@@ -1393,7 +1352,9 @@ if (pageBackBtn) {
         function () {
 
             if (
-                window.history.length > 1
+                document.referrer &&
+                document.referrer !==
+                    window.location.href
             ) {
 
                 window.history.back();
@@ -1457,35 +1418,39 @@ function updateOrderSummary() {
 
 
         let itemName =
-            item.name;
+            currentLanguage === "ar"
+                ? (
+                    item.nameAr ||
+                    item.name
+                )
+                : (
+                    item.nameEn ||
+                    item.name
+                );
 
 
-        if (
-            currentLanguage === "ar" &&
-            item.nameAr
-        ) {
+        let itemSize = "";
 
-            itemName =
-                item.nameAr;
+        if (item.size) {
+
+            itemSize =
+                currentLanguage === "ar"
+                    ? (
+                        item.sizeNameAr ||
+                        getSizeNameInLanguage(
+                            item.size,
+                            "ar"
+                        )
+                    )
+                    : (
+                        item.sizeNameEn ||
+                        getSizeNameInLanguage(
+                            item.size,
+                            "en"
+                        )
+                    );
 
         }
-
-
-        if (
-            currentLanguage === "en" &&
-            item.nameEn
-        ) {
-
-            itemName =
-                item.nameEn;
-
-        }
-
-
-        const itemSize =
-            item.size
-                ? getSizeName(item.size)
-                : "";
 
 
         summaryHTML += `
@@ -1750,7 +1715,6 @@ if (confirmOrderBtn) {
 
             cart = [];
 
-
             saveCart();
 
             updateCart();
@@ -1835,12 +1799,8 @@ function changeLanguage(language) {
 
             element.textContent =
                 language === "ar"
-                    ? element.getAttribute(
-                        "data-ar"
-                    )
-                    : element.getAttribute(
-                        "data-en"
-                    );
+                    ? element.getAttribute("data-ar")
+                    : element.getAttribute("data-en");
 
         }
     );
@@ -1914,7 +1874,6 @@ function changeLanguage(language) {
                     "data-size"
                 );
 
-
             button.textContent =
                 getSizeName(size);
 
@@ -1945,46 +1904,37 @@ function changeLanguage(language) {
     if (loginPanel) {
 
         const loginTitle =
-            loginPanel.querySelector(
-                "h2"
-            );
-
+            loginPanel.querySelector("h2");
 
         const loginSubtitle =
             loginPanel.querySelector(
                 ".panel-subtitle"
             );
 
-
         const remember =
             loginPanel.querySelector(
                 ".login-options span"
             );
-
 
         const forgot =
             loginPanel.querySelector(
                 ".login-options a"
             );
 
-
         const loginSubmit =
             loginPanel.querySelector(
                 ".login-submit"
             );
-
 
         const orText =
             loginPanel.querySelector(
                 ".or-line span"
             );
 
-
         const google =
             loginPanel.querySelector(
                 ".google-login span:last-child"
             );
-
 
         const facebook =
             loginPanel.querySelector(
@@ -2057,10 +2007,7 @@ function changeLanguage(language) {
     if (cartPanel) {
 
         const cartTitle =
-            cartPanel.querySelector(
-                "h2"
-            );
-
+            cartPanel.querySelector("h2");
 
         const cartTotalLabel =
             cartPanel.querySelector(
@@ -2119,24 +2066,20 @@ function changeLanguage(language) {
             'label[for="fullName"]'
         );
 
-
     const phoneLabel =
         document.querySelector(
             'label[for="phone"]'
         );
-
 
     const governorateLabel =
         document.querySelector(
             'label[for="governorate"]'
         );
 
-
     const addressLabel =
         document.querySelector(
             'label[for="address"]'
         );
-
 
     const notesLabel =
         document.querySelector(
@@ -2148,21 +2091,17 @@ function changeLanguage(language) {
         fullNameLabel.textContent =
             t.fullName;
 
-
     if (phoneLabel)
         phoneLabel.textContent =
             t.phone;
-
 
     if (governorateLabel)
         governorateLabel.textContent =
             t.governorate;
 
-
     if (addressLabel)
         addressLabel.textContent =
             t.address;
-
 
     if (notesLabel)
         notesLabel.textContent =
@@ -2170,43 +2109,29 @@ function changeLanguage(language) {
 
 
     const fullNameInput =
-        document.getElementById(
-            "fullName"
-        );
-
+        document.getElementById("fullName");
 
     const phoneInput =
-        document.getElementById(
-            "phone"
-        );
-
+        document.getElementById("phone");
 
     const addressInput =
-        document.getElementById(
-            "address"
-        );
-
+        document.getElementById("address");
 
     const notesInput =
-        document.getElementById(
-            "notes"
-        );
+        document.getElementById("notes");
 
 
     if (fullNameInput)
         fullNameInput.placeholder =
             t.fullNamePlaceholder;
 
-
     if (phoneInput)
         phoneInput.placeholder =
             t.phonePlaceholder;
 
-
     if (addressInput)
         addressInput.placeholder =
             t.addressPlaceholder;
-
 
     if (notesInput)
         notesInput.placeholder =
@@ -2221,8 +2146,12 @@ function changeLanguage(language) {
 
     if (governorate) {
 
-        governorate.options[0].text =
-            t.chooseGovernorate;
+        if (governorate.options[0]) {
+
+            governorate.options[0].text =
+                t.chooseGovernorate;
+
+        }
 
     }
 
@@ -2251,11 +2180,9 @@ function changeLanguage(language) {
         paymentOptions[0].textContent =
             t.cash;
 
-
     if (paymentOptions[1])
         paymentOptions[1].textContent =
             t.card;
-
 
     if (paymentOptions[2])
         paymentOptions[2].textContent =
@@ -2285,9 +2212,7 @@ function changeLanguage(language) {
 
     if (
         orderModal &&
-        orderModal.classList.contains(
-            "active"
-        )
+        orderModal.classList.contains("active")
     ) {
 
         updateOrderSummary();
@@ -2326,16 +2251,14 @@ if (languageBtn) {
 
 
 /* =========================================================
-   SYNC CART + LANGUAGE BETWEEN PAGES
+   SYNC CART + LANGUAGE
 ========================================================= */
 
 window.addEventListener(
     "storage",
     function (event) {
 
-        if (
-            event.key === CART_KEY
-        ) {
+        if (event.key === CART_KEY) {
 
             loadCart();
 
@@ -2344,9 +2267,7 @@ window.addEventListener(
         }
 
 
-        if (
-            event.key === "siteLanguage"
-        ) {
+        if (event.key === "siteLanguage") {
 
             const newLanguage =
                 event.newValue || "ar";
@@ -2377,9 +2298,7 @@ document.addEventListener(
     "keydown",
     function (event) {
 
-        if (
-            event.key === "Escape"
-        ) {
+        if (event.key === "Escape") {
 
             closeLoginPanel();
 
@@ -2397,39 +2316,32 @@ document.addEventListener(
    FAQ
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+const faqItems =
+    document.querySelectorAll(
+        ".faq-item"
+    );
 
-        const faqItems =
-            document.querySelectorAll(
-                ".faq-item"
+
+faqItems.forEach(
+    function (item) {
+
+        const question =
+            item.querySelector(
+                ".faq-question"
             );
 
 
-        faqItems.forEach(
-            function (item) {
-
-                const question =
-                    item.querySelector(
-                        ".faq-question"
-                    );
+        if (!question) {
+            return;
+        }
 
 
-                if (!question) {
-                    return;
-                }
+        question.addEventListener(
+            "click",
+            function () {
 
-
-                question.addEventListener(
-                    "click",
-                    function () {
-
-                        item.classList.toggle(
-                            "active"
-                        );
-
-                    }
+                item.classList.toggle(
+                    "active"
                 );
 
             }
@@ -2443,42 +2355,34 @@ document.addEventListener(
    QUALITY VIDEO
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+const qualityVideo =
+    document.getElementById(
+        "qualityVideo"
+    );
 
-        const qualityVideo =
-            document.getElementById(
-                "qualityVideo"
+
+if (qualityVideo) {
+
+    qualityVideo.muted = true;
+
+    qualityVideo.autoplay = true;
+
+    qualityVideo.loop = true;
+
+    qualityVideo.playsInline = true;
+
+
+    qualityVideo.play().catch(
+        function () {
+
+            console.log(
+                "Video autoplay blocked by browser"
             );
 
-
-        if (!qualityVideo) {
-            return;
         }
+    );
 
-
-        qualityVideo.muted = true;
-
-        qualityVideo.autoplay = true;
-
-        qualityVideo.loop = true;
-
-        qualityVideo.playsInline = true;
-
-
-        qualityVideo.play().catch(
-            function () {
-
-                console.log(
-                    "Video autoplay blocked by browser"
-                );
-
-            }
-        );
-
-    }
-);
+}
 
 
 /* =========================================================
@@ -2506,6 +2410,10 @@ function openAboutSection() {
     }
 
 }
+
+
+window.openAboutSection =
+    openAboutSection;
 
 
 /* =========================================================
@@ -2539,6 +2447,10 @@ function openDashboardLogin() {
     }
 
 }
+
+
+window.openDashboardLogin =
+    openDashboardLogin;
 
 
 /* =========================================================
@@ -2591,10 +2503,4 @@ updateProductDisplay();
 updateCart();
 
 
-/* =========================================================
-   MAKE REMOVE FUNCTION GLOBAL
-   عشان onclick الموجود داخل السلة يشتغل
-========================================================= */
-
-window.removeFromCart =
-    removeFromCart;
+});
