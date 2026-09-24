@@ -803,16 +803,239 @@ body {
    CART
 ========================================================= */
 
-.cart-item {
-    background: #fff;
+/* =====================================================
+   QUALITY CARDS
+   الأربع كروت في صف واحد
+===================================================== */
 
-    border: 2px solid #789542;
+.quality-cards-section {
+    width: 100%;
+
+    padding: 40px 10px;
+
+    background: #2b4815;
+}
+
+.quality-cards-container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    gap: 8px !important;
+
+    align-items: stretch !important;
+}
+
+.quality-card {
+    flex: 1 1 0 !important;
+
+    width: 25% !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 18px 5px;
+
+    background: #2b4815;
+
+    border: 2px solid #718c3a;
 
     border-radius: 12px;
 
-    padding: 15px;
+    display: flex !important;
 
-    margin-bottom: 12px;
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    text-align: center;
+
+    min-height: 230px;
+}
+
+
+/* =========================
+   QUALITY CARD ICONS
+========================= */
+
+.quality-card .quality-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    flex: 0 0 65px;
+
+    margin: 0 0 15px 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #e8eddc;
+
+    border-radius: 50%;
+
+    color: #2b4815;
+
+    font-size: 30px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   CARD 4 ICON
+===================================================== */
+
+.quality-card:nth-child(4) .package-option {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    text-align: center;
+}
+
+.quality-card:nth-child(4) .tin-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    flex: 0 0 65px;
+
+    padding: 7px;
+
+    margin: 0 0 15px 0;
+
+    display: block;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    background: #e8eddc;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   QUALITY CARD TEXT
+========================= */
+
+.quality-card h3,
+.quality-card .package-name {
+    margin: 0 0 10px;
+
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+.quality-card p,
+.quality-card .package-description {
+    margin: 0;
+
+    color: #ffffff !important;
+
+    -webkit-text-fill-color: #ffffff !important;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   PACKAGE
+========================= */
+
+.package-option {
+    text-align: center;
+}
+
+.package-name {
+    font-weight: bold;
+
+    font-size: 15px;
+
+    margin-bottom: 3px;
+}
+
+.package-description {
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   QUALITY LANGUAGE
+========================= */
+
+.quality-en {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-ar {
+    display: none;
+}
+
+html[dir="ltr"] .quality-cards-section .quality-en {
+    display: block;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-section {
+    width: 100%;
+
+    padding: 60px 6%;
+
+    background: #f5f3ea;
+}
+
+.contact-container {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
 
     display: flex;
 
@@ -820,107 +1043,154 @@ body {
 
     justify-content: space-between;
 
-    gap: 12px;
+    gap: 50px;
 }
 
-.cart-item-name {
-    flex: 1;
-}
-
-.cart-item-name strong {
-    color: #294d12;
-
-    font-size: 15px;
-
-    line-height: 1.5;
-}
-
-.cart-item-size,
-.cart-item-price {
-    color: #416d20;
-
-    font-size: 13px;
-
-    margin-top: 5px;
-
-    line-height: 1.5;
-}
-
-.cart-item-controls {
+.contact-links {
     display: flex;
 
     flex-direction: column;
 
-    align-items: center;
+    gap: 22px;
 
-    gap: 8px;
+    min-width: 180px;
 }
 
-.quantity-controls {
+.contact-links button,
+.contact-links a {
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    color: #2b4815;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-align: right;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.contact-links button:hover,
+.contact-links a:hover {
+    color: #68743a;
+}
+
+.social-area {
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 25px;
 }
 
-.quantity-controls button {
-    width: 30px;
-    height: 30px;
+.contact-logo {
+    width: 85px;
+
+    height: 85px;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
-    border: 1px solid #789542;
-
-    background: #244b0b;
-
-    color: #fff;
-
-    cursor: pointer;
-
-    font-size: 18px;
+    background: #ffffff;
 
     display: flex;
 
     align-items: center;
 
     justify-content: center;
+
+    overflow: hidden;
 }
 
-.quantity-controls span {
-    min-width: 20px;
+.contact-logo img {
+    width: 100%;
 
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.social-content {
     text-align: center;
-
-    color: #294d12;
-
-    font-weight: bold;
 }
 
-.remove-item {
-    border: none;
+.social-content h3 {
+    margin: 0 0 16px;
 
-    background: transparent;
+    color: #2b4815;
 
-    color: #294d12;
+    font-size: 19px;
 
-    cursor: pointer;
-
-    font-size: 12px;
+    font-weight: 700;
 }
 
-.remove-item:hover {
-    text-decoration: underline;
+.social-icons {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
 }
 
-.empty-cart {
-    text-align: center;
+.social-icons a {
+    width: 43px;
 
-    color: #416d20;
+    height: 43px;
 
-    margin-top: 40px;
+    border-radius: 50%;
 
-    line-height: 1.8;
+    background: #2b4815;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #68743a;
+
+    transform: translateY(-3px);
+}
+
+.contact-en {
+    display: none;
+}
+
+html[dir="ltr"] .contact-ar {
+    display: none;
+}
+
+html[dir="ltr"] .contact-en {
+    display: inline;
+}
+
+html[dir="ltr"] .contact-container {
+    direction: ltr;
+}
+
+html[dir="ltr"] .contact-links button,
+html[dir="ltr"] .contact-links a {
+    text-align: left;
 }
 
 
@@ -928,46 +1198,17 @@ body {
    CART TOTAL
 ========================================================= */
 
-.cart-total {
-    margin-top: auto;
+/* =====================================================
+   CARD 4 - FINAL FORCE
+===================================================== */
 
-    padding-top: 20px;
+.quality-cards-container > .quality-card:nth-child(4) .package-name,
+.quality-cards-container > .quality-card:nth-child(4) .package-description,
+.quality-cards-container > .quality-card:nth-child(4) .package-option,
+.quality-cards-container > .quality-card:nth-child(4) .package-option * {
+    color: #ffffff !important;
 
-    border-top: 2px solid #789542;
-
-    color: #244b0b;
-
-    font-size: 18px;
-
-    font-weight: bold;
-}
-
-.checkout-btn {
-    width: 100%;
-
-    margin-top: 15px;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #244b0b;
-
-    color: #fff;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.checkout-btn:hover {
-    background: #416d20;
+    -webkit-text-fill-color: #ffffff !important;
 }
 
 
@@ -1107,31 +1348,78 @@ body {
    FOOTER
 ========================================================= */
 
-footer {
+.site-footer {
     width: 100%;
 
-    background: #244b0b;
+    padding: 28px 20px;
 
-    color: #fff;
+    background: #2b4815;
 
-    padding: 30px 6%;
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
 
     text-align: center;
+
+    color: #ffffff;
 }
 
-footer p {
+.site-footer p {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #ffffff;
+
     font-size: 14px;
 
-    line-height: 1.8;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s;
 }
 
-.footer-ar {
-    display: inline;
+.site-footer a:hover {
+    opacity: 0.7;
+}
+
+.dashboard-access {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.dashboard-access:hover {
+    opacity: 0.7;
 }
 
 .footer-en {
     display: none;
 }
+
+html[dir="ltr"] .footer-ar {
+    display: none;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline;
+}
+
 
 
 /* =========================================================
