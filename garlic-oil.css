@@ -2338,7 +2338,9 @@ html[dir="ltr"] .footer-en {
 .whatsapp-float {
     position: fixed;
 
-    right: 22px;
+left: 22px;
+right: auto;
+   
 
     bottom: 25px;
 
@@ -2437,8 +2439,8 @@ html[dir="ltr"] .footer-en {
 @media (max-width: 600px) {
 
     .whatsapp-float {
-        right: 12px;
-
+       left: 12px;
+right: auto;
         bottom: 18px;
 
         height: 38px;
@@ -2471,4 +2473,29 @@ html[dir="ltr"] .footer-en {
     .whatsapp-text {
         font-size: 12px;
     }
+}
+/* =========================
+   PAGE BACK BUTTON
+========================= */
+
+.back-page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 8px 10px;
+    transition: 0.3s ease;
+}
+
+.back-page-btn:hover {
+    opacity: 0.75;
+}
+
+.back-page-btn i {
+    font-size: 14px;
 }
