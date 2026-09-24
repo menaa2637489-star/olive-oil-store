@@ -262,12 +262,46 @@ function saveCart() {
 
 
 /* =========================
+   LOAD SHARED CART
+========================= */
+
+function loadSharedCart() {
+
+    const savedCart =
+        localStorage.getItem("oliveOilCart");
+
+    if (savedCart) {
+
+        try {
+
+            cart =
+                JSON.parse(savedCart) || [];
+
+        } catch (error) {
+
+            cart = [];
+
+        }
+
+    } else {
+
+        cart = [];
+
+    }
+
+    updateCart();
+
+}
+
+
+/* =========================
    SIZE NAME
 ========================= */
 
 function getSizeName(size) {
 
-    const t = translations[currentLanguage];
+    const t =
+        translations[currentLanguage];
 
     if (size === "half") return t.half;
     if (size === "one") return t.one;
@@ -304,7 +338,8 @@ function updateCartCount() {
     const totalQuantity =
         cart.reduce(function (total, item) {
 
-            return total + Number(item.quantity || 1);
+            return total +
+                Number(item.quantity || 1);
 
         }, 0);
 
@@ -401,14 +436,143 @@ sizeButtons.forEach(function (button) {
 
 
 /* =========================
-   QUANTITY
+   ADD / UPDATE VIRGIN ITEM
 ========================= */
 
-/*
-   زر + هنا يضيف قطعة واحدة
-   مباشرة إلى السلة من المقاس
-   المختار حاليًا.
-*/
+function addVirginProductToSharedCart() {
+
+    const product =
+        productData[selectedSize];
+
+    if (!product) {
+        return;
+    }
+
+
+    /*
+       لو الرئيسية كانت أضافت المنتج
+       بشكل مؤقت من زر +
+       بدون حجم أو سعر،
+       نحوله هنا للمنتج الحقيقي.
+    */
+
+    const pendingItem =
+        cart.find(function (item) {
+
+            return (
+                item.productId === "virgin-oil" &&
+                (!item.size || !item.price)
+            );
+
+        });
+
+
+    if (pendingItem) {
+
+        pendingItem.size =
+            selectedSize;
+
+        pendingItem.sizeAr =
+            translations.ar[selectedSize];
+
+        pendingItem.sizeEn =
+            translations.en[selectedSize];
+
+        pendingItem.nameAr =
+            product.nameAr;
+
+        pendingItem.nameEn =
+            product.nameEn;
+
+        pendingItem.price =
+            product.price;
+
+        pendingItem.cartItemId =
+            "virgin-oil-" +
+            selectedSize;
+
+        pendingItem.quantity =
+            Number(pendingItem.quantity || 1)
+            + quantity - 1;
+
+    } else {
+
+        const existingItem =
+            cart.find(function (item) {
+
+                return (
+                    item.productId === "virgin-oil" &&
+                    item.size === selectedSize
+                );
+
+            });
+
+
+        if (existingItem) {
+
+            existingItem.quantity =
+                Number(existingItem.quantity || 1)
+                + quantity;
+
+        } else {
+
+            cart.push({
+
+                cartItemId:
+                    "virgin-oil-" +
+                    selectedSize,
+
+                productId:
+                    "virgin-oil",
+
+                nameAr:
+                    product.nameAr,
+
+                nameEn:
+                    product.nameEn,
+
+                size:
+                    selectedSize,
+
+                sizeAr:
+                    translations.ar[selectedSize],
+
+                sizeEn:
+                    translations.en[selectedSize],
+
+                price:
+                    product.price,
+
+                quantity:
+                    quantity
+
+            });
+
+        }
+
+    }
+
+
+    saveCart();
+
+    updateCart();
+
+
+    quantity = 1;
+
+    if (quantityValue) {
+
+        quantityValue.textContent =
+            quantity;
+
+    }
+
+}
+
+
+/* =========================
+   QUANTITY
+========================= */
 
 if (plusOneBtn) {
 
@@ -416,70 +580,14 @@ if (plusOneBtn) {
         "click",
         function () {
 
-            const product =
-                productData[selectedSize];
+            quantity++;
 
-            if (!product) {
-                return;
-            }
+            if (quantityValue) {
 
-
-            const existingItem =
-                cart.find(function (item) {
-
-                    return (
-                        item.productId === "virgin-oil" &&
-                        item.size === selectedSize
-                    );
-
-                });
-
-
-            if (existingItem) {
-
-                existingItem.quantity =
-                    Number(existingItem.quantity || 1) + 1;
-
-            } else {
-
-                cart.push({
-
-                    cartItemId:
-                        "virgin-oil-" +
-                        selectedSize,
-
-                    productId:
-                        "virgin-oil",
-
-                    nameAr:
-                        product.nameAr,
-
-                    nameEn:
-                        product.nameEn,
-
-                    size:
-                        selectedSize,
-
-                    sizeAr:
-                        translations.ar[selectedSize],
-
-                    sizeEn:
-                        translations.en[selectedSize],
-
-                    price:
-                        product.price,
-
-                    quantity:
-                        1
-
-                });
+                quantityValue.textContent =
+                    quantity;
 
             }
-
-
-            saveCart();
-
-            updateCart();
 
         }
     );
@@ -513,85 +621,21 @@ if (minusOneBtn) {
 
 
 /* =========================
-   ADD PRODUCT TO CART
+   ADD TO CART BUTTON
 ========================= */
 
-function addSelectedProductToCart() {
+if (addCartBtn) {
 
-    const product =
-        productData[selectedSize];
+    addCartBtn.addEventListener(
+        "click",
+        function () {
 
-    if (!product) {
-        return;
-    }
+            addVirginProductToSharedCart();
 
+            openCart();
 
-    const existingItem =
-        cart.find(function (item) {
-
-            return (
-                item.productId === "virgin-oil" &&
-                item.size === selectedSize
-            );
-
-        });
-
-
-    if (existingItem) {
-
-        existingItem.quantity =
-            Number(existingItem.quantity || 1)
-            + quantity;
-
-    } else {
-
-        cart.push({
-
-            cartItemId:
-                "virgin-oil-" +
-                selectedSize,
-
-            productId:
-                "virgin-oil",
-
-            nameAr:
-                product.nameAr,
-
-            nameEn:
-                product.nameEn,
-
-            size:
-                selectedSize,
-
-            sizeAr:
-                translations.ar[selectedSize],
-
-            sizeEn:
-                translations.en[selectedSize],
-
-            price:
-                product.price,
-
-            quantity:
-                quantity
-
-        });
-
-    }
-
-
-    saveCart();
-
-    updateCart();
-
-    quantity = 1;
-
-    if (quantityValue) {
-
-        quantityValue.textContent =
-            quantity;
-
-    }
+        }
+    );
 
 }
 
@@ -625,7 +669,9 @@ function updateCart() {
         `;
 
         cartTotal.textContent =
-            "0 ج.م";
+            currentLanguage === "ar"
+                ? "0 ج.م"
+                : "0 EGP";
 
         return;
 
@@ -642,9 +688,11 @@ function updateCart() {
         const itemQuantity =
             Number(item.quantity || 1);
 
+        const itemPrice =
+            Number(item.price || 0);
+
         const itemTotal =
-            Number(item.price) *
-            itemQuantity;
+            itemPrice * itemQuantity;
 
         total += itemTotal;
 
@@ -657,8 +705,14 @@ function updateCart() {
 
         const itemSize =
             currentLanguage === "ar"
-                ? item.sizeAr
-                : item.sizeEn;
+                ? (
+                    item.sizeAr ||
+                    getSizeName(item.size)
+                )
+                : (
+                    item.sizeEn ||
+                    getSizeName(item.size)
+                );
 
 
         cartHTML += `
@@ -666,17 +720,17 @@ function updateCart() {
             <div class="cart-product">
 
                 <p>
-                    ${itemName}
+                    ${itemName || t.productName}
                 </p>
 
                 <p>
                     ${t.size}
-                    ${itemSize}
+                    ${itemSize || "-"}
                 </p>
 
                 <p>
                     ${t.itemPrice}
-                    ${item.price}
+                    ${itemPrice}
                     ${currentLanguage === "ar"
                         ? "ج.م"
                         : "EGP"}
@@ -789,7 +843,9 @@ function decreaseCartItem(index) {
     }
 
 
-    if (Number(cart[index].quantity || 1) > 1) {
+    if (
+        Number(cart[index].quantity || 1) > 1
+    ) {
 
         cart[index].quantity--;
 
@@ -837,26 +893,6 @@ function clearCart() {
     saveCart();
 
     updateCart();
-
-}
-
-
-/* =========================
-   ADD TO CART BUTTON
-========================= */
-
-if (addCartBtn) {
-
-    addCartBtn.addEventListener(
-        "click",
-        function () {
-
-            addSelectedProductToCart();
-
-            openCart();
-
-        }
-    );
 
 }
 
@@ -931,7 +967,7 @@ if (buyNowBtn) {
         "click",
         function () {
 
-            addSelectedProductToCart();
+            addVirginProductToSharedCart();
 
             openOrderModal();
 
@@ -970,7 +1006,7 @@ function updateOrderSummary() {
             Number(item.quantity || 1);
 
         const itemTotal =
-            Number(item.price) *
+            Number(item.price || 0) *
             itemQuantity;
 
         total += itemTotal;
@@ -984,8 +1020,14 @@ function updateOrderSummary() {
 
         const itemSize =
             currentLanguage === "ar"
-                ? item.sizeAr
-                : item.sizeEn;
+                ? (
+                    item.sizeAr ||
+                    getSizeName(item.size)
+                )
+                : (
+                    item.sizeEn ||
+                    getSizeName(item.size)
+                );
 
 
         summaryHTML += `
@@ -1102,7 +1144,7 @@ if (confirmOrderBtn) {
             cart.forEach(function (item) {
 
                 total +=
-                    Number(item.price) *
+                    Number(item.price || 0) *
                     Number(item.quantity || 1);
 
             });
@@ -1263,26 +1305,32 @@ function closeLoginPanel() {
 
 
 if (loginBtn) {
+
     loginBtn.addEventListener(
         "click",
         openLogin
     );
+
 }
 
 
 if (closeLogin) {
+
     closeLogin.addEventListener(
         "click",
         closeLoginPanel
     );
+
 }
 
 
 if (loginOverlay) {
+
     loginOverlay.addEventListener(
         "click",
         closeLoginPanel
     );
+
 }
 
 
@@ -1291,6 +1339,8 @@ if (loginOverlay) {
 ========================= */
 
 function openCart() {
+
+    loadSharedCart();
 
     if (cartPanel) {
         cartPanel.classList.add("active");
@@ -1317,32 +1367,38 @@ function closeCartPanel() {
 
 
 if (cartBtn) {
+
     cartBtn.addEventListener(
         "click",
         function () {
 
-            updateCart();
+            loadSharedCart();
 
             openCart();
 
         }
     );
+
 }
 
 
 if (closeCart) {
+
     closeCart.addEventListener(
         "click",
         closeCartPanel
     );
+
 }
 
 
 if (cartOverlay) {
+
     cartOverlay.addEventListener(
         "click",
         closeCartPanel
     );
+
 }
 
 
@@ -2002,6 +2058,42 @@ function openDashboardLogin() {
 
 
 /* =========================
+   SHARED CART SYNC
+========================= */
+
+window.addEventListener(
+    "storage",
+    function (event) {
+
+        if (
+            event.key === "oliveOilCart"
+        ) {
+
+            loadSharedCart();
+
+        }
+
+
+        if (
+            event.key === "siteLanguage"
+        ) {
+
+            currentLanguage =
+                localStorage.getItem(
+                    "siteLanguage"
+                ) || "ar";
+
+            changeLanguage(
+                currentLanguage
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
    INITIAL
 ========================= */
 
@@ -2047,4 +2139,4 @@ changeLanguage(
     currentLanguage
 );
 
-updateCart();
+loadSharedCart();
