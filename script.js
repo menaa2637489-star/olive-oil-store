@@ -21,7 +21,7 @@ const languageText =
 
 
 /* =========================================================
-   CART
+   SHARED CART
    ONE CART FOR THE WHOLE WEBSITE
 ========================================================= */
 
@@ -42,7 +42,7 @@ try {
 
 
 /* =========================================================
-   CART STORAGE
+   SAVE CART
 ========================================================= */
 
 function saveCart() {
@@ -104,6 +104,10 @@ const contactPanel =
 const panelOverlay =
     document.getElementById("panelOverlay");
 
+
+/* =========================================================
+   CLOSE ALL PANELS
+========================================================= */
 
 function closeAllPanels() {
 
@@ -284,8 +288,25 @@ if (panelOverlay) {
 
 
 /* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            closeAllPanels();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
    PRODUCT DATA
-   USED BY HOMEPAGE + BUTTONS
 ========================================================= */
 
 const homepageProducts = {
@@ -380,11 +401,8 @@ function addProductToCart(productData) {
 
 
     /*
-       Homepage has no size selector.
-
-       Therefore the product is added as a pending
-       product until the customer chooses the size
-       from its product page.
+       Product from homepage has no selected size.
+       It stays in the SAME shared cart.
     */
 
     const existingProduct =
@@ -547,16 +565,10 @@ function renderCart() {
         );
 
 
-    if (!cartItems) {
-
-        updateCartCount();
-
-        return;
-
-    }
-
-
     updateCartCount();
+
+
+    if (!cartItems) return;
 
 
     /* EMPTY CART */
@@ -631,19 +643,16 @@ function renderCart() {
 
             if (item.size) {
 
-                if (currentLanguage === "en") {
-
-                    sizeText =
+                sizeText =
+                    currentLanguage === "en"
+                    ? (
                         item.sizeEn ||
-                        item.size;
-
-                } else {
-
-                    sizeText =
+                        item.size
+                    )
+                    : (
                         item.sizeAr ||
-                        item.size;
-
-                }
+                        item.size
+                    );
 
             }
 
@@ -666,31 +675,39 @@ function renderCart() {
                         ${escapeHTML(itemName)}
                     </strong>
 
+
                     ${
                         sizeText
                         ? `
                             <div class="cart-item-size">
+
                                 ${
                                     currentLanguage === "en"
                                     ? "Size: "
                                     : "الحجم: "
                                 }
+
                                 ${escapeHTML(sizeText)}
+
                             </div>
                         `
                         : ""
                     }
 
+
                     ${
                         price > 0
                         ? `
                             <div class="cart-item-price">
+
                                 ${
                                     currentLanguage === "en"
                                     ? "Price: "
                                     : "السعر: "
                                 }
+
                                 ${price}
+
                             </div>
                         `
                         : `
@@ -715,10 +732,9 @@ function renderCart() {
 
                         <button
                             type="button"
-                            onclick="changeQuantity('${item.cartItemId}', -1)">
-
+                            onclick="changeQuantity('${item.cartItemId}', -1)"
+                        >
                             −
-
                         </button>
 
 
@@ -729,10 +745,9 @@ function renderCart() {
 
                         <button
                             type="button"
-                            onclick="changeQuantity('${item.cartItemId}', 1)">
-
+                            onclick="changeQuantity('${item.cartItemId}', 1)"
+                        >
                             +
-
                         </button>
 
                     </div>
@@ -741,7 +756,8 @@ function renderCart() {
                     <button
                         type="button"
                         class="remove-item"
-                        onclick="removeFromCart('${item.cartItemId}')">
+                        onclick="removeFromCart('${item.cartItemId}')"
+                    >
 
                         ${
                             currentLanguage === "en"
@@ -775,7 +791,7 @@ function renderCart() {
 
 
 /* =========================================================
-   CHANGE QUANTITY
+   CHANGE CART QUANTITY
 ========================================================= */
 
 function changeQuantity(
@@ -798,7 +814,7 @@ function changeQuantity(
 
 
     item.quantity =
-        Number(item.quantity) +
+        Number(item.quantity || 0) +
         Number(change);
 
 
@@ -820,6 +836,8 @@ function changeQuantity(
 
 
     saveCart();
+
+    updateCartCount();
 
     renderCart();
 
@@ -853,6 +871,8 @@ function removeFromCart(
 
     saveCart();
 
+    updateCartCount();
+
     renderCart();
 
 }
@@ -868,8 +888,10 @@ window.removeFromCart =
 
 function escapeHTML(value) {
 
-    if (value === null ||
-        value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
 
         return "";
 
@@ -912,10 +934,21 @@ function escapeHTML(value) {
 
 function updateLanguage() {
 
-    /*
-       Update all elements that contain
-       data-ar and data-en.
-    */
+    /* HTML LANGUAGE */
+
+    document.documentElement.lang =
+        currentLanguage === "en"
+        ? "en"
+        : "ar";
+
+
+    document.documentElement.dir =
+        currentLanguage === "en"
+        ? "ltr"
+        : "rtl";
+
+
+    /* GENERAL DATA */
 
     const elements =
         document.querySelectorAll(
@@ -938,39 +971,16 @@ function updateLanguage() {
                 );
 
 
-            if (
+            element.textContent =
                 currentLanguage === "en"
-            ) {
-
-                if (
-                    english !== null
-                ) {
-
-                    element.textContent =
-                        english;
-
-                }
-
-            } else {
-
-                if (
-                    arabic !== null
-                ) {
-
-                    element.textContent =
-                        arabic;
-
-                }
-
-            }
+                ? english
+                : arabic;
 
         }
     );
 
 
-    /*
-       About section
-    */
+    /* ABOUT */
 
     const aboutAr =
         document.querySelector(
@@ -986,32 +996,21 @@ function updateLanguage() {
 
     if (aboutAr && aboutEn) {
 
-        if (
+        aboutAr.style.display =
+            currentLanguage === "ar"
+            ? "block"
+            : "none";
+
+
+        aboutEn.style.display =
             currentLanguage === "en"
-        ) {
-
-            aboutAr.style.display =
-                "none";
-
-            aboutEn.style.display =
-                "block";
-
-        } else {
-
-            aboutAr.style.display =
-                "block";
-
-            aboutEn.style.display =
-                "none";
-
-        }
+            ? "block"
+            : "none";
 
     }
 
 
-    /*
-       Quality section
-    */
+    /* QUALITY */
 
     document
         .querySelectorAll(
@@ -1045,9 +1044,7 @@ function updateLanguage() {
         );
 
 
-    /*
-       Contact section
-    */
+    /* CONTACT */
 
     document
         .querySelectorAll(
@@ -1081,9 +1078,7 @@ function updateLanguage() {
         );
 
 
-    /*
-       Footer
-    */
+    /* FOOTER */
 
     document
         .querySelectorAll(
@@ -1117,25 +1112,7 @@ function updateLanguage() {
         );
 
 
-    /*
-       HTML direction
-    */
-
-    document.documentElement.lang =
-        currentLanguage === "en"
-        ? "en"
-        : "ar";
-
-
-    document.documentElement.dir =
-        currentLanguage === "en"
-        ? "ltr"
-        : "rtl";
-
-
-    /*
-       Language button
-    */
+    /* LANGUAGE BUTTON */
 
     if (languageText) {
 
@@ -1154,9 +1131,7 @@ function updateLanguage() {
     }
 
 
-    /*
-       Placeholders
-    */
+    /* PLACEHOLDERS */
 
     document
         .querySelectorAll(
@@ -1180,18 +1155,12 @@ function updateLanguage() {
         );
 
 
-    /*
-       Re-apply dashboard data
-       in the selected language.
-    */
+    /* DASHBOARD */
 
     applyDashboardData();
 
 
-    /*
-       Re-render cart so product names
-       change immediately.
-    */
+    /* CART */
 
     renderCart();
 
@@ -1224,6 +1193,117 @@ if (languageBtn) {
 
         }
     );
+
+}
+
+
+/* =========================================================
+   QUALITY VIDEO
+   AUTOPLAY / MUTED / LOOP
+========================================================= */
+
+function initializeQualityVideo() {
+
+    const qualityVideo =
+        document.getElementById(
+            "qualityVideo"
+        );
+
+
+    if (!qualityVideo) return;
+
+
+    qualityVideo.muted = true;
+
+    qualityVideo.autoplay = true;
+
+    qualityVideo.loop = true;
+
+    qualityVideo.playsInline = true;
+
+
+    /*
+       Prevent user interaction
+       with the video.
+    */
+
+    qualityVideo.controls = false;
+
+    qualityVideo.style.pointerEvents =
+        "none";
+
+
+    /*
+       Force autoplay.
+    */
+
+    const playVideo =
+        function () {
+
+            qualityVideo.play()
+                .catch(function () {
+
+                    /*
+                       Browser may block autoplay
+                       in some situations.
+                       The video remains muted,
+                       so no user interaction
+                       is required by our code.
+                    */
+
+                });
+
+        };
+
+
+    playVideo();
+
+
+    document.addEventListener(
+        "visibilitychange",
+        function () {
+
+            if (
+                !document.hidden &&
+                qualityVideo.paused
+            ) {
+
+                playVideo();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   QUALITY VIDEO LANGUAGE DIRECTION
+========================================================= */
+
+function updateQualityDirection() {
+
+    const qualityContainer =
+        document.querySelector(
+            ".quality-video-container"
+        );
+
+
+    if (!qualityContainer) return;
+
+
+    if (currentLanguage === "en") {
+
+        qualityContainer.style.direction =
+            "ltr";
+
+    } else {
+
+        qualityContainer.style.direction =
+            "rtl";
+
+    }
 
 }
 
@@ -1396,10 +1476,6 @@ function applyDashboardIdentity() {
     if (!identity) return;
 
 
-    /*
-       Brand name
-    */
-
     const brandName =
         document.querySelector(
             ".brand-name"
@@ -1465,10 +1541,6 @@ function applyDashboardIdentity() {
     }
 
 
-    /*
-       Logo
-    */
-
     const logo =
         document.querySelector(
             ".logo img"
@@ -1512,10 +1584,6 @@ function applyDashboardHero() {
             "dashboardHeroSubtitle"
         );
 
-
-    /*
-       HERO TITLE
-    */
 
     if (heroTitle) {
 
@@ -1583,10 +1651,6 @@ function applyDashboardHero() {
 
     }
 
-
-    /*
-       HERO SUBTITLE
-    */
 
     if (heroSubtitle) {
 
@@ -1678,10 +1742,6 @@ function applyDashboardContent() {
 
     if (!cards.length) return;
 
-
-    /*
-       Support both array and object.
-    */
 
     let products =
         Array.isArray(contentData)
@@ -1867,21 +1927,6 @@ function applyDashboardAbout() {
     if (!aboutData) return;
 
 
-    /*
-       Support:
-
-       [
-          {...},
-          {...}
-       ]
-
-       or
-
-       {
-          sections: [...]
-       }
-    */
-
     let sections =
         Array.isArray(aboutData)
         ? aboutData
@@ -1911,10 +1956,6 @@ function applyDashboardAbout() {
 
     if (!aboutAr || !aboutEn) return;
 
-
-    /*
-       First section
-    */
 
     const first =
         sections[0];
@@ -2222,6 +2263,90 @@ window.openDashboardLogin =
 
 
 /* =========================================================
+   LOGIN FORM
+========================================================= */
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            alert(
+
+                currentLanguage === "en"
+
+                ? "Login is currently being prepared."
+
+                : "تسجيل الدخول قيد التجهيز حاليًا."
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHECKOUT BUTTON
+========================================================= */
+
+const checkoutBtn =
+    document.getElementById(
+        "checkoutBtn"
+    );
+
+
+if (checkoutBtn) {
+
+    checkoutBtn.addEventListener(
+        "click",
+        function () {
+
+            if (!cart.length) {
+
+                alert(
+
+                    currentLanguage === "en"
+
+                    ? "Your cart is empty."
+
+                    : "السلة فارغة."
+
+                );
+
+                return;
+
+            }
+
+
+            alert(
+
+                currentLanguage === "en"
+
+                ? "Your order is ready for checkout."
+
+                : "الأوردر جاهز لإتمام الطلب."
+
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    INITIALIZATION
 ========================================================= */
 
@@ -2229,32 +2354,15 @@ applyDashboardData();
 
 updateLanguage();
 
+initializeQualityVideo();
+
+updateQualityDirection();
+
 renderCart();
 
 updateCartCount();
 
 
-/* =========================================================
-   IMPORTANT
-========================================================= */
-
-/*
-   The cart is stored in:
-
-   localStorage key:
-   oliveOilCart
-
-   The language is stored in:
-
-   localStorage key:
-   siteLanguage
-
-   Every product page must use
-   the SAME keys.
-
-   This is what makes the website
-   use ONE cart and ONE language.
-*/
 /* =========================================================
    HERO SLIDER
 ========================================================= */
@@ -2264,10 +2372,12 @@ const heroSlides =
         ".hero-slide"
     );
 
+
 const heroPrev =
     document.getElementById(
         "heroPrev"
     );
+
 
 const heroNext =
     document.getElementById(
@@ -2289,18 +2399,23 @@ function showHeroSlide(index) {
     if (!heroSlides.length) return;
 
 
-    if (index >= heroSlides.length) {
+    if (
+        index >= heroSlides.length
+    ) {
 
         currentHeroSlide = 0;
 
-    } else if (index < 0) {
+    } else if (
+        index < 0
+    ) {
 
         currentHeroSlide =
             heroSlides.length - 1;
 
     } else {
 
-        currentHeroSlide = index;
+        currentHeroSlide =
+            index;
 
     }
 
