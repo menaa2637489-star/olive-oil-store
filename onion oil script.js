@@ -1,895 +1,546 @@
-/* =========================
-   ELEMENTS
-========================= */
 
-const loginBtn = document.getElementById("loginBtn");
-const loginPanel = document.getElementById("loginPanel");
-const loginOverlay = document.getElementById("loginOverlay");
-const closeLogin = document.getElementById("closeLogin");
-
-const cartBtn = document.getElementById("cartBtn");
-const cartPanel = document.getElementById("cartPanel");
-const cartOverlay = document.getElementById("cartOverlay");
-const closeCart = document.getElementById("closeCart");
-
-const languageBtn = document.getElementById("languageBtn");
-const languageText = document.getElementById("languageText");
-
-const addCartBtn = document.getElementById("addCartBtn");
-const buyNowBtn = document.getElementById("buyNowBtn");
-
-const cartCount = document.getElementById("cartCount");
-const cartItems = document.getElementById("cartItems");
-const cartTotal = document.getElementById("cartTotal");
-
-const orderModal = document.getElementById("orderModal");
-const checkoutBtn = document.querySelector(".checkout-btn");
-const backBtn = document.getElementById("backBtn");
-const confirmOrderBtn = document.getElementById("confirmOrderBtn");
-
-/* زر رجوع الصفحة */
-const pageBackBtn = document.getElementById("pageBackBtn");
+/* =========================================================
+   ONION OIL - SHARED CART JAVASCRIPT
+========================================================= */
 
 
-/* =========================
+/* =========================================================
    LANGUAGE
-========================= */
+========================================================= */
 
 let currentLanguage =
     localStorage.getItem("siteLanguage") || "ar";
 
+const languageBtn =
+    document.getElementById("languageBtn");
 
-/* =========================
-   TRANSLATIONS
-========================= */
-
-const translations = {
-
-    ar: {
-
-        productName: "زيت زيتون دكتور أبو النصر بالبصل",
-        productType: "زيت زيتون بالبصل",
-        chooseSize: "اختاري الحجم",
-        price: "السعر:",
-        buyNow: "اشتر الآن",
-        addCart: "أضف للسلة",
-
-        half: "نصف لتر",
-        one: "1 لتر",
-        two: "2 لتر",
-        five: "5 لتر",
-
-        emptyCart: "السلة فارغة حاليًا",
-        cancel: "إلغاء",
-        cancelAll: "إلغاء الكل",
-        size: "الحجم:",
-        itemPrice: "السعر:",
-        total: "الإجمالي",
-
-        checkout: "إتمام الطلب",
-
-        orderTitle: "إتمام الطلب",
-        fullName: "الاسم بالكامل",
-        fullNamePlaceholder: "مثال: أحمد محمد",
-        phone: "رقم الهاتف",
-        phonePlaceholder: "01xxxxxxxxx",
-        governorate: "المحافظة",
-        chooseGovernorate: "اختر المحافظة",
-        address: "العنوان بالتفصيل",
-        addressPlaceholder: "الشارع، رقم العمارة، الحي، علامة مميزة",
-        notes: "ملاحظات (اختياري)",
-        notesPlaceholder: "مثال: التسليم مساءً",
-
-        payment: "طريقة الدفع",
-        cash: "💵 الدفع عند الاستلام (كاش)",
-        card: "💳 بطاقة ائتمان / فيزا",
-        wallet: "📱 محفظة إلكترونية",
-
-        back: "رجوع",
-        confirm: "تأكيد الطلب",
-
-        emptyAlert: "السلة فارغة، أضيفي منتج أولًا.",
-        incompleteAlert: "من فضلك اكملي بيانات الطلب.",
-        successAlert: "تم تأكيد الطلب بنجاح ❤️",
-
-        login: "تسجيل الدخول",
-        loginSubtitle: "سجل دخولك للوصول إلى حسابك",
-        emailPhone: "البريد الإلكتروني أو رقم الهاتف",
-        password: "كلمة المرور",
-        remember: "تذكرني",
-        forgot: "نسيت كلمة المرور؟",
-        or: "أو",
-        google: "تسجيل الدخول باستخدام جوجل",
-        facebook: "تسجيل الدخول باستخدام فيسبوك",
-
-        arabic: "العربية",
-        english: "English"
-
-    },
+const languageText =
+    document.getElementById("languageText");
 
 
-    en: {
+/* =========================================================
+   SHARED CART
+   نفس السلة المستخدمة في كل صفحات المنتجات
+========================================================= */
 
-        productName: "Dr. Abu El Nasr Onion Olive Oil",
-        productType: "Olive Oil with Onion",
-        chooseSize: "Choose Size",
-        price: "Price:",
-        buyNow: "Buy Now",
-        addCart: "Add to Cart",
+const CART_KEY = "oliveOilCart";
 
-        half: "Half Liter",
-        one: "1 Liter",
-        two: "2 Liters",
-        five: "5 Liters",
+let cart = [];
 
-        emptyCart: "Your cart is currently empty",
-        cancel: "Cancel",
-        cancelAll: "Cancel All",
-        size: "Size:",
-        itemPrice: "Price:",
-        total: "Total",
-
-        checkout: "Checkout",
-
-        orderTitle: "Complete Your Order",
-        fullName: "Full Name",
-        fullNamePlaceholder: "Example: Ahmed Mohamed",
-        phone: "Phone Number",
-        phonePlaceholder: "01xxxxxxxxx",
-        governorate: "Governorate",
-        chooseGovernorate: "Choose Governorate",
-        address: "Detailed Address",
-        addressPlaceholder: "Street, building number, district, landmark",
-        notes: "Notes (Optional)",
-        notesPlaceholder: "Example: Delivery in the evening",
-
-        payment: "Payment Method",
-        cash: "💵 Cash on Delivery",
-        card: "💳 Credit / Visa Card",
-        wallet: "📱 Electronic Wallet",
-
-        back: "Back",
-        confirm: "Confirm Order",
-
-        emptyAlert: "Your cart is empty. Please add a product first.",
-        incompleteAlert: "Please complete your order information.",
-        successAlert: "Your order has been confirmed successfully ❤️",
-
-        login: "Login",
-        loginSubtitle: "Login to access your account",
-        emailPhone: "Email or Phone Number",
-        password: "Password",
-        remember: "Remember me",
-        forgot: "Forgot Password?",
-        or: "OR",
-        google: "Continue with Google",
-        facebook: "Continue with Facebook",
-
-        arabic: "العربية",
-        english: "English"
-
-    }
-
-};
-
-
-/* =========================
-   LOGIN PANEL
-========================= */
-
-function openLogin() {
-
-    if (!loginPanel || !loginOverlay) return;
-
-    loginPanel.classList.add("active");
-    loginOverlay.classList.add("active");
-
+try {
+    cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+} catch (error) {
+    cart = [];
 }
 
 
-function closeLoginPanel() {
-
-    if (!loginPanel || !loginOverlay) return;
-
-    loginPanel.classList.remove("active");
-    loginOverlay.classList.remove("active");
-
-}
-
-
-if (loginBtn) {
-    loginBtn.addEventListener("click", openLogin);
-}
-
-if (closeLogin) {
-    closeLogin.addEventListener("click", closeLoginPanel);
-}
-
-if (loginOverlay) {
-    loginOverlay.addEventListener("click", closeLoginPanel);
-}
-
-
-/* =========================
-   CART PANEL
-========================= */
-
-function openCart() {
-
-    if (!cartPanel || !cartOverlay) return;
-
-    cartPanel.classList.add("active");
-    cartOverlay.classList.add("active");
-
-}
-
-
-function closeCartPanel() {
-
-    if (!cartPanel || !cartOverlay) return;
-
-    cartPanel.classList.remove("active");
-    cartOverlay.classList.remove("active");
-
-}
-
-
-if (cartBtn) {
-    cartBtn.addEventListener("click", openCart);
-}
-
-if (closeCart) {
-    closeCart.addEventListener("click", closeCartPanel);
-}
-
-if (cartOverlay) {
-    cartOverlay.addEventListener("click", closeCartPanel);
-}
-
-
-/* =========================
-   PRODUCT DATA
-========================= */
-
-const productData = {
-
-    half: {
-        image: "250ml.jpeg",
-        name: "زيت زيتون دكتور أبو النصر بالبصل",
-        price: 320
-    },
-
-    one: {
-        image: "1liter.jpeg",
-        name: "زيت زيتون دكتور أبو النصر بالبصل",
-        price: 580
-    },
-
-    two: {
-        image: "1liter.jpeg",
-        name: "زيت زيتون دكتور أبو النصر بالبصل",
-        price: 1080
-    },
-
-    five: {
-        image: "5liter.jpeg",
-        name: "زيت زيتون دكتور أبو النصر بالبصل",
-        price: 2600
-    }
-
-};
-
-
-/* =========================
+/* =========================================================
    PRODUCT ID
-========================= */
+   مهم جدًا: البصل له ID مستقل
+========================================================= */
 
 const PRODUCT_ID = "onion-oil";
 
 
-/* =========================
-   PRODUCT ELEMENTS
-========================= */
+/* =========================================================
+   PRODUCT DATA
+========================================================= */
 
-let selectedSize = "half";
+const productData = {
+
+    half: {
+        price: 320,
+        image: "250ml.jpeg",
+        sizeAr: "½ لتر",
+        sizeEn: "½ Liter"
+    },
+
+    one: {
+        price: 580,
+        image: "1liter.jpeg",
+        sizeAr: "1 لتر",
+        sizeEn: "1 Liter"
+    },
+
+    two: {
+        price: 1080,
+        image: "1liter.jpeg",
+        sizeAr: "2 لتر",
+        sizeEn: "2 Liters"
+    },
+
+    five: {
+        price: 2600,
+        image: "5liter.jpeg",
+        sizeAr: "5 لتر",
+        sizeEn: "5 Liters"
+    }
+
+};
+
+
+/* =========================================================
+   PRODUCT ELEMENTS
+========================================================= */
 
 const mainProductImage =
     document.getElementById("mainProductImage");
 
-const productPriceElement =
-    document.getElementById("productPrice");
+const productName =
+    document.getElementById("productName");
+
+const productType =
+    document.querySelector(".product-type");
+
+const sizesTitle =
+    document.querySelector(".sizes-title");
 
 const sizeButtons =
     document.querySelectorAll(".size-btn");
 
+const productPrice =
+    document.getElementById("productPrice");
 
-if (productPriceElement) {
+const quantityValue =
+    document.getElementById("quantityValue");
 
-    productPriceElement.textContent =
-        productData.half.price + " ج.م";
+const minusOneBtn =
+    document.getElementById("minusOneBtn");
+
+const plusOneBtn =
+    document.getElementById("plusOneBtn");
+
+const addCartBtn =
+    document.getElementById("addCartBtn");
+
+const buyNowBtn =
+    document.getElementById("buyNowBtn");
+
+
+/* =========================================================
+   SELECTED SIZE
+========================================================= */
+
+let selectedSize = "half";
+
+let quantity = 1;
+
+
+/* =========================================================
+   SHARED CART FUNCTIONS
+========================================================= */
+
+function loadCart() {
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(CART_KEY)
+            ) || [];
+
+    } catch (error) {
+
+        cart = [];
+
+    }
 
 }
 
 
-/* =========================
-   SHARED CART
-========================= */
-
-/*
-   مهم جدًا:
-   كل صفحات الموقع تستخدم نفس المفتاح:
-
-   oliveOilCart
-
-   وبالتالي:
-   الرئيسية + البصل + الثوم + البحر + باقي المنتجات
-   كلهم في سلة واحدة.
-*/
-
-let cart =
-    JSON.parse(
-        localStorage.getItem("oliveOilCart")
-    ) || [];
-
-
-/* =========================
-   SAVE SHARED CART
-========================= */
-
 function saveCart() {
 
     localStorage.setItem(
-        "oliveOilCart",
+        CART_KEY,
         JSON.stringify(cart)
     );
 
 }
 
 
-/* =========================
+/* =========================================================
    SIZE NAME
-========================= */
+========================================================= */
 
 function getSizeName(size) {
 
-    const t =
-        translations[currentLanguage];
+    if (!productData[size]) {
+        return "";
+    }
 
-    if (size === "half") return t.half;
-    if (size === "one") return t.one;
-    if (size === "two") return t.two;
-    if (size === "five") return t.five;
-
-    return size;
+    return currentLanguage === "ar"
+        ? productData[size].sizeAr
+        : productData[size].sizeEn;
 
 }
 
 
-/* =========================
-   CHANGE PRODUCT SIZE
-========================= */
+/* =========================================================
+   UPDATE PRODUCT
+========================================================= */
 
-sizeButtons.forEach(function (button) {
+function updateProduct() {
+
+    const data =
+        productData[selectedSize];
+
+    if (!data) {
+        return;
+    }
+
+
+    productPrice.textContent =
+        `${data.price} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`;
+
+
+    if (mainProductImage) {
+
+        mainProductImage.src =
+            data.image;
+
+    }
+
+
+    if (quantityValue) {
+
+        quantityValue.textContent =
+            quantity;
+
+    }
+
+}
+
+
+/* =========================================================
+   SIZE BUTTONS
+========================================================= */
+
+sizeButtons.forEach(button => {
 
     button.addEventListener("click", function () {
 
-        const newSize =
-            button.getAttribute("data-size");
+        sizeButtons.forEach(btn => {
 
-        if (newSize === selectedSize) {
-            return;
-        }
+            btn.classList.remove("active");
 
-        const newProduct =
-            productData[newSize];
+        });
 
 
-        if (mainProductImage) {
-
-            mainProductImage.classList.remove(
-                "product-in"
-            );
-
-            mainProductImage.classList.add(
-                "product-out"
-            );
-
-        }
+        this.classList.add("active");
 
 
-        setTimeout(function () {
-
-            if (mainProductImage) {
-
-                mainProductImage.src =
-                    newProduct.image;
-
-            }
+        selectedSize =
+            this.dataset.size;
 
 
-            if (productPriceElement) {
-
-                productPriceElement.textContent =
-                    newProduct.price + " ج.م";
-
-            }
+        quantity = 1;
 
 
-            selectedSize = newSize;
-
-
-            sizeButtons.forEach(function (btn) {
-
-                btn.classList.remove("active");
-
-            });
-
-
-            button.classList.add("active");
-
-
-            if (mainProductImage) {
-
-                mainProductImage.classList.remove(
-                    "product-out"
-                );
-
-                mainProductImage.classList.add(
-                    "product-in"
-                );
-
-            }
-
-        }, 350);
+        updateProduct();
 
     });
 
 });
 
 
-/* =========================
-   QUANTITY CONTROL
-========================= */
-
-let quantity = 1;
-
-const plusOneBtn =
-    document.getElementById("plusOneBtn");
-
-const minusOneBtn =
-    document.getElementById("minusOneBtn");
-
-const quantityValue =
-    document.getElementById("quantityValue");
-
-
-/*
-   زر +
-   دلوقتي بيضيف مباشرة للسلة
-*/
-
-if (plusOneBtn) {
-
-    plusOneBtn.addEventListener(
-        "click",
-        function () {
-
-            addSelectedProductToCart(1);
-
-            quantity = 1;
-
-            if (quantityValue) {
-
-                quantityValue.textContent =
-                    quantity;
-
-            }
-
-        }
-    );
-
-}
-
-
-/*
-   زر -
-   ما زال خاص بالكمية قبل الضغط
-   على أضف للسلة
-*/
+/* =========================================================
+   QUANTITY - MINUS
+========================================================= */
 
 if (minusOneBtn) {
 
-    minusOneBtn.addEventListener(
-        "click",
-        function () {
+    minusOneBtn.addEventListener("click", function () {
 
-            if (quantity > 1) {
+        if (quantity > 1) {
 
-                quantity--;
-
-                if (quantityValue) {
-
-                    quantityValue.textContent =
-                        quantity;
-
-                }
-
-            }
+            quantity--;
 
         }
-    );
+
+        updateProduct();
+
+    });
 
 }
 
 
-/* =========================
+/* =========================================================
    ADD PRODUCT TO SHARED CART
-========================= */
+========================================================= */
 
 function addSelectedProductToCart(amount) {
 
-    const selectedProduct =
+    if (!productData[selectedSize]) {
+        return;
+    }
+
+
+    const productInfo =
         productData[selectedSize];
 
-    if (!selectedProduct) return;
-
 
     /*
-       نشوف هل فيه منتج بصل اتضاف
-       من الصفحة الرئيسية بدون حجم
+       لو فيه منتج بصل مضاف بالفعل
+       بنفس المقاس نزود الكمية
     */
 
-    let pendingItems =
-        cart.filter(function (item) {
+    const existingItem =
+        cart.find(item =>
 
-            return (
-                item.productId === PRODUCT_ID &&
-                (
-                    !item.size ||
-                    !item.price
-                )
-            );
+            item.productId === PRODUCT_ID &&
+            item.size === selectedSize
 
-        });
+        );
 
 
-    /*
-       لو فيه pending product
-       نحوله للحجم والسعر المختارين
-    */
+    if (existingItem) {
 
-    if (pendingItems.length > 0) {
-
-        const firstPending =
-            pendingItems[0];
-
-
-        firstPending.productId =
-            PRODUCT_ID;
-
-        firstPending.size =
-            selectedSize;
-
-        firstPending.name =
-            selectedProduct.name;
-
-        firstPending.price =
-            selectedProduct.price;
-
-
-        /*
-           لو فيه أكتر من pending item
-           نحذف الزيادة عشان مايتكررش
-        */
-
-        if (pendingItems.length > 1) {
-
-            pendingItems
-                .slice(1)
-                .forEach(function (pendingItem) {
-
-                    const index =
-                        cart.indexOf(pendingItem);
-
-                    if (index !== -1) {
-
-                        cart.splice(index, 1);
-
-                    }
-
-                });
-
-        }
-
-
-        /*
-           لو المطلوب إضافة أكتر من قطعة
-           نضيف الباقي
-        */
-
-        const extraAmount =
-            Math.max(0, amount - 1);
-
-
-        for (let i = 0; i < extraAmount; i++) {
-
-            cart.push({
-
-                id:
-                    Date.now() +
-                    Math.random(),
-
-                productId:
-                    PRODUCT_ID,
-
-                size:
-                    selectedSize,
-
-                name:
-                    selectedProduct.name,
-
-                price:
-                    selectedProduct.price
-
-            });
-
-        }
+        existingItem.quantity =
+            (Number(existingItem.quantity) || 0) +
+            amount;
 
     } else {
 
-
         /*
-           مفيش pending
-           نشوف هل نفس المنتج ونفس الحجم
-           موجود بالفعل
+           إضافة منتج جديد للسلة المشتركة
         */
 
-        let existingItem =
-            cart.find(function (item) {
+        cart.push({
 
-                return (
-                    item.productId === PRODUCT_ID &&
-                    item.size === selectedSize &&
-                    item.price === selectedProduct.price
-                );
+            productId: PRODUCT_ID,
 
-            });
+            nameAr: "زيت الزيتون بالبصل",
 
+            nameEn: "Olive Oil with Onion",
 
-        /*
-           لو المنتج موجود:
-           نضيف الكمية عليه بدل تكرار
-        */
+            name:
+                currentLanguage === "ar"
+                    ? "زيت الزيتون بالبصل"
+                    : "Olive Oil with Onion",
 
-        if (existingItem) {
+            size: selectedSize,
 
-            /*
-               لأن السلة الحالية مبنية
-               على كل قطعة كعنصر منفصل،
-               هنضيف العناصر الجديدة.
-            */
+            sizeName:
+                getSizeName(selectedSize),
 
-            for (let i = 0; i < amount; i++) {
+            price: productInfo.price,
 
-                cart.push({
+            image: productInfo.image,
 
-                    id:
-                        Date.now() +
-                        Math.random(),
+            quantity: amount
 
-                    productId:
-                        PRODUCT_ID,
-
-                    size:
-                        selectedSize,
-
-                    name:
-                        selectedProduct.name,
-
-                    price:
-                        selectedProduct.price
-
-                });
-
-            }
-
-        } else {
-
-            for (let i = 0; i < amount; i++) {
-
-                cart.push({
-
-                    id:
-                        Date.now() +
-                        Math.random(),
-
-                    productId:
-                        PRODUCT_ID,
-
-                    size:
-                        selectedSize,
-
-                    name:
-                        selectedProduct.name,
-
-                    price:
-                        selectedProduct.price
-
-                });
-
-            }
-
-        }
+        });
 
     }
 
 
-    /*
-       حفظ السلة المشتركة
-    */
-
     saveCart();
-
-
-    /*
-       تحديث شكل السلة
-    */
 
     updateCart();
 
 }
 
 
-/* =========================
-   UPDATE CART
-========================= */
+/* =========================================================
+   PLUS BUTTON
+   + يضيف مباشرة للسلة المشتركة
+========================================================= */
+
+if (plusOneBtn) {
+
+    plusOneBtn.addEventListener("click", function () {
+
+        addSelectedProductToCart(1);
+
+        quantity = 1;
+
+        updateProduct();
+
+    });
+
+}
+
+
+/* =========================================================
+   CART ELEMENTS
+========================================================= */
+
+const cartBtn =
+    document.getElementById("cartBtn");
+
+const cartCount =
+    document.getElementById("cartCount");
+
+const cartPanel =
+    document.getElementById("cartPanel");
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+const closeCart =
+    document.getElementById("closeCart");
+
+const cartItems =
+    document.getElementById("cartItems");
+
+const cartTotal =
+    document.getElementById("cartTotal");
+
+const checkoutBtn =
+    document.getElementById("checkoutBtn");
+
+
+/* =========================================================
+   UPDATE SHARED CART UI
+========================================================= */
 
 function updateCart() {
 
-    const t =
-        translations[currentLanguage];
+    loadCart();
 
 
-    /*
-       حفظ السلة أولًا
-    */
+    let totalItems = 0;
+    let totalPrice = 0;
 
-    saveCart();
+
+    if (cartItems) {
+
+        cartItems.innerHTML = "";
+
+    }
+
+
+    cart.forEach((item, index) => {
+
+        const itemQuantity =
+            Number(item.quantity) || 1;
+
+        const itemPrice =
+            Number(item.price) || 0;
+
+
+        totalItems +=
+            itemQuantity;
+
+
+        totalPrice +=
+            itemPrice * itemQuantity;
+
+
+        if (!cartItems) {
+            return;
+        }
+
+
+        const itemElement =
+            document.createElement("div");
+
+
+        itemElement.className =
+            "cart-item";
+
+
+        const itemName =
+            item.name ||
+            item.nameAr ||
+            item.nameEn ||
+            "منتج";
+
+
+        const itemSize =
+            item.sizeName ||
+            (
+                item.size
+                    ? getSizeName(item.size)
+                    : ""
+            );
+
+
+        itemElement.innerHTML = `
+
+            <div class="cart-item-info">
+
+                <h4>
+                    ${itemName}
+                </h4>
+
+                ${
+                    itemSize
+                        ? `<p>${itemSize}</p>`
+                        : ""
+                }
+
+                <p>
+                    ${itemPrice}
+                    ${currentLanguage === "ar" ? "جنيه" : "EGP"}
+                </p>
+
+                <p>
+                    ${currentLanguage === "ar" ? "الكمية" : "Quantity"}:
+                    ${itemQuantity}
+                </p>
+
+            </div>
+
+
+            <button
+                class="remove-cart-item"
+                onclick="removeFromCart(${index})"
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        `;
+
+
+        cartItems.appendChild(
+            itemElement
+        );
+
+    });
 
 
     if (cartCount) {
 
         cartCount.textContent =
-            cart.length;
+            totalItems;
 
     }
 
 
-    if (!cartItems || !cartTotal) {
-        return;
-    }
-
-
-    if (cart.length === 0) {
-
-        cartItems.innerHTML = `
-
-            <p class="empty-cart">
-                ${t.emptyCart}
-            </p>
-
-        `;
+    if (cartTotal) {
 
         cartTotal.textContent =
-            "0 ج.م";
+            `${totalPrice} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`;
 
-        return;
     }
-
-
-    let total = 0;
-
-    let cartHTML = "";
-
-
-    cart.forEach(function (item, index) {
-
-        total += Number(item.price) || 0;
-
-
-        cartHTML += `
-
-            <div class="cart-product">
-
-                <p>
-                    ${item.name}
-                </p>
-
-                <p>
-                    ${
-                        currentLanguage === "ar"
-                            ? "الحجم:"
-                            : "Size:"
-                    }
-
-                    ${getSizeName(item.size)}
-                </p>
-
-                <p>
-                    ${
-                        currentLanguage === "ar"
-                            ? "السعر:"
-                            : "Price:"
-                    }
-
-                    ${item.price}
-
-                    ${
-                        currentLanguage === "ar"
-                            ? "ج.م"
-                            : "EGP"
-                    }
-                </p>
-
-                <button
-                    class="cancel-cart-btn"
-                    onclick="removeFromCart(${index})">
-
-                    ${
-                        currentLanguage === "ar"
-                            ? "إلغاء"
-                            : "Cancel"
-                    }
-
-                </button>
-
-            </div>
-
-        `;
-
-    });
-
-
-    cartItems.innerHTML =
-        cartHTML;
-
-
-    cartTotal.textContent =
-        total + " ج.م";
-
-
-    const clearButton =
-        document.createElement("button");
-
-
-    clearButton.className =
-        "clear-cart-btn";
-
-
-    clearButton.textContent =
-        t.cancelAll;
-
-
-    clearButton.addEventListener(
-        "click",
-        clearCart
-    );
-
-
-    cartItems.appendChild(
-        clearButton
-    );
 
 }
 
 
-/* =========================
-   REMOVE ONE PRODUCT
-========================= */
+/* =========================================================
+   REMOVE FROM SHARED CART
+========================================================= */
 
 function removeFromCart(index) {
 
+    loadCart();
+
+
+    if (
+        index < 0 ||
+        index >= cart.length
+    ) {
+
+        return;
+
+    }
+
+
     cart.splice(index, 1);
+
 
     saveCart();
 
@@ -898,9 +549,9 @@ function removeFromCart(index) {
 }
 
 
-/* =========================
+/* =========================================================
    CLEAR CART
-========================= */
+========================================================= */
 
 function clearCart() {
 
@@ -913,191 +564,232 @@ function clearCart() {
 }
 
 
-/* =========================
-   ADD TO CART BUTTON
-========================= */
+/* =========================================================
+   OPEN CART
+========================================================= */
 
-if (addCartBtn) {
+if (cartBtn) {
 
-    addCartBtn.addEventListener(
-        "click",
-        function () {
+    cartBtn.addEventListener("click", function () {
 
-            addSelectedProductToCart(
-                quantity
-            );
+        updateCart();
 
-            quantity = 1;
 
-            if (quantityValue) {
+        if (cartPanel) {
 
-                quantityValue.textContent =
-                    quantity;
-
-            }
-
-            openCart();
+            cartPanel.classList.add("active");
 
         }
+
+
+        if (cartOverlay) {
+
+            cartOverlay.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   CLOSE CART
+========================================================= */
+
+function closeCartPanel() {
+
+    if (cartPanel) {
+
+        cartPanel.classList.remove("active");
+
+    }
+
+
+    if (cartOverlay) {
+
+        cartOverlay.classList.remove("active");
+
+    }
+
+}
+
+
+if (closeCart) {
+
+    closeCart.addEventListener(
+        "click",
+        closeCartPanel
     );
 
 }
 
 
-/* =========================
-   ORDER MODAL
-========================= */
+if (cartOverlay) {
 
-function openOrderModal() {
+    cartOverlay.addEventListener(
+        "click",
+        closeCartPanel
+    );
 
-    if (cart.length === 0) {
+}
 
-        alert(
-            translations[currentLanguage]
-                .emptyAlert
+
+/* =========================================================
+   ADD TO CART BUTTON
+========================================================= */
+
+if (addCartBtn) {
+
+    addCartBtn.addEventListener("click", function () {
+
+        addSelectedProductToCart(
+            quantity
         );
 
+
+        quantity = 1;
+
+        updateProduct();
+
+
+        if (cartPanel) {
+
+            cartPanel.classList.add("active");
+
+        }
+
+
+        if (cartOverlay) {
+
+            cartOverlay.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+const loginPanel =
+    document.getElementById("loginPanel");
+
+const loginOverlay =
+    document.getElementById("loginOverlay");
+
+const closeLogin =
+    document.getElementById("closeLogin");
+
+
+if (loginBtn) {
+
+    loginBtn.addEventListener("click", function () {
+
+        if (loginPanel) {
+
+            loginPanel.classList.add("active");
+
+        }
+
+
+        if (loginOverlay) {
+
+            loginOverlay.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+function closeLoginPanel() {
+
+    if (loginPanel) {
+
+        loginPanel.classList.remove("active");
+
+    }
+
+
+    if (loginOverlay) {
+
+        loginOverlay.classList.remove("active");
+
+    }
+
+}
+
+
+if (closeLogin) {
+
+    closeLogin.addEventListener(
+        "click",
+        closeLoginPanel
+    );
+
+}
+
+
+if (loginOverlay) {
+
+    loginOverlay.addEventListener(
+        "click",
+        closeLoginPanel
+    );
+
+}
+
+
+/* =========================================================
+   ORDER MODAL
+========================================================= */
+
+const orderModal =
+    document.getElementById("orderModal");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+const confirmOrderBtn =
+    document.getElementById("confirmOrderBtn");
+
+
+/* =========================================================
+   ORDER SUMMARY
+========================================================= */
+
+function updateOrderSummary() {
+
+    loadCart();
+
+
+    const orderSummary =
+        document.getElementById("orderSummary");
+
+
+    if (!orderSummary) {
         return;
     }
 
 
-    updateOrderSummary();
+    if (cart.length === 0) {
 
+        orderSummary.innerHTML =
+            currentLanguage === "ar"
+                ? "السلة فارغة"
+                : "Cart is empty";
 
-    if (orderModal) {
-
-        orderModal.classList.add("active");
-
-    }
-
-}
-
-
-/* =========================
-   CLOSE ORDER MODAL
-========================= */
-
-function closeOrderModal() {
-
-    if (orderModal) {
-
-        orderModal.classList.remove(
-            "active"
-        );
+        return;
 
     }
-
-}
-
-
-/* =========================
-   CHECKOUT
-========================= */
-
-if (checkoutBtn) {
-
-    checkoutBtn.addEventListener(
-        "click",
-        function () {
-
-            closeCartPanel();
-
-            openOrderModal();
-
-        }
-    );
-
-}
-
-
-/* =========================
-   BUY NOW
-========================= */
-
-if (buyNowBtn) {
-
-    buyNowBtn.addEventListener(
-        "click",
-        function () {
-
-            addSelectedProductToCart(
-                quantity
-            );
-
-            quantity = 1;
-
-            if (quantityValue) {
-
-                quantityValue.textContent =
-                    quantity;
-
-            }
-
-            openOrderModal();
-
-        }
-    );
-
-}
-
-
-/* =========================
-   ORDER BACK BUTTON
-========================= */
-
-if (backBtn) {
-
-    backBtn.addEventListener(
-        "click",
-        function () {
-
-            closeOrderModal();
-
-        }
-    );
-
-}
-
-
-/* =========================
-   PAGE BACK BUTTON
-========================= */
-
-/*
-   ده زر رجوع الصفحة الموجود في الهيدر.
-   يرجع للصفحة السابقة فعلًا.
-*/
-
-if (pageBackBtn) {
-
-    pageBackBtn.addEventListener(
-        "click",
-        function () {
-
-            window.history.back();
-
-        }
-    );
-
-}
-
-
-/* =========================
-   ORDER SUMMARY
-========================= */
-
-function updateOrderSummary() {
-
-    const orderSummary =
-        document.querySelector(
-            ".order-summary"
-        );
-
-    if (!orderSummary) return;
-
-
-    const t =
-        translations[currentLanguage];
 
 
     let summaryHTML = "";
@@ -1105,23 +797,55 @@ function updateOrderSummary() {
     let total = 0;
 
 
-    cart.forEach(function (item) {
+    cart.forEach(item => {
 
-        total += Number(item.price) || 0;
+        const itemQuantity =
+            Number(item.quantity) || 1;
+
+        const itemPrice =
+            Number(item.price) || 0;
+
+
+        const itemTotal =
+            itemPrice * itemQuantity;
+
+
+        total += itemTotal;
+
+
+        const itemName =
+            item.name ||
+            item.nameAr ||
+            item.nameEn ||
+            "Product";
+
+
+        const itemSize =
+            item.sizeName ||
+            (
+                item.size
+                    ? getSizeName(item.size)
+                    : ""
+            );
 
 
         summaryHTML += `
 
-            <div class="order-item">
+            <div class="order-summary-item">
+
+                <strong>
+                    ${itemName}
+                </strong>
+
+                ${
+                    itemSize
+                        ? `<span>${itemSize}</span>`
+                        : ""
+                }
 
                 <span>
-                    ${item.name}
-                    ${getSizeName(item.size)}
-                    × 1
-                </span>
-
-                <span>
-                    ${item.price} ج.م
+                    ${itemQuantity} × ${itemPrice}
+                    ${currentLanguage === "ar" ? "جنيه" : "EGP"}
                 </span>
 
             </div>
@@ -1133,14 +857,19 @@ function updateOrderSummary() {
 
     summaryHTML += `
 
-        <div class="order-total">
+        <div class="order-summary-total">
 
             <strong>
-                ${t.total}
+                ${
+                    currentLanguage === "ar"
+                        ? "الإجمالي"
+                        : "Total"
+                }
             </strong>
 
             <strong>
-                ${total} ج.م
+                ${total}
+                ${currentLanguage === "ar" ? "جنيه" : "EGP"}
             </strong>
 
         </div>
@@ -1154,9 +883,111 @@ function updateOrderSummary() {
 }
 
 
-/* =========================
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+if (checkoutBtn) {
+
+    checkoutBtn.addEventListener(
+        "click",
+        function () {
+
+            loadCart();
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "السلة فارغة"
+                        : "Cart is empty"
+                );
+
+                return;
+
+            }
+
+
+            closeCartPanel();
+
+            updateOrderSummary();
+
+
+            if (orderModal) {
+
+                orderModal.classList.add("active");
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+if (buyNowBtn) {
+
+    buyNowBtn.addEventListener(
+        "click",
+        function () {
+
+            addSelectedProductToCart(
+                quantity
+            );
+
+
+            quantity = 1;
+
+            updateProduct();
+
+
+            updateOrderSummary();
+
+
+            if (orderModal) {
+
+                orderModal.classList.add("active");
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BACK FROM ORDER
+========================================================= */
+
+if (backBtn) {
+
+    backBtn.addEventListener(
+        "click",
+        function () {
+
+            if (orderModal) {
+
+                orderModal.classList.remove(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    CONFIRM ORDER
-========================= */
+========================================================= */
 
 if (confirmOrderBtn) {
 
@@ -1165,55 +996,44 @@ if (confirmOrderBtn) {
         function () {
 
             const fullName =
-                document
-                    .getElementById("fullName")
-                    ?.value
-                    .trim() || "";
-
+                document.getElementById("fullName");
 
             const phone =
-                document
-                    .getElementById("phone")
-                    ?.value
-                    .trim() || "";
-
+                document.getElementById("phone");
 
             const governorate =
-                document
-                    .getElementById("governorate")
-                    ?.value || "";
-
+                document.getElementById("governorate");
 
             const address =
-                document
-                    .getElementById("address")
-                    ?.value
-                    .trim() || "";
-
+                document.getElementById("address");
 
             const notes =
-                document
-                    .getElementById("notes")
-                    ?.value
-                    .trim() || "";
-
-
-            const paymentMethod =
-                document.querySelector(
-                    'input[name="payment"]:checked'
-                )?.value || "cash";
+                document.getElementById("notes");
 
 
             if (
-                fullName === "" ||
-                phone === "" ||
-                governorate === "" ||
-                address === ""
+                !fullName ||
+                !phone ||
+                !governorate ||
+                !address
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                !fullName.value.trim() ||
+                !phone.value.trim() ||
+                !governorate.value.trim() ||
+                !address.value.trim()
             ) {
 
                 alert(
-                    translations[currentLanguage]
-                        .incompleteAlert
+                    currentLanguage === "ar"
+                        ? "من فضلك اكملي البيانات المطلوبة"
+                        : "Please complete the required information"
                 );
 
                 return;
@@ -1221,85 +1041,64 @@ if (confirmOrderBtn) {
             }
 
 
-            let total = 0;
+            loadCart();
 
 
-            cart.forEach(function (item) {
+            const orderData = {
 
-                total += Number(item.price) || 0;
+                customer: {
 
-            });
+                    name:
+                        fullName.value.trim(),
 
+                    phone:
+                        phone.value.trim(),
 
-            const orderId =
-                "ORD-" + Date.now();
+                    governorate:
+                        governorate.value.trim(),
 
+                    address:
+                        address.value.trim(),
 
-            const newOrder = {
+                    notes:
+                        notes
+                            ? notes.value.trim()
+                            : ""
 
-                id: orderId,
+                },
 
-                name: fullName,
+                products: cart,
 
-                phone: phone,
-
-                governorate: governorate,
-
-                address: address,
-
-                notes: notes,
-
-                paymentMethod:
-                    paymentMethod,
-
-                total: total,
-
-                status:
-                    paymentMethod === "cash"
-                        ? "جديد"
-                        : "بانتظار الدفع",
-
-                items:
-                    cart.map(function (item) {
-
-                        return {
-
-                            productId:
-                                item.productId,
-
-                            name:
-                                item.name,
-
-                            size:
-                                item.size,
-
-                            price:
-                                item.price
-
-                        };
-
-                    }),
-
-                date:
-                    new Date()
-                        .toLocaleString("ar-EG")
+                createdAt:
+                    new Date().toISOString()
 
             };
 
 
-            const savedOrders =
-                localStorage.getItem(
-                    "oliveOilOrders"
-                );
+            /*
+               حفظ الطلب محليًا
+               لحد ربطه بالـ PHP / MySQL
+            */
+
+            let orders = [];
+
+            try {
+
+                orders =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "oliveOilOrders"
+                        )
+                    ) || [];
+
+            } catch (error) {
+
+                orders = [];
+
+            }
 
 
-            const orders =
-                savedOrders
-                    ? JSON.parse(savedOrders)
-                    : [];
-
-
-            orders.push(newOrder);
+            orders.push(orderData);
 
 
             localStorage.setItem(
@@ -1309,13 +1108,15 @@ if (confirmOrderBtn) {
 
 
             alert(
-                translations[currentLanguage]
-                    .successAlert
+                currentLanguage === "ar"
+                    ? "تم إرسال طلبك بنجاح ❤️"
+                    : "Your order has been submitted ❤️"
             );
 
 
             /*
                تفريغ السلة المشتركة
+               يعني السلة هتفضى في كل الصفحات
             */
 
             cart = [];
@@ -1325,49 +1126,34 @@ if (confirmOrderBtn) {
             updateCart();
 
 
-            closeOrderModal();
+            if (orderModal) {
 
-
-            const fullNameInput =
-                document.getElementById(
-                    "fullName"
+                orderModal.classList.remove(
+                    "active"
                 );
 
-            const phoneInput =
-                document.getElementById(
-                    "phone"
-                );
-
-            const governorateInput =
-                document.getElementById(
-                    "governorate"
-                );
-
-            const addressInput =
-                document.getElementById(
-                    "address"
-                );
-
-            const notesInput =
-                document.getElementById(
-                    "notes"
-                );
+            }
 
 
-            if (fullNameInput)
-                fullNameInput.value = "";
+            if (fullName) {
+                fullName.value = "";
+            }
 
-            if (phoneInput)
-                phoneInput.value = "";
+            if (phone) {
+                phone.value = "";
+            }
 
-            if (governorateInput)
-                governorateInput.value = "";
+            if (governorate) {
+                governorate.value = "";
+            }
 
-            if (addressInput)
-                addressInput.value = "";
+            if (address) {
+                address.value = "";
+            }
 
-            if (notesInput)
-                notesInput.value = "";
+            if (notes) {
+                notes.value = "";
+            }
 
         }
     );
@@ -1375,37 +1161,66 @@ if (confirmOrderBtn) {
 }
 
 
-/* =========================
-   APPLY LANGUAGE
-========================= */
+/* =========================================================
+   PAGE BACK BUTTON
+========================================================= */
 
-function changeLanguage(language) {
+const pageBackBtn =
+    document.getElementById("pageBackBtn");
+
+
+if (pageBackBtn) {
+
+    pageBackBtn.addEventListener(
+        "click",
+        function () {
+
+            /*
+               لو فيه صفحة قبلها يرجع لها.
+               لو الصفحة مفتوحة مباشرة يروح للرئيسية.
+            */
+
+            if (window.history.length > 1) {
+
+                window.history.back();
+
+            } else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function changeLanguage() {
 
     currentLanguage =
-        language;
+        currentLanguage === "ar"
+            ? "en"
+            : "ar";
 
-
-    /*
-       نحفظ اللغة عشان الرئيسية
-       وباقي صفحات المنتجات تستخدم نفس اللغة
-    */
 
     localStorage.setItem(
         "siteLanguage",
-        language
+        currentLanguage
     );
 
 
-    const t =
-        translations[language];
-
-
     document.documentElement.lang =
-        language;
+        currentLanguage;
 
 
     document.documentElement.dir =
-        language === "ar"
+        currentLanguage === "ar"
             ? "rtl"
             : "ltr";
 
@@ -1413,69 +1228,29 @@ function changeLanguage(language) {
     if (languageText) {
 
         languageText.textContent =
-            language === "ar"
+            currentLanguage === "ar"
                 ? "English"
                 : "العربية";
 
     }
 
 
-    const elements =
-        document.querySelectorAll(
-            "[data-ar][data-en]"
-        );
+    if (productName) {
 
-
-    elements.forEach(function (element) {
-
-        element.textContent =
-            language === "ar"
-                ? element.getAttribute("data-ar")
-                : element.getAttribute("data-en");
-
-    });
-
-
-    /* =========================
-       PRODUCT
-    ========================= */
-
-    const productNameElement =
-        document.getElementById(
-            "productName"
-        );
-
-
-    const productTypeElement =
-        document.querySelector(
-            ".product-type"
-        );
-
-
-    const sizesTitle =
-        document.querySelector(
-            ".sizes-title"
-        );
-
-
-    const priceLabel =
-        document.querySelector(
-            ".product-price span"
-        );
-
-
-    if (productNameElement) {
-
-        productNameElement.textContent =
-            t.productName;
+        productName.textContent =
+            currentLanguage === "ar"
+                ? "زيت الزيتون بالبصل"
+                : "Olive Oil with Onion";
 
     }
 
 
-    if (productTypeElement) {
+    if (productType) {
 
-        productTypeElement.textContent =
-            t.productType;
+        productType.textContent =
+            currentLanguage === "ar"
+                ? "زيت الزيتون بالبصل"
+                : "Olive Oil with Onion";
 
     }
 
@@ -1483,407 +1258,210 @@ function changeLanguage(language) {
     if (sizesTitle) {
 
         sizesTitle.textContent =
-            t.chooseSize;
+            currentLanguage === "ar"
+                ? "اختر الحجم"
+                : "Choose Size";
 
     }
 
-
-    if (priceLabel) {
-
-        priceLabel.textContent =
-            t.price;
-
-    }
-
-
-    /* أسماء الأحجام */
-
-    sizeButtons.forEach(function (button) {
-
-        const size =
-            button.getAttribute(
-                "data-size"
-            );
-
-
-        button.textContent =
-            getSizeName(size);
-
-    });
-
-
-    /* أزرار المنتج */
 
     if (addCartBtn) {
 
-        addCartBtn.textContent =
-            t.addCart;
+        addCartBtn.innerHTML =
+            currentLanguage === "ar"
+                ? '<i class="fa-solid fa-cart-plus"></i> أضف إلى السلة'
+                : '<i class="fa-solid fa-cart-plus"></i> Add to Cart';
 
     }
 
 
     if (buyNowBtn) {
 
-        buyNowBtn.textContent =
-            t.buyNow;
+        buyNowBtn.innerHTML =
+            currentLanguage === "ar"
+                ? '<i class="fa-solid fa-bag-shopping"></i> اشتري الآن'
+                : '<i class="fa-solid fa-bag-shopping"></i> Buy Now';
 
     }
-
-
-    /* =========================
-       LOGIN
-    ========================= */
-
-    if (loginPanel) {
-
-        const loginTitle =
-            loginPanel.querySelector("h2");
-
-        const loginSubtitle =
-            loginPanel.querySelector(
-                ".panel-subtitle"
-            );
-
-        const remember =
-            loginPanel.querySelector(
-                ".login-options span"
-            );
-
-        const forgot =
-            loginPanel.querySelector(
-                ".login-options a"
-            );
-
-        const loginSubmit =
-            loginPanel.querySelector(
-                ".login-submit"
-            );
-
-        const orText =
-            loginPanel.querySelector(
-                ".or-line span"
-            );
-
-        const google =
-            loginPanel.querySelector(
-                ".google-login span:last-child"
-            );
-
-        const facebook =
-            loginPanel.querySelector(
-                ".facebook-login span:last-child"
-            );
-
-
-        if (loginTitle)
-            loginTitle.textContent =
-                t.login;
-
-
-        if (loginSubtitle)
-            loginSubtitle.textContent =
-                t.loginSubtitle;
-
-
-        if (remember)
-            remember.textContent =
-                t.remember;
-
-
-        if (forgot)
-            forgot.textContent =
-                t.forgot;
-
-
-        if (loginSubmit)
-            loginSubmit.textContent =
-                t.login;
-
-
-        if (orText)
-            orText.textContent =
-                t.or;
-
-
-        if (google)
-            google.textContent =
-                t.google;
-
-
-        if (facebook)
-            facebook.textContent =
-                t.facebook;
-
-
-        const loginInputs =
-            loginPanel.querySelectorAll(
-                ".login-input"
-            );
-
-
-        if (loginInputs[0])
-            loginInputs[0].placeholder =
-                t.emailPhone;
-
-
-        if (loginInputs[1])
-            loginInputs[1].placeholder =
-                t.password;
-
-    }
-
-
-    /* =========================
-       CART
-    ========================= */
-
-    if (cartPanel) {
-
-        const cartTitle =
-            cartPanel.querySelector("h2");
-
-        const cartTotalLabel =
-            cartPanel.querySelector(
-                ".cart-total span"
-            );
-
-
-        if (cartTitle)
-            cartTitle.textContent =
-                language === "ar"
-                    ? "عربة التسوق"
-                    : "Shopping Cart";
-
-
-        if (cartTotalLabel)
-            cartTotalLabel.textContent =
-                t.total;
-
-    }
-
-
-    if (checkoutBtn) {
-
-        checkoutBtn.textContent =
-            t.checkout;
-
-    }
-
-
-    /* =========================
-       ORDER MODAL
-    ========================= */
-
-    const orderTitle =
-        document.querySelector(
-            ".order-header h2"
-        );
-
-
-    if (orderTitle)
-        orderTitle.textContent =
-            t.orderTitle;
-
-
-    const fullNameLabel =
-        document.querySelector(
-            'label[for="fullName"]'
-        );
-
-
-    const phoneLabel =
-        document.querySelector(
-            'label[for="phone"]'
-        );
-
-
-    const governorateLabel =
-        document.querySelector(
-            'label[for="governorate"]'
-        );
-
-
-    const addressLabel =
-        document.querySelector(
-            'label[for="address"]'
-        );
-
-
-    const notesLabel =
-        document.querySelector(
-            'label[for="notes"]'
-        );
-
-
-    if (fullNameLabel)
-        fullNameLabel.textContent =
-            t.fullName;
-
-
-    if (phoneLabel)
-        phoneLabel.textContent =
-            t.phone;
-
-
-    if (governorateLabel)
-        governorateLabel.textContent =
-            t.governorate;
-
-
-    if (addressLabel)
-        addressLabel.textContent =
-            t.address;
-
-
-    if (notesLabel)
-        notesLabel.textContent =
-            t.notes;
-
-
-    /* Placeholders */
-
-    const fullNameInput =
-        document.getElementById(
-            "fullName"
-        );
-
-
-    const phoneInput =
-        document.getElementById(
-            "phone"
-        );
-
-
-    const addressInput =
-        document.getElementById(
-            "address"
-        );
-
-
-    const notesInput =
-        document.getElementById(
-            "notes"
-        );
-
-
-    if (fullNameInput)
-        fullNameInput.placeholder =
-            t.fullNamePlaceholder;
-
-
-    if (phoneInput)
-        phoneInput.placeholder =
-            t.phonePlaceholder;
-
-
-    if (addressInput)
-        addressInput.placeholder =
-            t.addressPlaceholder;
-
-
-    if (notesInput)
-        notesInput.placeholder =
-            t.notesPlaceholder;
-
-
-    /* المحافظة */
-
-    const governorate =
-        document.getElementById(
-            "governorate"
-        );
-
-
-    if (governorate) {
-
-        governorate.options[0].text =
-            t.chooseGovernorate;
-
-    }
-
-
-    /* طريقة الدفع */
-
-    const paymentTitle =
-        document.querySelector(
-            ".payment-section h3"
-        );
-
-
-    if (paymentTitle)
-        paymentTitle.textContent =
-            t.payment;
-
-
-    const paymentOptions =
-        document.querySelectorAll(
-            ".payment-option span"
-        );
-
-
-    if (paymentOptions[0])
-        paymentOptions[0].textContent =
-            t.cash;
-
-
-    if (paymentOptions[1])
-        paymentOptions[1].textContent =
-            t.card;
-
-
-    if (paymentOptions[2])
-        paymentOptions[2].textContent =
-            t.wallet;
-
-
-    /* أزرار الطلب */
-
-    if (backBtn)
-        backBtn.textContent =
-            t.back;
-
-
-    if (confirmOrderBtn)
-        confirmOrderBtn.textContent =
-            t.confirm;
 
 
     /*
-       تحديث السلة
+       تحديث أسماء المقاسات
+    */
+
+    sizeButtons.forEach(button => {
+
+        const size =
+            button.dataset.size;
+
+
+        if (
+            productData[size]
+        ) {
+
+            button.textContent =
+                getSizeName(size);
+
+        }
+
+    });
+
+
+    /*
+       تحديث السلة المشتركة
     */
 
     updateCart();
 
 
-    if (
-        orderModal &&
-        orderModal.classList.contains("active")
-    ) {
-
-        updateOrderSummary();
-
-    }
+    updateProduct();
 
 }
 
 
-/* =========================
+/* =========================================================
    LANGUAGE BUTTON
-========================= */
+========================================================= */
 
 if (languageBtn) {
 
     languageBtn.addEventListener(
         "click",
+        changeLanguage
+    );
+
+}
+
+
+/* =========================================================
+   SYNC CART + LANGUAGE BETWEEN ALL PAGES
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    function (event) {
+
+        /*
+           لو السلة اتغيرت من صفحة تانية
+        */
+
+        if (event.key === CART_KEY) {
+
+            loadCart();
+
+            updateCart();
+
+        }
+
+
+        /*
+           لو اللغة اتغيرت من صفحة تانية
+        */
+
+        if (event.key === "siteLanguage") {
+
+            currentLanguage =
+                event.newValue || "ar";
+
+
+            /*
+               تحديث الصفحة بدون إعادة تحميل
+            */
+
+            changeLanguage();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        closeCartPanel();
+
+        closeLoginPanel();
+
+
+        if (orderModal) {
+
+            orderModal.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+const faqQuestions =
+    document.querySelectorAll(".faq-question");
+
+
+faqQuestions.forEach(question => {
+
+    question.addEventListener(
+        "click",
         function () {
 
-            if (currentLanguage === "ar") {
+            const answer =
+                this.nextElementSibling;
 
-                changeLanguage("en");
+
+            this.classList.toggle("active");
+
+
+            if (answer) {
+
+                answer.classList.toggle(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+const productVideo =
+    document.getElementById("productVideo");
+
+
+if (productVideo) {
+
+    productVideo.addEventListener(
+        "click",
+        function () {
+
+            if (this.paused) {
+
+                this.play();
 
             } else {
 
-                changeLanguage("ar");
+                this.pause();
 
             }
 
@@ -1893,250 +1471,102 @@ if (languageBtn) {
 }
 
 
-/* =========================
-   SYNC LANGUAGE + CART
-   WITH OTHER PAGES
-========================= */
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
 
-window.addEventListener(
-    "storage",
-    function (event) {
+const aboutTitle =
+    document.getElementById("aboutTitle");
 
-        /*
-           لو اللغة اتغيرت من صفحة تانية
-        */
-
-        if (
-            event.key === "siteLanguage" &&
-            event.newValue
-        ) {
-
-            changeLanguage(
-                event.newValue
-            );
-
-        }
+const aboutSubtitle =
+    document.getElementById("aboutSubtitle");
 
 
-        /*
-           لو السلة اتغيرت من صفحة تانية
-        */
+if (aboutTitle) {
 
-        if (
-            event.key === "oliveOilCart"
-        ) {
-
-            cart =
-                event.newValue
-                    ? JSON.parse(
-                        event.newValue
-                    )
-                    : [];
-
-            updateCart();
-
-        }
-
-    }
-);
-
-
-/* =========================
-   ESCAPE KEY
-========================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            closeLoginPanel();
-
-            closeCartPanel();
-
-            closeOrderModal();
-
-        }
-
-    }
-);
-
-
-/* =========================
-   FAQ ACCORDION
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const faqItems =
-            document.querySelectorAll(
-                ".faq-item"
-            );
-
-
-        faqItems.forEach(
-            function (item) {
-
-                const question =
-                    item.querySelector(
-                        ".faq-question"
-                    );
-
-
-                if (!question) return;
-
-
-                question.addEventListener(
-                    "click",
-                    function () {
-
-                        item.classList.toggle(
-                            "active"
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================
-   QUALITY VIDEO
-========================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const qualityVideo =
-            document.getElementById(
-                "qualityVideo"
-            );
-
-
-        if (!qualityVideo) return;
-
-
-        qualityVideo.muted = true;
-
-        qualityVideo.autoplay = true;
-
-        qualityVideo.loop = true;
-
-        qualityVideo.playsInline = true;
-
-
-        qualityVideo
-            .play()
-            .catch(function () {
-
-                console.log(
-                    "Video autoplay blocked by browser"
-                );
-
-            });
-
-    }
-);
-
-
-/* =========================
-   CONTACT - ABOUT BUTTON
-========================= */
-
-function openAboutSection() {
-
-    const aboutSection =
-        document.querySelector(
-            ".about-section"
-        );
-
-
-    if (aboutSection) {
-
-        aboutSection.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "center"
-
-        });
-
-    }
+    aboutTitle.textContent =
+        currentLanguage === "ar"
+            ? "من نحن"
+            : "About Us";
 
 }
 
 
-/* =========================
-   DASHBOARD ACCESS
-========================= */
+if (aboutSubtitle) {
 
-function openDashboardLogin() {
-
-    const password =
-        prompt(
-            "أدخلي كلمة مرور لوحة التحكم:"
-        );
-
-
-    if (password === null) {
-
-        return;
-
-    }
-
-
-    if (password === "2026") {
-
-        window.location.href =
-            "dashboard.html";
-
-    } else {
-
-        alert(
-            "كلمة المرور غير صحيحة ❌"
-        );
-
-    }
+    aboutSubtitle.textContent =
+        currentLanguage === "ar"
+            ? "رحلة زيت زيتون دكتور ابو النصر"
+            : "The Journey of Dr. Abu El Nasr Olive Oil";
 
 }
 
 
-/* =========================
-   INITIAL
-========================= */
+/* =========================================================
+   DASHBOARD BUTTON
+========================================================= */
+
+const dashboardBtn =
+    document.getElementById("dashboardBtn");
+
+
+if (dashboardBtn) {
+
+    dashboardBtn.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+document.documentElement.lang =
+    currentLanguage;
+
+
+document.documentElement.dir =
+    currentLanguage === "ar"
+        ? "rtl"
+        : "ltr";
+
+
+if (languageText) {
+
+    languageText.textContent =
+        currentLanguage === "ar"
+            ? "English"
+            : "العربية";
+
+}
+
 
 /*
-   نقرأ السلة المشتركة الموجودة
-   من أي صفحة أخرى.
+   تحديد المقاس الافتراضي
 */
 
-cart =
-    JSON.parse(
-        localStorage.getItem(
-            "oliveOilCart"
-        )
-    ) || [];
+sizeButtons.forEach(button => {
+
+    if (
+        button.dataset.size ===
+        selectedSize
+    ) {
+
+        button.classList.add("active");
+
+    }
+
+});
 
 
-/*
-   نطبق اللغة المحفوظة
-*/
-
-changeLanguage(
-    currentLanguage
-);
-
-
-/*
-   نحدث السلة
-*/
+updateProduct();
 
 updateCart();
