@@ -63,9 +63,6 @@
         </button>
 
 
-       
-
-
         <!-- CONTACT -->
 
         <button
@@ -125,12 +122,14 @@
 
 <!-- =========================
      HERO
-     بدون أي تعديل
 ========================= -->
 
 <section class="hero">
 
     <div class="hero-slider">
+
+
+        <!-- HERO 1 -->
 
         <div class="hero-slide active">
 
@@ -141,6 +140,8 @@
         </div>
 
 
+        <!-- HERO 2 -->
+
         <div class="hero-slide">
 
             <img
@@ -150,10 +151,23 @@
         </div>
 
 
+        <!-- HERO 3 -->
+
         <div class="hero-slide">
 
             <img
                 src="hero3.jpg"
+                alt="Dr. Abu El Nasr Olive Oil">
+
+        </div>
+
+
+        <!-- HERO 4 -->
+
+        <div class="hero-slide">
+
+            <img
+                src="hero4.jpg"
                 alt="Dr. Abu El Nasr Olive Oil">
 
         </div>
@@ -275,6 +289,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="virgin-oil"
                     data-product="زيت زيتون بكر ممتاز"
                     data-product-en="Extra Virgin Olive Oil">
 
@@ -330,6 +345,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="garlic-oil"
                     data-product="زيت زيتون بالثوم"
                     data-product-en="Garlic Infused Olive Oil">
 
@@ -385,6 +401,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="onion-oil"
                     data-product="زيت زيتون بالبصل"
                     data-product-en="Onion Infused Olive Oil">
 
@@ -440,6 +457,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="vitamin-oil"
                     data-product="زيت زيتون بفيتامين E و D"
                     data-product-en="Olive Oil with Vitamin E & D">
 
@@ -495,6 +513,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="rosemary-oil"
                     data-product="زيت زيتون بالروزماري"
                     data-product-en="Rosemary Infused Olive Oil">
 
@@ -550,6 +569,7 @@
                 <button
                     type="button"
                     class="add-product-btn"
+                    data-product-id="frying-oil"
                     data-product="زيت زيتون للقلي (منقى من الألياف)"
                     data-product-en="Olive Oil for Frying (Fiber Purified)">
 
@@ -1106,16 +1126,25 @@
 
 <div class="overlay" id="cartOverlay"></div>
 
-<aside class="side-panel cart-panel" id="cartPanel">
+<aside
+    class="side-panel cart-panel"
+    id="cartPanel">
 
-    <button class="close-btn" id="closeCart">
+
+    <button
+        type="button"
+        class="close-btn"
+        id="closeCart">
+
         ×
+
     </button>
 
 
     <div class="panel-content">
 
-        <h2 data-ar="عربة التسوق"
+        <h2
+            data-ar="عربة التسوق"
             data-en="Shopping Cart">
 
             عربة التسوق
@@ -1123,11 +1152,14 @@
         </h2>
 
 
-        <div class="cart-items" id="cartItems">
+        <div
+            class="cart-items"
+            id="cartItems">
 
-            <p class="empty-cart"
-               data-ar="السلة فارغة حاليًا"
-               data-en="Your cart is currently empty">
+            <p
+                class="empty-cart"
+                data-ar="السلة فارغة حاليًا"
+                data-en="Your cart is currently empty">
 
                 السلة فارغة حاليًا
 
@@ -1140,8 +1172,9 @@
 
             <div class="cart-total">
 
-                <span data-ar="الإجمالي"
-                      data-en="Total">
+                <span
+                    data-ar="الإجمالي"
+                    data-en="Total">
 
                     الإجمالي
 
@@ -1155,6 +1188,7 @@
 
 
             <button
+                type="button"
                 class="checkout-btn"
                 id="checkoutBtn"
                 data-ar="إتمام الطلب"
