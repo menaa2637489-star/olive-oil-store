@@ -5,6 +5,43 @@
 
 
 /* =========================================================
+   ELEMENTS
+========================================================= */
+
+const loginBtn = document.getElementById("loginBtn");
+const loginPanel = document.getElementById("loginPanel");
+const loginOverlay = document.getElementById("loginOverlay");
+const closeLogin = document.getElementById("closeLogin");
+
+const cartBtn = document.getElementById("cartBtn");
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const closeCart = document.getElementById("closeCart");
+
+const contactBtn = document.getElementById("contactBtn");
+const contactPanel = document.getElementById("contactPanel");
+const closeContact = document.getElementById("closeContact");
+
+const languageBtn = document.getElementById("languageBtn");
+
+const cartCount = document.getElementById("cartCount");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+
+const checkoutBtn = document.getElementById("checkoutBtn");
+
+const orderModal = document.getElementById("orderModal");
+const closeOrderModal = document.getElementById("closeOrderModal");
+const orderOverlay = document.getElementById("orderOverlay");
+
+const orderForm = document.getElementById("orderForm");
+
+const heroSlides = document.querySelectorAll(".hero-slide");
+const heroPrev = document.getElementById("heroPrev");
+const heroNext = document.getElementById("heroNext");
+
+
+/* =========================================================
    LANGUAGE
 ========================================================= */
 
@@ -12,33 +49,58 @@ let currentLanguage =
     localStorage.getItem("siteLanguage") || "ar";
 
 
-const languageBtn =
-    document.getElementById("languageBtn");
+/* =========================================================
+   SHARED CART
+   SAME CART ON ALL PAGES
+========================================================= */
 
-
-const languageText =
-    document.getElementById("languageText");
+let cart =
+    JSON.parse(localStorage.getItem("oliveOilCart")) || [];
 
 
 /* =========================================================
-   SHARED CART
-   ONE CART FOR THE WHOLE WEBSITE
+   PRODUCTS
 ========================================================= */
 
-let cart = [];
+const products = {
 
-try {
+    "virgin-oil": {
+        ar: "زيت زيتون بكر ممتاز",
+        en: "Extra Virgin Olive Oil",
+        page: "virgin oil.html"
+    },
 
-    cart =
-        JSON.parse(
-            localStorage.getItem("oliveOilCart")
-        ) || [];
+    "garlic-oil": {
+        ar: "زيت زيتون بالثوم",
+        en: "Garlic Infused Olive Oil",
+        page: "garlic-oil.html"
+    },
 
-} catch (error) {
+    "onion-oil": {
+        ar: "زيت زيتون بالبصل",
+        en: "Onion Infused Olive Oil",
+        page: "onion oil.html"
+    },
 
-    cart = [];
+    "vitamin-oil": {
+        ar: "زيت زيتون بفيتامين E و D",
+        en: "Olive Oil with Vitamin E & D",
+        page: "vitamin oil.html"
+    },
 
-}
+    "rosemary-oil": {
+        ar: "زيت زيتون بالروزماري",
+        en: "Rosemary Infused Olive Oil",
+        page: "rosemary oil.html"
+    },
+
+    "frying-oil": {
+        ar: "زيت زيتون للقلي (منقى من الألياف)",
+        en: "Olive Oil for Frying (Fiber Purified)",
+        page: "frying oil.html"
+    }
+
+};
 
 
 /* =========================================================
@@ -61,729 +123,256 @@ function saveCart() {
 
 function updateCartCount() {
 
-    const cartCount =
-        document.getElementById("cartCount");
-
-
     if (!cartCount) return;
 
-
-    let totalQuantity = 0;
-
-
-    cart.forEach(function (item) {
-
-        totalQuantity +=
-            Number(item.quantity) || 0;
-
-    });
-
-
-    cartCount.textContent =
-        totalQuantity;
-
-}
-
-
-/* =========================================================
-   PANELS
-========================================================= */
-
-const cartPanel =
-    document.getElementById("cartPanel");
-
-
-const loginPanel =
-    document.getElementById("loginPanel");
-
-
-const contactPanel =
-    document.getElementById("contactPanel");
-
-
-const panelOverlay =
-    document.getElementById("panelOverlay");
-
-
-/* =========================================================
-   CLOSE ALL PANELS
-========================================================= */
-
-function closeAllPanels() {
-
-    if (cartPanel) {
-
-        cartPanel.classList.remove("active");
-
-    }
-
-
-    if (loginPanel) {
-
-        loginPanel.classList.remove("active");
-
-    }
-
-
-    if (contactPanel) {
-
-        contactPanel.classList.remove("active");
-
-    }
-
-
-    if (panelOverlay) {
-
-        panelOverlay.classList.remove("active");
-
-    }
-
-}
-
-
-window.closeAllPanels =
-    closeAllPanels;
-
-
-/* =========================================================
-   OPEN PANEL
-========================================================= */
-
-function openPanel(panel) {
-
-    if (!panel) return;
-
-
-    closeAllPanels();
-
-
-    panel.classList.add("active");
-
-
-    if (panelOverlay) {
-
-        panelOverlay.classList.add("active");
-
-    }
-
-}
-
-
-/* =========================================================
-   CART BUTTON
-========================================================= */
-
-const cartBtn =
-    document.getElementById("cartBtn");
-
-
-if (cartBtn) {
-
-    cartBtn.addEventListener(
-        "click",
-        function () {
-
-            renderCart();
-
-            openPanel(cartPanel);
-
-        }
+    const totalQuantity = cart.reduce(
+        (total, item) => total + Number(item.quantity || 0),
+        0
     );
 
-}
-
-
-/* =========================================================
-   CLOSE CART
-========================================================= */
-
-const closeCart =
-    document.getElementById("closeCart");
-
-
-if (closeCart) {
-
-    closeCart.addEventListener(
-        "click",
-        closeAllPanels
-    );
+    cartCount.textContent = totalQuantity;
 
 }
 
 
 /* =========================================================
-   LOGIN BUTTON
+   PRODUCT NAME
 ========================================================= */
 
-const loginBtn =
-    document.getElementById("loginBtn");
+function getProductName(productId) {
 
+    const product = products[productId];
 
-if (loginBtn) {
-
-    loginBtn.addEventListener(
-        "click",
-        function () {
-
-            openPanel(loginPanel);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   CLOSE LOGIN
-========================================================= */
-
-const closeLogin =
-    document.getElementById("closeLogin");
-
-
-if (closeLogin) {
-
-    closeLogin.addEventListener(
-        "click",
-        closeAllPanels
-    );
-
-}
-
-
-/* =========================================================
-   CONTACT BUTTON
-========================================================= */
-
-const contactBtn =
-    document.getElementById("contactBtn");
-
-
-if (contactBtn) {
-
-    contactBtn.addEventListener(
-        "click",
-        function () {
-
-            openPanel(contactPanel);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
-if (panelOverlay) {
-
-    panelOverlay.addEventListener(
-        "click",
-        closeAllPanels
-    );
-
-}
-
-
-/* =========================================================
-   ESC KEY
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            closeAllPanels();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PRODUCT DATA
-========================================================= */
-
-const homepageProducts = {
-
-    "زيت زيتون بكر ممتاز": {
-
-        id: "virgin-oil",
-
-        nameAr: "زيت زيتون بكر ممتاز",
-
-        nameEn: "Extra Virgin Olive Oil",
-
-        page: "virgin oil.html"
-
-    },
-
-
-    "زيت زيتون بالثوم": {
-
-        id: "garlic-oil",
-
-        nameAr: "زيت زيتون بالثوم",
-
-        nameEn: "Garlic Infused Olive Oil",
-
-        page: "garlic-oil.html"
-
-    },
-
-
-    "زيت زيتون بالبصل": {
-
-        id: "onion-oil",
-
-        nameAr: "زيت زيتون بالبصل",
-
-        nameEn: "Onion Infused Olive Oil",
-
-        page: "onion oil.html"
-
-    },
-
-
-    "زيت زيتون بفيتامين E و D": {
-
-        id: "vitamin-oil",
-
-        nameAr: "زيت زيتون بفيتامين E و D",
-
-        nameEn: "Olive Oil with Vitamin E & D",
-
-        page: "vitamin oil.html"
-
-    },
-
-
-    "زيت زيتون بالروزماري": {
-
-        id: "rosemary-oil",
-
-        nameAr: "زيت زيتون بالروزماري",
-
-        nameEn: "Rosemary Infused Olive Oil",
-
-        page: "rosemary oil.html"
-
-    },
-
-
-    "زيت زيتون للقلي (منقى من الألياف)": {
-
-        id: "frying-oil",
-
-        nameAr: "زيت زيتون للقلي (منقى من الألياف)",
-
-        nameEn: "Olive Oil for Frying (Fiber Purified)",
-
-        page: "frying oil.html"
-
+    if (!product) {
+        return currentLanguage === "ar"
+            ? "منتج"
+            : "Product";
     }
 
-};
+    return currentLanguage === "ar"
+        ? product.ar
+        : product.en;
+
+}
 
 
 /* =========================================================
-   ADD PRODUCT TO SHARED CART
+   ADD PRODUCT TO CART
 ========================================================= */
 
-function addProductToCart(productData) {
+function addProductToCart(productId) {
 
-    if (!productData) return;
+    if (!productId) return;
 
+    const existingItem = cart.find(
+        item =>
+            item.productId === productId &&
+            !item.size
+    );
 
-    /*
-       Product from homepage has no selected size.
-       It stays in the SAME shared cart.
-    */
+    if (existingItem) {
 
-    const existingProduct =
-        cart.find(function (item) {
-
-            return (
-                item.productId === productData.id &&
-                !item.size
-            );
-
-        });
-
-
-    if (existingProduct) {
-
-        existingProduct.quantity =
-            Number(existingProduct.quantity || 0) + 1;
+        existingItem.quantity =
+            Number(existingItem.quantity || 0) + 1;
 
     } else {
 
         cart.push({
-
-            cartItemId:
-                Date.now().toString() +
-                Math.random()
-                    .toString(36)
-                    .substring(2, 8),
-
-            productId:
-                productData.id,
-
-            nameAr:
-                productData.nameAr,
-
-            nameEn:
-                productData.nameEn,
-
-            size:
-                "",
-
-            sizeAr:
-                "",
-
-            sizeEn:
-                "",
-
-            price:
-                0,
-
-            quantity:
-                1
-
+            productId: productId,
+            name: getProductName(productId),
+            size: "",
+            price: 0,
+            quantity: 1
         });
 
     }
 
-
     saveCart();
-
     updateCartCount();
-
     renderCart();
+
+    openCart();
 
 }
 
 
 /* =========================================================
-   HOMEPAGE PLUS BUTTONS
+   ADD BUTTONS
 ========================================================= */
 
-const addProductButtons =
-    document.querySelectorAll(
-        ".add-product-btn"
-    );
+document
+    .querySelectorAll(".add-product-btn")
+    .forEach(button => {
 
+        button.addEventListener("click", function () {
 
-addProductButtons.forEach(
-    function (button) {
+            const productId =
+                this.dataset.productId;
 
-        button.addEventListener(
-            "click",
-            function (event) {
+            addProductToCart(productId);
 
-                event.preventDefault();
+        });
 
-                event.stopPropagation();
-
-
-                const nameAr =
-                    button.getAttribute(
-                        "data-product"
-                    );
-
-
-                const nameEn =
-                    button.getAttribute(
-                        "data-product-en"
-                    );
-
-
-                let productData =
-                    homepageProducts[nameAr];
-
-
-                if (!productData) {
-
-                    productData = {
-
-                        id:
-                            button.getAttribute(
-                                "data-product-id"
-                            ) ||
-                            nameAr,
-
-                        nameAr:
-                            nameAr || "",
-
-                        nameEn:
-                            nameEn || "",
-
-                        page:
-                            button.getAttribute(
-                                "data-product-page"
-                            ) || ""
-
-                    };
-
-                }
-
-
-                addProductToCart(
-                    productData
-                );
-
-
-                openPanel(cartPanel);
-
-            }
-        );
-
-    }
-);
+    });
 
 
 /* =========================================================
-   RENDER CART
+   CART RENDER
 ========================================================= */
 
 function renderCart() {
 
-    const cartItems =
-        document.getElementById(
-            "cartItems"
-        );
-
-
-    const cartTotal =
-        document.getElementById(
-            "cartTotal"
-        );
-
-
-    updateCartCount();
-
-
     if (!cartItems) return;
 
-
-    /* EMPTY CART */
+    cartItems.innerHTML = "";
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-
-            <p class="empty-cart">
-
+            <div class="empty-cart">
                 ${
-                    currentLanguage === "en"
-                    ? "Your cart is currently empty"
-                    : "السلة فارغة حاليًا"
+                    currentLanguage === "ar"
+                    ? "السلة فارغة"
+                    : "Your cart is empty"
                 }
-
-            </p>
-
+            </div>
         `;
 
-
         if (cartTotal) {
-
-            cartTotal.textContent =
-                "0";
-
+            cartTotal.textContent = "0";
         }
 
-
         return;
-
     }
-
-
-    cartItems.innerHTML = "";
 
 
     let total = 0;
 
 
-    cart.forEach(
-        function (item) {
+    cart.forEach((item, index) => {
 
-            const quantity =
-                Number(item.quantity) || 0;
+        const quantity =
+            Number(item.quantity || 0);
 
+        const price =
+            Number(item.price || 0);
 
-            const price =
-                Number(item.price) || 0;
-
-
-            total +=
-                price * quantity;
+        total += price * quantity;
 
 
-            const itemName =
-                currentLanguage === "en"
-                    ? (
-                        item.nameEn ||
-                        item.nameAr ||
-                        "Product"
-                    )
-                    : (
-                        item.nameAr ||
-                        item.nameEn ||
-                        "منتج"
-                    );
+        const itemName =
+            item.name ||
+            getProductName(item.productId);
 
 
-            let sizeText = "";
+        const sizeText =
+            item.size
+                ? `<div class="cart-item-size">
+                    ${escapeHTML(item.size)}
+                   </div>`
+                : "";
 
 
-            if (item.size) {
-
-                sizeText =
-                    currentLanguage === "en"
-                    ? (
-                        item.sizeEn ||
-                        item.size
-                    )
-                    : (
-                        item.sizeAr ||
-                        item.size
-                    );
-
-            }
-
-
-            const itemElement =
-                document.createElement(
-                    "div"
+        const priceText =
+            price > 0
+                ? `${price} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`
+                : (
+                    currentLanguage === "ar"
+                    ? "اختاري الحجم من صفحة المنتج"
+                    : "Choose a size from the product page"
                 );
 
 
-            itemElement.className =
-                "cart-item";
+        const productPage =
+            products[item.productId]?.page || "#";
 
 
-            itemElement.innerHTML = `
+        const itemElement =
+            document.createElement("div");
+
+        itemElement.className = "cart-item";
+
+
+        itemElement.innerHTML = `
+
+            <div class="cart-item-info">
 
                 <div class="cart-item-name">
-
-                    <strong>
-                        ${escapeHTML(itemName)}
-                    </strong>
-
-
-                    ${
-                        sizeText
-                        ? `
-                            <div class="cart-item-size">
-
-                                ${
-                                    currentLanguage === "en"
-                                    ? "Size: "
-                                    : "الحجم: "
-                                }
-
-                                ${escapeHTML(sizeText)}
-
-                            </div>
-                        `
-                        : ""
-                    }
-
-
-                    ${
-                        price > 0
-                        ? `
-                            <div class="cart-item-price">
-
-                                ${
-                                    currentLanguage === "en"
-                                    ? "Price: "
-                                    : "السعر: "
-                                }
-
-                                ${price}
-
-                            </div>
-                        `
-                        : `
-                            <div class="cart-item-price">
-
-                                ${
-                                    currentLanguage === "en"
-                                    ? "Choose a size from the product page"
-                                    : "اختاري الحجم من صفحة المنتج"
-                                }
-
-                            </div>
-                        `
-                    }
-
+                    ${escapeHTML(itemName)}
                 </div>
 
+                ${sizeText}
 
-                <div class="cart-item-controls">
+                <div class="cart-item-price">
+                    ${priceText}
+                </div>
 
-                    <div class="quantity-controls">
-
-                        <button
-                            type="button"
-                            onclick="changeQuantity('${item.cartItemId}', -1)"
-                        >
-                            −
-                        </button>
+            </div>
 
 
-                        <span>
-                            ${quantity}
-                        </span>
+            <div class="cart-item-actions">
+
+                <button
+                    class="quantity-btn"
+                    onclick="changeQuantity(${index}, 1)"
+                    type="button"
+                >
+                    +
+                </button>
+
+                <span class="cart-quantity">
+                    ${quantity}
+                </span>
+
+                <button
+                    class="quantity-btn"
+                    onclick="changeQuantity(${index}, -1)"
+                    type="button"
+                >
+                    -
+                </button>
+
+                <button
+                    class="remove-cart-item"
+                    onclick="removeFromCart(${index})"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
 
 
-                        <button
-                            type="button"
-                            onclick="changeQuantity('${item.cartItemId}', 1)"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-
+            ${
+                !item.size
+                ? `
                     <button
+                        class="choose-size-btn"
                         type="button"
-                        class="remove-item"
-                        onclick="removeFromCart('${item.cartItemId}')"
+                        onclick="goToProduct('${productPage}')"
                     >
-
                         ${
-                            currentLanguage === "en"
-                            ? "Remove"
-                            : "حذف"
+                            currentLanguage === "ar"
+                            ? "اختيار الحجم"
+                            : "Choose Size"
                         }
-
                     </button>
+                  `
+                : ""
+            }
 
-                </div>
-
-            `;
+        `;
 
 
-            cartItems.appendChild(
-                itemElement
-            );
+        cartItems.appendChild(itemElement);
 
-        }
-    );
+    });
 
 
     if (cartTotal) {
 
         cartTotal.textContent =
-            total;
+            `${total} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`;
 
     }
 
@@ -791,95 +380,59 @@ function renderCart() {
 
 
 /* =========================================================
-   CHANGE CART QUANTITY
+   CHANGE QUANTITY
 ========================================================= */
 
-function changeQuantity(
-    cartItemId,
-    change
-) {
+function changeQuantity(index, change) {
 
-    const item =
-        cart.find(function (product) {
+    if (!cart[index]) return;
 
-            return (
-                product.cartItemId ===
-                cartItemId
-            );
-
-        });
+    cart[index].quantity =
+        Number(cart[index].quantity || 0) + change;
 
 
-    if (!item) return;
+    if (cart[index].quantity <= 0) {
 
-
-    item.quantity =
-        Number(item.quantity || 0) +
-        Number(change);
-
-
-    if (item.quantity <= 0) {
-
-        cart =
-            cart.filter(
-                function (product) {
-
-                    return (
-                        product.cartItemId !==
-                        cartItemId
-                    );
-
-                }
-            );
+        cart.splice(index, 1);
 
     }
 
 
     saveCart();
-
     updateCartCount();
-
     renderCart();
 
 }
-
-
-window.changeQuantity =
-    changeQuantity;
 
 
 /* =========================================================
    REMOVE ITEM
 ========================================================= */
 
-function removeFromCart(
-    cartItemId
-) {
+function removeFromCart(index) {
 
-    cart =
-        cart.filter(
-            function (item) {
+    if (!cart[index]) return;
 
-                return (
-                    item.cartItemId !==
-                    cartItemId
-                );
-
-            }
-        );
-
+    cart.splice(index, 1);
 
     saveCart();
-
     updateCartCount();
-
     renderCart();
 
 }
 
 
-window.removeFromCart =
-    removeFromCart;
+/* =========================================================
+   GO TO PRODUCT PAGE
+========================================================= */
+
+function goToProduct(page) {
+
+    if (!page || page === "#") return;
+
+    window.location.href = page;
+
+}
 
 
 /* =========================================================
@@ -888,281 +441,174 @@ window.removeFromCart =
 
 function escapeHTML(value) {
 
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return "";
-
-    }
-
-
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
 /* =========================================================
-   LANGUAGE
+   CART PANEL
 ========================================================= */
 
-function updateLanguage() {
+function openCart() {
 
-    /* HTML LANGUAGE */
+    if (!cartPanel) return;
 
-    document.documentElement.lang =
-        currentLanguage === "en"
-        ? "en"
-        : "ar";
+    cartPanel.classList.add("active");
 
+    if (cartOverlay) {
+        cartOverlay.classList.add("active");
+    }
 
-    document.documentElement.dir =
-        currentLanguage === "en"
-        ? "ltr"
-        : "rtl";
+}
 
 
-    /* GENERAL DATA */
+function closeCartPanel() {
 
-    const elements =
-        document.querySelectorAll(
-            "[data-ar][data-en]"
-        );
+    if (!cartPanel) return;
 
+    cartPanel.classList.remove("active");
 
-    elements.forEach(
-        function (element) {
+    if (cartOverlay) {
+        cartOverlay.classList.remove("active");
+    }
 
-            const arabic =
-                element.getAttribute(
-                    "data-ar"
-                );
+}
 
 
-            const english =
-                element.getAttribute(
-                    "data-en"
-                );
+if (cartBtn) {
 
-
-            element.textContent =
-                currentLanguage === "en"
-                ? english
-                : arabic;
-
-        }
+    cartBtn.addEventListener(
+        "click",
+        openCart
     );
 
-
-    /* ABOUT */
-
-    const aboutAr =
-        document.querySelector(
-            ".about-ar"
-        );
+}
 
 
-    const aboutEn =
-        document.querySelector(
-            ".about-en"
-        );
+if (closeCart) {
+
+    closeCart.addEventListener(
+        "click",
+        closeCartPanel
+    );
+
+}
 
 
-    if (aboutAr && aboutEn) {
+if (cartOverlay) {
 
-        aboutAr.style.display =
-            currentLanguage === "ar"
-            ? "block"
-            : "none";
+    cartOverlay.addEventListener(
+        "click",
+        closeCartPanel
+    );
+
+}
 
 
-        aboutEn.style.display =
-            currentLanguage === "en"
-            ? "block"
-            : "none";
+/* =========================================================
+   LOGIN PANEL
+========================================================= */
 
+function openLogin() {
+
+    if (!loginPanel) return;
+
+    loginPanel.classList.add("active");
+
+    if (loginOverlay) {
+        loginOverlay.classList.add("active");
     }
 
-
-    /* QUALITY */
-
-    document
-        .querySelectorAll(
-            ".quality-ar"
-        )
-        .forEach(
-            function (element) {
-
-                element.style.display =
-                    currentLanguage === "ar"
-                    ? "block"
-                    : "none";
-
-            }
-        );
+}
 
 
-    document
-        .querySelectorAll(
-            ".quality-en"
-        )
-        .forEach(
-            function (element) {
+function closeLoginPanel() {
 
-                element.style.display =
-                    currentLanguage === "en"
-                    ? "block"
-                    : "none";
+    if (!loginPanel) return;
 
-            }
-        );
+    loginPanel.classList.remove("active");
 
-
-    /* CONTACT */
-
-    document
-        .querySelectorAll(
-            ".contact-ar"
-        )
-        .forEach(
-            function (element) {
-
-                element.style.display =
-                    currentLanguage === "ar"
-                    ? "inline"
-                    : "none";
-
-            }
-        );
-
-
-    document
-        .querySelectorAll(
-            ".contact-en"
-        )
-        .forEach(
-            function (element) {
-
-                element.style.display =
-                    currentLanguage === "en"
-                    ? "inline"
-                    : "none";
-
-            }
-        );
-
-
-    /* FOOTER */
-
-    document
-        .querySelectorAll(
-            ".footer-ar"
-        )
-        .forEach(
-            function (element) {
-
-                element.style.display =
-                    currentLanguage === "ar"
-                    ? "inline"
-                    : "none";
-
-            }
-        );
-
-
-    document
-        .querySelectorAll(
-            ".footer-en"
-        )
-        .forEach(
-            function (element) {
-
-                element.style.display =
-                    currentLanguage === "en"
-                    ? "inline"
-                    : "none";
-
-            }
-        );
-
-
-    /* LANGUAGE BUTTON */
-
-    if (languageText) {
-
-        languageText.textContent =
-            currentLanguage === "en"
-            ? "العربية"
-            : "English";
-
-    } else if (languageBtn) {
-
-        languageBtn.textContent =
-            currentLanguage === "en"
-            ? "العربية"
-            : "English";
-
+    if (loginOverlay) {
+        loginOverlay.classList.remove("active");
     }
 
-
-    /* PLACEHOLDERS */
-
-    document
-        .querySelectorAll(
-            "[data-placeholder-ar][data-placeholder-en]"
-        )
-        .forEach(
-            function (input) {
-
-                input.placeholder =
-                    currentLanguage === "en"
-
-                    ? input.getAttribute(
-                        "data-placeholder-en"
-                    )
-
-                    : input.getAttribute(
-                        "data-placeholder-ar"
-                    );
-
-            }
-        );
+}
 
 
-    /* DASHBOARD */
+if (loginBtn) {
 
-    applyDashboardData();
+    loginBtn.addEventListener(
+        "click",
+        openLogin
+    );
+
+}
 
 
-    /* CART */
+if (closeLogin) {
 
-    renderCart();
+    closeLogin.addEventListener(
+        "click",
+        closeLoginPanel
+    );
+
+}
+
+
+if (loginOverlay) {
+
+    loginOverlay.addEventListener(
+        "click",
+        closeLoginPanel
+    );
+
+}
+
+
+/* =========================================================
+   CONTACT PANEL
+========================================================= */
+
+function openContact() {
+
+    if (!contactPanel) return;
+
+    contactPanel.classList.add("active");
+
+}
+
+
+function closeContactPanel() {
+
+    if (!contactPanel) return;
+
+    contactPanel.classList.remove("active");
+
+}
+
+
+if (contactBtn) {
+
+    contactBtn.addEventListener(
+        "click",
+        openContact
+    );
+
+}
+
+
+if (closeContact) {
+
+    closeContact.addEventListener(
+        "click",
+        closeContactPanel
+    );
 
 }
 
@@ -1179,8 +625,8 @@ if (languageBtn) {
 
             currentLanguage =
                 currentLanguage === "ar"
-                ? "en"
-                : "ar";
+                    ? "en"
+                    : "ar";
 
 
             localStorage.setItem(
@@ -1198,80 +644,93 @@ if (languageBtn) {
 
 
 /* =========================================================
-   QUALITY VIDEO
-   AUTOPLAY / MUTED / LOOP
+   UPDATE LANGUAGE
 ========================================================= */
 
-function initializeQualityVideo() {
+function updateLanguage() {
 
-    const qualityVideo =
-        document.getElementById(
-            "qualityVideo"
-        );
+    document.documentElement.lang =
+        currentLanguage;
 
-
-    if (!qualityVideo) return;
-
-
-    qualityVideo.muted = true;
-
-    qualityVideo.autoplay = true;
-
-    qualityVideo.loop = true;
-
-    qualityVideo.playsInline = true;
+    document.documentElement.dir =
+        currentLanguage === "ar"
+            ? "rtl"
+            : "ltr";
 
 
-    /*
-       Prevent user interaction
-       with the video.
-    */
+    document
+        .querySelectorAll("[data-ar][data-en]")
+        .forEach(element => {
 
-    qualityVideo.controls = false;
+            element.textContent =
+                currentLanguage === "ar"
+                    ? element.dataset.ar
+                    : element.dataset.en;
 
-    qualityVideo.style.pointerEvents =
-        "none";
+        });
 
 
-    /*
-       Force autoplay.
-    */
+    /* -----------------------------------------
+       PLACEHOLDERS
+    ----------------------------------------- */
 
-    const playVideo =
+    document
+        .querySelectorAll("[data-placeholder-ar][data-placeholder-en]")
+        .forEach(element => {
+
+            element.placeholder =
+                currentLanguage === "ar"
+                    ? element.dataset.placeholderAr
+                    : element.dataset.placeholderEn;
+
+        });
+
+
+    /* -----------------------------------------
+       LANGUAGE BUTTON
+    ----------------------------------------- */
+
+    if (languageBtn) {
+
+        languageBtn.textContent =
+            currentLanguage === "ar"
+                ? "English"
+                : "العربية";
+
+    }
+
+
+    renderCart();
+    updateCartCount();
+
+}
+
+
+/* =========================================================
+   CHECKOUT
+========================================================= */
+
+if (checkoutBtn) {
+
+    checkoutBtn.addEventListener(
+        "click",
         function () {
 
-            qualityVideo.play()
-                .catch(function () {
+            if (cart.length === 0) {
 
-                    /*
-                       Browser may block autoplay
-                       in some situations.
-                       The video remains muted,
-                       so no user interaction
-                       is required by our code.
-                    */
+                alert(
+                    currentLanguage === "ar"
+                        ? "السلة فارغة"
+                        : "Your cart is empty"
+                );
 
-                });
-
-        };
-
-
-    playVideo();
-
-
-    document.addEventListener(
-        "visibilitychange",
-        function () {
-
-            if (
-                !document.hidden &&
-                qualityVideo.paused
-            ) {
-
-                playVideo();
+                return;
 
             }
 
+
+            openOrderModal();
+
         }
     );
 
@@ -1279,281 +738,141 @@ function initializeQualityVideo() {
 
 
 /* =========================================================
-   QUALITY VIDEO LANGUAGE DIRECTION
+   ORDER MODAL
 ========================================================= */
 
-function updateQualityDirection() {
+function openOrderModal() {
 
-    const qualityContainer =
-        document.querySelector(
-            ".quality-video-container"
-        );
+    if (!orderModal) return;
 
+    renderOrderSummary();
 
-    if (!qualityContainer) return;
+    orderModal.classList.add("active");
 
-
-    if (currentLanguage === "en") {
-
-        qualityContainer.style.direction =
-            "ltr";
-
-    } else {
-
-        qualityContainer.style.direction =
-            "rtl";
-
+    if (orderOverlay) {
+        orderOverlay.classList.add("active");
     }
 
 }
 
 
-/* =========================================================
-   DASHBOARD HELPERS
-========================================================= */
+function closeOrderModalFunction() {
 
-function readJSON(
-    key,
-    fallback = null
-) {
+    if (!orderModal) return;
 
-    try {
+    orderModal.classList.remove("active");
 
-        const value =
-            localStorage.getItem(key);
-
-
-        if (!value) {
-
-            return fallback;
-
-        }
-
-
-        return JSON.parse(value);
-
-    } catch (error) {
-
-        return fallback;
-
+    if (orderOverlay) {
+        orderOverlay.classList.remove("active");
     }
 
 }
 
 
-/* =========================================================
-   DASHBOARD IDENTITY
-========================================================= */
+if (closeOrderModal) {
 
-function getDashboardIdentity() {
+    closeOrderModal.addEventListener(
+        "click",
+        closeOrderModalFunction
+    );
 
-    return readJSON(
-        "oliveOilIdentity",
-        null
+}
+
+
+if (orderOverlay) {
+
+    orderOverlay.addEventListener(
+        "click",
+        closeOrderModalFunction
     );
 
 }
 
 
 /* =========================================================
-   DASHBOARD HOME CONTENT
+   ORDER SUMMARY
 ========================================================= */
 
-function getDashboardContent() {
+function renderOrderSummary() {
 
-    return readJSON(
-        "oliveOil_content_home",
-        null
-    );
+    const summary =
+        document.getElementById("orderSummary");
 
-}
+    const finalTotal =
+        document.getElementById("finalTotal");
 
 
-/* =========================================================
-   DASHBOARD ABOUT
-========================================================= */
+    if (!summary) return;
 
-function getDashboardAbout() {
 
-    return readJSON(
-        "oliveOil_aboutUs_home",
-        null
-    );
+    summary.innerHTML = "";
 
-}
+    let total = 0;
 
 
-/* =========================================================
-   GET ARABIC VALUE
-========================================================= */
+    cart.forEach(item => {
 
-function getArabicValue(
-    data,
-    arabicKeys
-) {
+        const quantity =
+            Number(item.quantity || 0);
 
-    if (!data) return "";
+        const price =
+            Number(item.price || 0);
 
+        total += price * quantity;
 
-    for (
-        let i = 0;
-        i < arabicKeys.length;
-        i++
-    ) {
 
-        const key =
-            arabicKeys[i];
+        const row =
+            document.createElement("div");
 
+        row.className =
+            "order-summary-item";
 
-        if (
-            data[key] !== undefined &&
-            data[key] !== null &&
-            data[key] !== ""
-        ) {
 
-            return data[key];
+        row.innerHTML = `
 
-        }
+            <span>
+                ${escapeHTML(
+                    item.name ||
+                    getProductName(item.productId)
+                )}
 
-    }
+                ${
+                    item.size
+                    ? ` - ${escapeHTML(item.size)}`
+                    : ""
+                }
 
+                × ${quantity}
+            </span>
 
-    return "";
+            <strong>
+                ${
+                    price > 0
+                    ? `${price * quantity} ${
+                        currentLanguage === "ar"
+                        ? "جنيه"
+                        : "EGP"
+                    }`
+                    : "-"
+                }
+            </strong>
 
-}
+        `;
 
 
-/* =========================================================
-   GET ENGLISH VALUE
-========================================================= */
+        summary.appendChild(row);
 
-function getEnglishValue(
-    data,
-    englishKeys
-) {
+    });
 
-    if (!data) return "";
 
+    if (finalTotal) {
 
-    for (
-        let i = 0;
-        i < englishKeys.length;
-        i++
-    ) {
-
-        const key =
-            englishKeys[i];
-
-
-        if (
-            data[key] !== undefined &&
-            data[key] !== null &&
-            data[key] !== ""
-        ) {
-
-            return data[key];
-
-        }
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =========================================================
-   APPLY DASHBOARD IDENTITY
-========================================================= */
-
-function applyDashboardIdentity() {
-
-    const identity =
-        getDashboardIdentity();
-
-
-    if (!identity) return;
-
-
-    const brandName =
-        document.querySelector(
-            ".brand-name"
-        );
-
-
-    const brandAr =
-        getArabicValue(
-            identity,
-            [
-                "storeNameAr",
-                "brandNameAr",
-                "nameAr",
-                "storeName"
-            ]
-        );
-
-
-    const brandEn =
-        getEnglishValue(
-            identity,
-            [
-                "storeNameEn",
-                "brandNameEn",
-                "nameEn"
-            ]
-        );
-
-
-    if (brandName) {
-
-        if (brandAr) {
-
-            brandName.setAttribute(
-                "data-ar",
-                brandAr
-            );
-
-        }
-
-
-        if (brandEn) {
-
-            brandName.setAttribute(
-                "data-en",
-                brandEn
-            );
-
-        }
-
-
-        brandName.textContent =
-            currentLanguage === "en"
-            ? (
-                brandEn ||
-                brandAr
-            )
-            : (
-                brandAr ||
-                brandEn
-            );
-
-    }
-
-
-    const logo =
-        document.querySelector(
-            ".logo img"
-        );
-
-
-    if (
-        logo &&
-        identity.logo
-    ) {
-
-        logo.src =
-            identity.logo;
+        finalTotal.textContent =
+            `${total} ${
+                currentLanguage === "ar"
+                    ? "جنيه"
+                    : "EGP"
+            }`;
 
     }
 
@@ -1561,352 +880,170 @@ function applyDashboardIdentity() {
 
 
 /* =========================================================
-   APPLY DASHBOARD HERO
+   ORDER FORM
 ========================================================= */
 
-function applyDashboardHero() {
+if (orderForm) {
 
-    const identity =
-        getDashboardIdentity();
+    orderForm.addEventListener(
+        "submit",
+        function (event) {
 
+            event.preventDefault();
 
-    if (!identity) return;
 
+            if (cart.length === 0) {
 
-    const heroTitle =
-        document.getElementById(
-            "dashboardHeroTitle"
-        );
+                alert(
+                    currentLanguage === "ar"
+                        ? "السلة فارغة"
+                        : "Your cart is empty"
+                );
 
+                return;
 
-    const heroSubtitle =
-        document.getElementById(
-            "dashboardHeroSubtitle"
-        );
+            }
 
 
-    if (heroTitle) {
+            const formData =
+                new FormData(orderForm);
 
-        const titleAr =
-            getArabicValue(
-                identity,
-                [
-                    "mainTitleAr",
-                    "heroTitleAr",
-                    "titleAr",
-                    "mainTitle"
-                ]
-            );
 
+            const customerName =
+                formData.get("name") || "";
 
-        const titleEn =
-            getEnglishValue(
-                identity,
-                [
-                    "mainTitleEn",
-                    "heroTitleEn",
-                    "titleEn"
-                ]
-            );
+            const phone =
+                formData.get("phone") || "";
 
+            const address =
+                formData.get("address") || "";
 
-        if (titleAr) {
+            const governorate =
+                formData.get("governorate") || "";
 
-            heroTitle.setAttribute(
-                "data-ar",
-                titleAr
-            );
+            const payment =
+                formData.get("payment") || "";
 
-        }
 
+            let message =
+                currentLanguage === "ar"
+                    ? "طلب جديد من موقع زيت زيتون دكتور أبو النصر%0A%0A"
+                    : "New order from Dr. Abu El Nasr Olive Oil%0A%0A";
 
-        if (titleEn) {
 
-            heroTitle.setAttribute(
-                "data-en",
-                titleEn
-            );
+            message +=
+                currentLanguage === "ar"
+                    ? `الاسم: ${customerName}%0A`
+                    : `Name: ${customerName}%0A`;
 
-        }
 
+            message +=
+                currentLanguage === "ar"
+                    ? `الهاتف: ${phone}%0A`
+                    : `Phone: ${phone}%0A`;
 
-        const finalTitle =
-            currentLanguage === "en"
-            ? (
-                titleEn ||
-                titleAr
-            )
-            : (
-                titleAr ||
-                titleEn
-            );
 
+            message +=
+                currentLanguage === "ar"
+                    ? `العنوان: ${address}%0A`
+                    : `Address: ${address}%0A`;
 
-        if (finalTitle) {
 
-            heroTitle.textContent =
-                finalTitle;
+            message +=
+                currentLanguage === "ar"
+                    ? `المحافظة: ${governorate}%0A`
+                    : `Governorate: ${governorate}%0A`;
 
-        }
 
-    }
+            message +=
+                currentLanguage === "ar"
+                    ? `طريقة الدفع: ${payment}%0A%0A`
+                    : `Payment: ${payment}%0A%0A`;
 
 
-    if (heroSubtitle) {
+            message +=
+                currentLanguage === "ar"
+                    ? "المنتجات:%0A"
+                    : "Products:%0A";
 
-        const subtitleAr =
-            getArabicValue(
-                identity,
-                [
-                    "mainSubtitleAr",
-                    "heroSubtitleAr",
-                    "subtitleAr",
-                    "mainSubtitle"
-                ]
-            );
 
+            cart.forEach(item => {
 
-        const subtitleEn =
-            getEnglishValue(
-                identity,
-                [
-                    "mainSubtitleEn",
-                    "heroSubtitleEn",
-                    "subtitleEn"
-                ]
-            );
+                const name =
+                    item.name ||
+                    getProductName(item.productId);
 
+                const quantity =
+                    Number(item.quantity || 0);
 
-        if (subtitleAr) {
+                const price =
+                    Number(item.price || 0);
 
-            heroSubtitle.setAttribute(
-                "data-ar",
-                subtitleAr
-            );
 
-        }
+                message +=
+                    `${name}`;
 
 
-        if (subtitleEn) {
+                if (item.size) {
 
-            heroSubtitle.setAttribute(
-                "data-en",
-                subtitleEn
-            );
+                    message +=
+                        ` - ${item.size}`;
 
-        }
+                }
 
 
-        const finalSubtitle =
-            currentLanguage === "en"
-            ? (
-                subtitleEn ||
-                subtitleAr
-            )
-            : (
-                subtitleAr ||
-                subtitleEn
-            );
+                message +=
+                    ` × ${quantity}`;
 
 
-        if (finalSubtitle) {
+                if (price > 0) {
 
-            heroSubtitle.textContent =
-                finalSubtitle;
+                    message +=
+                        ` = ${price * quantity} ${
+                            currentLanguage === "ar"
+                            ? "جنيه"
+                            : "EGP"
+                        }`;
 
-        }
+                }
 
-    }
 
-}
+                message += "%0A";
 
+            });
 
-/* =========================================================
-   APPLY DASHBOARD PRODUCT CONTENT
-========================================================= */
 
-function applyDashboardContent() {
-
-    const contentData =
-        getDashboardContent();
-
-
-    if (!contentData) return;
-
-
-    const cards =
-        document.querySelectorAll(
-            "#products .product-card"
-        );
-
-
-    if (!cards.length) return;
-
-
-    let products =
-        Array.isArray(contentData)
-        ? contentData
-        : (
-            Array.isArray(
-                contentData.products
-            )
-            ? contentData.products
-            : []
-        );
-
-
-    products.forEach(
-        function (item, index) {
-
-            if (!cards[index]) return;
-
-
-            const card =
-                cards[index];
-
-
-            const title =
-                card.querySelector(
-                    "h3"
+            const total =
+                cart.reduce(
+                    (sum, item) =>
+                        sum +
+                        Number(item.price || 0) *
+                        Number(item.quantity || 0),
+                    0
                 );
 
 
-            const description =
-                card.querySelector(
-                    "p"
-                );
+            message += "%0A";
 
 
-            if (title) {
-
-                const titleAr =
-                    getArabicValue(
-                        item,
-                        [
-                            "titleAr",
-                            "nameAr",
-                            "title",
-                            "name"
-                        ]
-                    );
+            message +=
+                currentLanguage === "ar"
+                    ? `الإجمالي: ${total} جنيه`
+                    : `Total: ${total} EGP`;
 
 
-                const titleEn =
-                    getEnglishValue(
-                        item,
-                        [
-                            "titleEn",
-                            "nameEn"
-                        ]
-                    );
+            const whatsappNumber =
+                "201272154551";
 
 
-                if (titleAr) {
-
-                    title.setAttribute(
-                        "data-ar",
-                        titleAr
-                    );
-
-                }
+            const whatsappURL =
+                `https://wa.me/${whatsappNumber}?text=${message}`;
 
 
-                if (titleEn) {
-
-                    title.setAttribute(
-                        "data-en",
-                        titleEn
-                    );
-
-                }
-
-
-                const finalTitle =
-                    currentLanguage === "en"
-                    ? (
-                        titleEn ||
-                        titleAr
-                    )
-                    : (
-                        titleAr ||
-                        titleEn
-                    );
-
-
-                if (finalTitle) {
-
-                    title.textContent =
-                        finalTitle;
-
-                }
-
-            }
-
-
-            if (description) {
-
-                const textAr =
-                    getArabicValue(
-                        item,
-                        [
-                            "textAr",
-                            "descriptionAr",
-                            "text",
-                            "description"
-                        ]
-                    );
-
-
-                const textEn =
-                    getEnglishValue(
-                        item,
-                        [
-                            "textEn",
-                            "descriptionEn"
-                        ]
-                    );
-
-
-                if (textAr) {
-
-                    description.setAttribute(
-                        "data-ar",
-                        textAr
-                    );
-
-                }
-
-
-                if (textEn) {
-
-                    description.setAttribute(
-                        "data-en",
-                        textEn
-                    );
-
-                }
-
-
-                const finalText =
-                    currentLanguage === "en"
-                    ? (
-                        textEn ||
-                        textAr
-                    )
-                    : (
-                        textAr ||
-                        textEn
-                    );
-
-
-                if (finalText) {
-
-                    description.textContent =
-                        finalText;
-
-                }
-
-            }
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
 
         }
     );
@@ -1915,179 +1052,29 @@ function applyDashboardContent() {
 
 
 /* =========================================================
-   APPLY DASHBOARD ABOUT
+   LOGIN FORM
 ========================================================= */
 
-function applyDashboardAbout() {
-
-    const aboutData =
-        getDashboardAbout();
+const loginForm =
+    document.getElementById("loginForm");
 
 
-    if (!aboutData) return;
+if (loginForm) {
 
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
 
-    let sections =
-        Array.isArray(aboutData)
-        ? aboutData
-        : (
-            Array.isArray(
-                aboutData.sections
-            )
-            ? aboutData.sections
-            : []
-        );
+            event.preventDefault();
 
+            alert(
+                currentLanguage === "ar"
+                    ? "تسجيل الدخول سيتم تفعيله قريبًا"
+                    : "Login will be available soon"
+            );
 
-    if (!sections.length) return;
-
-
-    const aboutAr =
-        document.querySelector(
-            ".about-ar"
-        );
-
-
-    const aboutEn =
-        document.querySelector(
-            ".about-en"
-        );
-
-
-    if (!aboutAr || !aboutEn) return;
-
-
-    const first =
-        sections[0];
-
-
-    const titleAr =
-        getArabicValue(
-            first,
-            [
-                "titleAr",
-                "headingAr",
-                "title",
-                "heading"
-            ]
-        );
-
-
-    const titleEn =
-        getEnglishValue(
-            first,
-            [
-                "titleEn",
-                "headingEn"
-            ]
-        );
-
-
-    const textAr =
-        getArabicValue(
-            first,
-            [
-                "textAr",
-                "descriptionAr",
-                "text",
-                "description"
-            ]
-        );
-
-
-    const textEn =
-        getEnglishValue(
-            first,
-            [
-                "textEn",
-                "descriptionEn"
-            ]
-        );
-
-
-    const arTitle =
-        aboutAr.querySelector(
-            "h2"
-        );
-
-
-    const enTitle =
-        aboutEn.querySelector(
-            "h2"
-        );
-
-
-    const arParagraph =
-        aboutAr.querySelector(
-            "p"
-        );
-
-
-    const enParagraph =
-        aboutEn.querySelector(
-            "p"
-        );
-
-
-    if (
-        arTitle &&
-        titleAr
-    ) {
-
-        arTitle.textContent =
-            titleAr;
-
-    }
-
-
-    if (
-        enTitle &&
-        titleEn
-    ) {
-
-        enTitle.textContent =
-            titleEn;
-
-    }
-
-
-    if (
-        arParagraph &&
-        textAr
-    ) {
-
-        arParagraph.textContent =
-            textAr;
-
-    }
-
-
-    if (
-        enParagraph &&
-        textEn
-    ) {
-
-        enParagraph.textContent =
-            textEn;
-
-    }
-
-}
-
-
-/* =========================================================
-   APPLY ALL DASHBOARD DATA
-========================================================= */
-
-function applyDashboardData() {
-
-    applyDashboardIdentity();
-
-    applyDashboardHero();
-
-    applyDashboardContent();
-
-    applyDashboardAbout();
+        }
+    );
 
 }
 
@@ -2097,9 +1084,7 @@ function applyDashboardData() {
 ========================================================= */
 
 const contactForm =
-    document.getElementById(
-        "contactForm"
-    );
+    document.getElementById("contactForm");
 
 
 if (contactForm) {
@@ -2111,92 +1096,24 @@ if (contactForm) {
             event.preventDefault();
 
 
-            const nameInput =
-                document.getElementById(
-                    "contactName"
-                );
-
-
-            const phoneInput =
-                document.getElementById(
-                    "contactPhone"
-                );
-
-
-            const messageInput =
-                document.getElementById(
-                    "contactMessage"
-                );
-
-
             const name =
-                nameInput
-                ? nameInput.value.trim()
-                : "";
-
+                document.getElementById("contactName")?.value || "";
 
             const phone =
-                phoneInput
-                ? phoneInput.value.trim()
-                : "";
+                document.getElementById("contactPhone")?.value || "";
 
-
-            const message =
-                messageInput
-                ? messageInput.value.trim()
-                : "";
-
-
-            if (
-                !name ||
-                !phone ||
-                !message
-            ) {
-
-                alert(
-
-                    currentLanguage === "en"
-
-                    ? "Please complete all fields."
-
-                    : "من فضلك اكملي جميع البيانات."
-
-                );
-
-
-                return;
-
-            }
+            const messageText =
+                document.getElementById("contactMessage")?.value || "";
 
 
             const whatsappMessage =
-
-                currentLanguage === "en"
-
-                ? (
-                    "Name: " +
-                    name +
-                    "\nPhone: " +
-                    phone +
-                    "\nMessage: " +
-                    message
-                )
-
-                : (
-                    "الاسم: " +
-                    name +
-                    "\nرقم الهاتف: " +
-                    phone +
-                    "\nالرسالة: " +
-                    message
-                );
+                `الاسم: ${name}%0A` +
+                `الهاتف: ${phone}%0A` +
+                `الرسالة: ${messageText}`;
 
 
             const whatsappURL =
-                "https://wa.me/201272154551?text=" +
-                encodeURIComponent(
-                    whatsappMessage
-                );
+                `https://wa.me/201272154551?text=${whatsappMessage}`;
 
 
             window.open(
@@ -2204,228 +1121,45 @@ if (contactForm) {
                 "_blank"
             );
 
-
-            contactForm.reset();
-
         }
     );
 
 }
-
-
-/* =========================================================
-   ABOUT BUTTON
-========================================================= */
-
-function openAboutSection() {
-
-    const aboutSection =
-        document.querySelector(
-            ".about-section"
-        );
-
-
-    closeAllPanels();
-
-
-    if (aboutSection) {
-
-        aboutSection.scrollIntoView({
-
-            behavior:
-                "smooth"
-
-        });
-
-    }
-
-}
-
-
-window.openAboutSection =
-    openAboutSection;
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-function openDashboardLogin() {
-
-    window.location.href =
-        "dashboard.html";
-
-}
-
-
-window.openDashboardLogin =
-    openDashboardLogin;
-
-
-/* =========================================================
-   LOGIN FORM
-========================================================= */
-
-const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
-
-if (loginForm) {
-
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
-
-            alert(
-
-                currentLanguage === "en"
-
-                ? "Login is currently being prepared."
-
-                : "تسجيل الدخول قيد التجهيز حاليًا."
-
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   CHECKOUT BUTTON
-========================================================= */
-
-const checkoutBtn =
-    document.getElementById(
-        "checkoutBtn"
-    );
-
-
-if (checkoutBtn) {
-
-    checkoutBtn.addEventListener(
-        "click",
-        function () {
-
-            if (!cart.length) {
-
-                alert(
-
-                    currentLanguage === "en"
-
-                    ? "Your cart is empty."
-
-                    : "السلة فارغة."
-
-                );
-
-                return;
-
-            }
-
-
-            alert(
-
-                currentLanguage === "en"
-
-                ? "Your order is ready for checkout."
-
-                : "الأوردر جاهز لإتمام الطلب."
-
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-applyDashboardData();
-
-updateLanguage();
-
-initializeQualityVideo();
-
-updateQualityDirection();
-
-renderCart();
-
-updateCartCount();
 
 
 /* =========================================================
    HERO SLIDER
 ========================================================= */
 
-const heroSlides =
-    document.querySelectorAll(
-        ".hero-slide"
-    );
-
-
-const heroPrev =
-    document.getElementById(
-        "heroPrev"
-    );
-
-
-const heroNext =
-    document.getElementById(
-        "heroNext"
-    );
-
-
-let currentHeroSlide = 0;
-
+let currentSlide = 0;
 let heroInterval;
 
-
-/* =========================================================
-   SHOW HERO SLIDE
-========================================================= */
 
 function showHeroSlide(index) {
 
     if (!heroSlides.length) return;
 
 
-    if (
-        index >= heroSlides.length
-    ) {
+    if (index >= heroSlides.length) {
+        currentSlide = 0;
+    }
 
-        currentHeroSlide = 0;
-
-    } else if (
-        index < 0
-    ) {
-
-        currentHeroSlide =
+    else if (index < 0) {
+        currentSlide =
             heroSlides.length - 1;
+    }
 
-    } else {
-
-        currentHeroSlide =
-            index;
-
+    else {
+        currentSlide = index;
     }
 
 
     heroSlides.forEach(
-        function (slide, index) {
+        (slide, i) => {
 
             slide.classList.toggle(
                 "active",
-                index === currentHeroSlide
+                i === currentSlide
             );
 
         }
@@ -2434,62 +1168,36 @@ function showHeroSlide(index) {
 }
 
 
-/* =========================================================
-   NEXT HERO
-========================================================= */
-
 function nextHeroSlide() {
 
     showHeroSlide(
-        currentHeroSlide + 1
+        currentSlide + 1
     );
 
 }
 
-
-/* =========================================================
-   PREVIOUS HERO
-========================================================= */
 
 function previousHeroSlide() {
 
     showHeroSlide(
-        currentHeroSlide - 1
+        currentSlide - 1
     );
 
 }
 
 
-/* =========================================================
-   AUTO HERO
-========================================================= */
-
 function startHeroSlider() {
 
-    if (!heroSlides.length) return;
-
-
-    clearInterval(
-        heroInterval
-    );
-
+    clearInterval(heroInterval);
 
     heroInterval =
         setInterval(
-            function () {
-
-                nextHeroSlide();
-
-            },
+            nextHeroSlide,
             5000
         );
 
 }
 
-
-/* =========================================================
-   HERO ARROWS
-========================================================= */
 
 if (heroNext) {
 
@@ -2498,7 +1206,6 @@ if (heroNext) {
         function () {
 
             nextHeroSlide();
-
             startHeroSlider();
 
         }
@@ -2514,7 +1221,6 @@ if (heroPrev) {
         function () {
 
             previousHeroSlide();
-
             startHeroSlider();
 
         }
@@ -2523,10 +1229,210 @@ if (heroPrev) {
 }
 
 
+showHeroSlide(0);
+startHeroSlider();
+
+
 /* =========================================================
-   START HERO
+   QUALITY VIDEO
 ========================================================= */
 
-showHeroSlide(0);
+const qualityVideo =
+    document.getElementById("qualityVideo");
 
-startHeroSlider();
+
+if (qualityVideo) {
+
+    qualityVideo.muted = true;
+    qualityVideo.loop = true;
+    qualityVideo.autoplay = true;
+    qualityVideo.playsInline = true;
+
+
+    qualityVideo.play()
+        .catch(() => {});
+
+}
+
+
+/* =========================================================
+   DASHBOARD DATA
+========================================================= */
+
+function loadDashboardData() {
+
+    const identity =
+        JSON.parse(
+            localStorage.getItem("oliveOilIdentity")
+        );
+
+
+    const homeContent =
+        JSON.parse(
+            localStorage.getItem("oliveOil_content_home")
+        );
+
+
+    const aboutContent =
+        JSON.parse(
+            localStorage.getItem("oliveOil_aboutUs_home")
+        );
+
+
+    /* -----------------------------------------
+       IDENTITY
+    ----------------------------------------- */
+
+    if (identity) {
+
+        document
+            .querySelectorAll("[data-site-name]")
+            .forEach(element => {
+
+                if (identity.name) {
+
+                    element.textContent =
+                        identity.name;
+
+                }
+
+            });
+
+    }
+
+
+    /* -----------------------------------------
+       HOME CONTENT
+    ----------------------------------------- */
+
+    if (homeContent) {
+
+        Object.keys(homeContent)
+            .forEach(key => {
+
+                const element =
+                    document.querySelector(
+                        `[data-dashboard="${key}"]`
+                    );
+
+
+                if (element) {
+
+                    if (
+                        typeof homeContent[key] ===
+                        "object"
+                    ) {
+                        return;
+                    }
+
+
+                    element.textContent =
+                        homeContent[key];
+
+                }
+
+            });
+
+    }
+
+
+    /* -----------------------------------------
+       ABOUT
+    ----------------------------------------- */
+
+    if (aboutContent) {
+
+        Object.keys(aboutContent)
+            .forEach(key => {
+
+                const element =
+                    document.querySelector(
+                        `[data-about="${key}"]`
+                    );
+
+
+                if (element) {
+
+                    element.textContent =
+                        aboutContent[key];
+
+                }
+
+            });
+
+    }
+
+}
+
+
+/* =========================================================
+   STORAGE SYNC
+   Updates cart if another page/tab changes it
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    function (event) {
+
+        if (
+            event.key ===
+            "oliveOilCart"
+        ) {
+
+            cart =
+                JSON.parse(
+                    event.newValue || "[]"
+                );
+
+
+            updateCartCount();
+            renderCart();
+
+        }
+
+
+        if (
+            event.key ===
+            "siteLanguage"
+        ) {
+
+            currentLanguage =
+                event.newValue || "ar";
+
+            updateLanguage();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(
+                    "oliveOilCart"
+                )
+            ) || [];
+
+
+        currentLanguage =
+            localStorage.getItem(
+                "siteLanguage"
+            ) || "ar";
+
+
+        updateCartCount();
+        renderCart();
+        updateLanguage();
+        loadDashboardData();
+
+    }
+);
