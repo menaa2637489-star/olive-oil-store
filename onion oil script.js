@@ -10,7 +10,6 @@
 let currentLanguage =
     localStorage.getItem("siteLanguage") || "ar";
 
-
 const languageBtn =
     document.getElementById("languageBtn");
 
@@ -20,50 +19,23 @@ const languageText =
 
 /* =========================================================
    SHARED CART
+   نفس السلة المستخدمة في كل صفحات المنتجات
 ========================================================= */
 
 const CART_KEY = "oliveOilCart";
 
 let cart = [];
 
-
-function loadCart() {
-
-    try {
-
-        const savedCart =
-            localStorage.getItem(CART_KEY);
-
-        cart =
-            savedCart
-                ? JSON.parse(savedCart)
-                : [];
-
-        if (!Array.isArray(cart)) {
-            cart = [];
-        }
-
-    } catch (error) {
-
-        cart = [];
-
-    }
-
-}
-
-
-function saveCart() {
-
-    localStorage.setItem(
-        CART_KEY,
-        JSON.stringify(cart)
-    );
-
+try {
+    cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+} catch (error) {
+    cart = [];
 }
 
 
 /* =========================================================
    PRODUCT ID
+   مهم جدًا: البصل له ID مستقل
 ========================================================= */
 
 const PRODUCT_ID = "onion-oil";
@@ -145,12 +117,44 @@ const buyNowBtn =
 
 
 /* =========================================================
-   SELECTED SIZE + QUANTITY
+   SELECTED SIZE
 ========================================================= */
 
 let selectedSize = "half";
 
 let quantity = 1;
+
+
+/* =========================================================
+   SHARED CART FUNCTIONS
+========================================================= */
+
+function loadCart() {
+
+    try {
+
+        cart =
+            JSON.parse(
+                localStorage.getItem(CART_KEY)
+            ) || [];
+
+    } catch (error) {
+
+        cart = [];
+
+    }
+
+}
+
+
+function saveCart() {
+
+    localStorage.setItem(
+        CART_KEY,
+        JSON.stringify(cart)
+    );
+
+}
 
 
 /* =========================================================
@@ -184,16 +188,8 @@ function updateProduct() {
     }
 
 
-    if (productPrice) {
-
-        productPrice.textContent =
-            `${data.price} ${
-                currentLanguage === "ar"
-                    ? "جنيه"
-                    : "EGP"
-            }`;
-
-    }
+    productPrice.textContent =
+        `${data.price} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`;
 
 
     if (mainProductImage) {
@@ -220,36 +216,28 @@ function updateProduct() {
 
 sizeButtons.forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.addEventListener("click", function () {
 
-            sizeButtons.forEach(btn => {
+        sizeButtons.forEach(btn => {
 
-                btn.classList.remove("active");
+            btn.classList.remove("active");
 
-            });
+        });
 
 
-            this.classList.add("active");
+        this.classList.add("active");
 
 
-            selectedSize =
-                this.dataset.size;
+        selectedSize =
+            this.dataset.size;
 
 
-            if (!productData[selectedSize]) {
-                return;
-            }
+        quantity = 1;
 
 
-            quantity = 1;
+        updateProduct();
 
-
-            updateProduct();
-
-        }
-    );
+    });
 
 });
 
@@ -260,21 +248,17 @@ sizeButtons.forEach(button => {
 
 if (minusOneBtn) {
 
-    minusOneBtn.addEventListener(
-        "click",
-        function () {
+    minusOneBtn.addEventListener("click", function () {
 
-            if (quantity > 1) {
+        if (quantity > 1) {
 
-                quantity--;
-
-            }
-
-
-            updateProduct();
+            quantity--;
 
         }
-    );
+
+        updateProduct();
+
+    });
 
 }
 
@@ -285,26 +269,19 @@ if (minusOneBtn) {
 
 function addSelectedProductToCart(amount) {
 
+    if (!productData[selectedSize]) {
+        return;
+    }
+
+
     const productInfo =
         productData[selectedSize];
 
 
-    if (!productInfo) {
-        return;
-    }
-
-
-    amount =
-        Number(amount) || 1;
-
-
-    if (amount < 1) {
-        return;
-    }
-
-
-    loadCart();
-
+    /*
+       لو فيه منتج بصل مضاف بالفعل
+       بنفس المقاس نزود الكمية
+    */
 
     const existingItem =
         cart.find(item =>
@@ -321,60 +298,35 @@ function addSelectedProductToCart(amount) {
             (Number(existingItem.quantity) || 0) +
             amount;
 
+    } else {
 
         /*
-           تحديث البيانات لو اللغة اتغيرت
+           إضافة منتج جديد للسلة المشتركة
         */
-
-        existingItem.name =
-            currentLanguage === "ar"
-                ? existingItem.nameAr
-                : existingItem.nameEn;
-
-
-        existingItem.sizeName =
-            getSizeName(selectedSize);
-
-
-        existingItem.price =
-            productInfo.price;
-
-
-        existingItem.image =
-            productInfo.image;
-
-    } else {
 
         cart.push({
 
-            productId:
-                PRODUCT_ID,
+            productId: PRODUCT_ID,
 
-            nameAr:
-                "زيت الزيتون بالبصل",
+            nameAr: "زيت الزيتون بالبصل",
 
-            nameEn:
-                "Olive Oil with Onion",
+            nameEn: "Olive Oil with Onion",
 
             name:
                 currentLanguage === "ar"
                     ? "زيت الزيتون بالبصل"
                     : "Olive Oil with Onion",
 
-            size:
-                selectedSize,
+            size: selectedSize,
 
             sizeName:
                 getSizeName(selectedSize),
 
-            price:
-                productInfo.price,
+            price: productInfo.price,
 
-            image:
-                productInfo.image,
+            image: productInfo.image,
 
-            quantity:
-                amount
+            quantity: amount
 
         });
 
@@ -390,25 +342,20 @@ function addSelectedProductToCart(amount) {
 
 /* =========================================================
    PLUS BUTTON
-   يضيف قطعة واحدة للسلة
+   + يضيف مباشرة للسلة المشتركة
 ========================================================= */
 
 if (plusOneBtn) {
 
-    plusOneBtn.addEventListener(
-        "click",
-        function () {
+    plusOneBtn.addEventListener("click", function () {
 
-            addSelectedProductToCart(1);
+        addSelectedProductToCart(1);
 
+        quantity = 1;
 
-            quantity = 1;
+        updateProduct();
 
-
-            updateProduct();
-
-        }
-    );
+    });
 
 }
 
@@ -443,7 +390,7 @@ const checkoutBtn =
 
 
 /* =========================================================
-   UPDATE CART
+   UPDATE SHARED CART UI
 ========================================================= */
 
 function updateCart() {
@@ -452,7 +399,6 @@ function updateCart() {
 
 
     let totalItems = 0;
-
     let totalPrice = 0;
 
 
@@ -494,33 +440,19 @@ function updateCart() {
 
 
         const itemName =
-            currentLanguage === "ar"
-                ? (
-                    item.nameAr ||
-                    item.name ||
-                    "منتج"
-                )
-                : (
-                    item.nameEn ||
-                    item.name ||
-                    "Product"
-                );
+            item.name ||
+            item.nameAr ||
+            item.nameEn ||
+            "منتج";
 
 
-        let itemSize = "";
-
-
-        if (item.size && productData[item.size]) {
-
-            itemSize =
-                getSizeName(item.size);
-
-        } else {
-
-            itemSize =
-                item.sizeName || "";
-
-        }
+        const itemSize =
+            item.sizeName ||
+            (
+                item.size
+                    ? getSizeName(item.size)
+                    : ""
+            );
 
 
         itemElement.innerHTML = `
@@ -539,33 +471,20 @@ function updateCart() {
 
                 <p>
                     ${itemPrice}
-                    ${
-                        currentLanguage === "ar"
-                            ? "جنيه"
-                            : "EGP"
-                    }
+                    ${currentLanguage === "ar" ? "جنيه" : "EGP"}
                 </p>
 
                 <p>
-                    ${
-                        currentLanguage === "ar"
-                            ? "الكمية"
-                            : "Quantity"
-                    }:
+                    ${currentLanguage === "ar" ? "الكمية" : "Quantity"}:
                     ${itemQuantity}
                 </p>
 
             </div>
 
+
             <button
-                type="button"
                 class="remove-cart-item"
                 onclick="removeFromCart(${index})"
-                aria-label="${
-                    currentLanguage === "ar"
-                        ? "حذف المنتج"
-                        : "Remove product"
-                }"
             >
 
                 <i class="fa-solid fa-trash"></i>
@@ -593,11 +512,7 @@ function updateCart() {
     if (cartTotal) {
 
         cartTotal.textContent =
-            `${totalPrice} ${
-                currentLanguage === "ar"
-                    ? "جنيه"
-                    : "EGP"
-            }`;
+            `${totalPrice} ${currentLanguage === "ar" ? "جنيه" : "EGP"}`;
 
     }
 
@@ -605,7 +520,7 @@ function updateCart() {
 
 
 /* =========================================================
-   REMOVE ITEM
+   REMOVE FROM SHARED CART
 ========================================================= */
 
 function removeFromCart(index) {
@@ -654,32 +569,25 @@ function clearCart() {
 
 if (cartBtn) {
 
-    cartBtn.addEventListener(
-        "click",
-        function () {
+    cartBtn.addEventListener("click", function () {
 
-            updateCart();
+        updateCart();
 
 
-            if (cartPanel) {
+        if (cartPanel) {
 
-                cartPanel.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            if (cartOverlay) {
-
-                cartOverlay.classList.add(
-                    "active"
-                );
-
-            }
+            cartPanel.classList.add("active");
 
         }
-    );
+
+
+        if (cartOverlay) {
+
+            cartOverlay.classList.add("active");
+
+        }
+
+    });
 
 }
 
@@ -692,18 +600,14 @@ function closeCartPanel() {
 
     if (cartPanel) {
 
-        cartPanel.classList.remove(
-            "active"
-        );
+        cartPanel.classList.remove("active");
 
     }
 
 
     if (cartOverlay) {
 
-        cartOverlay.classList.remove(
-            "active"
-        );
+        cartOverlay.classList.remove("active");
 
     }
 
@@ -736,40 +640,32 @@ if (cartOverlay) {
 
 if (addCartBtn) {
 
-    addCartBtn.addEventListener(
-        "click",
-        function () {
+    addCartBtn.addEventListener("click", function () {
 
-            addSelectedProductToCart(
-                quantity
-            );
+        addSelectedProductToCart(
+            quantity
+        );
 
 
-            quantity = 1;
+        quantity = 1;
+
+        updateProduct();
 
 
-            updateProduct();
+        if (cartPanel) {
 
-
-            if (cartPanel) {
-
-                cartPanel.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            if (cartOverlay) {
-
-                cartOverlay.classList.add(
-                    "active"
-                );
-
-            }
+            cartPanel.classList.add("active");
 
         }
-    );
+
+
+        if (cartOverlay) {
+
+            cartOverlay.classList.add("active");
+
+        }
+
+    });
 
 }
 
@@ -793,29 +689,22 @@ const closeLogin =
 
 if (loginBtn) {
 
-    loginBtn.addEventListener(
-        "click",
-        function () {
+    loginBtn.addEventListener("click", function () {
 
-            if (loginPanel) {
+        if (loginPanel) {
 
-                loginPanel.classList.add(
-                    "active"
-                );
-
-            }
-
-
-            if (loginOverlay) {
-
-                loginOverlay.classList.add(
-                    "active"
-                );
-
-            }
+            loginPanel.classList.add("active");
 
         }
-    );
+
+
+        if (loginOverlay) {
+
+            loginOverlay.classList.add("active");
+
+        }
+
+    });
 
 }
 
@@ -824,18 +713,14 @@ function closeLoginPanel() {
 
     if (loginPanel) {
 
-        loginPanel.classList.remove(
-            "active"
-        );
+        loginPanel.classList.remove("active");
 
     }
 
 
     if (loginOverlay) {
 
-        loginOverlay.classList.remove(
-            "active"
-        );
+        loginOverlay.classList.remove("active");
 
     }
 
@@ -924,38 +809,23 @@ function updateOrderSummary() {
             itemPrice * itemQuantity;
 
 
-        total +=
-            itemTotal;
+        total += itemTotal;
 
 
         const itemName =
-            currentLanguage === "ar"
-                ? (
-                    item.nameAr ||
-                    item.name ||
-                    "منتج"
-                )
-                : (
-                    item.nameEn ||
-                    item.name ||
-                    "Product"
-                );
+            item.name ||
+            item.nameAr ||
+            item.nameEn ||
+            "Product";
 
 
-        let itemSize = "";
-
-
-        if (item.size && productData[item.size]) {
-
-            itemSize =
-                getSizeName(item.size);
-
-        } else {
-
-            itemSize =
-                item.sizeName || "";
-
-        }
+        const itemSize =
+            item.sizeName ||
+            (
+                item.size
+                    ? getSizeName(item.size)
+                    : ""
+            );
 
 
         summaryHTML += `
@@ -973,14 +843,8 @@ function updateOrderSummary() {
                 }
 
                 <span>
-                    ${itemQuantity}
-                    ×
-                    ${itemPrice}
-                    ${
-                        currentLanguage === "ar"
-                            ? "جنيه"
-                            : "EGP"
-                    }
+                    ${itemQuantity} × ${itemPrice}
+                    ${currentLanguage === "ar" ? "جنيه" : "EGP"}
                 </span>
 
             </div>
@@ -1004,11 +868,7 @@ function updateOrderSummary() {
 
             <strong>
                 ${total}
-                ${
-                    currentLanguage === "ar"
-                        ? "جنيه"
-                        : "EGP"
-                }
+                ${currentLanguage === "ar" ? "جنيه" : "EGP"}
             </strong>
 
         </div>
@@ -1023,42 +883,6 @@ function updateOrderSummary() {
 
 
 /* =========================================================
-   OPEN ORDER MODAL
-========================================================= */
-
-function openOrderModal() {
-
-    loadCart();
-
-
-    if (cart.length === 0) {
-
-        alert(
-            currentLanguage === "ar"
-                ? "السلة فارغة"
-                : "Cart is empty"
-        );
-
-        return;
-
-    }
-
-
-    updateOrderSummary();
-
-
-    if (orderModal) {
-
-        orderModal.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
    CHECKOUT
 ========================================================= */
 
@@ -1068,9 +892,32 @@ if (checkoutBtn) {
         "click",
         function () {
 
+            loadCart();
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "السلة فارغة"
+                        : "Cart is empty"
+                );
+
+                return;
+
+            }
+
+
             closeCartPanel();
 
-            openOrderModal();
+            updateOrderSummary();
+
+
+            if (orderModal) {
+
+                orderModal.classList.add("active");
+
+            }
 
         }
     );
@@ -1095,11 +942,17 @@ if (buyNowBtn) {
 
             quantity = 1;
 
-
             updateProduct();
 
 
-            openOrderModal();
+            updateOrderSummary();
+
+
+            if (orderModal) {
+
+                orderModal.classList.add("active");
+
+            }
 
         }
     );
@@ -1142,29 +995,19 @@ if (confirmOrderBtn) {
         function () {
 
             const fullName =
-                document.getElementById(
-                    "fullName"
-                );
+                document.getElementById("fullName");
 
             const phone =
-                document.getElementById(
-                    "phone"
-                );
+                document.getElementById("phone");
 
             const governorate =
-                document.getElementById(
-                    "governorate"
-                );
+                document.getElementById("governorate");
 
             const address =
-                document.getElementById(
-                    "address"
-                );
+                document.getElementById("address");
 
             const notes =
-                document.getElementById(
-                    "notes"
-                );
+                document.getElementById("notes");
 
 
             if (
@@ -1200,19 +1043,6 @@ if (confirmOrderBtn) {
             loadCart();
 
 
-            if (cart.length === 0) {
-
-                alert(
-                    currentLanguage === "ar"
-                        ? "السلة فارغة"
-                        : "Cart is empty"
-                );
-
-                return;
-
-            }
-
-
             const orderData = {
 
                 customer: {
@@ -1236,12 +1066,7 @@ if (confirmOrderBtn) {
 
                 },
 
-
-                products:
-                    JSON.parse(
-                        JSON.stringify(cart)
-                    ),
-
+                products: cart,
 
                 createdAt:
                     new Date().toISOString()
@@ -1249,32 +1074,21 @@ if (confirmOrderBtn) {
             };
 
 
-            /* =================================================
-               SAVE ORDER LOCALLY
-            ================================================= */
+            /*
+               حفظ الطلب محليًا
+               لحد ربطه بالـ PHP / MySQL
+            */
 
             let orders = [];
 
-
             try {
 
-                const savedOrders =
-                    localStorage.getItem(
-                        "oliveOilOrders"
-                    );
-
-
                 orders =
-                    savedOrders
-                        ? JSON.parse(savedOrders)
-                        : [];
-
-
-                if (!Array.isArray(orders)) {
-
-                    orders = [];
-
-                }
+                    JSON.parse(
+                        localStorage.getItem(
+                            "oliveOilOrders"
+                        )
+                    ) || [];
 
             } catch (error) {
 
@@ -1283,9 +1097,7 @@ if (confirmOrderBtn) {
             }
 
 
-            orders.push(
-                orderData
-            );
+            orders.push(orderData);
 
 
             localStorage.setItem(
@@ -1294,10 +1106,6 @@ if (confirmOrderBtn) {
             );
 
 
-            /* =================================================
-               SUCCESS
-            ================================================= */
-
             alert(
                 currentLanguage === "ar"
                     ? "تم إرسال طلبك بنجاح ❤️"
@@ -1305,9 +1113,10 @@ if (confirmOrderBtn) {
             );
 
 
-            /* =================================================
-               CLEAR SHARED CART
-            ================================================= */
+            /*
+               تفريغ السلة المشتركة
+               يعني السلة هتفضى في كل الصفحات
+            */
 
             cart = [];
 
@@ -1315,10 +1124,6 @@ if (confirmOrderBtn) {
 
             updateCart();
 
-
-            /* =================================================
-               CLOSE MODAL
-            ================================================= */
 
             if (orderModal) {
 
@@ -1329,23 +1134,24 @@ if (confirmOrderBtn) {
             }
 
 
-            /* =================================================
-               CLEAR FORM
-            ================================================= */
+            if (fullName) {
+                fullName.value = "";
+            }
 
-            fullName.value = "";
+            if (phone) {
+                phone.value = "";
+            }
 
-            phone.value = "";
+            if (governorate) {
+                governorate.value = "";
+            }
 
-            governorate.value = "";
-
-            address.value = "";
-
+            if (address) {
+                address.value = "";
+            }
 
             if (notes) {
-
                 notes.value = "";
-
             }
 
         }
@@ -1359,9 +1165,7 @@ if (confirmOrderBtn) {
 ========================================================= */
 
 const pageBackBtn =
-    document.getElementById(
-        "pageBackBtn"
-    );
+    document.getElementById("pageBackBtn");
 
 
 if (pageBackBtn) {
@@ -1370,9 +1174,12 @@ if (pageBackBtn) {
         "click",
         function () {
 
-            if (
-                window.history.length > 1
-            ) {
+            /*
+               لو فيه صفحة قبلها يرجع لها.
+               لو الصفحة مفتوحة مباشرة يروح للرئيسية.
+            */
+
+            if (window.history.length > 1) {
 
                 window.history.back();
 
@@ -1390,10 +1197,22 @@ if (pageBackBtn) {
 
 
 /* =========================================================
-   LANGUAGE - APPLY CURRENT LANGUAGE
+   LANGUAGE
 ========================================================= */
 
-function applyLanguage() {
+function changeLanguage() {
+
+    currentLanguage =
+        currentLanguage === "ar"
+            ? "en"
+            : "ar";
+
+
+    localStorage.setItem(
+        "siteLanguage",
+        currentLanguage
+    );
+
 
     document.documentElement.lang =
         currentLanguage;
@@ -1465,9 +1284,9 @@ function applyLanguage() {
     }
 
 
-    /* =====================================================
-       SIZE BUTTONS
-    ===================================================== */
+    /*
+       تحديث أسماء المقاسات
+    */
 
     sizeButtons.forEach(button => {
 
@@ -1476,7 +1295,6 @@ function applyLanguage() {
 
 
         if (
-            size &&
             productData[size]
         ) {
 
@@ -1488,49 +1306,11 @@ function applyLanguage() {
     });
 
 
-    /* =====================================================
-       ABOUT
-    ===================================================== */
-
-    const aboutTitle =
-        document.getElementById(
-            "aboutTitle"
-        );
-
-    const aboutSubtitle =
-        document.getElementById(
-            "aboutSubtitle"
-        );
-
-
-    if (aboutTitle) {
-
-        aboutTitle.textContent =
-            currentLanguage === "ar"
-                ? "من نحن"
-                : "About Us";
-
-    }
-
-
-    if (aboutSubtitle) {
-
-        aboutSubtitle.textContent =
-            currentLanguage === "ar"
-                ? "رحلة زيت زيتون دكتور ابو النصر"
-                : "The Journey of Dr. Abu El Nasr Olive Oil";
-
-    }
-
-
-    /* =====================================================
-       UPDATE CART
-    ===================================================== */
+    /*
+       تحديث السلة المشتركة
+    */
 
     updateCart();
-
-
-    updateOrderSummary();
 
 
     updateProduct();
@@ -1541,25 +1321,6 @@ function applyLanguage() {
 /* =========================================================
    LANGUAGE BUTTON
 ========================================================= */
-
-function changeLanguage() {
-
-    currentLanguage =
-        currentLanguage === "ar"
-            ? "en"
-            : "ar";
-
-
-    localStorage.setItem(
-        "siteLanguage",
-        currentLanguage
-    );
-
-
-    applyLanguage();
-
-}
-
 
 if (languageBtn) {
 
@@ -1579,9 +1340,9 @@ window.addEventListener(
     "storage",
     function (event) {
 
-        /* ================================================
-           CART CHANGED FROM ANOTHER PAGE
-        ================================================ */
+        /*
+           لو السلة اتغيرت من صفحة تانية
+        */
 
         if (event.key === CART_KEY) {
 
@@ -1589,38 +1350,24 @@ window.addEventListener(
 
             updateCart();
 
-            updateOrderSummary();
-
         }
 
 
-        /* ================================================
-           LANGUAGE CHANGED FROM ANOTHER PAGE
-        ================================================ */
+        /*
+           لو اللغة اتغيرت من صفحة تانية
+        */
 
         if (event.key === "siteLanguage") {
 
-            const newLanguage =
+            currentLanguage =
                 event.newValue || "ar";
 
 
             /*
-               مهم جدًا:
-               هنا ممنوع نستعمل changeLanguage()
-               لأنها بتقلب اللغة مرة تانية.
+               تحديث الصفحة بدون إعادة تحميل
             */
 
-            if (
-                newLanguage === "ar" ||
-                newLanguage === "en"
-            ) {
-
-                currentLanguage =
-                    newLanguage;
-
-                applyLanguage();
-
-            }
+            changeLanguage();
 
         }
 
@@ -1663,9 +1410,7 @@ document.addEventListener(
 ========================================================= */
 
 const faqQuestions =
-    document.querySelectorAll(
-        ".faq-question"
-    );
+    document.querySelectorAll(".faq-question");
 
 
 faqQuestions.forEach(question => {
@@ -1678,9 +1423,7 @@ faqQuestions.forEach(question => {
                 this.nextElementSibling;
 
 
-            this.classList.toggle(
-                "active"
-            );
+            this.classList.toggle("active");
 
 
             if (answer) {
@@ -1702,18 +1445,10 @@ faqQuestions.forEach(question => {
 ========================================================= */
 
 const productVideo =
-    document.getElementById(
-        "productVideo"
-    );
+    document.getElementById("productVideo");
 
 
 if (productVideo) {
-
-    /*
-       يفضل autoplay + muted + loop
-       ولو المستخدم ضغط على الفيديو
-       نسمح له بالتشغيل / الإيقاف.
-    */
 
     productVideo.addEventListener(
         "click",
@@ -1721,9 +1456,7 @@ if (productVideo) {
 
             if (this.paused) {
 
-                this.play().catch(
-                    () => {}
-                );
+                this.play();
 
             } else {
 
@@ -1738,13 +1471,42 @@ if (productVideo) {
 
 
 /* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+const aboutTitle =
+    document.getElementById("aboutTitle");
+
+const aboutSubtitle =
+    document.getElementById("aboutSubtitle");
+
+
+if (aboutTitle) {
+
+    aboutTitle.textContent =
+        currentLanguage === "ar"
+            ? "من نحن"
+            : "About Us";
+
+}
+
+
+if (aboutSubtitle) {
+
+    aboutSubtitle.textContent =
+        currentLanguage === "ar"
+            ? "رحلة زيت زيتون دكتور ابو النصر"
+            : "The Journey of Dr. Abu El Nasr Olive Oil";
+
+}
+
+
+/* =========================================================
    DASHBOARD BUTTON
 ========================================================= */
 
 const dashboardBtn =
-    document.getElementById(
-        "dashboardBtn"
-    );
+    document.getElementById("dashboardBtn");
 
 
 if (dashboardBtn) {
@@ -1766,15 +1528,24 @@ if (dashboardBtn) {
    INITIALIZATION
 ========================================================= */
 
-loadCart();
+document.documentElement.lang =
+    currentLanguage;
 
 
-/*
-   ضبط اللغة الحالية
-   بدون تبديلها
-*/
+document.documentElement.dir =
+    currentLanguage === "ar"
+        ? "rtl"
+        : "ltr";
 
-applyLanguage();
+
+if (languageText) {
+
+    languageText.textContent =
+        currentLanguage === "ar"
+            ? "English"
+            : "العربية";
+
+}
 
 
 /*
@@ -1788,9 +1559,7 @@ sizeButtons.forEach(button => {
         selectedSize
     ) {
 
-        button.classList.add(
-            "active"
-        );
+        button.classList.add("active");
 
     }
 
