@@ -582,7 +582,7 @@ select {
 }
 
 .quality-text h2 {
-    font-size: 30px;
+    font-size: 35px;
 
     margin-bottom: 20px;
 
@@ -590,7 +590,7 @@ select {
 }
 
 .quality-text p {
-    font-size: 18px;
+    font-size: 21px;
 
     line-height: 2;
 }
@@ -824,13 +824,30 @@ select {
     display: flex;
 
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
-    gap: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
 }
 
 .site-footer p {
     margin: 0;
+
+    color: #fff;
+
+    font-size: 15px;
 }
 
 .dashboard-access {
@@ -838,7 +855,11 @@ select {
 
     border: 1px solid #789542;
 
-    padding: 8px 14px;
+    background: transparent;
+
+    color: #fff;
+
+    padding: 8px 18px;
 
     border-radius: 7px;
 
@@ -848,6 +869,7 @@ select {
 .dashboard-access:hover {
     background: #789542;
 }
+
 
 
 /* =========================================================
@@ -1786,11 +1808,13 @@ html[lang="en"] .side-panel.active {
     /* QUALITY VIDEO */
 
     .quality-text h2 {
-        font-size: 24px;
+        font-size: 28px;
+     
     }
 
     .quality-text p {
-        font-size: 15px;
+        font-size: 17px;
+     
     }
 
 
