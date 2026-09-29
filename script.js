@@ -31,15 +31,37 @@ const cartTotal = document.getElementById("cartTotal");
 const checkoutBtn = document.getElementById("checkoutBtn");
 
 const orderModal = document.getElementById("orderModal");
-const closeOrderModal = document.getElementById("closeOrderModal");
-const orderOverlay = document.getElementById("orderOverlay");
+const closeOrderModal =
+    document.getElementById("closeOrder");
 
-const orderForm = document.getElementById("orderForm");
+const backOrderBtn =
+    document.getElementById("backOrderBtn");
+
+const confirmOrderBtn =
+    document.getElementById("confirmOrderBtn");
 
 const heroSlides = document.querySelectorAll(".hero-slide");
 const heroPrev = document.getElementById("heroPrev");
 const heroNext = document.getElementById("heroNext");
+const dashboardAccess =
+    document.getElementById("dashboardAccess");
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
+if (dashboardAccess) {
+
+    dashboardAccess.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+    );
+
+}
 
 /* =========================================================
    LANGUAGE
@@ -818,46 +840,27 @@ if (loginOverlay) {
 
 
 /* =========================================================
-   CONTACT PANEL
+   FACEBOOK / MESSENGER
 ========================================================= */
-
-function openContact() {
-
-    if (!contactPanel) return;
-
-    contactPanel.classList.add(
-        "active"
-    );
-
-}
-
-
-function closeContactPanel() {
-
-    if (!contactPanel) return;
-
-    contactPanel.classList.remove(
-        "active"
-    );
-
-}
-
 
 if (contactBtn) {
 
     contactBtn.addEventListener(
         "click",
-        openContact
-    );
+        function () {
 
-}
+            const facebookUrl =
+                this.dataset.facebookUrl;
 
+            if (!facebookUrl) return;
 
-if (closeContact) {
+            window.open(
+                facebookUrl,
+                "_blank",
+                "noopener,noreferrer"
+            );
 
-    closeContact.addEventListener(
-        "click",
-        closeContactPanel
+        }
     );
 
 }
@@ -1035,22 +1038,15 @@ function openOrderModal() {
 
     if (!orderModal) return;
 
+    /*
+       إغلاق السلة قبل فتح بيانات الطلب
+    */
+
+    closeCartPanel();
 
     renderOrderSummary();
 
-
-    orderModal.classList.add(
-        "active"
-    );
-
-
-    if (orderOverlay) {
-
-        orderOverlay.classList.add(
-            "active"
-        );
-
-    }
+    orderModal.classList.add("active");
 
 }
 
@@ -1059,19 +1055,7 @@ function closeOrderModalFunction() {
 
     if (!orderModal) return;
 
-
-    orderModal.classList.remove(
-        "active"
-    );
-
-
-    if (orderOverlay) {
-
-        orderOverlay.classList.remove(
-            "active"
-        );
-
-    }
+    orderModal.classList.remove("active");
 
 }
 
@@ -1086,16 +1070,32 @@ if (closeOrderModal) {
 }
 
 
-if (orderOverlay) {
+/* =========================================================
+   BACK TO CART
+========================================================= */
 
-    orderOverlay.addEventListener(
+if (backOrderBtn) {
+
+    backOrderBtn.addEventListener(
         "click",
-        closeOrderModalFunction
+        function () {
+
+            /*
+               قفل صفحة إتمام الطلب
+            */
+
+            closeOrderModalFunction();
+
+            /*
+               فتح السلة مرة أخرى
+            */
+
+            openCart();
+
+        }
     );
 
 }
-
-
 /* =========================================================
    ORDER SUMMARY
 ========================================================= */
@@ -1210,17 +1210,14 @@ function renderOrderSummary() {
 
 
 /* =========================================================
-   ORDER FORM
+   CONFIRM ORDER
 ========================================================= */
 
-if (orderForm) {
+if (confirmOrderBtn) {
 
-    orderForm.addEventListener(
-        "submit",
-        function (event) {
-
-            event.preventDefault();
-
+    confirmOrderBtn.addEventListener(
+        "click",
+        function () {
 
             if (cart.length === 0) {
 
@@ -1235,30 +1232,68 @@ if (orderForm) {
             }
 
 
-            const formData =
-                new FormData(
-                    orderForm
-                );
-
-
             const customerName =
-                formData.get("name") || "";
+                document.getElementById(
+                    "customerName"
+                )?.value.trim() || "";
 
 
-            const phone =
-                formData.get("phone") || "";
-
-
-            const address =
-                formData.get("address") || "";
+            const customerPhone =
+                document.getElementById(
+                    "customerPhone"
+                )?.value.trim() || "";
 
 
             const governorate =
-                formData.get("governorate") || "";
+                document.getElementById(
+                    "customerGovernorate"
+                )?.value || "";
+
+
+            const address =
+                document.getElementById(
+                    "customerAddress"
+                )?.value.trim() || "";
+
+
+            const notes =
+                document.getElementById(
+                    "customerNotes"
+                )?.value.trim() || "";
+
+
+            const paymentElement =
+                document.querySelector(
+                    'input[name="paymentMethod"]:checked'
+                );
 
 
             const payment =
-                formData.get("payment") || "";
+                paymentElement
+                    ? paymentElement.value
+                    : "";
+
+
+            /*
+               التحقق من البيانات الأساسية
+            */
+
+            if (
+                !customerName ||
+                !customerPhone ||
+                !governorate ||
+                !address
+            ) {
+
+                alert(
+                    currentLanguage === "ar"
+                        ? "من فضلك أدخل جميع البيانات المطلوبة"
+                        : "Please enter all required information"
+                );
+
+                return;
+
+            }
 
 
             let message =
@@ -1270,56 +1305,48 @@ if (orderForm) {
 
 
             message +=
-
                 currentLanguage === "ar"
-
                     ? `الاسم: ${encodeURIComponent(customerName)}%0A`
-
                     : `Name: ${encodeURIComponent(customerName)}%0A`;
 
 
             message +=
-
                 currentLanguage === "ar"
-
-                    ? `الهاتف: ${encodeURIComponent(phone)}%0A`
-
-                    : `Phone: ${encodeURIComponent(phone)}%0A`;
+                    ? `الهاتف: ${encodeURIComponent(customerPhone)}%0A`
+                    : `Phone: ${encodeURIComponent(customerPhone)}%0A`;
 
 
             message +=
-
                 currentLanguage === "ar"
-
-                    ? `العنوان: ${encodeURIComponent(address)}%0A`
-
-                    : `Address: ${encodeURIComponent(address)}%0A`;
-
-
-            message +=
-
-                currentLanguage === "ar"
-
                     ? `المحافظة: ${encodeURIComponent(governorate)}%0A`
-
                     : `Governorate: ${encodeURIComponent(governorate)}%0A`;
 
 
             message +=
-
                 currentLanguage === "ar"
+                    ? `العنوان: ${encodeURIComponent(address)}%0A`
+                    : `Address: ${encodeURIComponent(address)}%0A`;
 
+
+            if (notes) {
+
+                message +=
+                    currentLanguage === "ar"
+                        ? `ملاحظات: ${encodeURIComponent(notes)}%0A`
+                        : `Notes: ${encodeURIComponent(notes)}%0A`;
+
+            }
+
+
+            message +=
+                currentLanguage === "ar"
                     ? `طريقة الدفع: ${encodeURIComponent(payment)}%0A%0A`
-
                     : `Payment: ${encodeURIComponent(payment)}%0A%0A`;
 
 
             message +=
-
                 currentLanguage === "ar"
-
                     ? "المنتجات:%0A"
-
                     : "Products:%0A";
 
 
@@ -1344,9 +1371,7 @@ if (orderForm) {
 
 
                 message +=
-                    encodeURIComponent(
-                        name
-                    );
+                    encodeURIComponent(name);
 
 
                 if (item.size) {
@@ -1373,8 +1398,7 @@ if (orderForm) {
                 }
 
 
-                message +=
-                    "%0A";
+                message += "%0A";
 
             });
 
@@ -1389,16 +1413,12 @@ if (orderForm) {
                 );
 
 
-            message +=
-                "%0A";
+            message += "%0A";
 
 
             message +=
-
                 currentLanguage === "ar"
-
                     ? `الإجمالي: ${total} جنيه`
-
                     : `Total: ${total} EGP`;
 
 
