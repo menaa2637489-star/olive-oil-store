@@ -63,12 +63,13 @@
         </button>
 
 
-        <!-- CONTACT -->
+        <!-- CONTACT / MESSENGER -->
 
         <button
             type="button"
             class="header-btn contact-btn"
-            id="contactBtn">
+            id="contactBtn"
+            data-facebook-url="https://www.facebook.com/share/1ckPpM1Tov/">
 
             <span class="phone-icon">
                 ☎
@@ -696,8 +697,6 @@
     <div class="quality-video-container">
 
 
-        <!-- VIDEO -->
-
         <div class="quality-video">
 
             <video
@@ -711,8 +710,6 @@
 
         </div>
 
-
-        <!-- ARABIC TEXT -->
 
         <div class="quality-text quality-ar">
 
@@ -730,8 +727,6 @@
 
         </div>
 
-
-        <!-- ENGLISH TEXT -->
 
         <div class="quality-text quality-en">
 
@@ -763,8 +758,6 @@
 
     <div class="quality-cards-container">
 
-
-        <!-- CARD 1 -->
 
         <div class="quality-card">
 
@@ -807,8 +800,6 @@
 
 
 
-        <!-- CARD 2 -->
-
         <div class="quality-card">
 
             <div class="quality-icon">
@@ -841,8 +832,6 @@
 
 
 
-        <!-- CARD 3 -->
-
         <div class="quality-card">
 
             <div class="quality-icon">
@@ -874,8 +863,6 @@
         </div>
 
 
-
-        <!-- CARD 4 -->
 
         <div class="quality-card">
 
@@ -1046,32 +1033,38 @@
 
 <footer class="site-footer">
 
-    <p>
+    <div class="footer-content">
 
-        <span class="footer-ar">
-            جميع الحقوق محفوظة ٢٠٢٦
-        </span>
+        <p>
 
-        <span class="footer-en">
-            All Rights Reserved 2026
-        </span>
+            <span class="footer-ar">
+                جميع الحقوق محفوظة ٢٠٢٦
+            </span>
 
-    </p>
+            <span class="footer-en">
+                All Rights Reserved 2026
+            </span>
+
+        </p>
 
 
-  <a
-    href="dashboard.html"
-    class="dashboard-access">
+        <button
+            type="button"
+            class="dashboard-access"
+            id="dashboardAccess"
+            onclick="openDashboardLogin()">
 
-    <span class="footer-ar">
-        لوحة التحكم
-    </span>
+            <span class="footer-ar">
+                لوحة التحكم
+            </span>
 
-    <span class="footer-en">
-        Dashboard
-    </span>
+            <span class="footer-en">
+                Dashboard
+            </span>
 
-</a>
+        </button>
+
+    </div>
 
 </footer>
 
@@ -1124,7 +1117,11 @@
      CART PANEL
 ========================= -->
 
-<div class="overlay" id="cartOverlay"></div>
+<div
+    class="overlay"
+    id="cartOverlay">
+</div>
+
 
 <aside
     class="side-panel cart-panel"
@@ -1329,9 +1326,9 @@
             <input
                 type="text"
                 id="customerName"
-                data-placeholder-ar="الاسم"
-                data-placeholder-en="Name"
-                placeholder="الاسم">
+                data-placeholder-ar="الاسم بالكامل"
+                data-placeholder-en="Full Name"
+                placeholder="الاسم بالكامل">
 
 
             <input
@@ -1473,9 +1470,9 @@
 
             <textarea
                 id="customerNotes"
-                data-placeholder-ar="ملاحظات إضافية"
-                data-placeholder-en="Additional Notes"
-                placeholder="ملاحظات إضافية"></textarea>
+                data-placeholder-ar="ملاحظات إضافية (اختياري)"
+                data-placeholder-en="Additional Notes (Optional)"
+                placeholder="ملاحظات إضافية (اختياري)"></textarea>
 
 
             <!-- PAYMENT -->
@@ -1570,10 +1567,10 @@
                     type="button"
                     class="confirm-order-btn"
                     id="confirmOrderBtn"
-                    data-ar="تأكيد الطلب"
-                    data-en="Confirm Order">
+                    data-ar="إتمام الطلب"
+                    data-en="Complete Order">
 
-                    تأكيد الطلب
+                    إتمام الطلب
 
                 </button>
 
