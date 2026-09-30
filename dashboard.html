@@ -121,7 +121,12 @@
         </div>
 
 
-        <div class="product-selector">
+        <div
+            class="product-selector"
+            id="productSelector">
+
+
+            <!-- HOME -->
 
             <button
                 class="product-selector-btn active"
@@ -129,6 +134,7 @@
                 onclick="selectDashboardProduct('home')">
 
                 🏠
+
                 <span>
                     الرئيسية
                 </span>
@@ -136,12 +142,15 @@
             </button>
 
 
+            <!-- VIRGIN -->
+
             <button
                 class="product-selector-btn"
                 data-product="virgin"
                 onclick="selectDashboardProduct('virgin')">
 
                 🫒
+
                 <span>
                     زيت الزيتون البكر
                 </span>
@@ -149,12 +158,15 @@
             </button>
 
 
+            <!-- GARLIC -->
+
             <button
                 class="product-selector-btn"
                 data-product="garlic"
                 onclick="selectDashboardProduct('garlic')">
 
                 🧄
+
                 <span>
                     زيت الزيتون بالثوم
                 </span>
@@ -162,12 +174,15 @@
             </button>
 
 
+            <!-- ONION -->
+
             <button
                 class="product-selector-btn"
                 data-product="onion"
                 onclick="selectDashboardProduct('onion')">
 
                 🧅
+
                 <span>
                     زيت الزيتون بالبصل
                 </span>
@@ -175,12 +190,15 @@
             </button>
 
 
+            <!-- VITAMIN -->
+
             <button
                 class="product-selector-btn"
                 data-product="vitamin"
                 onclick="selectDashboardProduct('vitamin')">
 
                 💊
+
                 <span>
                     فيتامين D و E
                 </span>
@@ -188,12 +206,15 @@
             </button>
 
 
+            <!-- ROSEMARY -->
+
             <button
                 class="product-selector-btn"
                 data-product="rosemary"
                 onclick="selectDashboardProduct('rosemary')">
 
                 🌿
+
                 <span>
                     زيت الزيتون بالروزماري
                 </span>
@@ -201,21 +222,362 @@
             </button>
 
 
+            <!-- FRYING -->
+
             <button
                 class="product-selector-btn"
                 data-product="frying"
                 onclick="selectDashboardProduct('frying')">
 
                 🍳
+
                 <span>
                     زيت الزيتون للقلي
                 </span>
 
             </button>
 
+
+            <!-- =================================================
+                 ADD NEW PRODUCT
+            ================================================== -->
+
+            <button
+                class="product-selector-btn add-product-selector-btn"
+                data-product="add-new-product"
+                onclick="openAddProductModal()">
+
+                ➕
+
+                <span>
+                    إضافة منتج جديد
+                </span>
+
+            </button>
+
+
         </div>
 
     </section>
+    <!-- =========================================================
+     ADD NEW PRODUCT MODAL
+========================================================= -->
+
+<div
+    id="addProductModal"
+    class="add-product-modal">
+
+    <div class="add-product-modal-content">
+
+        <div class="add-product-modal-header">
+
+            <div>
+                <h2>
+                    إضافة منتج جديد
+                </h2>
+
+                <p>
+                    أضيفي المنتج بكل بياناته باللغتين
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="close-add-product-btn"
+                onclick="closeAddProductModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================================
+             PRODUCT BASIC DATA
+        ====================================================== -->
+
+        <div class="new-product-card">
+
+            <h3>
+                بيانات المنتج
+            </h3>
+
+
+            <label>
+                اسم المنتج بالعربي
+            </label>
+
+            <input
+                type="text"
+                id="newProductNameAr"
+                class="warm-input"
+                placeholder="مثال: زيت الزيتون بالليمون">
+
+
+            <label>
+                اسم المنتج بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="newProductNameEn"
+                class="warm-input"
+                placeholder="Example: Lemon Olive Oil">
+
+
+            <label>
+                صورة المنتج الرئيسية
+            </label>
+
+            <input
+                type="file"
+                id="newProductImage"
+                accept="image/*">
+
+
+            <div
+                id="newProductImagePreview"
+                class="new-product-image-preview">
+
+                <span>
+                    معاينة صورة المنتج
+                </span>
+
+            </div>
+
+
+            <label>
+                وصف المنتج بالعربي
+            </label>
+
+            <textarea
+                id="newProductDescriptionAr"
+                class="content-textarea"
+                placeholder="اكتبي وصف المنتج بالعربي"></textarea>
+
+
+            <label>
+                وصف المنتج بالإنجليزي
+            </label>
+
+            <textarea
+                id="newProductDescriptionEn"
+                class="content-textarea"
+                placeholder="Write product description in English"
+                dir="ltr"></textarea>
+
+        </div>
+
+
+        <!-- =====================================================
+             PRODUCT PAGE DATA
+        ====================================================== -->
+
+        <div class="new-product-card">
+
+            <h3>
+                بيانات صفحة المنتج
+            </h3>
+
+
+            <label>
+                عنوان الصفحة بالعربي
+            </label>
+
+            <input
+                type="text"
+                id="newProductPageTitleAr"
+                class="warm-input"
+                placeholder="عنوان صفحة المنتج بالعربي">
+
+
+            <label>
+                عنوان الصفحة بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="newProductPageTitleEn"
+                class="warm-input"
+                placeholder="Product page title in English"
+                dir="ltr">
+
+
+            <label>
+                محتوى الصفحة بالعربي
+            </label>
+
+            <textarea
+                id="newProductPageContentAr"
+                class="content-textarea"
+                placeholder="اكتبي محتوى صفحة المنتج بالعربي"></textarea>
+
+
+            <label>
+                محتوى الصفحة بالإنجليزي
+            </label>
+
+            <textarea
+                id="newProductPageContentEn"
+                class="content-textarea"
+                placeholder="Write product page content in English"
+                dir="ltr"></textarea>
+
+        </div>
+
+
+        <!-- =====================================================
+             PRODUCT SIZES
+        ====================================================== -->
+
+        <div class="new-product-card">
+
+            <div class="new-product-card-header">
+
+                <div>
+
+                    <h3>
+                        الأحجام والأسعار
+                    </h3>
+
+                    <p>
+                        أضيفي الأحجام والأسعار والصور الخاصة بالمنتج
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-product-size-btn"
+                    onclick="addNewProductSize()">
+
+                    + إضافة حجم
+
+                </button>
+
+            </div>
+
+
+            <div id="newProductSizesContainer">
+
+                <!-- SIZE 1 -->
+
+                <div class="new-product-size-card">
+
+                    <div class="new-product-size-header">
+
+                        <h4>
+                            الحجم الأول
+                        </h4>
+
+                    </div>
+
+
+                    <label>
+                        صورة الحجم
+                    </label>
+
+                    <input
+                        type="file"
+                        class="new-product-size-image"
+                        accept="image/*">
+
+
+                    <div class="new-product-size-image-preview">
+
+                        <span>
+                            صورة الحجم
+                        </span>
+
+                    </div>
+
+
+                    <label>
+                        اسم الحجم بالعربي
+                    </label>
+
+                    <input
+                        type="text"
+                        class="new-product-size-name-ar warm-input"
+                        placeholder="مثال: نصف لتر">
+
+
+                    <label>
+                        اسم الحجم بالإنجليزي
+                    </label>
+
+                    <input
+                        type="text"
+                        class="new-product-size-name-en warm-input"
+                        placeholder="Example: 500 ml"
+                        dir="ltr">
+
+
+                    <label>
+                        السعر
+                    </label>
+
+                    <input
+                        type="number"
+                        class="new-product-size-price warm-input"
+                        placeholder="السعر"
+                        min="0">
+
+
+                    <button
+                        type="button"
+                        class="delete-product-size-btn"
+                        onclick="deleteNewProductSize(this)">
+
+                        حذف الحجم
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SAVE NEW PRODUCT
+        ====================================================== -->
+
+        <div class="new-product-actions">
+
+            <button
+                type="button"
+                class="cancel-add-product-btn"
+                onclick="closeAddProductModal()">
+
+                إلغاء
+
+            </button>
+
+
+            <button
+                type="button"
+                class="save-new-product-btn"
+                onclick="saveNewProduct()">
+
+                حفظ المنتج
+
+            </button>
+
+        </div>
+
+
+        <p
+            id="newProductMessage"
+            class="save-message">
+        </p>
+
+    </div>
+
+</div>
 
 
     <!-- =====================================================
@@ -322,93 +684,129 @@
     <!-- =====================================================
          IDENTITY
     ====================================================== -->
+    <div class="dashboard-card">
 
-    <section
-        id="identity"
-        class="dashboard-section active">
-
-        <div class="section-title">
-
-            <h2>
-                الهوية
-            </h2>
-
-            <p>
-                تعديل اسم المتجر والشعار والعناوين
-            </p>
-
-        </div>
+    <h3 class="language-card-title">
+        البيانات بالعربي
+    </h3>
 
 
-        <div class="dashboard-card">
+    <label>
+        اسم المتجر بالعربي
+    </label>
+
+    <input
+        type="text"
+        id="storeNameAr"
+        class="warm-input"
+        placeholder="اسم المتجر بالعربي">
 
 
-            <label>
-                اسم المتجر
-            </label>
+    <label>
+        العنوان الرئيسي بالعربي
+    </label>
 
-            <input
-                type="text"
-                id="storeName"
-                placeholder="اسم المتجر">
-
-
-            <label>
-                الشعار
-            </label>
-
-            <div class="logo-upload-area">
-
-                <img
-                    id="dashboardLogoPreview"
-                    src="ابو النصر 1.png"
-                    alt="شعار المتجر">
-
-                <input
-                    type="file"
-                    id="logoInput"
-                    accept="image/*">
-
-            </div>
+    <input
+        type="text"
+        id="mainTitleAr"
+        class="warm-input"
+        placeholder="العنوان الرئيسي بالعربي">
 
 
-            <label>
-                العنوان الرئيسي
-            </label>
+    <label>
+        العنوان الفرعي بالعربي
+    </label>
 
-            <input
-                type="text"
-                id="mainTitle"
-                placeholder="العنوان الرئيسي">
-
-
-            <label>
-                العنوان الفرعي
-            </label>
-
-            <textarea
-                id="mainSubtitle"
-                rows="4"
-                placeholder="العنوان الفرعي"></textarea>
+    <textarea
+        id="mainSubtitleAr"
+        class="content-textarea"
+        rows="5"
+        placeholder="العنوان الفرعي بالعربي"></textarea>
 
 
-            <button
-                class="save-btn"
-                onclick="saveIdentity()">
-
-                حفظ الهوية
-
-            </button>
+    <hr class="language-divider">
 
 
-            <p
-                id="identityMessage"
-                class="save-message">
-            </p>
+    <h3 class="language-card-title">
+        English
+    </h3>
 
-        </div>
 
-    </section>
+    <label>
+        Store Name
+    </label>
+
+    <input
+        type="text"
+        id="storeNameEn"
+        class="warm-input"
+        placeholder="Store name"
+        dir="ltr">
+
+
+    <label>
+        Main Title
+    </label>
+
+    <input
+        type="text"
+        id="mainTitleEn"
+        class="warm-input"
+        placeholder="Main title"
+        dir="ltr">
+
+
+    <label>
+        Main Subtitle
+    </label>
+
+    <textarea
+        id="mainSubtitleEn"
+        class="content-textarea"
+        rows="5"
+        placeholder="Main subtitle"
+        dir="ltr"></textarea>
+
+
+    <hr class="language-divider">
+
+
+    <label>
+        الشعار
+    </label>
+
+    <div class="logo-upload-area">
+
+        <img
+            id="dashboardLogoPreview"
+            src="ابو النصر 1.png"
+            alt="شعار المتجر">
+
+        <input
+            type="file"
+            id="logoInput"
+            accept="image/*">
+
+    </div>
+
+
+    <button
+        class="save-btn"
+        onclick="saveIdentity()">
+
+        حفظ الهوية
+
+    </button>
+
+
+    <p
+        id="identityMessage"
+        class="save-message">
+    </p>
+
+</div>
+
+    
 
 
     <!-- =====================================================
@@ -426,11 +824,86 @@
             </h2>
 
             <p>
-                تعديل النصوص والمحتوى الخاص بالصفحة المختارة
+                تعديل النصوص والصور الخاصة بالصفحة المختارة
             </p>
 
         </div>
 
+
+        <!-- PAGE TITLE -->
+
+        <div class="dashboard-card page-title-card">
+
+            <h3>
+                عنوان الصفحة
+            </h3>
+
+
+            <label>
+                عنوان الصفحة بالعربي
+            </label>
+
+            <input
+                type="text"
+                id="pageTitleAr"
+                placeholder="عنوان الصفحة بالعربي">
+
+
+            <label>
+                عنوان الصفحة بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="pageTitleEn"
+                placeholder="Page Title in English">
+
+
+            <button
+                class="save-btn"
+                type="button"
+                onclick="savePageTitles()">
+
+                حفظ عنوان الصفحة
+
+            </button>
+
+
+            <p
+                id="pageTitleMessage"
+                class="save-message">
+            </p>
+
+        </div>
+
+
+        <!-- PAGE MAIN IMAGE -->
+
+        <div class="dashboard-card">
+
+            <h3>
+                الصورة الرئيسية للصفحة
+            </h3>
+
+            <label>
+                تغيير الصورة الرئيسية
+            </label>
+
+            <input
+                type="file"
+                id="pageMainImage"
+                accept="image/*">
+
+            <img
+                id="pageMainImagePreview"
+                class="page-main-image-preview"
+                src=""
+                alt="الصورة الرئيسية">
+
+        </div>
+
+
+        <!-- CONTENT CARDS -->
 
         <div id="contentCardsContainer">
 
@@ -440,25 +913,65 @@
             <div class="content-card">
 
                 <label>
-                    عنوان القسم
+                    عنوان القسم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    class="content-title"
+                    class="content-title-ar"
                     data-content="1"
-                    placeholder="عنوان القسم">
+                    placeholder="عنوان القسم بالعربي">
 
 
                 <label>
-                    محتوى القسم
+                    عنوان القسم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    class="content-title-en"
+                    data-content="1"
+                    placeholder="Section Title in English">
+
+
+                <label>
+                    محتوى القسم بالعربي
                 </label>
 
                 <textarea
-                    class="content-text"
+                    class="content-text-ar"
                     data-content="1"
-                    rows="5"
-                    placeholder="اكتبي محتوى القسم هنا"></textarea>
+                    rows="7"
+                    placeholder="اكتبي محتوى القسم بالعربي هنا"></textarea>
+
+
+                <label>
+                    محتوى القسم بالإنجليزي
+                </label>
+
+                <textarea
+                    class="content-text-en"
+                    data-content="1"
+                    rows="7"
+                    placeholder="Write section content in English"></textarea>
+
+
+                <label>
+                    صورة القسم
+                </label>
+
+                <input
+                    type="file"
+                    class="content-image"
+                    data-content="1"
+                    accept="image/*">
+
+
+                <img
+                    class="content-image-preview"
+                    data-content-preview="1"
+                    src=""
+                    alt="صورة القسم">
 
 
                 <button
@@ -478,25 +991,65 @@
             <div class="content-card">
 
                 <label>
-                    عنوان القسم
+                    عنوان القسم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    class="content-title"
+                    class="content-title-ar"
                     data-content="2"
-                    placeholder="عنوان القسم">
+                    placeholder="عنوان القسم بالعربي">
 
 
                 <label>
-                    محتوى القسم
+                    عنوان القسم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    class="content-title-en"
+                    data-content="2"
+                    placeholder="Section Title in English">
+
+
+                <label>
+                    محتوى القسم بالعربي
                 </label>
 
                 <textarea
-                    class="content-text"
+                    class="content-text-ar"
                     data-content="2"
-                    rows="5"
-                    placeholder="اكتبي محتوى القسم هنا"></textarea>
+                    rows="7"
+                    placeholder="اكتبي محتوى القسم بالعربي هنا"></textarea>
+
+
+                <label>
+                    محتوى القسم بالإنجليزي
+                </label>
+
+                <textarea
+                    class="content-text-en"
+                    data-content="2"
+                    rows="7"
+                    placeholder="Write section content in English"></textarea>
+
+
+                <label>
+                    صورة القسم
+                </label>
+
+                <input
+                    type="file"
+                    class="content-image"
+                    data-content="2"
+                    accept="image/*">
+
+
+                <img
+                    class="content-image-preview"
+                    data-content-preview="2"
+                    src=""
+                    alt="صورة القسم">
 
 
                 <button
@@ -561,7 +1114,9 @@
         </div>
 
 
-        <div class="sizes-grid">
+        <div
+            class="sizes-grid"
+            id="sizesGrid">
 
 
             <!-- SIZE 1 -->
@@ -591,13 +1146,23 @@
 
 
                 <label>
-                    اسم الحجم
+                    اسم الحجم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    id="sizeName1"
+                    id="sizeNameAr1"
                     placeholder="مثال: 250 مل">
+
+
+                <label>
+                    اسم الحجم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeNameEn1"
+                    placeholder="Example: 250 ml">
 
 
                 <label>
@@ -639,13 +1204,23 @@
 
 
                 <label>
-                    اسم الحجم
+                    اسم الحجم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    id="sizeName2"
+                    id="sizeNameAr2"
                     placeholder="مثال: 1 لتر">
+
+
+                <label>
+                    اسم الحجم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeNameEn2"
+                    placeholder="Example: 1 Liter">
 
 
                 <label>
@@ -687,13 +1262,23 @@
 
 
                 <label>
-                    اسم الحجم
+                    اسم الحجم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    id="sizeName3"
+                    id="sizeNameAr3"
                     placeholder="مثال: 2 لتر">
+
+
+                <label>
+                    اسم الحجم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeNameEn3"
+                    placeholder="Example: 2 Liters">
 
 
                 <label>
@@ -735,13 +1320,23 @@
 
 
                 <label>
-                    اسم الحجم
+                    اسم الحجم بالعربي
                 </label>
 
                 <input
                     type="text"
-                    id="sizeName4"
+                    id="sizeNameAr4"
                     placeholder="مثال: 5 لتر">
+
+
+                <label>
+                    اسم الحجم بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    id="sizeNameEn4"
+                    placeholder="Example: 5 Liters">
 
 
                 <label>
@@ -757,6 +1352,15 @@
 
 
         </div>
+
+
+        <button
+            class="add-card-btn"
+            onclick="addDashboardSize()">
+
+            + إضافة حجم جديد
+
+        </button>
 
 
         <button
@@ -800,14 +1404,30 @@
         <div class="dashboard-card">
 
 
+            <!-- ABOUT TITLE AR -->
+
             <label>
-                عنوان من نحن
+                عنوان من نحن بالعربي
             </label>
 
             <input
                 type="text"
-                id="aboutTitle"
+                id="aboutTitleAr"
+                class="long-input"
                 placeholder="من نحن">
+
+
+            <!-- ABOUT TITLE EN -->
+
+            <label>
+                عنوان من نحن بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="aboutTitleEn"
+                class="long-input"
+                placeholder="About Us">
 
 
             <button
@@ -820,14 +1440,30 @@
             </button>
 
 
+            <!-- ABOUT TEXT AR -->
+
             <label>
-                النص
+                النص بالعربي
             </label>
 
             <textarea
-                id="aboutText"
-                rows="8"
-                placeholder="اكتبي نبذة عن المتجر"></textarea>
+                id="aboutTextAr"
+                class="long-textarea"
+                rows="10"
+                placeholder="اكتبي نبذة عن المتجر بالعربي"></textarea>
+
+
+            <!-- ABOUT TEXT EN -->
+
+            <label>
+                النص بالإنجليزي
+            </label>
+
+            <textarea
+                id="aboutTextEn"
+                class="long-textarea"
+                rows="10"
+                placeholder="Write about the store in English"></textarea>
 
 
             <button
@@ -838,6 +1474,25 @@
                 حذف النص
 
             </button>
+
+
+            <!-- ABOUT IMAGE -->
+
+            <label>
+                صورة من نحن
+            </label>
+
+            <input
+                type="file"
+                id="aboutImage"
+                accept="image/*">
+
+
+            <img
+                id="aboutImagePreview"
+                class="about-image-preview"
+                src=""
+                alt="صورة من نحن">
 
 
             <button
@@ -897,13 +1552,23 @@
 
 
                 <label>
-                    اسم العميل
+                    اسم العميل بالعربي
                 </label>
 
                 <input
                     type="text"
-                    class="review-name"
-                    placeholder="اسم العميل">
+                    class="review-name-ar"
+                    placeholder="اسم العميل بالعربي">
+
+
+                <label>
+                    اسم العميل بالإنجليزي
+                </label>
+
+                <input
+                    type="text"
+                    class="review-name-en"
+                    placeholder="Customer Name in English">
 
 
                 <label>
@@ -919,13 +1584,23 @@
 
 
                 <label>
-                    رأي العميل
+                    رأي العميل بالعربي
                 </label>
 
                 <textarea
-                    class="review-comment"
+                    class="review-comment-ar"
                     rows="5"
-                    placeholder="اكتب رأي العميل"></textarea>
+                    placeholder="اكتب رأي العميل بالعربي"></textarea>
+
+
+                <label>
+                    رأي العميل بالإنجليزي
+                </label>
+
+                <textarea
+                    class="review-comment-en"
+                    rows="5"
+                    placeholder="Write customer review in English"></textarea>
 
 
                 <button
@@ -1234,6 +1909,380 @@
 
     </section>
 
+
+</div>
+
+
+<!-- =========================================================
+     ADD NEW PRODUCT MODAL
+========================================================= -->
+
+<div
+    id="addProductModal"
+    class="dashboard-modal"
+    style="display: none;">
+
+
+    <div class="dashboard-modal-overlay"
+         onclick="closeAddProductModal()">
+    </div>
+
+
+    <div class="dashboard-modal-box">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="dashboard-modal-header">
+
+            <div>
+
+                <h2>
+                    إضافة منتج جديد
+                </h2>
+
+                <p>
+                    أضيفي بيانات المنتج بالكامل بالعربي والإنجليزي
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close-btn"
+                onclick="closeAddProductModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             BASIC PRODUCT DATA
+        ================================================== -->
+
+        <div class="new-product-section">
+
+            <h3>
+                بيانات المنتج
+            </h3>
+
+
+            <!-- NAME AR -->
+
+            <label>
+                اسم المنتج بالعربي
+            </label>
+
+            <input
+                type="text"
+                id="newProductNameAr"
+                placeholder="مثال: زيت الزيتون بالليمون">
+
+
+            <!-- NAME EN -->
+
+            <label>
+                اسم المنتج بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="newProductNameEn"
+                placeholder="Example: Lemon Olive Oil">
+
+
+            <!-- MAIN IMAGE -->
+
+            <label>
+                صورة المنتج الرئيسية
+            </label>
+
+            <input
+                type="file"
+                id="newProductMainImage"
+                accept="image/*">
+
+
+            <img
+                id="newProductMainImagePreview"
+                class="new-product-image-preview"
+                src=""
+                alt="صورة المنتج">
+
+
+            <!-- DESCRIPTION AR -->
+
+            <label>
+                وصف المنتج بالعربي
+            </label>
+
+            <textarea
+                id="newProductDescriptionAr"
+                rows="7"
+                placeholder="اكتبي وصف المنتج بالعربي"></textarea>
+
+
+            <!-- DESCRIPTION EN -->
+
+            <label>
+                وصف المنتج بالإنجليزي
+            </label>
+
+            <textarea
+                id="newProductDescriptionEn"
+                rows="7"
+                placeholder="Write the product description in English"></textarea>
+
+        </div>
+
+
+        <!-- =================================================
+             PAGE TITLE
+        ================================================== -->
+
+        <div class="new-product-section">
+
+            <h3>
+                عنوان الصفحة
+            </h3>
+
+
+            <label>
+                عنوان الصفحة بالعربي
+            </label>
+
+            <input
+                type="text"
+                id="newProductPageTitleAr"
+                placeholder="عنوان صفحة المنتج بالعربي">
+
+
+            <label>
+                عنوان الصفحة بالإنجليزي
+            </label>
+
+            <input
+                type="text"
+                id="newProductPageTitleEn"
+                placeholder="Product Page Title in English">
+
+        </div>
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+
+        <div class="new-product-section">
+
+            <h3>
+                محتوى الصفحة
+            </h3>
+
+
+            <label>
+                محتوى الصفحة بالعربي
+            </label>
+
+            <textarea
+                id="newProductPageContentAr"
+                rows="10"
+                placeholder="اكتبي محتوى صفحة المنتج بالعربي"></textarea>
+
+
+            <label>
+                محتوى الصفحة بالإنجليزي
+            </label>
+
+            <textarea
+                id="newProductPageContentEn"
+                rows="10"
+                placeholder="Write the product page content in English"></textarea>
+
+        </div>
+
+
+        <!-- =================================================
+             PRODUCT IMAGES
+        ================================================== -->
+
+        <div class="new-product-section">
+
+            <h3>
+                صور المنتج
+            </h3>
+
+            <p>
+                يمكنك اختيار أكثر من صورة للمنتج
+            </p>
+
+
+            <input
+                type="file"
+                id="newProductGallery"
+                accept="image/*"
+                multiple>
+
+
+            <div
+                id="newProductGalleryPreview"
+                class="new-product-gallery-preview">
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PRODUCT SIZES
+        ================================================== -->
+
+        <div class="new-product-section">
+
+            <div class="new-product-section-title">
+
+                <div>
+
+                    <h3>
+                        الأحجام والأسعار
+                    </h3>
+
+                    <p>
+                        أضيفي الأحجام المتاحة وسعر كل حجم
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="add-card-btn"
+                    onclick="addNewProductSize()">
+
+                    + إضافة حجم
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="newProductSizesContainer"
+                class="new-product-sizes-container">
+
+
+                <!-- NEW SIZE 1 -->
+
+                <div
+                    class="new-product-size-card"
+                    data-size="1">
+
+                    <h4>
+                        الحجم الأول
+                    </h4>
+
+
+                    <label>
+                        اسم الحجم بالعربي
+                    </label>
+
+                    <input
+                        type="text"
+                        class="new-size-name-ar"
+                        placeholder="مثال: نصف لتر">
+
+
+                    <label>
+                        اسم الحجم بالإنجليزي
+                    </label>
+
+                    <input
+                        type="text"
+                        class="new-size-name-en"
+                        placeholder="Example: 500 ml">
+
+
+                    <label>
+                        سعر الحجم
+                    </label>
+
+                    <input
+                        type="number"
+                        class="new-size-price"
+                        placeholder="السعر">
+
+
+                    <label>
+                        صورة الحجم
+                    </label>
+
+                    <input
+                        type="file"
+                        class="new-size-image"
+                        accept="image/*">
+
+
+                    <img
+                        class="new-size-image-preview"
+                        src=""
+                        alt="صورة الحجم">
+
+
+                    <button
+                        type="button"
+                        class="delete-card-btn"
+                        onclick="removeNewProductSize(this)">
+
+                        حذف الحجم
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SAVE NEW PRODUCT
+        ================================================== -->
+
+        <div class="new-product-actions">
+
+            <button
+                type="button"
+                class="cancel-btn"
+                onclick="closeAddProductModal()">
+
+                إلغاء
+
+            </button>
+
+
+            <button
+                type="button"
+                class="save-btn"
+                onclick="saveNewProduct()">
+
+                حفظ وإضافة المنتج
+
+            </button>
+
+        </div>
+
+
+        <p
+            id="newProductMessage"
+            class="save-message">
+        </p>
+
+
+    </div>
 
 </div>
 
