@@ -3779,4 +3779,551 @@ async function refreshDashboardOrders() {
                         <div>
 
                             <strong>
-                                العن
+                              العنوان:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.address ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                طريقة الدفع:
+                            </strong>
+
+                            ${escapeHTML(
+                                payment
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                التاريخ:
+                            </strong>
+
+                            ${escapeHTML(
+                                order.created_at ||
+                                "غير محدد"
+                            )}
+
+                        </div>
+
+
+                        ${
+                            order.notes
+                                ? `
+                                    <div>
+
+                                        <strong>
+                                            ملاحظات:
+                                        </strong>
+
+                                        ${escapeHTML(
+                                            order.notes
+                                        )}
+
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div class="order-total">
+
+                        الإجمالي:
+
+                        ${escapeHTML(
+                            order.total || 0
+                        )}
+
+                        جنيه
+
+                    </div>
+
+
+                    <div class="order-items">
+
+                        <strong>
+                            المنتجات:
+                        </strong>
+
+                        ${
+                            Array.isArray(order.items) &&
+                            order.items.length
+                                ? order.items.map(
+                                    item => `
+
+                                        <div class="order-item">
+
+                                            ${escapeHTML(
+                                                item.product_name_ar ||
+                                                item.product_name_en ||
+                                                "منتج"
+                                            )}
+
+                                            -
+
+                                            ${escapeHTML(
+                                                item.size_ar ||
+                                                item.size_en ||
+                                                ""
+                                            )}
+
+                                            ×
+
+                                            ${escapeHTML(
+                                                item.quantity ||
+                                                1
+                                            )}
+
+                                        </div>
+
+                                    `
+                                ).join("")
+                                : `
+                                    <div>
+                                        لا توجد منتجات
+                                    </div>
+                                `
+                        }
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Orders API Error:",
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <div class="no-orders">
+
+                حدث خطأ أثناء تحميل الطلبات
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CANCEL ORDER
+========================================================= */
+
+function cancelOrder(orderId) {
+
+    let orders;
+
+
+    try {
+
+        orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "oliveOilOrders"
+                ) || "[]"
+            );
+
+    } catch (error) {
+
+        orders = [];
+
+    }
+
+
+    const order =
+        orders.find(
+            item =>
+                String(item.id) ===
+                String(orderId)
+        );
+
+
+    if (!order) {
+        return;
+    }
+
+
+    order.status =
+        "ملغي";
+
+
+    localStorage.setItem(
+        "oliveOilOrders",
+        JSON.stringify(orders)
+    );
+
+
+    refreshDashboardOrders();
+
+}
+
+
+/* =========================================================
+   VIEW STORE
+========================================================= */
+
+function openStoreWithPassword() {
+
+    const password =
+        prompt(
+            "أدخلي كلمة المرور لعرض المتجر:"
+        );
+
+
+    if (password === null) {
+        return;
+    }
+
+
+    if (
+        password ===
+        DASHBOARD_PASSWORD
+    ) {
+
+        window.location.href =
+            "index.html";
+
+    } else {
+
+        alert(
+            "كلمة المرور غير صحيحة ❌"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   IMAGE HELPERS
+========================================================= */
+
+function readFileAsDataURL(
+    file,
+    callback
+) {
+
+    if (!file) {
+        return;
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function (event) {
+
+            callback(
+                event.target.result
+            );
+
+        };
+
+
+    reader.onerror =
+        function () {
+
+            console.error(
+                "Failed to read image"
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE ALL IMAGE INPUTS
+========================================================= */
+
+function initializeExistingImageInputs() {
+
+    initializeLogoInput();
+
+    initializePageMainImage();
+
+    initializeAboutImage();
+
+    initializeSizeInputs();
+
+    initializeNewProductImages();
+
+
+    document
+        .querySelectorAll(
+            ".content-card"
+        )
+        .forEach(
+            card => {
+
+                initializeContentImageInput(
+                    card
+                );
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            ".review-card"
+        )
+        .forEach(
+            card => {
+
+                initializeReview(
+                    card
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   GENERIC HELPERS
+========================================================= */
+
+function setValue(
+    id,
+    value
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (element) {
+
+        element.value =
+            value ?? "";
+
+    }
+
+}
+
+
+function getValue(id) {
+
+    return (
+        document.getElementById(id)?.value.trim() ||
+        ""
+    );
+
+}
+
+
+function showMessage(
+    id,
+    message
+) {
+
+    const element =
+        document.getElementById(id);
+
+
+    if (!element) {
+        return;
+    }
+
+
+    element.textContent =
+        message;
+
+
+    clearTimeout(
+        element._messageTimer
+    );
+
+
+    element._messageTimer =
+        setTimeout(
+            function () {
+
+                element.textContent =
+                    "";
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OVERLAY
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const modal =
+            document.getElementById(
+                "addProductModal"
+            );
+
+
+        if (
+            !modal ||
+            modal.style.display !== "flex"
+        ) {
+            return;
+        }
+
+
+        if (
+            event.target === modal ||
+            event.target.classList.contains(
+                "dashboard-modal-overlay"
+            )
+        ) {
+
+            closeAddProductModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESC CLOSE MODAL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        const modal =
+            document.getElementById(
+                "addProductModal"
+            );
+
+
+        if (
+            modal &&
+            modal.style.display === "flex"
+        ) {
+
+            closeAddProductModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   AUTO REFRESH ORDERS
+========================================================= */
+
+setInterval(
+    function () {
+
+        if (
+            sessionStorage.getItem(
+                "dashboardLoggedIn"
+            ) === "true"
+        ) {
+
+            refreshDashboardOrders();
+
+        }
+
+    },
+    30000
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        initializeNewProductImages();
+
+        checkDashboardLogin();
+
+    }
+);
