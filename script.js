@@ -13,22 +13,22 @@ const loginPanel = document.getElementById("loginPanel");
 const loginOverlay = document.getElementById("loginOverlay");
 const closeLogin = document.getElementById("closeLogin");
 
-const cartBtn = document.getElementById("cartBtn");
-const cartPanel = document.getElementById("cartPanel");
-const cartOverlay = document.getElementById("cartOverlay");
-const closeCart = document.getElementById("closeCart");
 
 const contactBtn = document.getElementById("contactBtn");
 const contactPanel = document.getElementById("contactPanel");
 const closeContact = document.getElementById("closeContact");
-
+const cartBtn = document.getElementById("cartBtn");
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const closeCart = document.getElementById("closeCart");
+const cartItems = document.getElementById("cartItems");
+const cartTotal = document.getElementById("cartTotal");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const clearCartBtn = document.getElementById("clearCartBtn");
 const languageBtn = document.getElementById("languageBtn");
 
 const cartCount = document.getElementById("cartCount");
-const cartItems = document.getElementById("cartItems");
-const cartTotal = document.getElementById("cartTotal");
 
-const checkoutBtn = document.getElementById("checkoutBtn");
 
 const orderModal = document.getElementById("orderModal");
 const closeOrderModal =
@@ -284,303 +284,247 @@ document
 /* =========================================================
    CART RENDER
 ========================================================= */
-
 function renderCart() {
 
-    if (!cartItems) return;
-
+    if (!cartItems || !cartTotal) return;
 
     cartItems.innerHTML = "";
 
+    /* =========================
+       EMPTY CART
+    ========================= */
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-
-            <div class="empty-cart">
-
-                ${
-                    currentLanguage === "ar"
-                        ? "السلة فارغة"
-                        : "Your cart is empty"
-                }
-
+            <div class="empty-cart"
+                 data-ar="السلة فارغة حاليًا"
+                 data-en="Your cart is currently empty">
+                ${currentLanguage === "ar"
+                    ? "السلة فارغة حاليًا"
+                    : "Your cart is currently empty"}
             </div>
-
         `;
 
+        cartTotal.textContent = currentLanguage === "ar"
+            ? "0 ج.م"
+            : "0 EGP";
 
-        if (cartTotal) {
-
-            cartTotal.textContent =
-                currentLanguage === "ar"
-                    ? "0 جنيه"
-                    : "0 EGP";
-
+        if (clearCartBtn) {
+            clearCartBtn.style.display = "none";
         }
 
         return;
-
     }
 
+    /* =========================
+       SHOW CLEAR BUTTON
+    ========================= */
+
+    if (clearCartBtn) {
+        clearCartBtn.style.display = "block";
+    }
 
     let total = 0;
 
+    /* =========================
+       CART ITEMS
+    ========================= */
 
-    cart.forEach(
-        (item, index) => {
+    cart.forEach((item, index) => {
 
-            const quantity =
-                Number(item.quantity || 0);
+        const itemTotal =
+            Number(item.price || 0) *
+            Number(item.quantity || 0);
 
-            const price =
-                Number(item.price || 0);
+        total += itemTotal;
 
+        const productName =
+            getProductName(item.productId);
 
-            total +=
-                price * quantity;
-
-
-            const itemName =
-                getProductName(item.productId) ||
-                item.name ||
-                (
+        const sizeText =
+            item.size
+                ? (
                     currentLanguage === "ar"
-                        ? "منتج"
-                        : "Product"
-                );
+                        ? `الحجم: ${item.size}`
+                        : `Size: ${item.size}`
+                  )
+                : "";
 
+        const priceText =
+            currentLanguage === "ar"
+                ? `السعر: ${item.price || 0} ج.م`
+                : `Price: ${item.price || 0} EGP`;
 
-            const sizeText =
-                item.size
-                    ? `
-                        <div class="cart-item-size">
-                            ${escapeHTML(item.size)}
-                        </div>
-                      `
-                    : "";
+        const removeText =
+            currentLanguage === "ar"
+                ? "إلغاء"
+                : "Remove";
 
+        const chooseSizeText =
+            currentLanguage === "ar"
+                ? "اختيار الحجم"
+                : "Choose Size";
 
-            const priceText =
-                price > 0
+        const itemElement = document.createElement("div");
 
-                    ? `
-                        ${price}
-                        ${currentLanguage === "ar"
-                            ? "جنيه"
-                            : "EGP"}
-                      `
+        itemElement.className = "cart-item";
 
-                    : `
-                        ${
-                            currentLanguage === "ar"
-                                ? "اختاري الحجم من صفحة المنتج"
-                                : "Choose a size from the product page"
-                        }
-                      `;
+        itemElement.innerHTML = `
 
+            <div class="cart-item-info">
 
-            const productPage =
-                products[item.productId]?.page || "#";
-
-
-            const itemElement =
-                document.createElement("div");
-
-
-            itemElement.className =
-                "cart-item";
-
-
-            itemElement.innerHTML = `
-
-                <div class="cart-item-info">
-
-                    <div class="cart-item-name">
-
-                        ${escapeHTML(itemName)}
-
-                    </div>
-
-                    ${sizeText}
-
-                    <div class="cart-item-price">
-
-                        ${priceText}
-
-                    </div>
-
+                <div class="cart-item-name">
+                    ${escapeHTML(productName)}
                 </div>
-
-
-                <div class="cart-item-actions">
-
-                    <button
-                        class="quantity-btn"
-                        type="button"
-                        data-index="${index}"
-                        data-change="1"
-                    >
-                        +
-                    </button>
-
-
-                    <span class="cart-quantity">
-
-                        ${quantity}
-
-                    </span>
-
-
-                    <button
-                        class="quantity-btn"
-                        type="button"
-                        data-index="${index}"
-                        data-change="-1"
-                    >
-                        -
-                    </button>
-
-
-                    <button
-                        class="remove-cart-item"
-                        type="button"
-                        data-index="${index}"
-                    >
-                        ×
-                    </button>
-
-                </div>
-
 
                 ${
-                    !item.size
-
+                    item.size
                         ? `
-
-                            <button
-                                class="choose-size-btn"
-                                type="button"
-                                data-product-page="${escapeHTML(productPage)}"
-                            >
-
-                                ${
-                                    currentLanguage === "ar"
-                                        ? "اختيار الحجم"
-                                        : "Choose Size"
-                                }
-
-                            </button>
-
+                            <div class="cart-item-size">
+                                ${escapeHTML(sizeText)}
+                            </div>
                           `
-
                         : ""
                 }
 
-            `;
+                <div class="cart-item-price">
+                    ${escapeHTML(priceText)}
+                </div>
 
+            </div>
 
-            cartItems.appendChild(
-                itemElement
-            );
+            <div class="cart-item-actions">
 
-        }
-    );
+                <button
+                    class="quantity-btn"
+                    data-index="${index}"
+                    data-change="1">
+                    +
+                </button>
 
+                <span class="cart-quantity">
+                    ${item.quantity}
+                </span>
 
-    /*
-       أزرار السلة
-    */
+                <button
+                    class="quantity-btn"
+                    data-index="${index}"
+                    data-change="-1">
+                    −
+                </button>
 
-    cartItems
+                <button
+                    class="remove-cart-item"
+                    data-index="${index}">
+                    ${removeText}
+                </button>
+
+            </div>
+
+            ${
+                !item.size
+                    ? `
+                        <button
+                            class="choose-size-btn"
+                            data-index="${index}">
+                            ${chooseSizeText}
+                        </button>
+                      `
+                    : ""
+            }
+
+        `;
+
+        cartItems.appendChild(itemElement);
+    });
+
+    /* =========================
+       QUANTITY BUTTONS
+    ========================= */
+
+    document
         .querySelectorAll(".quantity-btn")
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                function () {
+            button.addEventListener("click", () => {
 
-                    const index =
-                        Number(
-                            this.dataset.index
-                        );
+                const index =
+                    Number(button.dataset.index);
 
-                    const change =
-                        Number(
-                            this.dataset.change
-                        );
+                const change =
+                    Number(button.dataset.change);
 
-                    changeQuantity(
-                        index,
-                        change
-                    );
-
-                }
-            );
-
+                changeQuantity(index, change);
+            });
         });
 
+    /* =========================
+       REMOVE BUTTONS
+    ========================= */
 
-    /*
-       حذف المنتج
-    */
-
-    cartItems
+    document
         .querySelectorAll(".remove-cart-item")
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                function () {
+            button.addEventListener("click", () => {
 
-                    const index =
-                        Number(
-                            this.dataset.index
-                        );
+                const index =
+                    Number(button.dataset.index);
 
-                    removeFromCart(index);
-
-                }
-            );
-
+                removeFromCart(index);
+            });
         });
+   function clearCart() {
 
+    if (cart.length === 0) return;
 
-    /*
-       اختيار الحجم
-    */
+    cart = [];
 
-    cartItems
+    saveCart();
+    updateCartCount();
+    renderCart();
+}
+   if (clearCartBtn) {
+
+    clearCartBtn.addEventListener("click", () => {
+
+        clearCart();
+
+    });
+
+}
+
+    /* =========================
+       CHOOSE SIZE
+    ========================= */
+
+    document
         .querySelectorAll(".choose-size-btn")
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                function () {
+            button.addEventListener("click", () => {
 
-                    const page =
-                        this.dataset.productPage;
+                const index =
+                    Number(button.dataset.index);
 
-                    goToProduct(page);
-
-                }
-            );
-
+                goToProduct(
+                    cart[index].productId
+                );
+            });
         });
 
+    /* =========================
+       TOTAL
+    ========================= */
 
-    if (cartTotal) {
-
-        cartTotal.textContent =
-            `${total} ${
-                currentLanguage === "ar"
-                    ? "جنيه"
-                    : "EGP"
-            }`;
-
-    }
-
+    cartTotal.textContent =
+        currentLanguage === "ar"
+            ? `${total} ج.م`
+            : `${total} EGP`;
 }
+
+
 
 
 /* =========================================================
