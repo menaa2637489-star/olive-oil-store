@@ -252,36 +252,28 @@ if (cartOverlay) {
 
 const productData = {
 
-    half: {
-        image: "250ml.jpeg",
+  200ml: {
+        image: "زيت للقلي 200 مل.jpg",
         nameAr: "زيت زيتون للقلي - منقى من الألياف",
         nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 320
+        price: 300
     },
 
-    one: {
-        image: "1liter.jpeg",
+    half: {
+        image: "زيت للقلي 500 مل.jpg",
         nameAr: "زيت زيتون للقلي - منقى من الألياف",
         nameEn: "Olive Oil for Frying - Fiber Filtered",
         price: 580
     },
 
-    two: {
-        image: "1liter.jpeg",
+   one: {
+        image: "1 لتر قلي.jpg",
         nameAr: "زيت زيتون للقلي - منقى من الألياف",
         nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 1080
+        price: 700
     },
 
-    five: {
-        image: "5liter.jpeg",
-        nameAr: "زيت زيتون للقلي - منقى من الألياف",
-        nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 2600
-    }
-
-};
-
+   
 
 /* =========================
    PRODUCT ELEMENTS
