@@ -167,72 +167,81 @@ select {
 
 
 /* =========================================================
-   HERO - FULL WIDTH / FULL SCREEN AREA
+   HERO - FULL WIDTH BANNER
 ========================================================= */
 
 .hero {
     width: 100%;
+    margin: 0;
+    padding: 0;
 
     position: relative;
 
     overflow: hidden;
 
-    background: #244b0b;
+    background: #f7f4eb;
+}
 
-    /* مهم جدًا */
-    display: block;
+
+/* =========================================================
+   HERO SLIDER
+========================================================= */
+
+.hero-slider {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #f7f4eb;
+
+    /*
+       الارتفاع بيتحدد تلقائيًا من الصورة
+       بدل aspect-ratio و min-height
+    */
+}
+
+
+/* =========================================================
+   HERO SLIDES
+========================================================= */
+
+.hero-slide {
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.8s ease;
 
     line-height: 0;
 }
 
-.hero-slider {
-    width: 100%;
 
+/*
+   أول صورة هي اللي بتحدد ارتفاع الـHero
+*/
+.hero-slide:first-child {
     position: relative;
-
-    overflow: hidden;
-
-    /* ارتفاع ثابت ومرن للكمبيوتر */
-    height: clamp(420px, 42vw, 720px);
-
-    min-height: 420px;
-
-    background: #244b0b;
-
-    display: block;
 }
 
 
-/* كل Slide */
-
-.hero-slide {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
-
-    pointer-events: none;
-
-    overflow: hidden;
-}
-
-
-/* الـ Slide الظاهر */
+/* ACTIVE SLIDE */
 
 .hero-slide.active {
     opacity: 1;
-
-    visibility: visible;
 
     pointer-events: auto;
 
@@ -240,33 +249,30 @@ select {
 }
 
 
-/* HERO IMAGE */
+/* =========================================================
+   HERO IMAGE
+========================================================= */
 
 .hero-slide img {
-    position: absolute;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
     display: block;
 
-    /*
-       cover = مفيش حواف أو فراغات
-       والصورة تملأ الـ Hero بالكامل
-    */
-    object-fit: cover;
-
-    object-position: center center;
-
-    background: #244b0b;
-
-    border: none;
+    width: 100%;
+    height: auto;
 
     margin: 0;
-
     padding: 0;
+
+    /*
+       مهم جدًا:
+       الصورة تظهر كاملة
+       بدون contain يعمل حواف
+       وبدون cover يقص أجزاء من الصورة
+    */
+    object-fit: fill;
+
+    max-width: none;
+
+    border: none;
 }
 
 
@@ -281,7 +287,7 @@ select {
 
     inset: 0;
 
-    background: rgba(36, 75, 11, 0.25);
+    background: rgba(36, 75, 11, 0.20);
 
     pointer-events: none;
 
@@ -308,8 +314,6 @@ select {
     color: #fff;
 
     z-index: 5;
-
-    line-height: normal;
 }
 
 .hero-content h1 {
@@ -363,8 +367,6 @@ select {
     cursor: pointer;
 
     transition: 0.3s;
-
-    line-height: normal;
 }
 
 .hero-arrow:hover {
@@ -379,6 +381,133 @@ select {
     left: 25px;
 }
 
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-slider {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        min-height: 0;
+        aspect-ratio: auto;
+    }
+
+    .hero-slide {
+        width: 100%;
+    }
+
+    .hero-slide img {
+        width: 100%;
+        height: auto;
+
+        object-fit: fill;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .hero-content p {
+        font-size: 19px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .hero {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        overflow: hidden;
+    }
+
+    .hero-slider {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        min-height: 0;
+
+        aspect-ratio: auto;
+
+        overflow: hidden;
+    }
+
+    .hero-slide {
+        width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        line-height: 0;
+    }
+
+    .hero-slide:first-child {
+        position: relative;
+    }
+
+    .hero-slide img {
+        width: 100%;
+        height: auto;
+
+        display: block;
+
+        margin: 0;
+        padding: 0;
+
+        object-fit: fill;
+    }
+
+
+    /* HERO ARROWS */
+
+    .hero-arrow {
+        width: 38px;
+        height: 38px;
+
+        font-size: 13px;
+    }
+
+    .hero-prev {
+        right: 10px;
+    }
+
+    .hero-next {
+        left: 10px;
+    }
+
+
+    /* HERO TEXT */
+
+    .hero-content {
+        width: 85%;
+    }
+
+    .hero-content h1 {
+        font-size: 25px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+}
 
 /* =========================================================
    PRODUCTS
