@@ -10,6 +10,7 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 body {
@@ -17,6 +18,7 @@ body {
     background: #f7f4eb;
     color: #294d12;
     overflow-x: hidden;
+    width: 100%;
 }
 
 button,
@@ -165,64 +167,115 @@ select {
     font-size: 12px;
     font-weight: bold;
 }
+
+
 /* =========================================================
-   HERO - FULL BANNER
+   HERO - FULL WIDTH / FULL IMAGE
 ========================================================= */
 
 .hero {
     width: 100%;
+    max-width: 100%;
+
     position: relative;
+
     overflow: hidden;
-    background: #f7f4eb;
+
+    background: transparent;
+
+    margin: 0;
+    padding: 0;
 }
+
+
+/* HERO SLIDER */
 
 .hero-slider {
     width: 100%;
+    max-width: 100%;
+
     position: relative;
+
     overflow: hidden;
 
-    /* نسبة البانر */
-    aspect-ratio: 2 / 1;
+    background: transparent;
 
-    background: #f7f4eb;
+    margin: 0;
+    padding: 0;
+
+    /*
+       لا يوجد aspect-ratio هنا
+       ارتفاع الـHero يعتمد على الصورة نفسها
+    */
 }
 
-.hero-slide {
-    position: absolute;
-    inset: 0;
 
+/* HERO SLIDE */
+
+.hero-slide {
     width: 100%;
-    height: 100%;
+    max-width: 100%;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
 
     opacity: 0;
+
     transition: opacity 0.8s ease;
 
     pointer-events: none;
+
+    margin: 0;
+    padding: 0;
+
+    line-height: 0;
 }
+
+
+/*
+   أول Slide هو اللي بيحدد ارتفاع الـSlider
+*/
+.hero-slide:first-child {
+    position: relative;
+}
+
+
+/* ACTIVE SLIDE */
 
 .hero-slide.active {
     opacity: 1;
+
     pointer-events: auto;
 }
 
+
+/* HERO IMAGE */
+
 .hero-slide img {
     width: 100%;
-    height: 100%;
+    max-width: 100%;
+
+    height: auto;
 
     display: block;
 
+    margin: 0;
+    padding: 0;
+
     /*
-       مهم:
-       يظهر البانر كامل بدون قص
+       الصورة تظهر كاملة
+       بدون قص
+       وبدون حواف من الـCSS
     */
     object-fit: contain;
-
-    background: #f7f4eb;
 }
 
 
-
-/* HERO OVERLAY */
+/* =========================================================
+   HERO OVERLAY
+========================================================= */
 
 .hero-slider::after {
     content: "";
@@ -239,7 +292,9 @@ select {
 }
 
 
-/* HERO CONTENT */
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
 .hero-content {
     position: absolute;
@@ -277,7 +332,9 @@ select {
 }
 
 
-/* HERO ARROWS */
+/* =========================================================
+   HERO ARROWS
+========================================================= */
 
 .hero-arrow {
     position: absolute;
@@ -320,7 +377,6 @@ select {
 .hero-next {
     left: 25px;
 }
-
 
 
 /* =========================================================
@@ -870,7 +926,6 @@ select {
 .dashboard-access:hover {
     background: #789542;
 }
-
 
 
 /* =========================================================
@@ -1573,10 +1628,45 @@ html[lang="en"] .side-panel.active {
 
     /* HERO */
 
-    .hero,
-    .hero-slider,
+    .hero {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero-slider {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        /*
+           مهم:
+           ممنوع aspect-ratio أو min-height هنا
+        */
+        aspect-ratio: auto;
+
+        min-height: 0;
+
+        height: auto;
+    }
+
+    .hero-slide {
+        width: 100%;
+    }
+
     .hero-slide img {
-        min-height: 400px;
+        width: 100%;
+        max-width: 100%;
+
+        height: auto;
+
+        min-height: 0;
+
+        object-fit: contain;
     }
 
     .hero-content h1 {
@@ -1717,9 +1807,62 @@ html[lang="en"] .side-panel.active {
     }
 
 
-    /* HERO */
+    /* =====================================================
+       HERO - MOBILE
+    ===================================================== */
 
- 
+    .hero {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        overflow: hidden;
+    }
+
+    .hero-slider {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        height: auto;
+
+        min-height: 0;
+
+        aspect-ratio: auto;
+
+        overflow: hidden;
+    }
+
+    .hero-slide {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+        padding: 0;
+
+        line-height: 0;
+    }
+
+    .hero-slide img {
+        width: 100%;
+        max-width: 100%;
+
+        height: auto;
+
+        min-height: 0;
+
+        margin: 0;
+        padding: 0;
+
+        display: block;
+
+        object-fit: contain;
+    }
+
     .hero-content {
         width: 85%;
     }
@@ -1805,12 +1948,10 @@ html[lang="en"] .side-panel.active {
 
     .quality-text h2 {
         font-size: 28px;
-     
     }
 
     .quality-text p {
         font-size: 17px;
-     
     }
 
 
@@ -1903,13 +2044,6 @@ html[lang="en"] .side-panel.active {
     .panel-content {
         padding: 75px 18px 25px;
     }
-   .hero-slider {
-    aspect-ratio: 16 / 7;
-}
-
-.hero-slide img {
-    object-fit: contain;
-}
 
 
     /* ORDER */
@@ -1926,6 +2060,8 @@ html[lang="en"] .side-panel.active {
         flex-direction: column;
     }
 }
+
+
 /* =========================================================
    NEW CART DESIGN
 ========================================================= */
@@ -1950,9 +2086,10 @@ html[lang="en"] .side-panel.active {
     margin-bottom: 28px;
 }
 
-/* =========================
+
+/* =========================================================
    CART ITEM
-========================= */
+========================================================= */
 
 .cart-item {
     width: 100%;
@@ -1993,9 +2130,10 @@ html[lang="en"] .side-panel.active {
     font-weight: 600;
 }
 
-/* =========================
+
+/* =========================================================
    CART ACTIONS
-========================= */
+========================================================= */
 
 .cart-item-actions {
     width: 100%;
@@ -2007,6 +2145,7 @@ html[lang="en"] .side-panel.active {
 
     direction: ltr;
 }
+
 
 /* + و - */
 
@@ -2046,9 +2185,10 @@ html[lang="en"] .side-panel.active {
     font-size: 16px;
 }
 
-/* =========================
+
+/* =========================================================
    REMOVE ITEM
-========================= */
+========================================================= */
 
 .remove-cart-item {
     flex: 1;
@@ -2072,9 +2212,10 @@ html[lang="en"] .side-panel.active {
     color: #ffffff;
 }
 
-/* =========================
+
+/* =========================================================
    CHOOSE SIZE
-========================= */
+========================================================= */
 
 .choose-size-btn {
     width: 100%;
@@ -2095,9 +2236,10 @@ html[lang="en"] .side-panel.active {
     color: #ffffff;
 }
 
-/* =========================
+
+/* =========================================================
    CLEAR ALL
-========================= */
+========================================================= */
 
 .clear-cart-btn {
     width: 100%;
@@ -2122,9 +2264,10 @@ html[lang="en"] .side-panel.active {
     color: #ffffff;
 }
 
-/* =========================
+
+/* =========================================================
    CART FOOTER
-========================= */
+========================================================= */
 
 .cart-footer {
     width: 100%;
@@ -2149,9 +2292,10 @@ html[lang="en"] .side-panel.active {
     font-weight: 700;
 }
 
-/* =========================
+
+/* =========================================================
    CHECKOUT
-========================= */
+========================================================= */
 
 .checkout-btn {
     width: 100%;
@@ -2175,9 +2319,10 @@ html[lang="en"] .side-panel.active {
     background: #789542;
 }
 
-/* =========================
+
+/* =========================================================
    WHATSAPP BUTTON
-========================= */
+========================================================= */
 
 .cart-whatsapp-btn {
     width: fit-content;
@@ -2213,9 +2358,10 @@ html[lang="en"] .side-panel.active {
     opacity: .9;
 }
 
-/* =========================
+
+/* =========================================================
    EMPTY CART
-========================= */
+========================================================= */
 
 .empty-cart {
     text-align: center;
@@ -2224,9 +2370,10 @@ html[lang="en"] .side-panel.active {
     font-size: 16px;
 }
 
-/* =========================
+
+/* =========================================================
    ENGLISH
-========================= */
+========================================================= */
 
 html[lang="en"] .cart-item-info {
     text-align: left;
@@ -2237,9 +2384,10 @@ html[lang="en"] .remove-cart-item {
     margin-left: 8px;
 }
 
-/* =========================
+
+/* =========================================================
    MOBILE CART
-========================= */
+========================================================= */
 
 @media (max-width: 600px) {
 
