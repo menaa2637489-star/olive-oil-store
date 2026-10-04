@@ -181,12 +181,8 @@ select {
     position: relative;
     overflow: hidden;
 
-    /*
-       مهم:
-       ارتفاع البانر يكون حسب أبعاد الصورة
-       وليس بنسبة ثابتة تسبب فراغات
-    */
-    aspect-ratio: auto;
+    /* نسبة البانر */
+    aspect-ratio: 2 / 1;
 
     background: #f7f4eb;
 }
@@ -216,12 +212,14 @@ select {
     display: block;
 
     /*
-       الصورة كاملة بدون قص
+       مهم:
+       يظهر البانر كامل بدون قص
     */
-    object-fit: fill;
+    object-fit: contain;
 
-    background: transparent;
+    background: #f7f4eb;
 }
+
 
 
 /* HERO OVERLAY */
@@ -322,6 +320,7 @@ select {
 .hero-next {
     left: 25px;
 }
+
 
 
 /* =========================================================
