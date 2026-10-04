@@ -181,8 +181,12 @@ select {
     position: relative;
     overflow: hidden;
 
-    /* نسبة البانر */
-    aspect-ratio: 2 / 1;
+    /*
+       مهم:
+       ارتفاع البانر يكون حسب أبعاد الصورة
+       وليس بنسبة ثابتة تسبب فراغات
+    */
+    aspect-ratio: auto;
 
     background: #f7f4eb;
 }
@@ -212,14 +216,12 @@ select {
     display: block;
 
     /*
-       مهم:
-       يظهر البانر كامل بدون قص
+       الصورة كاملة بدون قص
     */
-    object-fit: contain;
+    object-fit: fill;
 
-    background: #f7f4eb;
+    background: transparent;
 }
-
 
 
 /* HERO OVERLAY */
@@ -1718,18 +1720,7 @@ html[lang="en"] .side-panel.active {
 
     /* HERO */
 
-    @media (max-width: 600px) {
-
-    .hero-slider {
-        aspect-ratio: 1 / 1;
-    }
-
-    .hero-slide img {
-        object-fit: contain;
-    }
-
-}
-
+ 
     .hero-content {
         width: 85%;
     }
