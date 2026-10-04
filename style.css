@@ -10,7 +10,6 @@
 
 html {
     scroll-behavior: smooth;
-    width: 100%;
 }
 
 body {
@@ -18,7 +17,6 @@ body {
     background: #f7f4eb;
     color: #294d12;
     overflow-x: hidden;
-    width: 100%;
 }
 
 button,
@@ -102,7 +100,6 @@ select {
 .header-actions {
     display: flex;
     align-items: center;
-
     gap: 10px;
 }
 
@@ -170,106 +167,106 @@ select {
 
 
 /* =========================================================
-   HERO - FULL WIDTH / FULL IMAGE
+   HERO - FULL WIDTH / FULL SCREEN AREA
 ========================================================= */
 
 .hero {
     width: 100%;
-    max-width: 100%;
 
     position: relative;
 
     overflow: hidden;
 
-    background: transparent;
+    background: #244b0b;
 
-    margin: 0;
-    padding: 0;
-}
-
-
-/* HERO SLIDER */
-
-.hero-slider {
-    width: 100%;
-    max-width: 100%;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background: transparent;
-
-    margin: 0;
-    padding: 0;
-
-    /*
-       لا يوجد aspect-ratio هنا
-       ارتفاع الـHero يعتمد على الصورة نفسها
-    */
-}
-
-
-/* HERO SLIDE */
-
-.hero-slide {
-    width: 100%;
-    max-width: 100%;
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    opacity: 0;
-
-    transition: opacity 0.8s ease;
-
-    pointer-events: none;
-
-    margin: 0;
-    padding: 0;
+    /* مهم جدًا */
+    display: block;
 
     line-height: 0;
 }
 
+.hero-slider {
+    width: 100%;
 
-/*
-   أول Slide هو اللي بيحدد ارتفاع الـSlider
-*/
-.hero-slide:first-child {
     position: relative;
+
+    overflow: hidden;
+
+    /* ارتفاع ثابت ومرن للكمبيوتر */
+    height: clamp(420px, 42vw, 720px);
+
+    min-height: 420px;
+
+    background: #244b0b;
+
+    display: block;
 }
 
 
-/* ACTIVE SLIDE */
+/* كل Slide */
+
+.hero-slide {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+/* الـ Slide الظاهر */
 
 .hero-slide.active {
     opacity: 1;
 
+    visibility: visible;
+
     pointer-events: auto;
+
+    z-index: 1;
 }
 
 
 /* HERO IMAGE */
 
 .hero-slide img {
-    width: 100%;
-    max-width: 100%;
+    position: absolute;
 
-    height: auto;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     display: block;
 
-    margin: 0;
-    padding: 0;
-
     /*
-       الصورة تظهر كاملة
-       بدون قص
-       وبدون حواف من الـCSS
+       cover = مفيش حواف أو فراغات
+       والصورة تملأ الـ Hero بالكامل
     */
-    object-fit: contain;
+    object-fit: cover;
+
+    object-position: center center;
+
+    background: #244b0b;
+
+    border: none;
+
+    margin: 0;
+
+    padding: 0;
 }
 
 
@@ -284,7 +281,7 @@ select {
 
     inset: 0;
 
-    background: rgba(36, 75, 11, 0.35);
+    background: rgba(36, 75, 11, 0.25);
 
     pointer-events: none;
 
@@ -311,6 +308,8 @@ select {
     color: #fff;
 
     z-index: 5;
+
+    line-height: normal;
 }
 
 .hero-content h1 {
@@ -364,6 +363,8 @@ select {
     cursor: pointer;
 
     transition: 0.3s;
+
+    line-height: normal;
 }
 
 .hero-arrow:hover {
@@ -1166,9 +1167,6 @@ select {
     color: #294d12;
 }
 
-
-/* CART ITEM */
-
 .cart-item {
     width: 100%;
 
@@ -1286,7 +1284,9 @@ select {
 }
 
 
-/* CART FOOTER */
+/* =========================================================
+   CART FOOTER
+========================================================= */
 
 .cart-footer {
     margin-top: 25px;
@@ -1593,6 +1593,7 @@ html[lang="en"] .main-header {
 
 html[lang="en"] .side-panel {
     left: auto;
+
     right: 0;
 
     transform: translateX(100%);
@@ -1626,48 +1627,40 @@ html[lang="en"] .side-panel.active {
     }
 
 
-    /* HERO */
+    /* =====================================================
+       HERO TABLET
+    ===================================================== */
 
     .hero {
         width: 100%;
-        max-width: 100%;
 
-        margin: 0;
-        padding: 0;
+        height: auto;
+
+        min-height: 0;
     }
 
     .hero-slider {
         width: 100%;
-        max-width: 100%;
 
-        margin: 0;
-        padding: 0;
+        height: clamp(380px, 60vw, 600px);
 
-        /*
-           مهم:
-           ممنوع aspect-ratio أو min-height هنا
-        */
+        min-height: 380px;
+
         aspect-ratio: auto;
-
-        min-height: 0;
-
-        height: auto;
     }
 
-    .hero-slide {
+    .hero-slide,
+    .hero-slide img {
         width: 100%;
+        height: 100%;
     }
 
     .hero-slide img {
-        width: 100%;
-        max-width: 100%;
+        object-fit: cover;
 
-        height: auto;
-
-        min-height: 0;
-
-        object-fit: contain;
+        object-position: center center;
     }
+
 
     .hero-content h1 {
         font-size: 32px;
@@ -1808,60 +1801,77 @@ html[lang="en"] .side-panel.active {
 
 
     /* =====================================================
-       HERO - MOBILE
+       HERO MOBILE
     ===================================================== */
 
     .hero {
         width: 100%;
-        max-width: 100%;
-
-        margin: 0;
-        padding: 0;
 
         overflow: hidden;
+
+        background: #244b0b;
+
+        margin: 0;
+
+        padding: 0;
     }
 
     .hero-slider {
         width: 100%;
-        max-width: 100%;
 
-        margin: 0;
-        padding: 0;
+        /*
+           ارتفاع مناسب للموبايل
+        */
+        height: 72vw;
 
-        height: auto;
+        min-height: 250px;
 
-        min-height: 0;
+        max-height: 520px;
 
         aspect-ratio: auto;
+
+        margin: 0;
+
+        padding: 0;
 
         overflow: hidden;
     }
 
     .hero-slide {
         width: 100%;
-        max-width: 100%;
+
+        height: 100%;
+
+        inset: 0;
 
         margin: 0;
-        padding: 0;
 
-        line-height: 0;
+        padding: 0;
     }
 
     .hero-slide img {
         width: 100%;
-        max-width: 100%;
 
-        height: auto;
+        height: 100%;
 
-        min-height: 0;
+        min-width: 100%;
+        min-height: 100%;
+
+        display: block;
 
         margin: 0;
         padding: 0;
 
-        display: block;
+        /*
+           يمنع ظهور الحواف
+        */
+        object-fit: cover;
 
-        object-fit: contain;
+        object-position: center center;
     }
+
+
+    /* HERO CONTENT */
 
     .hero-content {
         width: 85%;
@@ -1874,6 +1884,9 @@ html[lang="en"] .side-panel.active {
     .hero-content p {
         font-size: 16px;
     }
+
+
+    /* HERO ARROWS */
 
     .hero-arrow {
         width: 38px;
@@ -2023,6 +2036,7 @@ html[lang="en"] .side-panel.active {
 
     .whatsapp-float {
         left: 10px;
+
         bottom: 10px;
 
         padding: 9px 12px;
@@ -2068,9 +2082,13 @@ html[lang="en"] .side-panel.active {
 
 .cart-panel {
     width: 430px;
+
     max-width: 92%;
+
     background: #f7f4eb;
+
     color: #294d12;
+
     overflow-y: auto;
 }
 
@@ -2080,27 +2098,38 @@ html[lang="en"] .side-panel.active {
 
 .cart-panel .panel-content h2 {
     text-align: center;
+
     color: #294d12;
+
     font-size: 30px;
+
     font-weight: 700;
+
     margin-bottom: 28px;
 }
 
 
-/* =========================================================
+/* =========================
    CART ITEM
-========================================================= */
+========================= */
 
 .cart-item {
     width: 100%;
+
     background: #ffffff;
+
     border: 1px solid #e1e1d7;
+
     border-radius: 14px;
+
     padding: 20px 18px 15px;
+
     margin-bottom: 14px;
 
     display: flex;
+
     flex-direction: column;
+
     gap: 10px;
 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -2108,39 +2137,50 @@ html[lang="en"] .side-panel.active {
 
 .cart-item-info {
     width: 100%;
+
     text-align: right;
 }
 
 .cart-item-name {
     color: #294d12;
+
     font-size: 19px;
+
     font-weight: 700;
+
     margin-bottom: 10px;
 }
 
 .cart-item-size {
     color: #294d12;
+
     font-size: 15px;
+
     margin-bottom: 8px;
 }
 
 .cart-item-price {
     color: #294d12;
+
     font-size: 16px;
+
     font-weight: 600;
 }
 
 
-/* =========================================================
+/* =========================
    CART ACTIONS
-========================================================= */
+========================= */
 
 .cart-item-actions {
     width: 100%;
 
     display: flex;
+
     align-items: center;
+
     justify-content: flex-start;
+
     gap: 5px;
 
     direction: ltr;
@@ -2151,44 +2191,56 @@ html[lang="en"] .side-panel.active {
 
 .quantity-btn {
     width: 27px;
+
     height: 27px;
 
     border: 1px solid #789542;
+
     background: #ffffff;
+
     color: #294d12;
 
     border-radius: 3px;
 
     font-size: 18px;
+
     line-height: 25px;
+
     cursor: pointer;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 }
 
 .quantity-btn:hover {
     background: #789542;
+
     color: #ffffff;
 }
 
 .cart-quantity {
     min-width: 27px;
+
     height: 27px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     color: #294d12;
+
     font-size: 16px;
 }
 
 
-/* =========================================================
+/* =========================
    REMOVE ITEM
-========================================================= */
+========================= */
 
 .remove-cart-item {
     flex: 1;
@@ -2198,62 +2250,75 @@ html[lang="en"] .side-panel.active {
     margin-right: 8px;
 
     border: 1px solid #e2e2d9;
+
     border-radius: 8px;
 
     background: #ffffff;
+
     color: #294d12;
 
     font-size: 15px;
+
     cursor: pointer;
 }
 
 .remove-cart-item:hover {
     background: #244b0b;
+
     color: #ffffff;
 }
 
 
-/* =========================================================
+/* =========================
    CHOOSE SIZE
-========================================================= */
+========================= */
 
 .choose-size-btn {
     width: 100%;
 
     border: 1px solid #789542;
+
     background: #ffffff;
+
     color: #294d12;
 
     border-radius: 8px;
+
     padding: 10px;
 
     font-size: 15px;
+
     cursor: pointer;
 }
 
 .choose-size-btn:hover {
     background: #789542;
+
     color: #ffffff;
 }
 
 
-/* =========================================================
+/* =========================
    CLEAR ALL
-========================================================= */
+========================= */
 
 .clear-cart-btn {
     width: 100%;
+
     height: 48px;
 
     margin: 4px 0 25px;
 
     border: 1px solid #e0dfd6;
+
     border-radius: 9px;
 
     background: #ffffff;
+
     color: #294d12;
 
     font-size: 16px;
+
     font-weight: 600;
 
     cursor: pointer;
@@ -2261,16 +2326,18 @@ html[lang="en"] .side-panel.active {
 
 .clear-cart-btn:hover {
     background: #244b0b;
+
     color: #ffffff;
 }
 
 
-/* =========================================================
+/* =========================
    CART FOOTER
-========================================================= */
+========================= */
 
 .cart-footer {
     width: 100%;
+
     padding-top: 5px;
 }
 
@@ -2278,36 +2345,44 @@ html[lang="en"] .side-panel.active {
     width: 100%;
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
     margin-bottom: 18px;
 
     color: #294d12;
+
     font-size: 17px;
 }
 
 .cart-total strong {
     font-size: 18px;
+
     font-weight: 700;
 }
 
 
-/* =========================================================
+/* =========================
    CHECKOUT
-========================================================= */
+========================= */
 
 .checkout-btn {
     width: 100%;
+
     height: 52px;
 
     border: none;
+
     border-radius: 9px;
 
     background: #244b0b;
+
     color: #ffffff;
 
     font-size: 18px;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -2320,12 +2395,13 @@ html[lang="en"] .side-panel.active {
 }
 
 
-/* =========================================================
+/* =========================
    WHATSAPP BUTTON
-========================================================= */
+========================= */
 
 .cart-whatsapp-btn {
     width: fit-content;
+
     min-width: 180px;
 
     margin: 190px auto 0;
@@ -2335,16 +2411,21 @@ html[lang="en"] .side-panel.active {
     border-radius: 30px;
 
     background: #25d366;
+
     color: #ffffff;
 
     text-decoration: none;
 
     font-size: 13px;
+
     font-weight: 600;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 7px;
 
     box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
@@ -2359,21 +2440,24 @@ html[lang="en"] .side-panel.active {
 }
 
 
-/* =========================================================
+/* =========================
    EMPTY CART
-========================================================= */
+========================= */
 
 .empty-cart {
     text-align: center;
+
     color: #294d12;
+
     padding: 40px 10px;
+
     font-size: 16px;
 }
 
 
-/* =========================================================
+/* =========================
    ENGLISH
-========================================================= */
+========================= */
 
 html[lang="en"] .cart-item-info {
     text-align: left;
@@ -2381,18 +2465,20 @@ html[lang="en"] .cart-item-info {
 
 html[lang="en"] .remove-cart-item {
     margin-right: 0;
+
     margin-left: 8px;
 }
 
 
-/* =========================================================
+/* =========================
    MOBILE CART
-========================================================= */
+========================= */
 
 @media (max-width: 600px) {
 
     .cart-panel {
         width: 100%;
+
         max-width: 100%;
     }
 
