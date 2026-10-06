@@ -1586,98 +1586,6 @@ if (buyNowBtn) {
 }
 
 
-/* =========================
-   LOGIN
-========================= */
-
-if (loginPanel) {
-
-    const loginTitle =
-        loginPanel.querySelector("h2");
-
-    const loginSubtitle =
-        loginPanel.querySelector(
-            ".panel-subtitle"
-        );
-
-    const remember =
-        loginPanel.querySelector(
-            ".login-options span"
-        );
-
-    const forgot =
-        loginPanel.querySelector(
-            ".login-options a"
-        );
-
-    const loginSubmit =
-        loginPanel.querySelector(
-            ".login-submit"
-        );
-
-    const orText =
-        loginPanel.querySelector(
-            ".or-line span"
-        );
-
-    const google =
-        loginPanel.querySelector(
-            ".google-login span:last-child"
-        );
-
-    const facebook =
-        loginPanel.querySelector(
-            ".facebook-login span:last-child"
-        );
-
-
-    if (loginTitle)
-        loginTitle.textContent =
-            t.login;
-
-    if (loginSubtitle)
-        loginSubtitle.textContent =
-            t.loginSubtitle;
-
-    if (remember)
-        remember.textContent =
-            t.remember;
-
-    if (forgot)
-        forgot.textContent =
-            t.forgot;
-
-    if (loginSubmit)
-        loginSubmit.textContent =
-            t.login;
-
-    if (orText)
-        orText.textContent =
-            t.or;
-
-    if (google)
-        google.textContent =
-            t.google;
-
-    if (facebook)
-        facebook.textContent =
-            t.facebook;
-
-
-    const loginInputs =
-        loginPanel.querySelectorAll(
-            ".login-input"
-        );
-
-
-    if (loginInputs[0])
-        loginInputs[0].placeholder =
-            t.emailPhone;
-
-    if (loginInputs[1])
-        loginInputs[1].placeholder =
-            t.password;
-
 }
 
 
@@ -2126,7 +2034,7 @@ INITIAL
 if (productPriceElement) {
 
 productPriceElement.textContent =
-    productData.twoHundred.price + " ج.م";
+    productData.twofifty.price + " ج.م";
 
 }
 
@@ -2138,7 +2046,7 @@ button.classList.remove("active");
 
 const firstSizeButton =
 document.querySelector(
-'.size-btn[data-size="twoHundred"]'
+'.size-btn[data-size="twofifty"]'
 );
 
 if (firstSizeButton) {
