@@ -188,7 +188,7 @@ const productData = {
     },
 
     one: {
-        image: "1liter.jpeg",
+        image: "500liter.jpeg",
         nameAr: "زيت زيتون دكتور أبو النصر",
         nameEn: "Dr. Abu El Nasr Olive Oil",
         price: 580
