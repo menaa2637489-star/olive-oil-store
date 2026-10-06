@@ -53,7 +53,7 @@ ar: {
     buyNow: "اشتر الآن",
     addCart: "أضف للسلة",
 
-    twoHundred: "250 مل",
+    twofifty: "250 مل",
     half: "نصف لتر",
     one: "1 لتر",
     five: "5 لتر",
@@ -116,7 +116,7 @@ en: {
     buyNow: "Buy Now",
     addCart: "Add to Cart",
 
-    twoHundredandfifty: "250 ml",
+    twofifty: "250 ml",
     half: "Half Liter",
     one: "1 Liter",
     five: "5 Liters",
@@ -177,7 +177,7 @@ PRODUCT DATA
 
 const productData = {
 
-twoHundredandfifty: {
+twofifty: {
     image: "250ml.jpeg",
     nameAr: "زيت زيتون دكتور أبو النصر",
     nameEn: "Dr. Abu El Nasr Olive Oil",
@@ -211,7 +211,7 @@ five: {
 PRODUCT ELEMENTS
 ========================= */
 
-let selectedSize = "twoHundredandfifty";
+let selectedSize = "twofifty";
 let quantity = 1;
 
 const mainProductImage =
