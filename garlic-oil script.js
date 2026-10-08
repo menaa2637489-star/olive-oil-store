@@ -74,6 +74,14 @@ const pageBackBtn =
 
 
 /* =========================
+   CONTACT BUTTON
+========================= */
+
+const contactBtn =
+    document.getElementById("contactBtn");
+
+
+/* =========================
    LANGUAGE
 ========================= */
 
@@ -93,7 +101,10 @@ const translations = {
             "زيت الزيتون بالثوم",
 
         productType:
-            "زيت زيتون بالثوم",
+            "زيت الزيتون بالثوم",
+
+        heroTitle:
+            "زيت الزيتون بالثوم الأصلي",
 
         chooseSize:
             "اختاري الحجم",
@@ -252,6 +263,9 @@ const translations = {
 
         productType:
             "Garlic Infused Olive Oil",
+
+        heroTitle:
+            "Original Garlic Infused Olive Oil",
 
         chooseSize:
             "Choose Size",
@@ -894,11 +908,6 @@ function addGarlicProductToSharedCart(
             amount;
 
 
-        /*
-           إزالة أي pending items
-           إضافية لنفس المنتج.
-        */
-
         if (pendingItems.length > 1) {
 
             pendingItems
@@ -1006,7 +1015,8 @@ function addGarlicProductToSharedCart(
 
 /*
    زر +:
-   يضيف وحدة مباشرة إلى السلة.
+   يزوّد الكمية المحلية
+   1 → 2 → 3 → 4 ...
 */
 
 if (plusOneBtn) {
@@ -1015,15 +1025,7 @@ if (plusOneBtn) {
         "click",
         function () {
 
-            addGarlicProductToSharedCart(1);
-
-
-            /*
-               نرجع العداد المحلي إلى 1
-               لأن الإضافة تمت بالفعل للسلة.
-            */
-
-            quantity = 1;
+            quantity++;
 
 
             if (quantityValue) {
@@ -1041,8 +1043,7 @@ if (plusOneBtn) {
 
 /*
    زر -:
-   يقلل الكمية التي سيتم إضافتها
-   عند الضغط على "أضف للسلة".
+   يقلل الكمية
 */
 
 if (minusOneBtn) {
@@ -1478,6 +1479,26 @@ if (checkoutBtn) {
 
 
 /* =========================
+   BACK BUTTON IN ORDER
+========================= */
+
+if (backBtn) {
+
+    backBtn.addEventListener(
+        "click",
+        function () {
+
+            closeOrderModal();
+
+            openCart();
+
+        }
+    );
+
+}
+
+
+/* =========================
    BUY NOW
 ========================= */
 
@@ -1890,6 +1911,27 @@ if (confirmOrderBtn) {
 
 
 /* =========================
+   CONTACT BUTTON
+========================= */
+
+if (contactBtn) {
+
+    contactBtn.addEventListener(
+        "click",
+        function () {
+
+            window.open(
+                "https://www.facebook.com/share/1ckPpM1Tov/",
+                "_blank"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
    OPEN / CLOSE LOGIN
 ========================= */
 
@@ -2134,6 +2176,27 @@ function changeLanguage(language) {
 
         }
     );
+
+
+    /* =========================
+       HERO TITLE
+    ========================= */
+
+    const heroTitle =
+        document.querySelector(
+            ".hero-content h1, .hero h1, .hero-title"
+        );
+
+
+    if (
+        heroTitle &&
+        !heroTitle.hasAttribute("data-ar")
+    ) {
+
+        heroTitle.textContent =
+            t.heroTitle;
+
+    }
 
 
     const productNameElement =
