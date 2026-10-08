@@ -119,17 +119,10 @@ const translations = {
             "أضف للسلة",
 
 
-        half:
-            "نصف لتر",
+        250مل:
+            "250مل",
 
-        one:
-            "1 لتر",
-
-        two:
-            "2 لتر",
-
-        five:
-            "5 لتر",
+       
 
 
         emptyCart:
@@ -280,18 +273,10 @@ const translations = {
             "Add to Cart",
 
 
-        half:
-            "Half Liter",
+        250ml:
+            "250ml",
 
-        one:
-            "1 Liter",
-
-        two:
-            "2 Liters",
-
-        five:
-            "5 Liters",
-
+      
 
         emptyCart:
             "Your cart is currently empty",
@@ -425,7 +410,7 @@ const translations = {
 
 const productData = {
 
-    half: {
+    250ml: {
 
         image:
             "250ml.jpeg",
@@ -442,57 +427,9 @@ const productData = {
     },
 
 
-    one: {
-
-        image:
-            "1liter.jpeg",
-
-        nameAr:
-            "زيت الزيتون بالثوم",
-
-        nameEn:
-            "Garlic Infused Olive Oil",
-
-        price:
-            580
-
-    },
+    
 
 
-    two: {
-
-        image:
-            "1liter.jpeg",
-
-        nameAr:
-            "زيت الزيتون بالثوم",
-
-        nameEn:
-            "Garlic Infused Olive Oil",
-
-        price:
-            1080
-
-    },
-
-
-    five: {
-
-        image:
-            "5liter.jpeg",
-
-        nameAr:
-            "زيت الزيتون بالثوم",
-
-        nameEn:
-            "Garlic Infused Olive Oil",
-
-        price:
-            2600
-
-    }
-
-};
 
 
 /* =========================
@@ -500,7 +437,7 @@ const productData = {
 ========================= */
 
 let selectedSize =
-    "half";
+    "250ml";
 
 let quantity =
     1;
@@ -615,8 +552,8 @@ function getSizeName(size) {
         translations[currentLanguage];
 
 
-    if (size === "half")
-        return t.half;
+    if (size === "250ml")
+        return t.250ml;
 
 
     if (size === "one")
@@ -2884,7 +2821,7 @@ window.addEventListener(
 if (productPriceElement) {
 
     productPriceElement.textContent =
-        productData.half.price +
+        productData.250ml.price +
         " ج.م";
 
 }
@@ -2903,7 +2840,7 @@ sizeButtons.forEach(
 
 const firstSizeButton =
     document.querySelector(
-        '.size-btn[data-size="half"]'
+        '.size-btn[data-size="250ml"]'
     );
 
 
