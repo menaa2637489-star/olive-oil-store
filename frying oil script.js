@@ -62,9 +62,9 @@ const translations = {
         buyNow: "اشتر الآن",
         addCart: "أضف للسلة",
 
-        half: "نصف لتر",
-        one: "1 لتر",
-        two: "2 لتر",
+        small: "200 مل",
+half: "500 مل",
+one: "1 لتر",
 
         emptyCart: "السلة فارغة حاليًا",
         cancel: "إلغاء",
@@ -110,9 +110,9 @@ const translations = {
         buyNow: "Buy Now",
         addCart: "Add to Cart",
 
-        half: "Half Liter",
-        one: "1 Liter",
-        two: "2 Liters",
+       small: "200 ml",
+half: "500 ml",
+one: "1 Liter",
 
         emptyCart: "Your cart is currently empty",
         cancel: "Remove",
@@ -156,32 +156,31 @@ const translations = {
 ========================= */
 
 const productData = {
+    small: {
+        image: "زيت للقلي 200 مل.jpg",
+        nameAr: "زيت زيتون للقلي - منقى من الألياف",
+        nameEn: "Olive Oil for Frying - Fiber Filtered",
+        price: 125
+    },
+
     half: {
         image: "زيت للقلي 500 مل.jpg",
         nameAr: "زيت زيتون للقلي - منقى من الألياف",
         nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 250
+        price: 200
     },
 
     one: {
         image: "1 لتر قلي.jpg",
         nameAr: "زيت زيتون للقلي - منقى من الألياف",
         nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 350
-    },
-
-    two: {
-        image: "زيت للقلي 2 لتر.jpg",
-        nameAr: "زيت زيتون للقلي - منقى من الألياف",
-        nameEn: "Olive Oil for Frying - Fiber Filtered",
-        price: 700
+        price: 300
     }
 };
 
-let selectedSize = "half";
+let selectedSize = "small";
 let quantity = 1;
 let cart = getCart();
-
 /* =========================
    SHARED CART
 ========================= */
