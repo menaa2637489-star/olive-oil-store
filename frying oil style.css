@@ -204,22 +204,22 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
-/* تكبير مساحة صورة المنتج */
+/* تكبير صورة المنتج */
 
 .product-stage {
-    width: 450px;
-    height: 520px;
+    width: 520px;
+    max-width: 100%;
+    height: 600px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     perspective: 1000px;
-
     margin-bottom: 10px;
-
     overflow: hidden;
 }
 
@@ -244,7 +244,6 @@ a {
 }
 
 @keyframes productIn {
-
     0% {
         transform: rotateY(-90deg) scale(0.85);
         opacity: 0;
@@ -265,45 +264,49 @@ a {
     color: #3f4a20;
     font-size: 24px;
     margin-bottom: 7px;
+    text-align: center;
 }
 
 .product-type {
     color: #777;
     font-size: 15px;
     margin-bottom: 18px;
+    text-align: center;
 }
 
+/* عنوان اختيار الحجم فوق الأحجام مباشرة */
+
 .sizes-title {
+    display: block;
+    width: 100%;
     color: #555;
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 0 10px;
 }
+
+/* الأحجام */
 
 .product-sizes {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
+    flex-wrap: wrap;
     gap: 10px;
-
-    margin-bottom: 18px;
+    width: 100%;
+    margin: 0 0 18px;
 }
 
 .size-btn {
-    min-width: 80px;
-
-    padding: 10px 14px;
+    min-width: 90px;
+    padding: 12px 16px;
 
     border: 1px solid #d8dccb;
-
     background: #ffffff;
-
     color: #3f4a20;
 
     border-radius: 6px;
-
-    font-size: 14px;
+    font-size: 15px;
 
     transition: 0.3s;
 }
@@ -320,16 +323,13 @@ a {
 
 .product-price {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
+    flex-wrap: wrap;
     gap: 8px;
 
     margin-bottom: 20px;
-
     font-size: 16px;
-
     color: #555;
 }
 
@@ -347,15 +347,10 @@ a {
 .buy-btn,
 .add-cart-btn {
     min-width: 140px;
-
     border: none;
-
     padding: 13px 25px;
-
     border-radius: 6px;
-
     font-size: 15px;
-
     transition: 0.3s;
 }
 
@@ -379,21 +374,16 @@ a {
 
 .plus-one-btn {
     border: none;
-
     background: #68743a;
-
     color: #ffffff;
 
     width: 42px;
     height: 34px;
-
     border-radius: 6px;
 
     font-size: 14px;
     font-weight: bold;
-
     cursor: pointer;
-
     transition: 0.3s;
 
     display: flex;
@@ -409,8 +399,6 @@ a {
 .plus-one-btn:active {
     transform: scale(0.95);
 }
-
-
 /* =========================
    QUANTITY CONTROL
 ========================= */
@@ -1968,46 +1956,43 @@ html[dir="ltr"] .footer-en {
         font-size: 15px;
     }
 
-    /* تكبير الصورة على الموبايل */
+    /* صورة المنتج على الموبايل */
 
-    .product-stage {
-        width: 300px;
+.product-stage {
+    width: 380px;
+    max-width: 100%;
+    height: 450px;
+}
 
-        height: 380px;
-    }
+.hero-product h2 {
+    font-size: 22px;
+    text-align: center;
+}
 
-    .hero-product h2 {
-        font-size: 20px;
-    }
+.product-type {
+    text-align: center;
+}
 
-    .product-sizes {
-        gap: 5px;
+.sizes-title {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
 
-        width: 100%;
-    }
+.product-sizes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+}
 
-    .size-btn {
-        min-width: 65px;
-
-        padding: 9px 7px;
-
-        font-size: 12px;
-    }
-
-    .product-buttons {
-        width: 100%;
-
-        padding: 0 20px;
-    }
-
-    .buy-btn,
-    .add-cart-btn {
-        min-width: 0;
-
-        flex: 1;
-
-        padding: 12px 8px;
-    }
+.size-btn {
+    min-width: 75px;
+    padding: 10px 9px;
+    font-size: 13px;
+}
 
 
     /* SIDE PANEL */
