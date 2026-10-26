@@ -792,49 +792,39 @@ const contactMenu = document.getElementById("contactMenu");
 if (contactBtn && contactMenu) {
 
     contactBtn.addEventListener("click", function (event) {
+        event.preventDefault();
         event.stopPropagation();
 
-        const isOpen = !contactMenu.hidden;
+        const isOpen = contactMenu.classList.toggle("show");
 
-        contactMenu.hidden = isOpen;
+        contactMenu.hidden = !isOpen;
 
         contactBtn.setAttribute(
             "aria-expanded",
-            String(!isOpen)
+            String(isOpen)
         );
     });
 
-    document.addEventListener("click", function (event) {
+    contactMenu.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
 
-        if (
-            !contactMenu.contains(event.target) &&
-            !contactBtn.contains(event.target)
-        ) {
-            contactMenu.hidden = true;
+    document.addEventListener("click", function () {
+        contactMenu.classList.remove("show");
+        contactMenu.hidden = true;
 
-            contactBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
-
+        contactBtn.setAttribute("aria-expanded", "false");
     });
 
     document.addEventListener("keydown", function (event) {
-
         if (event.key === "Escape") {
+            contactMenu.classList.remove("show");
             contactMenu.hidden = true;
 
-            contactBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+            contactBtn.setAttribute("aria-expanded", "false");
         }
-
     });
-
 }
-
 
 /* =========================================================
    LANGUAGE BUTTON
@@ -965,24 +955,6 @@ function updateLanguage() {
     renderCart();
 
     updateCartCount();
-
-}
-if (contactBtn && contactMenu) {
-
-    contactBtn.textContent =
-        currentLanguage === "ar"
-            ? "تواصل معنا"
-            : "Contact Us";
-
-    contactMenu.querySelectorAll("[data-ar][data-en]")
-        .forEach(function (link) {
-
-            link.textContent =
-                currentLanguage === "ar"
-                    ? link.dataset.ar
-                    : link.dataset.en;
-
-        });
 
 }
 
