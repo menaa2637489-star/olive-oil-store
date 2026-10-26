@@ -784,28 +784,54 @@ if (loginOverlay) {
 
 
 /* =========================================================
-   FACEBOOK / MESSENGER
+   CONTACT DROPDOWN
 ========================================================= */
 
-if (contactBtn) {
+const contactMenu = document.getElementById("contactMenu");
 
-    contactBtn.addEventListener(
-        "click",
-        function () {
+if (contactBtn && contactMenu) {
 
-            const facebookUrl =
-                this.dataset.facebookUrl;
+    contactBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
 
-            if (!facebookUrl) return;
+        const isOpen = !contactMenu.hidden;
 
-            window.open(
-                facebookUrl,
-                "_blank",
-                "noopener,noreferrer"
+        contactMenu.hidden = isOpen;
+
+        contactBtn.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+    });
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !contactMenu.contains(event.target) &&
+            !contactBtn.contains(event.target)
+        ) {
+            contactMenu.hidden = true;
+
+            contactBtn.setAttribute(
+                "aria-expanded",
+                "false"
             );
-
         }
-    );
+
+    });
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+            contactMenu.hidden = true;
+
+            contactBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+    });
 
 }
 
@@ -939,6 +965,24 @@ function updateLanguage() {
     renderCart();
 
     updateCartCount();
+
+}
+if (contactBtn && contactMenu) {
+
+    contactBtn.textContent =
+        currentLanguage === "ar"
+            ? "تواصل معنا"
+            : "Contact Us";
+
+    contactMenu.querySelectorAll("[data-ar][data-en]")
+        .forEach(function (link) {
+
+            link.textContent =
+                currentLanguage === "ar"
+                    ? link.dataset.ar
+                    : link.dataset.en;
+
+        });
 
 }
 
