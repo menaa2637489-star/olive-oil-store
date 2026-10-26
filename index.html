@@ -61,17 +61,17 @@
             </span>
 
         </button>
-        <!-- CONTACT / MESSENGER -->
-<div class="contact-dropdown-container" style="position: relative; display: inline-block;">
+   <!-- CONTACT -->
+<div class="contact-dropdown-container">
+
     <button
         type="button"
         class="header-btn contact-btn"
         id="contactBtn"
-        data-facebook-url="https://www.facebook.com/share/1ckPpM1Tov/">
+        aria-expanded="false"
+        aria-controls="contactMenu">
 
-        <span class="phone-icon">
-            ☎
-        </span>
+        <span class="phone-icon">☎</span>
 
         <span
             data-ar="تواصل معنا"
@@ -79,22 +79,13 @@
             تواصل معنا
         </span>
 
-        
     </button>
 
-   <div class="contact-dropdown-container">
-    <button
-        id="contactBtn"
-        class="contact-btn"
-        type="button"
-        aria-expanded="false"
-        aria-controls="contactMenu"
-        data-ar="تواصل معنا"
-        data-en="Contact Us">
-        تواصل معنا
-    </button>
+    <div
+        id="contactMenu"
+        class="contact-dropdown"
+        hidden>
 
-    <div id="contactMenu" class="contact-dropdown" hidden>
         <a
             href="tel:+201272154551"
             data-ar="اتصال هاتفي"
@@ -110,9 +101,10 @@
             data-en="WhatsApp">
             تواصل عبر واتساب
         </a>
+
     </div>
+
 </div>
-       
 
 
         <!-- CART -->
