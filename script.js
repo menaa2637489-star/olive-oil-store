@@ -829,18 +829,18 @@ if (contactBtn && contactMenu) {
    FOOTER CONTACT BUTTON
 ========================================================= */
 
+
+
 const footerContactBtn =
     document.getElementById("footerContactBtn");
 
-if (footerContactBtn && contactBtn) {
+if (footerContactBtn) {
     footerContactBtn.addEventListener("click", function () {
-        contactBtn.click();
-
-        // Scroll to the header contact button if needed
-        contactBtn.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
+        window.open(
+            "https://wa.me/201277371995",
+            "_blank",
+            "noopener,noreferrer"
+        );
     });
 }
 /* =========================================================
