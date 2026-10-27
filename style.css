@@ -2811,7 +2811,7 @@ html[lang="en"] .remove-cart-item {
     display: block;
     padding: 35px 6% 20px;
     background: #244b0b;
-    color: #ffffff;
+    color: #f244b0b;
 }
 
 .footer-main {
@@ -2820,7 +2820,7 @@ html[lang="en"] .remove-cart-item {
     align-items: flex-start;
     justify-content: space-between;
     gap: 35px;
-    direction: rtl;
+    direction: ltr;
 }
 
 .footer-links,
