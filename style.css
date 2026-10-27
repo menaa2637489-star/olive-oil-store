@@ -2783,3 +2783,223 @@ html[lang="en"] .remove-cart-item {
 .contact-dropdown a:hover {
     background: #f7f4eb;
 }
+/* =========================================================
+   FOOTER BRAND STRIP
+========================================================= */
+
+.footer-brand-strip {
+    width: 100%;
+    background: #ffffff;
+    color: #244b0b;
+    padding: 18px 15px;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    font-style: italic;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer-brand-strip .footer-en {
+    font-style: italic;
+}
+
+/* =========================================================
+   UPDATED FOOTER
+========================================================= */
+
+.site-footer {
+    display: block;
+    padding: 35px 6% 20px;
+    background: #244b0b;
+    color: #ffffff;
+}
+
+.footer-main {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 35px;
+    direction: rtl;
+}
+
+.footer-links,
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    color: #ffffff;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.footer-links a,
+.footer-contact-btn {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: right;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover,
+.footer-contact-btn:hover {
+    color: #d6e5bd;
+    text-decoration: underline;
+}
+
+.footer-social {
+    align-items: flex-start;
+}
+
+.footer-social .social-icons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-social .social-icons a {
+    width: 42px;
+    height: 42px;
+    background: #f7f4eb;
+    color: #244b0b;
+    border: 1px solid #789542;
+}
+
+.footer-social .social-icons a:hover {
+    background: #789542;
+    color: #ffffff;
+}
+
+.footer-bottom {
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Keep the dashboard button's existing design */
+
+.footer-bottom .dashboard-access {
+    margin-top: 2px;
+}
+
+/* =========================================================
+   SLIGHTLY LARGER FLOATING WHATSAPP
+========================================================= */
+
+.whatsapp-float {
+    padding: 12px 17px;
+    gap: 10px;
+}
+
+.whatsapp-icon {
+    font-size: 23px;
+}
+
+.whatsapp-text {
+    font-size: 14px;
+}
+
+/* =========================================================
+   FOOTER MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+    .footer-brand-strip {
+        padding: 15px 10px;
+        font-size: 19px;
+    }
+
+    .site-footer {
+        padding: 28px 6% 18px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 30px;
+    }
+
+    .footer-links,
+    .footer-social {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links a,
+    .footer-contact-btn {
+        text-align: center;
+    }
+
+    .footer-social .social-icons {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        margin-top: 25px;
+    }
+
+    .whatsapp-float {
+        padding: 10px 14px;
+    }
+
+    .whatsapp-icon {
+        font-size: 22px;
+    }
+
+    .whatsapp-text {
+        font-size: 12px;
+    }
+}
+
+/* English footer direction */
+
+html[lang="en"] .footer-main {
+    direction: ltr;
+}
+
+html[lang="en"] .footer-links,
+html[lang="en"] .footer-social {
+    align-items: flex-start;
+}
+
+html[lang="en"] .footer-links a,
+html[lang="en"] .footer-contact-btn {
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    html[lang="en"] .footer-links,
+    html[lang="en"] .footer-social {
+        align-items: center;
+    }
+
+    html[lang="en"] .footer-links a,
+    html[lang="en"] .footer-contact-btn {
+        text-align: center;
+    }
+}
