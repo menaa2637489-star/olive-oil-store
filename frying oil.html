@@ -55,21 +55,50 @@
        
 
 
-        <!-- التواصل -->
-<a href="https://www.facebook.com/share/1ckPpM1Tov/"
-   class="header-btn contact-btn"
-   target="_blank"
-   rel="noopener noreferrer">
+       <!-- CONTACT -->
+<div class="contact-dropdown-container">
 
-            <span class="phone-icon">☎</span>
+    <button
+        type="button"
+        class="header-btn contact-btn"
+        id="contactBtn"
+        aria-expanded="false"
+        aria-controls="contactMenu">
 
-            <span data-ar="تواصل معنا" data-en="Contact Us">
-                تواصل معنا
-            </span>
+        <span class="phone-icon">☎</span>
 
+        <span
+            data-ar="تواصل معنا"
+            data-en="Contact Us">
+            تواصل معنا
+        </span>
+
+    </button>
+
+    <div
+        id="contactMenu"
+        class="contact-dropdown"
+        hidden>
+
+        <a
+            href="tel:+201272154551"
+            data-ar="اتصال هاتفي"
+            data-en="Call Us">
+            اتصال هاتفي
         </a>
 
+        <a
+            href="https://wa.me/201277371995"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ar="تواصل عبر واتساب"
+            data-en="WhatsApp">
+            تواصل عبر واتساب
+        </a>
 
+    </div>
+
+</div>
         <!-- السلة الأساسية -->
         <button class="header-btn cart-btn" id="cartBtn">
 
@@ -723,44 +752,7 @@
 
     </div>
 </div>
-    <!-- QUESTION 4: ABU EL NASR PROMISE -->
-    <div class="faq-item">
-        <button class="faq-question"
-        type="button"
-        aria-expanded="false">
-
-    <span data-ar='عهد "أبو النصر"'
-          data-en="The Abu El Nasr Promise">
-
-        عهد "أبو النصر"
-
-    </span>
-
-    <span class="faq-arrow">▼</span>
-
-</button>
-
-<div class="faq-answer">
-
-    <div class="faq-ar">
-
-        <p>
-            عهدنا ليك إن كل قطرة بتستخدمها هي 100% صافية، جاية من الشجرة لمعصرتنا لعبوتك مباشرة خالية تماماً من أي خلط أو زيوت مهدرجة أو إضافات. إحنا في "أبو النصر" بنقدملك ثقة وأمان قبل ما نقدملك زيت.
-        </p>
-
-    </div>
-
-    <div class="faq-en">
-
-        <p>
-            Our promise to you is that every drop you use is 100% pure, coming directly from the tree to our press and then to your bottle, completely free from blending, hydrogenated oils, or additives. At Abu El Nasr, we offer you trust and confidence before we offer you olive oil.
-        </p>
-    </div>
-</div>
-
-</div>
-</section>
-
+   
 <!-- =========================
      QUALITY VIDEO
 ========================= -->
@@ -782,39 +774,42 @@
     </div>
 
 
-    <div class="quality-text quality-ar">
+  <div class="quality-text quality-ar">
 
-        <h2>
-            لأن الجودة تبدأ من المصدر
-        </h2>
+            <h2>
+                عهد ابو النصر
+            </h2>
 
-        <p>
-            نحرص على اختيار ثمار الزيتون بعناية<br>
-            والاهتمام بكل مرحلة لتقدم لكم بجودة تليق بثقتكم<br>
-            من قلب الزيتون...<br>
-            نصنع الفرق
-        </p>
+
+            <p>
+           عهدنا ليك إن كل قطرة بتستخدمها هي 100% صافية،
+                <br>جاية من الشجرة لمعصرتنا لعبوتك مباشرة <br>خالية تماماً من أي خلط أو زيوت مهدرجة أو إضافات<br>
+             إحنا في "أبو النصر" بنقدملك ثقة وأمان قبل ما نقدملك زيت<br>
+             
+                
+            </p>
+
+        </div>
+
+
+        <div class="quality-text quality-en">
+
+            <h2>
+             The Abu El Nasr Promise
+            </h2>
+
+
+            <p>Our promise to you is that every drop is pure and carefully <br>
+                handled from the olive tree to our mill and then to your bottle,<br>
+                
+                without unnecessary mixing or artificial additives.<br>
+                At Abu El Nasr, Trust and safety, served before oil.
+            </p>
+
+        </div>
 
     </div>
 
-
-    <div class="quality-text quality-en">
-
-        <h2>
-            Because Quality Starts at the Source
-        </h2>
-
-        <p>
-            We carefully select the finest olive fruits<br>
-            and pay attention to every stage to deliver quality worthy of your trust<br>
-            From the heart of the olive...<br>
-            We make the difference
-        </p>
-
-    </div>
-
-
-</div>
 
 </section>
 
@@ -950,127 +945,96 @@
 
 
 
-<!-- =========================
-     CONTACT
-========================= -->
+<!-- FOOTER BRAND STRIP -->
+<div class="footer-brand-strip">
+    <span class="footer-ar">زيت زيتون دكتور أبو النصر</span>
+    <span class="footer-en">Dr. Abu El Nasr Olive Oil</span>
+</div>
 
- <section class="contact-section">
+<!-- MAIN FOOTER -->
+<footer class="site-footer">
+    <div class="footer-main">
 
-        <div class="contact-container">
+        <!-- RIGHT SIDE: LINKS -->
+        <div class="footer-links">
+           
 
-            <div class="contact-links">
+            <a href="#about">
+                <span class="footer-ar">من نحن</span>
+                <span class="footer-en">About Us</span>
+            </a>
 
-                <button
-                    type="button"
-                    onclick="openAboutSection()">
+            <a href="terms.html">
+                <span class="footer-ar">شروط الاستخدام</span>
+                <span class="footer-en">Terms of Use</span>
+            </a>
 
-                    <span class="contact-ar">
-                        من نحن
-                    </span>
+            <a href="privacy.html">
+                <span class="footer-ar">سياسة الخصوصية</span>
+                <span class="footer-en">Privacy Policy</span>
+            </a>
 
-                    <span class="contact-en">
-                        About Us
-                    </span>
-
-                </button>
-
-
-                <a
-                    href="https://wa.me/201272154551"
-                    target="_blank">
-
-                    <span class="contact-ar">
-                        تواصل معنا
-                    </span>
-
-                    <span class="contact-en">
-                        Contact Us
-                    </span>
-
-                </a>
-
-            </div>
-
-
-            <div class="social-area">
-
-                <div class="social-content">
-
-                    <h3>
-
-                        <span class="contact-ar">
-                            تابعنا على صفحاتنا
-                        </span>
-
-                        <span class="contact-en">
-                            Follow Us
-                        </span>
-
-                    </h3>
-
-
-                    <div class="social-icons">
-
-                        <a
-                            href="https://www.instagram.com/drabuelnasrproducts?igsi=MWl1YzI4bHl4a21pbA=="
-                            target="_blank"
-                            aria-label="Instagram">
-
-                            <i class="fab fa-instagram"></i>
-
-                        </a>
-
-
-                        <a
-                            href="https://www.facebook.com/share/1ckPpM1Tov/"
-                            target="_blank"
-                            aria-label="Facebook">
-
-                            <i class="fab fa-facebook-f"></i>
-
-                        </a>
-
-
-                        <a
-                            href="https://www.tiktok.com/@dr.ahmedabouelnasr?_r=1&_t=ZS-990oCE4h9S1"
-                            target="_blank"
-                            aria-label="TikTok">
-
-                            <i class="fab fa-tiktok"></i>
-
-                        </a>
-
-
-                        <a
-                            href="https://youtube.com/@drahmedabuelnasr?si=T_Mye-c9jZSYGli5"
-                            target="_blank"
-                            aria-label="youtube">
-
-                            <i class="fab fa-youtube"></i>
-
-                        </a>
-
-
-                        <a
-                            href="https://x.com/drahmedabuelnsr"
-                            target="_blank"
-                            aria-label="X">
-
-                            <i class="fa-brands fa-x-twitter"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+            <button type="button" class="footer-contact-btn" id="footerContactBtn">
+                <span class="contact-ar">تواصل معنا</span>
+                <span class="contact-en">Contact Us</span>
+            </button>
         </div>
 
-    </section>
+        <!-- LEFT SIDE: SOCIAL MEDIA -->
+        <div class="footer-social">
+            <h3>
+                <span class="footer-ar">تابعينا</span>
+                <span class="footer-en">Follow Us</span>
+            </h3>
 
+            <div class="social-icons">
+                <a href="https://x.com/drahmedabuelnsr"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
 
+                <a href="https://www.facebook.com/share/1ckPpM1Tov/"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="https://www.instagram.com/drabuelnasrproducts?igsi=MWl1YzI4bHl4a21pbA=="
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="https://www.tiktok.com/@dr.ahmedabouelnasr?_r=1&_t=ZS-990oCE4h9S1"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+
+                <a href="https://youtube.com/@drahmedabuelnasr?si=T_Mye-c9jZSYGli5"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        <p>
+            <span class="footer-ar">جميع الحقوق محفوظة © 2026</span>
+            <span class="footer-en">All Rights Reserved © 2026</span>
+        </p>
+
+        <button type="button" class="dashboard-access" id="dashboardAccess">
+            <span class="footer-ar">لوحة التحكم</span>
+            <span class="footer-en">Dashboard</span>
+        </button>
+    </div>
+</footer>
 
 <!-- =========================
      FOOTER
