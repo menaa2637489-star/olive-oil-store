@@ -2592,3 +2592,41 @@ changeLanguage(
 
 loadSharedCart();
 
+/* =========================================================
+   CONTACT DROPDOWN
+========================================================= */
+
+const contactBtn = document.getElementById("contactBtn");
+const contactMenu = document.getElementById("contactMenu");
+
+if (contactBtn && contactMenu) {
+
+    contactBtn.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = contactBtn.getAttribute("aria-expanded") === "true";
+
+        contactMenu.hidden = isOpen;
+
+        contactBtn.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+
+    });
+
+    document.addEventListener("click", function (event) {
+
+        if (!event.target.closest(".contact-dropdown-container")) {
+
+            contactMenu.hidden = true;
+
+            contactBtn.setAttribute("aria-expanded", "false");
+
+        }
+
+    });
+
+}
