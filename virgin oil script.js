@@ -2591,3 +2591,62 @@ changeLanguage(
 
 
 loadSharedCart();
+/* =========================================================
+   CONTACT DROPDOWN
+========================================================= */
+
+const contactBtn = document.getElementById("contactBtn");
+const contactMenu = document.getElementById("contactMenu");
+
+if (contactBtn && contactMenu) {
+
+    contactBtn.addEventListener("click", function (event) {
+
+        event.stopPropagation();
+
+        const isOpen = !contactMenu.hidden;
+
+        contactMenu.hidden = isOpen;
+
+        contactBtn.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+        );
+
+    });
+
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !event.target.closest(".contact-dropdown-container")
+        ) {
+
+            contactMenu.hidden = true;
+
+            contactBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    });
+
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            contactMenu.hidden = true;
+
+            contactBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    });
+
+}
