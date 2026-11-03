@@ -3216,3 +3216,63 @@ html[lang="en"] .footer-main {
         font-size: 14px !important;
     }
 }
+/* =========================================================
+   FIX FOOTER DESKTOP LAYOUT
+========================================================= */
+
+@media (min-width: 769px) {
+
+    .site-footer {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 40px 6% 20px !important;
+    }
+
+    .footer-main {
+        display: grid !important;
+        width: 100% !important;
+        max-width: none !important;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr)) !important;
+
+        column-gap: 45px !important;
+        row-gap: 30px !important;
+
+        direction: rtl !important;
+        justify-content: stretch !important;
+        align-items: start !important;
+    }
+
+    .footer-main > div {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .footer-brand,
+    .footer-quick-links,
+    .footer-contact-links {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    .footer-description {
+        max-width: 100% !important;
+        line-height: 1.9 !important;
+    }
+
+    .footer-bottom {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    html[lang="en"] .footer-main {
+        direction: ltr !important;
+    }
+}
