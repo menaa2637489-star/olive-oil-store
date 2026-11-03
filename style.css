@@ -2803,27 +2803,65 @@ html[lang="en"] .remove-cart-item {
     font-style: italic;
 }
 
+
 /* =========================================================
-   UPDATED FOOTER
+   MAIN FOOTER
 ========================================================= */
 
 .site-footer {
-    display: block;
-    padding: 35px 6% 20px;
-    background: #244b0b;
-    color: #f244b0b;
-}
-
-.footer-main {
     width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 35px;
+    padding: 40px 6% 20px;
+    background: #244b0b;
+    color: #ffffff;
     direction: rtl;
 }
 
-.footer-links,
+
+/* =========================================================
+   FOOTER COLUMNS
+========================================================= */
+
+.footer-main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 55px;
+    align-items: start;
+    direction: rtl;
+}
+
+
+/* =========================================================
+   BRAND COLUMN - RIGHT
+========================================================= */
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.footer-brand-name {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.footer-description {
+    color: #f7f4eb;
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 380px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA
+========================================================= */
+
 .footer-social {
     display: flex;
     flex-direction: column;
@@ -2831,236 +2869,251 @@ html[lang="en"] .remove-cart-item {
     gap: 13px;
 }
 
-.footer-links h3,
-.footer-social h3 {
+.footer-social h4 {
     color: #ffffff;
-    font-size: 19px;
-    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
 }
 
-.footer-links a,
-.footer-contact-btn {
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.social-icons a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #244b0b;
+    background: #f7f4eb;
+    border-radius: 50%;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: #d6e5bd;
+    transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   QUICK LINKS - CENTER
+========================================================= */
+
+.footer-quick-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 17px;
+}
+
+.footer-quick-links h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.footer-quick-links a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 15px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    text-align: right;
-    transition: color 0.3s;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease;
 }
 
-.footer-links a:hover,
-.footer-contact-btn:hover {
+.footer-quick-links a:hover {
     color: #d6e5bd;
-    text-decoration: underline;
+    transform: translateX(-4px);
 }
 
-.footer-social {
+
+/* =========================================================
+   CONTACT COLUMN - LEFT
+========================================================= */
+
+.footer-contact-links {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    gap: 17px;
 }
 
-.footer-social .social-icons {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.footer-social .social-icons a {
-    width: 42px;
-    height: 42px;
-    background: #f7f4eb;
-    color: #244b0b;
-    border: 1px solid #789542;
-}
-
-.footer-social .social-icons a:hover {
-    background: #789542;
+.footer-contact-links h3 {
     color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 5px;
 }
+
+.footer-contact-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.footer-contact-links a:hover {
+    color: #d6e5bd;
+    transform: translateX(-4px);
+}
+
+.footer-contact-links .footer-phone {
+    direction: ltr;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   COPYRIGHT
+========================================================= */
 
 .footer-bottom {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 35px;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.25);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     text-align: center;
 }
 
 .footer-bottom p {
+    color: #ffffff;
+    font-size: 16px;
     margin: 0;
-    color: #ffffff;
-    font-size: 15px;
-    line-height: 1.8;
 }
 
-/* Keep the dashboard button's existing design */
-
-.footer-bottom .dashboard-access {
-    margin-top: 2px;
-}
 
 /* =========================================================
-   SLIGHTLY LARGER FLOATING WHATSAPP
+   DASHBOARD BUTTON
+   KEEP HIDDEN FOR NOW
 ========================================================= */
-
-.whatsapp-float {
-    padding: 12px 17px;
-    gap: 10px;
-}
-
-.whatsapp-icon {
-    font-size: 23px;
-}
-
-.whatsapp-text {
-    font-size: 14px;
-}
-
-/* =========================================================
-   FOOTER MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
-    .footer-brand-strip {
-        padding: 15px 10px;
-        font-size: 19px;
-    }
-
-    .site-footer {
-        padding: 28px 6% 18px;
-    }
-
-    .footer-main {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 30px;
-    }
-
-    .footer-links,
-    .footer-social {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-    }
-
-    .footer-links a,
-    .footer-contact-btn {
-        text-align: center;
-    }
-
-    .footer-social .social-icons {
-        justify-content: center;
-    }
-
-    .footer-bottom {
-        margin-top: 25px;
-    }
-
-    .whatsapp-float {
-        padding: 10px 14px;
-    }
-
-    .whatsapp-icon {
-        font-size: 22px;
-    }
-
-    .whatsapp-text {
-        font-size: 12px;
-    }
-}
-
-/* English footer direction */
-
-html[lang="en"] .footer-main {
-    direction: ltr;
-}
-
-html[lang="en"] .footer-links,
-html[lang="en"] .footer-social {
-    align-items: flex-start;
-}
-
-html[lang="en"] .footer-links a,
-html[lang="en"] .footer-contact-btn {
-    text-align: left;
-}
-
-@media (max-width: 600px) {
-    html[lang="en"] .footer-links,
-    html[lang="en"] .footer-social {
-        align-items: center;
-    }
-
-    html[lang="en"] .footer-links a,
-    html[lang="en"] .footer-contact-btn {
-        text-align: center;
-    }
-}
-/* =========================================================
-   FINAL REQUESTED UPDATES
-========================================================= */
-
-/* PRODUCTS TITLE BOX */
-
-.products-section h2 {
-    display: table;
-    margin: 0 auto 35px;
-    padding: 12px 40px;
-    font-size: 38px;
-    font-weight: bold;
-    color: #ffffff;
-    border: 2px solid #789542;
-    border-radius: 10px;
-    background: #294d12;
-}
-
-/* FOOTER FONT SIZE */
-
-.footer-links a,
-.footer-contact-btn {
-    font-size: 19px;
-    font-weight: 600;
-}
-
-.footer-links {
-    gap: 17px;
-}
-
-.footer-bottom p {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.9;
-}
-
-/* HIDE DASHBOARD FROM VISITORS */
 
 .dashboard-access {
     display: none !important;
 }
 
-/* MOBILE */
 
-@media (max-width: 600px) {
+/* =========================================================
+   ENGLISH LANGUAGE
+========================================================= */
 
-    .products-section h2 {
-        font-size: 30px;
-        padding: 10px 30px;
+html[lang="en"] .site-footer {
+    direction: ltr;
+}
+
+html[lang="en"] .footer-main {
+    direction: ltr;
+}
+
+html[lang="en"] .footer-brand,
+html[lang="en"] .footer-social,
+html[lang="en"] .footer-quick-links,
+html[lang="en"] .footer-contact-links {
+    align-items: flex-start;
+}
+
+html[lang="en"] .footer-quick-links a:hover,
+html[lang="en"] .footer-contact-links a:hover {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .footer-brand-strip {
+        font-size: 28px;
+        padding: 15px 10px;
     }
 
-    .footer-links a,
-    .footer-contact-btn {
-        font-size: 17px;
+    .site-footer {
+        padding: 35px 7% 20px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-brand,
+    .footer-social,
+    .footer-quick-links,
+    .footer-contact-links {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .footer-brand-name {
+        font-size: 20px;
+    }
+
+    .footer-description {
+        font-size: 14px;
+        max-width: 100%;
+    }
+
+    .footer-quick-links h3,
+    .footer-contact-links h3 {
+        font-size: 19px;
+    }
+
+    .footer-quick-links a,
+    .footer-contact-links a {
+        font-size: 15px;
+    }
+
+    .social-icons {
+        gap: 13px;
+    }
+
+    .social-icons a {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
     }
 
     .footer-bottom p {
-        font-size: 16px;
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .footer-brand-strip {
+        font-size: 23px;
+    }
+
+    .footer-main {
+        gap: 30px;
+    }
+
+    .social-icons {
+        gap: 10px;
     }
 
 }
