@@ -3117,3 +3117,102 @@ html[lang="en"] .footer-contact-links a:hover {
     }
 
 }
+/* =========================================================
+   FOOTER FINAL OVERRIDE
+========================================================= */
+
+.site-footer {
+    background: #244b0b !important;
+    color: #ffffff !important;
+}
+
+.footer-main {
+    display: grid !important;
+    grid-template-columns: 1.4fr 1fr 1fr !important;
+    gap: 55px !important;
+    direction: rtl;
+    align-items: start;
+}
+
+.footer-brand,
+.footer-quick-links,
+.footer-contact-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 17px !important;
+}
+
+.footer-brand-name,
+.footer-quick-links h3,
+.footer-contact-links h3 {
+    color: #ffffff !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    margin: 0 0 5px !important;
+}
+
+.footer-description {
+    color: #f7f4eb !important;
+    font-size: 16px !important;
+    line-height: 1.9 !important;
+}
+
+.footer-quick-links a,
+.footer-contact-links a {
+    color: #ffffff !important;
+    font-size: 17px !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.footer-quick-links a:hover,
+.footer-contact-links a:hover {
+    color: #d6e5bd !important;
+    text-decoration: underline !important;
+}
+
+.footer-social h4 {
+    color: #ffffff !important;
+    font-size: 18px !important;
+}
+
+.social-icons a {
+    color: #244b0b !important;
+    background: #f7f4eb !important;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.25) !important;
+    text-align: center !important;
+}
+
+.footer-bottom p {
+    color: #ffffff !important;
+    font-size: 16px !important;
+}
+
+.dashboard-access {
+    display: none !important;
+}
+
+html[lang="en"] .footer-main {
+    direction: ltr;
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .footer-brand,
+    .footer-quick-links,
+    .footer-contact-links {
+        align-items: flex-start !important;
+    }
+
+    .footer-description {
+        font-size: 14px !important;
+    }
+}
