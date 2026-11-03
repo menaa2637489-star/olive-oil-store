@@ -3003,3 +3003,64 @@ html[lang="en"] .footer-contact-btn {
         text-align: center;
     }
 }
+/* =========================================================
+   FINAL REQUESTED UPDATES
+========================================================= */
+
+/* PRODUCTS TITLE BOX */
+
+.products-section h2 {
+    display: table;
+    margin: 0 auto 35px;
+    padding: 12px 40px;
+    font-size: 38px;
+    font-weight: bold;
+    color: #ffffff;
+    border: 2px solid #789542;
+    border-radius: 10px;
+    background: #294d12;
+}
+
+/* FOOTER FONT SIZE */
+
+.footer-links a,
+.footer-contact-btn {
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.footer-links {
+    gap: 17px;
+}
+
+.footer-bottom p {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.9;
+}
+
+/* HIDE DASHBOARD FROM VISITORS */
+
+.dashboard-access {
+    display: none !important;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .products-section h2 {
+        font-size: 30px;
+        padding: 10px 30px;
+    }
+
+    .footer-links a,
+    .footer-contact-btn {
+        font-size: 17px;
+    }
+
+    .footer-bottom p {
+        font-size: 16px;
+    }
+
+}
