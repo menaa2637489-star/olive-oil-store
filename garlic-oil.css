@@ -2990,3 +2990,39 @@ html[dir="ltr"] .footer-contact-btn {
         text-align: center;
     }
 }
+/* =====================================================
+   FOOTER LANGUAGE SWITCH
+===================================================== */
+
+/* الوضع الافتراضي: عربي */
+
+.footer-ar {
+    display: inline !important;
+}
+
+.footer-en {
+    display: none !important;
+}
+
+/* عند اختيار اللغة الإنجليزية */
+
+html[dir="ltr"] .footer-ar {
+    display: none !important;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline !important;
+}
+
+/* لو النصوص داخل عناصر block */
+
+.footer-brand-name.footer-ar,
+.footer-brand-name.footer-en,
+.footer-description.footer-ar,
+.footer-description.footer-en,
+.footer-quick-links h3.footer-ar,
+.footer-quick-links h3.footer-en,
+.footer-contact-links h3.footer-ar,
+.footer-contact-links h3.footer-en {
+    display: block !important;
+}
