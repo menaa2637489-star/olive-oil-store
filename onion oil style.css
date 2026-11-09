@@ -1804,68 +1804,183 @@ html[dir="ltr"] .contact-links a {
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* =====================================================
+   FOOTER BRAND STRIP
+===================================================== */
+
+.footer-brand-strip {
+    width: 100%;
+    background: #f7f4eb;
+    color: #244b0b;
+    padding: 18px 15px;
+    text-align: center;
+    font-size: 43px;
+    font-weight: bold;
+    font-style: italic;
+    border-top: 1px solid #e5e5e5;
+    line-height: 1.5;
+}
+
+.footer-brand-strip .footer-ar,
+.footer-brand-strip .footer-en {
+    font-style: italic;
+}
+
+
+/* =====================================================
+   MAIN FOOTER
+===================================================== */
 
 .site-footer {
     width: 100%;
+    padding: 35px 6% 20px;
+    background: #244b0b;
+    color: #ffffff;
+    display: block;
+}
 
-    padding: 28px 20px;
+.footer-main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 1.2fr;
+    align-items: start;
+    gap: 45px;
+    direction: rtl;
+}
 
-    background: #2b4815;
+/* BRAND - RIGHT */
 
+.footer-brand {
+    text-align: right;
+}
+
+.footer-brand-name {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+.footer-description {
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 2;
+    font-weight: 500;
+    max-width: 390px;
+}
+
+.footer-brand-name .footer-ar,
+.footer-brand-name .footer-en,
+.footer-description .footer-ar,
+.footer-description .footer-en {
+    display: block;
+}
+
+/* QUICK LINKS - CENTER */
+
+.footer-quick-links {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
+    gap: 12px;
     text-align: center;
-
-    color: #ffffff;
 }
 
-.site-footer p {
-    margin: 0;
-
-    font-size: 14px;
+.footer-quick-links h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.site-footer a {
+.footer-quick-links a {
     color: #ffffff;
-
-    font-size: 14px;
-
+    font-size: 15px;
     font-weight: 600;
-
-    text-decoration: none;
-
+    line-height: 1.8;
     transition: 0.3s;
 }
 
-.site-footer a:hover {
-    opacity: 0.7;
+.footer-quick-links a:hover {
+    color: #d6e5bd;
+    text-decoration: underline;
 }
+
+/* CONTACT - LEFT */
+
+.footer-contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.footer-contact-links h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.footer-contact-links a {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.8;
+    transition: 0.3s;
+}
+
+.footer-contact-links a:hover {
+    color: #d6e5bd;
+    text-decoration: underline;
+}
+
+.footer-contact-links .footer-phone {
+    font-size: 17px;
+    font-weight: bold;
+    direction: ltr;
+}
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+    width: 100%;
+    margin-top: 28px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.8;
+}
+
+/* DASHBOARD */
 
 .dashboard-access {
-    color: #ffffff;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: 0.3s;
+    display: none !important;
 }
 
-.dashboard-access:hover {
-    opacity: 0.7;
+body.is-developer .dashboard-access {
+    display: inline-flex !important;
+}
+
+
+/* =====================================================
+   FOOTER LANGUAGE
+===================================================== */
+
+.footer-ar {
+    display: inline;
 }
 
 .footer-en {
@@ -1880,6 +1995,119 @@ html[dir="ltr"] .footer-en {
     display: inline;
 }
 
+html[dir="ltr"] .footer-brand-name .footer-en,
+html[dir="ltr"] .footer-description .footer-en {
+    display: block;
+}
+
+html[dir="rtl"] .footer-brand-name .footer-ar,
+html[dir="rtl"] .footer-description .footer-ar {
+    display: block;
+}
+
+
+/* ENGLISH FOOTER DIRECTION */
+
+html[dir="ltr"] .footer-main {
+    direction: ltr;
+}
+
+html[dir="ltr"] .footer-brand {
+    text-align: left;
+}
+
+html[dir="ltr"] .footer-quick-links {
+    direction: ltr;
+}
+
+html[dir="ltr"] .footer-contact-links {
+    align-items: center;
+    text-align: center;
+}
+
+html[dir="ltr"] .footer-brand-name,
+html[dir="ltr"] .footer-description {
+    direction: ltr;
+    text-align: left;
+}
+
+/* =====================================================
+   WHATSAPP FLOATING BUTTON
+===================================================== */
+
+.whatsapp-float {
+    position: fixed;
+    left: 22px;
+    right: auto;
+    bottom: 25px;
+    z-index: 9999;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 190px;
+    min-height: 68px;
+    padding: 14px 24px;
+
+    background: #25D366;
+    color: #ffffff;
+
+    border-radius: 40px;
+
+    font-size: 19px;
+    font-weight: 700;
+
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+
+    gap: 12px;
+    text-decoration: none;
+
+    animation: whatsappFloat 2.5s ease-in-out infinite;
+}
+
+.whatsapp-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 42px;
+}
+
+.whatsapp-icon i {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.whatsapp-icon img {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    object-fit: contain;
+    display: block;
+}
+
+.whatsapp-text {
+    white-space: nowrap;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.whatsapp-float:hover {
+    filter: brightness(0.95);
+}
+
+@keyframes whatsappFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
 
 /* =====================================================
    CARD 4 - FINAL FORCE
