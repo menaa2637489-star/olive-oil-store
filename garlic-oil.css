@@ -1367,8 +1367,6 @@ html[dir="ltr"] .contact-links a {
     display: block;
 }
 
-/* الأقسام الثلاثة */
-
 .footer-main {
     width: 100%;
     display: grid;
@@ -1378,7 +1376,7 @@ html[dir="ltr"] .contact-links a {
     direction: rtl;
 }
 
-/* القسم اليمين: البراند */
+/* BRAND - RIGHT */
 
 .footer-brand {
     text-align: right;
@@ -1407,7 +1405,7 @@ html[dir="ltr"] .contact-links a {
     display: block;
 }
 
-/* القسم الأوسط: الروابط */
+/* QUICK LINKS - CENTER */
 
 .footer-quick-links {
     display: flex;
@@ -1437,14 +1435,14 @@ html[dir="ltr"] .contact-links a {
     text-decoration: underline;
 }
 
-/* القسم الشمال: التواصل */
+/* CONTACT - LEFT */
 
 .footer-contact-links {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
-    text-align: right;
+    text-align: center;
 }
 
 .footer-contact-links h3 {
@@ -1473,7 +1471,7 @@ html[dir="ltr"] .contact-links a {
     direction: ltr;
 }
 
-/* الفوتر السفلي */
+/* FOOTER BOTTOM */
 
 .footer-bottom {
     width: 100%;
@@ -1494,13 +1492,11 @@ html[dir="ltr"] .contact-links a {
     line-height: 1.8;
 }
 
-/* إخفاء لوحة التحكم افتراضيًا */
+/* DASHBOARD */
 
 .dashboard-access {
     display: none !important;
 }
-
-/* تظهر فقط عند إضافة كلاس المطور من JavaScript */
 
 body.is-developer .dashboard-access {
     display: inline-flex !important;
@@ -1527,8 +1523,6 @@ html[dir="ltr"] .footer-en {
     display: inline;
 }
 
-/* النصوص التي تحتاج عرضًا كسطور منفصلة */
-
 html[dir="ltr"] .footer-brand-name .footer-en,
 html[dir="ltr"] .footer-description .footer-en {
     display: block;
@@ -1539,6 +1533,31 @@ html[dir="rtl"] .footer-description .footer-ar {
     display: block;
 }
 
+
+/* ENGLISH FOOTER DIRECTION */
+
+html[dir="ltr"] .footer-main {
+    direction: ltr;
+}
+
+html[dir="ltr"] .footer-brand {
+    text-align: left;
+}
+
+html[dir="ltr"] .footer-quick-links {
+    direction: ltr;
+}
+
+html[dir="ltr"] .footer-contact-links {
+    align-items: center;
+    text-align: center;
+}
+
+html[dir="ltr"] .footer-brand-name,
+html[dir="ltr"] .footer-description {
+    direction: ltr;
+    text-align: left;
+}
 
 /* =====================================================
    WHATSAPP FLOATING BUTTON
@@ -1555,52 +1574,52 @@ html[dir="rtl"] .footer-description .footer-ar {
     align-items: center;
     justify-content: center;
 
-    width: auto;
-    min-height: 56px;
-    padding: 12px 20px;
+    min-width: 190px;
+    min-height: 68px;
+    padding: 14px 24px;
 
     background: #25D366;
     color: #ffffff;
 
-    border-radius: 30px;
+    border-radius: 40px;
 
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 700;
 
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
 
-    gap: 10px;
+    gap: 12px;
     text-decoration: none;
 
     animation: whatsappFloat 2.5s ease-in-out infinite;
 }
 
 .whatsapp-icon {
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 34px;
+    flex: 0 0 42px;
 }
 
 .whatsapp-icon i {
-    font-size: 32px;
+    font-size: 40px;
     color: #ffffff;
 }
 
 .whatsapp-icon img {
-    width: 32px !important;
-    height: 32px !important;
-    max-width: 32px !important;
-    max-height: 32px !important;
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
     object-fit: contain;
     display: block;
 }
 
 .whatsapp-text {
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.4;
 }
 
@@ -1617,8 +1636,6 @@ html[dir="rtl"] .footer-description .footer-ar {
         transform: translateY(-5px);
     }
 }
-
-
 /* =====================================================
    PAGE BACK BUTTON
 ===================================================== */
@@ -2089,37 +2106,37 @@ html[dir="rtl"] .footer-description .footer-ar {
     }
 
 
-    /* WHATSAPP MOBILE */
+  /* WHATSAPP MOBILE */
 
-    .whatsapp-float {
-        left: 12px;
-        right: auto;
-        bottom: 18px;
-        min-height: 49px;
-        padding: 9px 14px;
-        gap: 8px;
-    }
+.whatsapp-float {
+    left: 12px;
+    right: auto;
+    bottom: 18px;
+    min-width: 165px;
+    min-height: 58px;
+    padding: 10px 17px;
+    gap: 9px;
+}
 
-    .whatsapp-icon {
-        width: 29px;
-        height: 29px;
-        flex-basis: 29px;
-    }
+.whatsapp-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+}
 
-    .whatsapp-icon i {
-        font-size: 28px;
-    }
+.whatsapp-icon i {
+    font-size: 34px;
+}
 
-    .whatsapp-icon img {
-        width: 28px !important;
-        height: 28px !important;
-        max-width: 28px !important;
-        max-height: 28px !important;
-    }
+.whatsapp-icon img {
+    width: 35px !important;
+    height: 35px !important;
+    max-width: 35px !important;
+    max-height: 35px !important;
+}
 
-    .whatsapp-text {
-        font-size: 14px;
-    }
+.whatsapp-text {
+    font-size: 15px;
 }
 
 
