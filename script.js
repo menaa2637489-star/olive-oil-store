@@ -13,10 +13,10 @@ const loginPanel = document.getElementById("loginPanel");
 const loginOverlay = document.getElementById("loginOverlay");
 const closeLogin = document.getElementById("closeLogin");
 
-
 const contactBtn = document.getElementById("contactBtn");
 const contactPanel = document.getElementById("contactPanel");
 const closeContact = document.getElementById("closeContact");
+
 const cartBtn = document.getElementById("cartBtn");
 const cartPanel = document.getElementById("cartPanel");
 const cartOverlay = document.getElementById("cartOverlay");
@@ -25,43 +25,45 @@ const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const checkoutBtn = document.getElementById("checkoutBtn");
 const clearCartBtn = document.getElementById("clearCartBtn");
-const languageBtn = document.getElementById("languageBtn");
 
+const languageBtn = document.getElementById("languageBtn");
 const cartCount = document.getElementById("cartCount");
 
-
 const orderModal = document.getElementById("orderModal");
-const closeOrderModal =
-    document.getElementById("closeOrder");
-
-const backOrderBtn =
-    document.getElementById("backOrderBtn");
-
-const confirmOrderBtn =
-    document.getElementById("confirmOrderBtn");
+const closeOrderModal = document.getElementById("closeOrder");
+const backOrderBtn = document.getElementById("backOrderBtn");
+const confirmOrderBtn = document.getElementById("confirmOrderBtn");
 
 const heroSlides = document.querySelectorAll(".hero-slide");
 const heroPrev = document.getElementById("heroPrev");
 const heroNext = document.getElementById("heroNext");
-const dashboardAccess =
-    document.getElementById("dashboardAccess");
+
+const dashboardAccess = document.getElementById("dashboardAccess");
+
+
 /* =========================================================
    DASHBOARD
 ========================================================= */
 
+/*
+   زر لوحة التحكم يظل مخفيًا حاليًا.
+   تسجيل الدخول الموجود بالموقع تجريبي فقط،
+   ولا توجد جلسة مطوّرة موثوقة حتى الآن.
+
+   لا تستخدمي localStorage وحده لإثبات صلاحية الدخول.
+   يجب ربط ظهور الزر بنظام مصادقة حقيقي من السيرفر.
+*/
+
 if (dashboardAccess) {
 
-    dashboardAccess.addEventListener(
-        "click",
-        function () {
+    dashboardAccess.addEventListener("click", function () {
 
-            window.location.href =
-                "dashboard.html";
+        window.location.href = "dashboard.html";
 
-        }
-    );
+    });
 
 }
+
 
 /* =========================================================
    LANGUAGE
@@ -75,8 +77,27 @@ let currentLanguage =
    SHARED CART
 ========================================================= */
 
-let cart =
-    JSON.parse(localStorage.getItem("oliveOilCart")) || [];
+function getSavedCart() {
+
+    try {
+
+        const savedCart = JSON.parse(
+            localStorage.getItem("oliveOilCart")
+        );
+
+        return Array.isArray(savedCart) ? savedCart : [];
+
+    }
+
+    catch {
+
+        return [];
+
+    }
+
+}
+
+let cart = getSavedCart();
 
 
 /* =========================================================
@@ -190,8 +211,7 @@ function updateCartItemNames() {
 
         if (!item.productId) return;
 
-        item.name =
-            getProductName(item.productId);
+        item.name = getProductName(item.productId);
 
     });
 
@@ -206,7 +226,6 @@ function addProductToCart(productId) {
 
     if (!productId) return;
 
-
     /*
        المنتجات التي يتم إضافتها من الصفحة الرئيسية
        ليس لها حجم محدد بعد.
@@ -217,7 +236,6 @@ function addProductToCart(productId) {
             item.productId === productId &&
             (!item.size || item.size === "")
     );
-
 
     if (existingItem) {
 
@@ -231,19 +249,14 @@ function addProductToCart(productId) {
         cart.push({
 
             productId: productId,
-
             name: getProductName(productId),
-
             size: "",
-
             price: 0,
-
             quantity: 1
 
         });
 
     }
-
 
     updateCartItemNames();
 
@@ -266,17 +279,13 @@ document
     .querySelectorAll(".add-product-btn")
     .forEach(button => {
 
-        button.addEventListener(
-            "click",
-            function () {
+        button.addEventListener("click", function () {
 
-                const productId =
-                    this.dataset.productId;
+            const productId = this.dataset.productId;
 
-                addProductToCart(productId);
+            addProductToCart(productId);
 
-            }
-        );
+        });
 
     });
 
@@ -284,7 +293,6 @@ document
 /* =========================================================
    CART RENDER
 ========================================================= */
-
 
 function renderCart() {
 
@@ -308,15 +316,17 @@ function renderCart() {
             </div>
         `;
 
-        cartTotal.textContent = currentLanguage === "ar"
-            ? "0 ج.م"
-            : "0 EGP";
+        cartTotal.textContent =
+            currentLanguage === "ar"
+                ? "0 ج.م"
+                : "0 EGP";
 
         if (clearCartBtn) {
             clearCartBtn.style.display = "none";
         }
 
         return;
+
     }
 
     /* =========================
@@ -406,7 +416,7 @@ function renderCart() {
                 </button>
 
                 <span class="cart-quantity">
-                    ${item.quantity}
+                    ${Number(item.quantity || 0)}
                 </span>
 
                 <button
@@ -439,7 +449,9 @@ function renderCart() {
         `;
 
         cartItems.appendChild(itemElement);
+
     });
+
 
     /* =========================
        QUANTITY BUTTONS
@@ -449,34 +461,40 @@ function renderCart() {
         .querySelectorAll(".quantity-btn")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener("click", function () {
 
                 const index =
-                    Number(button.dataset.index);
+                    Number(this.dataset.index);
 
                 const change =
-                    Number(button.dataset.change);
+                    Number(this.dataset.change);
 
                 changeQuantity(index, change);
+
             });
-        });
-/* =========================
-   REMOVE BUTTONS
-========================= */
-
-document
-    .querySelectorAll(".remove-cart-item")
-    .forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const index = Number(button.dataset.index);
-
-            removeFromCart(index);
 
         });
 
-    });
+
+    /* =========================
+       REMOVE BUTTONS
+    ========================= */
+
+    document
+        .querySelectorAll(".remove-cart-item")
+        .forEach(button => {
+
+            button.addEventListener("click", function () {
+
+                const index =
+                    Number(this.dataset.index);
+
+                removeFromCart(index);
+
+            });
+
+        });
+
 
     /* =========================
        CHOOSE SIZE
@@ -486,16 +504,19 @@ document
         .querySelectorAll(".choose-size-btn")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener("click", function () {
 
                 const index =
-                    Number(button.dataset.index);
+                    Number(this.dataset.index);
 
-                goToProduct(
-                    cart[index].productId
-                );
+                if (!cart[index]) return;
+
+                goToProduct(cart[index].productId);
+
             });
+
         });
+
 
     /* =========================
        TOTAL
@@ -505,9 +526,38 @@ document
         currentLanguage === "ar"
             ? `${total} ج.م`
             : `${total} EGP`;
+
 }
 
 
+/* =========================================================
+   CLEAR CART
+========================================================= */
+
+function clearCart() {
+
+    if (cart.length === 0) return;
+
+    cart = [];
+
+    saveCart();
+
+    updateCartCount();
+
+    renderCart();
+
+}
+
+
+/* =========================================================
+   CLEAR CART BUTTON
+========================================================= */
+
+if (clearCartBtn) {
+
+    clearCartBtn.addEventListener("click", clearCart);
+
+}
 
 
 /* =========================================================
@@ -518,18 +568,14 @@ function changeQuantity(index, change) {
 
     if (!cart[index]) return;
 
-
     cart[index].quantity =
-        Number(cart[index].quantity || 0)
-        + change;
-
+        Number(cart[index].quantity || 0) + change;
 
     if (cart[index].quantity <= 0) {
 
         cart.splice(index, 1);
 
     }
-
 
     saveCart();
 
@@ -548,12 +594,7 @@ function removeFromCart(index) {
 
     if (!cart[index]) return;
 
-
-    cart.splice(
-        index,
-        1
-    );
-
+    cart.splice(index, 1);
 
     saveCart();
 
@@ -568,12 +609,15 @@ function removeFromCart(index) {
    GO TO PRODUCT PAGE
 ========================================================= */
 
-function goToProduct(page) {
+function goToProduct(productId) {
 
-    if (!page || page === "#") return;
+    if (!productId) return;
 
-    window.location.href =
-        page;
+    const product = products[productId];
+
+    if (!product || !product.page) return;
+
+    window.location.href = product.page;
 
 }
 
@@ -586,30 +630,15 @@ function escapeHTML(value) {
 
     return String(value)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+        .replace(/&/g, "&amp;")
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+        .replace(/</g, "&lt;")
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+        .replace(/>/g, "&gt;")
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+        .replace(/"/g, "&quot;")
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -622,18 +651,10 @@ function openCart() {
 
     if (!cartPanel) return;
 
-
-    cartPanel.classList.add(
-        "active"
-    );
-
+    cartPanel.classList.add("active");
 
     if (cartOverlay) {
-
-        cartOverlay.classList.add(
-            "active"
-        );
-
+        cartOverlay.classList.add("active");
     }
 
 }
@@ -643,18 +664,10 @@ function closeCartPanel() {
 
     if (!cartPanel) return;
 
-
-    cartPanel.classList.remove(
-        "active"
-    );
-
+    cartPanel.classList.remove("active");
 
     if (cartOverlay) {
-
-        cartOverlay.classList.remove(
-            "active"
-        );
-
+        cartOverlay.classList.remove("active");
     }
 
 }
@@ -662,30 +675,21 @@ function closeCartPanel() {
 
 if (cartBtn) {
 
-    cartBtn.addEventListener(
-        "click",
-        openCart
-    );
+    cartBtn.addEventListener("click", openCart);
 
 }
 
 
 if (closeCart) {
 
-    closeCart.addEventListener(
-        "click",
-        closeCartPanel
-    );
+    closeCart.addEventListener("click", closeCartPanel);
 
 }
 
 
 if (cartOverlay) {
 
-    cartOverlay.addEventListener(
-        "click",
-        closeCartPanel
-    );
+    cartOverlay.addEventListener("click", closeCartPanel);
 
 }
 
@@ -698,18 +702,10 @@ function openLogin() {
 
     if (!loginPanel) return;
 
-
-    loginPanel.classList.add(
-        "active"
-    );
-
+    loginPanel.classList.add("active");
 
     if (loginOverlay) {
-
-        loginOverlay.classList.add(
-            "active"
-        );
-
+        loginOverlay.classList.add("active");
     }
 
 }
@@ -719,18 +715,10 @@ function closeLoginPanel() {
 
     if (!loginPanel) return;
 
-
-    loginPanel.classList.remove(
-        "active"
-    );
-
+    loginPanel.classList.remove("active");
 
     if (loginOverlay) {
-
-        loginOverlay.classList.remove(
-            "active"
-        );
-
+        loginOverlay.classList.remove("active");
     }
 
 }
@@ -738,30 +726,21 @@ function closeLoginPanel() {
 
 if (loginBtn) {
 
-    loginBtn.addEventListener(
-        "click",
-        openLogin
-    );
+    loginBtn.addEventListener("click", openLogin);
 
 }
 
 
 if (closeLogin) {
 
-    closeLogin.addEventListener(
-        "click",
-        closeLoginPanel
-    );
+    closeLogin.addEventListener("click", closeLoginPanel);
 
 }
 
 
 if (loginOverlay) {
 
-    loginOverlay.addEventListener(
-        "click",
-        closeLoginPanel
-    );
+    loginOverlay.addEventListener("click", closeLoginPanel);
 
 }
 
@@ -775,6 +754,7 @@ const contactMenu = document.getElementById("contactMenu");
 if (contactBtn && contactMenu) {
 
     contactBtn.addEventListener("click", function (event) {
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -786,72 +766,88 @@ if (contactBtn && contactMenu) {
             "aria-expanded",
             String(isOpen)
         );
+
     });
+
 
     contactMenu.addEventListener("click", function (event) {
+
         event.stopPropagation();
+
     });
 
+
     document.addEventListener("click", function () {
+
         contactMenu.classList.remove("show");
+
         contactMenu.hidden = true;
 
         contactBtn.setAttribute("aria-expanded", "false");
+
     });
 
+
     document.addEventListener("keydown", function (event) {
+
         if (event.key === "Escape") {
+
             contactMenu.classList.remove("show");
+
             contactMenu.hidden = true;
 
             contactBtn.setAttribute("aria-expanded", "false");
+
         }
+
     });
+
 }
+
+
 /* =========================================================
    FOOTER CONTACT BUTTON
 ========================================================= */
-
-
 
 const footerContactBtn =
     document.getElementById("footerContactBtn");
 
 if (footerContactBtn) {
+
     footerContactBtn.addEventListener("click", function () {
+
         window.open(
             "https://wa.me/201277371995",
             "_blank",
             "noopener,noreferrer"
         );
+
     });
+
 }
+
+
 /* =========================================================
    LANGUAGE BUTTON
 ========================================================= */
 
 if (languageBtn) {
 
-    languageBtn.addEventListener(
-        "click",
-        function () {
+    languageBtn.addEventListener("click", function () {
 
-            currentLanguage =
-                currentLanguage === "ar"
-                    ? "en"
-                    : "ar";
+        currentLanguage =
+            currentLanguage === "ar"
+                ? "en"
+                : "ar";
 
+        localStorage.setItem(
+            "siteLanguage",
+            currentLanguage
+        );
 
-            localStorage.setItem(
-                "siteLanguage",
-                currentLanguage
-            );
+        updateLanguage();
 
-
-            updateLanguage();
-
-        }
-    );
+    });
 
 }
 
@@ -862,9 +858,7 @@ if (languageBtn) {
 
 function updateLanguage() {
 
-    document.documentElement.lang =
-        currentLanguage;
-
+    document.documentElement.lang = currentLanguage;
 
     document.documentElement.dir =
         currentLanguage === "ar"
@@ -872,14 +866,12 @@ function updateLanguage() {
             : "ltr";
 
 
-    /*
-       النصوص التي تحتوي data-ar / data-en
-    */
+    /* =========================
+       TEXT CONTENT
+    ========================= */
 
     document
-        .querySelectorAll(
-            "[data-ar][data-en]"
-        )
+        .querySelectorAll("[data-ar][data-en]")
         .forEach(element => {
 
             element.textContent =
@@ -890,9 +882,9 @@ function updateLanguage() {
         });
 
 
-    /*
-       Placeholders
-    */
+    /* =========================
+       PLACEHOLDERS
+    ========================= */
 
     document
         .querySelectorAll(
@@ -908,15 +900,12 @@ function updateLanguage() {
         });
 
 
-    /*
-       HTML title
-    */
+    /* =========================
+       HTML TITLE
+    ========================= */
 
     const pageTitle =
-        document.querySelector(
-            "title[data-ar][data-en]"
-        );
-
+        document.querySelector("title[data-ar][data-en]");
 
     if (pageTitle) {
 
@@ -928,9 +917,9 @@ function updateLanguage() {
     }
 
 
-    /*
-       Language button
-    */
+    /* =========================
+       LANGUAGE BUTTON
+    ========================= */
 
     if (languageBtn) {
 
@@ -942,15 +931,13 @@ function updateLanguage() {
     }
 
 
-    /*
-       تحديث أسماء المنتجات الموجودة في السلة
-    */
+    /* =========================
+       UPDATE CART NAMES
+    ========================= */
 
     updateCartItemNames();
 
-
     saveCart();
-
 
     renderCart();
 
@@ -965,27 +952,23 @@ function updateLanguage() {
 
 if (checkoutBtn) {
 
-    checkoutBtn.addEventListener(
-        "click",
-        function () {
+    checkoutBtn.addEventListener("click", function () {
 
-            if (cart.length === 0) {
+        if (cart.length === 0) {
 
-                alert(
-                    currentLanguage === "ar"
-                        ? "السلة فارغة"
-                        : "Your cart is empty"
-                );
+            alert(
+                currentLanguage === "ar"
+                    ? "السلة فارغة"
+                    : "Your cart is empty"
+            );
 
-                return;
-
-            }
-
-
-            openOrderModal();
+            return;
 
         }
-    );
+
+        openOrderModal();
+
+    });
 
 }
 
@@ -997,10 +980,6 @@ if (checkoutBtn) {
 function openOrderModal() {
 
     if (!orderModal) return;
-
-    /*
-       إغلاق السلة قبل فتح بيانات الطلب
-    */
 
     closeCartPanel();
 
@@ -1036,26 +1015,17 @@ if (closeOrderModal) {
 
 if (backOrderBtn) {
 
-    backOrderBtn.addEventListener(
-        "click",
-        function () {
+    backOrderBtn.addEventListener("click", function () {
 
-            /*
-               قفل صفحة إتمام الطلب
-            */
+        closeOrderModalFunction();
 
-            closeOrderModalFunction();
+        openCart();
 
-            /*
-               فتح السلة مرة أخرى
-            */
-
-            openCart();
-
-        }
-    );
+    });
 
 }
+
+
 /* =========================================================
    ORDER SUMMARY
 ========================================================= */
@@ -1063,24 +1033,16 @@ if (backOrderBtn) {
 function renderOrderSummary() {
 
     const summary =
-        document.getElementById(
-            "orderSummary"
-        );
+        document.getElementById("orderSummary");
 
     const finalTotal =
-        document.getElementById(
-            "finalTotal"
-        );
-
+        document.getElementById("finalTotal");
 
     if (!summary) return;
 
-
     summary.innerHTML = "";
 
-
     let total = 0;
-
 
     cart.forEach(item => {
 
@@ -1090,26 +1052,13 @@ function renderOrderSummary() {
         const price =
             Number(item.price || 0);
 
+        total += price * quantity;
 
-        total +=
-            price * quantity;
+        const row = document.createElement("div");
 
+        row.className = "order-summary-item";
 
-        const row =
-            document.createElement(
-                "div"
-            );
-
-
-        row.className =
-            "order-summary-item";
-
-
-        const name =
-            getProductName(
-                item.productId
-            );
-
+        const name = getProductName(item.productId);
 
         row.innerHTML = `
 
@@ -1127,30 +1076,23 @@ function renderOrderSummary() {
 
             </span>
 
-
             <strong>
 
                 ${
                     price > 0
-
                         ? `${price * quantity} ${
                             currentLanguage === "ar"
                                 ? "جنيه"
                                 : "EGP"
                           }`
-
                         : "-"
-
                 }
 
             </strong>
 
         `;
 
-
-        summary.appendChild(
-            row
-        );
+        summary.appendChild(row);
 
     });
 
@@ -1175,228 +1117,185 @@ function renderOrderSummary() {
 
 if (confirmOrderBtn) {
 
-    confirmOrderBtn.addEventListener(
-        "click",
-        function () {
+    confirmOrderBtn.addEventListener("click", function () {
 
-            if (cart.length === 0) {
+        if (cart.length === 0) {
 
-                alert(
-                    currentLanguage === "ar"
-                        ? "السلة فارغة"
-                        : "Your cart is empty"
-                );
+            alert(
+                currentLanguage === "ar"
+                    ? "السلة فارغة"
+                    : "Your cart is empty"
+            );
 
-                return;
+            return;
+
+        }
+
+
+        const customerName =
+            document.getElementById("customerName")?.value.trim() || "";
+
+        const customerPhone =
+            document.getElementById("customerPhone")?.value.trim() || "";
+
+        const governorate =
+            document.getElementById("customerGovernorate")?.value || "";
+
+        const address =
+            document.getElementById("customerAddress")?.value.trim() || "";
+
+        const notes =
+            document.getElementById("customerNotes")?.value.trim() || "";
+
+        const paymentElement =
+            document.querySelector(
+                'input[name="paymentMethod"]:checked'
+            );
+
+        const payment =
+            paymentElement
+                ? paymentElement.value
+                : "";
+
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (
+            !customerName ||
+            !customerPhone ||
+            !governorate ||
+            !address
+        ) {
+
+            alert(
+                currentLanguage === "ar"
+                    ? "من فضلك أدخل جميع البيانات المطلوبة"
+                    : "Please enter all required information"
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           WHATSAPP MESSAGE
+        ========================= */
+
+        let message =
+            currentLanguage === "ar"
+                ? "طلب جديد من موقع زيت زيتون دكتور أبو النصر%0A%0A"
+                : "New order from Dr. Abu El Nasr Olive Oil%0A%0A";
+
+
+        message +=
+            currentLanguage === "ar"
+                ? `الاسم: ${encodeURIComponent(customerName)}%0A`
+                : `Name: ${encodeURIComponent(customerName)}%0A`;
+
+
+        message +=
+            currentLanguage === "ar"
+                ? `الهاتف: ${encodeURIComponent(customerPhone)}%0A`
+                : `Phone: ${encodeURIComponent(customerPhone)}%0A`;
+
+
+        message +=
+            currentLanguage === "ar"
+                ? `المحافظة: ${encodeURIComponent(governorate)}%0A`
+                : `Governorate: ${encodeURIComponent(governorate)}%0A`;
+
+
+        message +=
+            currentLanguage === "ar"
+                ? `العنوان: ${encodeURIComponent(address)}%0A`
+                : `Address: ${encodeURIComponent(address)}%0A`;
+
+
+        if (notes) {
+
+            message +=
+                currentLanguage === "ar"
+                    ? `ملاحظات: ${encodeURIComponent(notes)}%0A`
+                    : `Notes: ${encodeURIComponent(notes)}%0A`;
+
+        }
+
+
+        message +=
+            currentLanguage === "ar"
+                ? `طريقة الدفع: ${encodeURIComponent(payment)}%0A%0A`
+                : `Payment: ${encodeURIComponent(payment)}%0A%0A`;
+
+
+        message +=
+            currentLanguage === "ar"
+                ? "المنتجات:%0A"
+                : "Products:%0A";
+
+
+        cart.forEach(item => {
+
+            const name = getProductName(item.productId);
+
+            const quantity =
+                Number(item.quantity || 0);
+
+            const price =
+                Number(item.price || 0);
+
+            message += encodeURIComponent(name);
+
+            if (item.size) {
+
+                message += ` - ${encodeURIComponent(item.size)}`;
 
             }
 
+            message += ` × ${quantity}`;
 
-            const customerName =
-                document.getElementById(
-                    "customerName"
-                )?.value.trim() || "";
+            if (price > 0) {
 
-
-            const customerPhone =
-                document.getElementById(
-                    "customerPhone"
-                )?.value.trim() || "";
-
-
-            const governorate =
-                document.getElementById(
-                    "customerGovernorate"
-                )?.value || "";
-
-
-            const address =
-                document.getElementById(
-                    "customerAddress"
-                )?.value.trim() || "";
-
-
-            const notes =
-                document.getElementById(
-                    "customerNotes"
-                )?.value.trim() || "";
-
-
-            const paymentElement =
-                document.querySelector(
-                    'input[name="paymentMethod"]:checked'
-                );
-
-
-            const payment =
-                paymentElement
-                    ? paymentElement.value
-                    : "";
-
-
-            /*
-               التحقق من البيانات الأساسية
-            */
-
-            if (
-                !customerName ||
-                !customerPhone ||
-                !governorate ||
-                !address
-            ) {
-
-                alert(
-                    currentLanguage === "ar"
-                        ? "من فضلك أدخل جميع البيانات المطلوبة"
-                        : "Please enter all required information"
-                );
-
-                return;
+                message +=
+                    ` = ${price * quantity} ${
+                        currentLanguage === "ar"
+                            ? "جنيه"
+                            : "EGP"
+                    }`;
 
             }
-
-
-            let message =
-                currentLanguage === "ar"
-
-                    ? "طلب جديد من موقع زيت زيتون دكتور أبو النصر%0A%0A"
-
-                    : "New order from Dr. Abu El Nasr Olive Oil%0A%0A";
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? `الاسم: ${encodeURIComponent(customerName)}%0A`
-                    : `Name: ${encodeURIComponent(customerName)}%0A`;
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? `الهاتف: ${encodeURIComponent(customerPhone)}%0A`
-                    : `Phone: ${encodeURIComponent(customerPhone)}%0A`;
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? `المحافظة: ${encodeURIComponent(governorate)}%0A`
-                    : `Governorate: ${encodeURIComponent(governorate)}%0A`;
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? `العنوان: ${encodeURIComponent(address)}%0A`
-                    : `Address: ${encodeURIComponent(address)}%0A`;
-
-
-            if (notes) {
-
-                message +=
-                    currentLanguage === "ar"
-                        ? `ملاحظات: ${encodeURIComponent(notes)}%0A`
-                        : `Notes: ${encodeURIComponent(notes)}%0A`;
-
-            }
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? `طريقة الدفع: ${encodeURIComponent(payment)}%0A%0A`
-                    : `Payment: ${encodeURIComponent(payment)}%0A%0A`;
-
-
-            message +=
-                currentLanguage === "ar"
-                    ? "المنتجات:%0A"
-                    : "Products:%0A";
-
-
-            cart.forEach(item => {
-
-                const name =
-                    getProductName(
-                        item.productId
-                    );
-
-
-                const quantity =
-                    Number(
-                        item.quantity || 0
-                    );
-
-
-                const price =
-                    Number(
-                        item.price || 0
-                    );
-
-
-                message +=
-                    encodeURIComponent(name);
-
-
-                if (item.size) {
-
-                    message +=
-                        ` - ${encodeURIComponent(item.size)}`;
-
-                }
-
-
-                message +=
-                    ` × ${quantity}`;
-
-
-                if (price > 0) {
-
-                    message +=
-                        ` = ${price * quantity} ${
-                            currentLanguage === "ar"
-                                ? "جنيه"
-                                : "EGP"
-                        }`;
-
-                }
-
-
-                message += "%0A";
-
-            });
-
-
-            const total =
-                cart.reduce(
-                    (sum, item) =>
-                        sum +
-                        Number(item.price || 0) *
-                        Number(item.quantity || 0),
-                    0
-                );
-
 
             message += "%0A";
 
-
-            message +=
-                currentLanguage === "ar"
-                    ? `الإجمالي: ${total} جنيه`
-                    : `Total: ${total} EGP`;
+        });
 
 
-            const whatsappNumber =
-                "201272154551";
+        const total = cart.reduce(
+            (sum, item) =>
+                sum +
+                Number(item.price || 0) *
+                Number(item.quantity || 0),
+            0
+        );
+
+        message += "%0A";
+
+        message +=
+            currentLanguage === "ar"
+                ? `الإجمالي: ${total} جنيه`
+                : `Total: ${total} EGP`;
 
 
-            const whatsappURL =
-                `https://wa.me/${whatsappNumber}?text=${message}`;
+        const whatsappNumber = "201272154551";
 
+        const whatsappURL =
+            `https://wa.me/${whatsappNumber}?text=${message}`;
 
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
+        window.open(whatsappURL, "_blank");
 
-        }
-    );
+    });
 
 }
 
@@ -1406,32 +1305,21 @@ if (confirmOrderBtn) {
 ========================================================= */
 
 const loginForm =
-    document.getElementById(
-        "loginForm"
-    );
-
+    document.getElementById("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener(
-        "submit",
-        function (event) {
+    loginForm.addEventListener("submit", function (event) {
 
-            event.preventDefault();
+        event.preventDefault();
 
+        alert(
+            currentLanguage === "ar"
+                ? "تسجيل الدخول سيتم تفعيله قريبًا"
+                : "Login will be available soon"
+        );
 
-            alert(
-
-                currentLanguage === "ar"
-
-                    ? "تسجيل الدخول سيتم تفعيله قريبًا"
-
-                    : "Login will be available soon"
-
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -1441,63 +1329,44 @@ if (loginForm) {
 ========================================================= */
 
 const contactForm =
-    document.getElementById(
-        "contactForm"
-    );
-
+    document.getElementById("contactForm");
 
 if (contactForm) {
 
-    contactForm.addEventListener(
-        "submit",
-        function (event) {
+    contactForm.addEventListener("submit", function (event) {
 
-            event.preventDefault();
+        event.preventDefault();
 
+        const name =
+            document.getElementById("contactName")?.value || "";
 
-            const name =
-                document.getElementById(
-                    "contactName"
-                )?.value || "";
+        const phone =
+            document.getElementById("contactPhone")?.value || "";
 
-
-            const phone =
-                document.getElementById(
-                    "contactPhone"
-                )?.value || "";
+        const messageText =
+            document.getElementById("contactMessage")?.value || "";
 
 
-            const messageText =
-                document.getElementById(
-                    "contactMessage"
-                )?.value || "";
+        const whatsappMessage =
+
+            "الاسم: " +
+            encodeURIComponent(name) +
+            "%0A" +
+
+            "الهاتف: " +
+            encodeURIComponent(phone) +
+            "%0A" +
+
+            "الرسالة: " +
+            encodeURIComponent(messageText);
 
 
-            const whatsappMessage =
+        const whatsappURL =
+            `https://wa.me/201272154551?text=${whatsappMessage}`;
 
-                "الاسم: " +
-                encodeURIComponent(name) +
-                "%0A" +
+        window.open(whatsappURL, "_blank");
 
-                "الهاتف: " +
-                encodeURIComponent(phone) +
-                "%0A" +
-
-                "الرسالة: " +
-                encodeURIComponent(messageText);
-
-
-            const whatsappURL =
-                `https://wa.me/201272154551?text=${whatsappMessage}`;
-
-
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
-
-        }
-    );
+    });
 
 }
 
@@ -1515,11 +1384,7 @@ function showHeroSlide(index) {
 
     if (!heroSlides.length) return;
 
-
-    if (
-        index >=
-        heroSlides.length
-    ) {
+    if (index >= heroSlides.length) {
 
         currentSlide = 0;
 
@@ -1527,95 +1392,77 @@ function showHeroSlide(index) {
 
     else if (index < 0) {
 
-        currentSlide =
-            heroSlides.length - 1;
+        currentSlide = heroSlides.length - 1;
 
     }
 
     else {
 
-        currentSlide =
-            index;
+        currentSlide = index;
 
     }
 
 
-    heroSlides.forEach(
-        (slide, i) => {
+    heroSlides.forEach((slide, i) => {
 
-            slide.classList.toggle(
-                "active",
-                i === currentSlide
-            );
+        slide.classList.toggle(
+            "active",
+            i === currentSlide
+        );
 
-        }
-    );
+    });
 
 }
 
 
 function nextHeroSlide() {
 
-    showHeroSlide(
-        currentSlide + 1
-    );
+    showHeroSlide(currentSlide + 1);
 
 }
 
 
 function previousHeroSlide() {
 
-    showHeroSlide(
-        currentSlide - 1
-    );
+    showHeroSlide(currentSlide - 1);
 
 }
 
 
 function startHeroSlider() {
 
-    clearInterval(
-        heroInterval
+    clearInterval(heroInterval);
+
+    heroInterval = setInterval(
+        nextHeroSlide,
+        5000
     );
-
-
-    heroInterval =
-        setInterval(
-            nextHeroSlide,
-            5000
-        );
 
 }
 
 
 if (heroNext) {
 
-    heroNext.addEventListener(
-        "click",
-        function () {
+    heroNext.addEventListener("click", function () {
 
-            nextHeroSlide();
+        nextHeroSlide();
 
-            startHeroSlider();
+        startHeroSlider();
 
-        }
-    );
+    });
 
 }
 
 
 if (heroPrev) {
 
-    heroPrev.addEventListener(
-        "click",
-        function () {
+    heroPrev.addEventListener("click", function () {
 
-            previousHeroSlide();
+        previousHeroSlide();
 
-            startHeroSlider();
+        startHeroSlider();
 
-        }
-    );
+    });
 
 }
 
@@ -1630,29 +1477,19 @@ startHeroSlider();
 ========================================================= */
 
 const qualityVideo =
-    document.getElementById(
-        "qualityVideo"
-    );
-
+    document.getElementById("qualityVideo");
 
 if (qualityVideo) {
 
-    qualityVideo.muted =
-        true;
+    qualityVideo.muted = true;
 
-    qualityVideo.loop =
-        true;
+    qualityVideo.loop = true;
 
-    qualityVideo.autoplay =
-        true;
+    qualityVideo.autoplay = true;
 
-    qualityVideo.playsInline =
-        true;
+    qualityVideo.playsInline = true;
 
-
-    qualityVideo
-        .play()
-        .catch(() => {});
+    qualityVideo.play().catch(() => {});
 
 }
 
@@ -1664,57 +1501,81 @@ if (qualityVideo) {
 function loadDashboardData() {
 
     /*
-       الهوية
-    */
-
-    const identity =
-        JSON.parse(
-            localStorage.getItem(
-                "oliveOilIdentity"
-            )
-        );
-
-
-    /*
-       محتوى الصفحة الرئيسية
-    */
-
-    const homeContent =
-        JSON.parse(
-            localStorage.getItem(
-                "oliveOil_content_home"
-            )
-        );
-
-
-    /*
-       من نحن
-    */
-
-    const aboutContent =
-        JSON.parse(
-            localStorage.getItem(
-                "oliveOil_aboutUs_home"
-            )
-        );
-
-
-    /* =====================================================
        IDENTITY
-    ===================================================== */
+    */
+
+    let identity = null;
+
+    try {
+
+        identity = JSON.parse(
+            localStorage.getItem("oliveOilIdentity")
+        );
+
+    }
+
+    catch {
+
+        identity = null;
+
+    }
+
+
+    /*
+       HOME CONTENT
+    */
+
+    let homeContent = null;
+
+    try {
+
+        homeContent = JSON.parse(
+            localStorage.getItem("oliveOil_content_home")
+        );
+
+    }
+
+    catch {
+
+        homeContent = null;
+
+    }
+
+
+    /*
+       ABOUT US
+    */
+
+    let aboutContent = null;
+
+    try {
+
+        aboutContent = JSON.parse(
+            localStorage.getItem("oliveOil_aboutUs_home")
+        );
+
+    }
+
+    catch {
+
+        aboutContent = null;
+
+    }
+
+
+    /* =========================
+       IDENTITY
+    ========================= */
 
     if (identity) {
 
         document
-            .querySelectorAll(
-                "[data-site-name]"
-            )
+            .querySelectorAll("[data-site-name]")
             .forEach(element => {
 
                 if (identity.name) {
 
-                    element.textContent =
-                        identity.name;
+                    element.textContent = identity.name;
 
                 }
 
@@ -1723,76 +1584,52 @@ function loadDashboardData() {
     }
 
 
-    /* =====================================================
+    /* =========================
        HOME CONTENT
-    ===================================================== */
+    ========================= */
 
     if (homeContent) {
 
-        Object.keys(
-            homeContent
-        )
-        .forEach(key => {
+        Object.keys(homeContent).forEach(key => {
 
             const element =
                 document.querySelector(
                     `[data-dashboard="${key}"]`
                 );
 
-
             if (!element) return;
 
-
-            if (
-                typeof homeContent[key] ===
-                "object"
-            ) {
-
+            if (typeof homeContent[key] === "object") {
                 return;
-
             }
 
-
-            element.textContent =
-                homeContent[key];
+            element.textContent = homeContent[key];
 
         });
 
     }
 
 
-    /* =====================================================
+    /* =========================
        ABOUT US
-    ===================================================== */
+    ========================= */
 
     if (aboutContent) {
 
-        Object.keys(
-            aboutContent
-        )
-        .forEach(key => {
+        Object.keys(aboutContent).forEach(key => {
 
             const element =
                 document.querySelector(
                     `[data-about="${key}"]`
                 );
 
-
             if (!element) return;
 
-
-            if (
-                typeof aboutContent[key] ===
-                "object"
-            ) {
-
+            if (typeof aboutContent[key] === "object") {
                 return;
-
             }
 
-
-            element.textContent =
-                aboutContent[key];
+            element.textContent = aboutContent[key];
 
         });
 
@@ -1805,152 +1642,90 @@ function loadDashboardData() {
    STORAGE SYNC
 ========================================================= */
 
-window.addEventListener(
-    "storage",
-    function (event) {
+window.addEventListener("storage", function (event) {
 
-        /*
-           Cart
-        */
+    /* =========================
+       CART
+    ========================= */
 
-        if (
-            event.key ===
-            "oliveOilCart"
-        ) {
+    if (event.key === "oliveOilCart") {
 
-            cart =
-                JSON.parse(
-                    event.newValue || "[]"
-                );
+        cart = getSavedCart();
 
+        updateCartItemNames();
 
-            updateCartItemNames();
+        updateCartCount();
 
-            updateCartCount();
-
-            renderCart();
-
-        }
-
-
-        /*
-           Language
-        */
-
-        if (
-            event.key ===
-            "siteLanguage"
-        ) {
-
-            currentLanguage =
-                event.newValue || "ar";
-
-
-            updateLanguage();
-
-        }
-
-
-        /*
-           Dashboard identity
-        */
-
-        if (
-            event.key ===
-            "oliveOilIdentity"
-        ) {
-
-            loadDashboardData();
-
-        }
-
-
-        /*
-           Dashboard home content
-        */
-
-        if (
-            event.key ===
-            "oliveOil_content_home"
-        ) {
-
-            loadDashboardData();
-
-        }
-
-
-        /*
-           Dashboard about
-        */
-
-        if (
-            event.key ===
-            "oliveOil_aboutUs_home"
-        ) {
-
-            loadDashboardData();
-
-        }
+        renderCart();
 
     }
-);
+
+
+    /* =========================
+       LANGUAGE
+    ========================= */
+
+    if (event.key === "siteLanguage") {
+
+        currentLanguage = event.newValue || "ar";
+
+        updateLanguage();
+
+    }
+
+
+    /* =========================
+       DASHBOARD DATA
+    ========================= */
+
+    if (
+        event.key === "oliveOilIdentity" ||
+        event.key === "oliveOil_content_home" ||
+        event.key === "oliveOil_aboutUs_home"
+    ) {
+
+        loadDashboardData();
+
+    }
+
+});
 
 
 /* =========================================================
    INITIALIZATION
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+document.addEventListener("DOMContentLoaded", function () {
 
-        /*
-           Load cart
-        */
+    /* =========================
+       LOAD CART
+    ========================= */
 
-        try {
-
-            cart =
-                JSON.parse(
-                    localStorage.getItem(
-                        "oliveOilCart"
-                    )
-                ) || [];
-
-        }
-
-        catch {
-
-            cart = [];
-
-        }
+    cart = getSavedCart();
 
 
-        /*
-           Load language
-        */
+    /* =========================
+       LOAD LANGUAGE
+    ========================= */
 
-        currentLanguage =
-            localStorage.getItem(
-                "siteLanguage"
-            ) || "ar";
+    currentLanguage =
+        localStorage.getItem("siteLanguage") || "ar";
 
 
-        /*
-           Initial updates
-        */
+    /* =========================
+       INITIAL UPDATES
+    ========================= */
 
-        updateCartItemNames();
+    updateCartItemNames();
 
-        saveCart();
+    saveCart();
 
-        updateCartCount();
+    updateCartCount();
 
-        renderCart();
+    renderCart();
 
-        updateLanguage();
+    updateLanguage();
 
-        loadDashboardData();
+    loadDashboardData();
 
-    }
-);
+});
