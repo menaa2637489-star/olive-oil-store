@@ -284,6 +284,8 @@ document
 /* =========================================================
    CART RENDER
 ========================================================= */
+
+
 function renderCart() {
 
     if (!cartItems || !cartTotal) return;
@@ -458,42 +460,23 @@ function renderCart() {
                 changeQuantity(index, change);
             });
         });
+/* =========================
+   REMOVE BUTTONS
+========================= */
 
-    /* =========================
-       REMOVE BUTTONS
-    ========================= */
+document
+    .querySelectorAll(".remove-cart-item")
+    .forEach(button => {
 
-    document
-        .querySelectorAll(".remove-cart-item")
-        .forEach(button => {
+        button.addEventListener("click", () => {
 
-            button.addEventListener("click", () => {
+            const index = Number(button.dataset.index);
 
-                const index =
-                    Number(button.dataset.index);
+            removeFromCart(index);
 
-                removeFromCart(index);
-            });
         });
-   function clearCart() {
-
-    if (cart.length === 0) return;
-
-    cart = [];
-
-    saveCart();
-    updateCartCount();
-    renderCart();
-}
-   if (clearCartBtn) {
-
-    clearCartBtn.addEventListener("click", () => {
-
-        clearCart();
 
     });
-
-}
 
     /* =========================
        CHOOSE SIZE
