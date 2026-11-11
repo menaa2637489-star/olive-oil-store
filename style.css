@@ -1990,8 +1990,20 @@ html[lang="en"] .remove-cart-item {
         padding-right: 15px;
     }
 }
+/* REMOVE WHATSAPP UNDERLINE */
+
 .whatsapp-float,
-.whatsapp-float i {
+.whatsapp-float:link,
+.whatsapp-float:visited,
+.whatsapp-float:hover,
+.whatsapp-float:active {
     text-decoration: none !important;
+}
+
+.whatsapp-float .whatsapp-icon,
+.whatsapp-float .whatsapp-icon i {
+    text-decoration: none !important;
+    border: none !important;
     border-bottom: none !important;
+    box-shadow: none;
 }
