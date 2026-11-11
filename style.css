@@ -1990,3 +1990,8 @@ html[lang="en"] .remove-cart-item {
         padding-right: 15px;
     }
 }
+.whatsapp-float,
+.whatsapp-float i {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
