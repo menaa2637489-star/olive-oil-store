@@ -2013,9 +2013,9 @@ html[lang="en"] .remove-cart-item {
     padding: 16px 65px;
     border: 2px solid #244b0b;
     border-radius: 12px;
-    background: #f7f4eb;
-    color: #244b0b;
-    font-size: 26px;
+    background: #244b0b;
+    color: #f7f4eb;
+    font-size: 29px;
     font-weight: bold;
     text-align: center;
 }
