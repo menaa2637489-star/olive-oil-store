@@ -877,6 +877,17 @@ a {
     margin-bottom: 0;
 }
 
+.faq-answer a {
+    color: #294d12;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: 0.3s ease;
+}
+
+.faq-answer a:hover {
+    color: #68743a;
+}
+
 .faq-en {
     display: none;
 }
@@ -967,8 +978,8 @@ html[dir="ltr"] .quality-video-section .quality-text {
 
 .quality-cards-section {
     width: 100%;
-    padding: 40px 10px;
-    background: #2b4815;
+    padding: 40px 6%;
+    background: #244b0b;
 }
 
 .quality-cards-container {
@@ -978,7 +989,7 @@ html[dir="ltr"] .quality-video-section .quality-text {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    gap: 8px !important;
+    gap: 10px !important;
     align-items: stretch !important;
 }
 
@@ -987,33 +998,60 @@ html[dir="ltr"] .quality-video-section .quality-text {
     width: 25% !important;
     min-width: 0 !important;
     margin: 0 !important;
-    padding: 18px 5px;
-    background: #2b4815;
-    border: 2px solid #718c3a;
+    padding: 20px 10px;
+    background: #244b0b;
+    color: #fff;
+    border: 1px solid #789542;
     border-radius: 12px;
+    min-height: 170px;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     text-align: center;
-    min-height: 230px;
 }
 
 .quality-card .quality-icon {
-    width: 65px;
-    height: 65px;
-    min-width: 65px;
-    min-height: 65px;
-    flex: 0 0 65px;
-    margin: 0 0 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #e8eddc;
-    border-radius: 50%;
-    color: #2b4815;
-    font-size: 30px;
-    overflow: hidden;
+    width: auto;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    flex: initial;
+    margin: 0 0 10px;
+    display: block;
+    background: transparent;
+    border-radius: 0;
+    color: #fff;
+    font-size: 38px;
+}
+
+.quality-card h3,
+.quality-card .package-name {
+    margin: 0 0 7px;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.quality-card p,
+.quality-card .package-description {
+    margin: 0;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* CARD 4 */
+
+.quality-card:nth-child(4) {
+    background: #2b4815 !important;
+    border: 2px solid #718c3a !important;
+    padding: 18px 5px !important;
+    min-height: 230px;
+    justify-content: flex-start !important;
 }
 
 .quality-card:nth-child(4) .package-option {
@@ -1026,13 +1064,13 @@ html[dir="ltr"] .quality-video-section .quality-text {
 }
 
 .quality-card:nth-child(4) .tin-icon {
-    width: 65px;
-    height: 65px;
-    min-width: 65px;
-    min-height: 65px;
-    flex: 0 0 65px;
-    padding: 7px;
-    margin: 0 0 15px 0;
+    width: 65px !important;
+    height: 65px !important;
+    min-width: 65px !important;
+    min-height: 65px !important;
+    flex: 0 0 65px !important;
+    padding: 7px !important;
+    margin: 0 0 15px !important;
     display: block;
     object-fit: contain;
     border-radius: 50%;
@@ -1040,38 +1078,11 @@ html[dir="ltr"] .quality-video-section .quality-text {
     overflow: hidden;
 }
 
-.quality-card h3,
-.quality-card .package-name {
-    margin: 0 0 10px;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.4;
-}
-
-.quality-card p,
-.quality-card .package-description {
-    margin: 0;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    font-size: 15px;
-    line-height: 1.8;
-}
-
-.package-option {
-    text-align: center;
-}
-
-.package-name {
-    font-weight: bold;
-    font-size: 15px;
-    margin-bottom: 3px;
-}
-
-.package-description {
-    font-size: 12px;
-    line-height: 1.4;
+.quality-card:nth-child(4) .package-name,
+.quality-card:nth-child(4) .package-description,
+.quality-card:nth-child(4) .package-option * {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
 }
 
 .quality-en {
@@ -1215,8 +1226,50 @@ html[dir="ltr"] .contact-links a {
 }
 
 
+/* =========================
+   CONTACT DROPDOWN
+========================= */
+
+.contact-dropdown-container {
+    position: relative;
+}
+
+.contact-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 190px;
+    background: #f7f4eb;
+    border: 1px solid #789542;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.contact-dropdown[hidden] {
+    display: none !important;
+}
+
+.contact-dropdown a {
+    display: block;
+    padding: 10px;
+    color: #244b0b;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.contact-dropdown a:hover {
+    background: #dce5cf;
+}
+
+
 /* =========================================================
-   FOOTER - MATCH HOMEPAGE
+   FOOTER
 ========================================================= */
 
 .footer-brand-strip {
@@ -1330,8 +1383,6 @@ html[dir="ltr"] .contact-links a {
     margin: 0;
 }
 
-/* ENGLISH FOOTER DIRECTION */
-
 html[dir="ltr"] .site-footer,
 html[dir="ltr"] .footer-main {
     direction: ltr;
@@ -1348,33 +1399,73 @@ html[dir="ltr"] .footer-contact-links .footer-phone {
 }
 
 
+/* FOOTER LANGUAGE SWITCH */
+
+.footer-ar {
+    display: inline !important;
+}
+
+.footer-en {
+    display: none !important;
+}
+
+html[dir="ltr"] .footer-ar {
+    display: none !important;
+}
+
+html[dir="ltr"] .footer-en {
+    display: inline !important;
+}
+
+.footer-brand-name.footer-ar,
+.footer-brand-name.footer-en,
+.footer-description.footer-ar,
+.footer-description.footer-en,
+.footer-quick-links h3.footer-ar,
+.footer-quick-links h3.footer-en,
+.footer-contact-links h3.footer-ar,
+.footer-contact-links h3.footer-en {
+    display: block !important;
+}
+
+
 /* =========================
    DASHBOARD
 ========================= */
 
-/* مخفي افتراضيًا عن الزوار */
-
 .dashboard-access {
     display: none !important;
 }
-
-/* يظهر فقط عند تفعيل وضع المطور من JavaScript */
 
 body.developer-mode .dashboard-access {
     display: inline-flex !important;
 }
 
 
-/* =====================================================
-   CARD 4 - FINAL FORCE
-===================================================== */
+/* =========================
+   PAGE BACK BUTTON
+========================= */
 
-.quality-cards-container > .quality-card:nth-child(4) .package-name,
-.quality-cards-container > .quality-card:nth-child(4) .package-description,
-.quality-cards-container > .quality-card:nth-child(4) .package-option,
-.quality-cards-container > .quality-card:nth-child(4) .package-option * {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+.back-page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 8px 10px;
+    transition: 0.3s ease;
+}
+
+.back-page-btn:hover {
+    opacity: 0.75;
+}
+
+.back-page-btn i {
+    font-size: 14px;
 }
 
 
@@ -1385,30 +1476,22 @@ body.developer-mode .dashboard-access {
 @media (max-width: 900px) {
 
     .quality-cards-container {
-        gap: 8px !important;
-    }
-
-    .quality-card {
-        padding: 18px 5px;
-    }
-
-    .quality-cards-container {
         gap: 6px !important;
     }
 
-    .quality-card:not(:nth-child(4)) {
+    .quality-card {
         padding: 15px 7px;
     }
 
-    .quality-card:not(:nth-child(4)) h3 {
+    .quality-card h3 {
         font-size: 12px;
     }
 
-    .quality-card:not(:nth-child(4)) p {
+    .quality-card p {
         font-size: 9px;
     }
 
-    .quality-card:not(:nth-child(4)) .quality-icon {
+    .quality-card .quality-icon {
         font-size: 28px;
     }
 
@@ -1679,17 +1762,17 @@ body.developer-mode .dashboard-access {
         height: 62px;
     }
 
-    /* MOBILE QUALITY CARDS */
+    /* QUALITY CARDS - FOUR IN ONE ROW */
 
     .quality-cards-section {
-        padding: 40px 10px;
+        padding: 25px 3%;
     }
 
     .quality-cards-container {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        gap: 5px !important;
+        gap: 4px !important;
         width: 100% !important;
     }
 
@@ -1697,53 +1780,52 @@ body.developer-mode .dashboard-access {
         flex: 1 1 0 !important;
         width: 25% !important;
         min-width: 0 !important;
-        padding: 14px 3px !important;
-        min-height: 200px;
-        justify-content: flex-start !important;
+        min-height: 135px;
+        padding: 10px 3px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center;
     }
 
     .quality-card .quality-icon {
-        width: 45px;
-        height: 45px;
-        min-width: 45px;
-        min-height: 45px;
-        flex-basis: 45px;
-        margin-bottom: 8px;
-        font-size: 22px;
-    }
-
-    .quality-card:nth-child(4) .tin-icon {
-        width: 45px;
-        height: 45px;
-        min-width: 45px;
-        min-height: 45px;
-        flex-basis: 45px;
-        padding: 5px;
-        margin-bottom: 8px;
-        border-radius: 50%;
+        font-size: 23px;
+        margin-bottom: 5px;
     }
 
     .quality-card h3,
     .quality-card .package-name {
         font-size: 9px;
         line-height: 1.35;
-        margin-bottom: 6px;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+        margin-bottom: 4px;
     }
 
     .quality-card p,
     .quality-card .package-description {
         font-size: 7px;
         line-height: 1.4;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .quality-card:nth-child(4) {
+        min-height: 135px !important;
+        padding: 10px 3px !important;
+    }
+
+    .quality-card:nth-child(4) .tin-icon {
+        width: 35px !important;
+        height: 35px !important;
+        min-width: 35px !important;
+        min-height: 35px !important;
+        flex-basis: 35px !important;
+        padding: 5px !important;
+        margin-bottom: 8px !important;
     }
 }
 
 
 /* =====================================================
-   FOOTER MOBILE - MATCH HOMEPAGE
+   FOOTER MOBILE
 ===================================================== */
 
 @media (max-width: 600px) {
@@ -1802,6 +1884,25 @@ body.developer-mode .dashboard-access {
     html[dir="ltr"] .footer-contact-links {
         align-items: flex-start;
     }
+
+    /* WHATSAPP MOBILE - SAME AS HOMEPAGE */
+
+    .whatsapp-float {
+        width: 60px !important;
+        height: 60px !important;
+        left: 12px !important;
+        bottom: 12px !important;
+    }
+
+    .whatsapp-icon {
+        font-size: 35px !important;
+    }
+
+    .whatsapp-text {
+        left: 70px !important;
+        font-size: 13px !important;
+        max-width: 200px !important;
+    }
 }
 
 
@@ -1835,505 +1936,19 @@ body.developer-mode .dashboard-access {
 
 
 /* =====================================================
-   WHATSAPP FLOATING BUTTON - UPDATED SIZE
+   WHATSAPP FLOAT - SAME AS MAIN WEBSITE
 ===================================================== */
-
-.whatsapp-float {
-    position: fixed;
-    left: 22px;
-    right: auto;
-    bottom: 25px;
-    z-index: 9999;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 165px;
-    height: 58px;
-    padding: 10px 18px;
-    background: #25D366;
-    color: #ffffff;
-    border-radius: 35px;
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.22);
-    text-decoration: none;
-    gap: 10px;
-    box-sizing: border-box;
-    animation: whatsappFloat 2.5s ease-in-out infinite;
-}
-
-.whatsapp-icon {
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 35px;
-}
-
-.whatsapp-icon img {
-    width: 32px !important;
-    height: 32px !important;
-    max-width: 32px !important;
-    max-height: 32px !important;
-    object-fit: contain;
-    display: block;
-}
-
-.whatsapp-text {
-    white-space: nowrap;
-    font-size: 16px;
-    line-height: 1;
-}
-
-.whatsapp-float:hover {
-    transform: translateY(-4px);
-}
-
-@keyframes whatsappFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-
-/* =========================
-   WHATSAPP MOBILE - UPDATED SIZE
-========================= */
-
-@media (max-width: 600px) {
-
-    .whatsapp-float {
-        left: 12px;
-        right: auto;
-        bottom: 18px;
-        min-width: 150px;
-        height: 52px;
-        padding: 8px 14px;
-        gap: 8px;
-        font-size: 14px;
-    }
-
-    .whatsapp-icon {
-        width: 30px;
-        height: 30px;
-        flex-basis: 30px;
-    }
-
-    .whatsapp-icon img {
-        width: 28px !important;
-        height: 28px !important;
-        max-width: 28px !important;
-        max-height: 28px !important;
-    }
-
-    .whatsapp-text {
-        font-size: 14px;
-    }
-}
-
-
-/* =========================
-   PAGE BACK BUTTON
-========================= */
-
-.back-page-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    border: none;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    font-size: 15px;
-    padding: 8px 10px;
-    transition: 0.3s ease;
-}
-
-.back-page-btn:hover {
-    opacity: 0.75;
-}
-
-.back-page-btn i {
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   FINAL UPDATE - QUALITY CARDS
-========================================================= */
-
-.quality-cards-section {
-    width: 100%;
-    padding: 40px 6%;
-    background: #244b0b;
-}
-
-.quality-cards-container {
-    width: 100%;
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 10px !important;
-    align-items: stretch !important;
-}
-
-/* FIRST THREE CARDS ONLY */
-
-.quality-card:not(:nth-child(4)) {
-    flex: 1 1 0 !important;
-    width: 25% !important;
-    min-width: 0 !important;
-    background: #244b0b;
-    color: #fff;
-    border: 1px solid #789542;
-    border-radius: 12px;
-    padding: 20px 10px;
-    min-height: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.quality-card:not(:nth-child(4)) .quality-icon {
-    width: auto;
-    height: auto;
-    min-width: 0;
-    min-height: 0;
-    flex: initial;
-    margin-bottom: 10px;
-    display: block;
-    background: transparent;
-    border-radius: 0;
-    color: #fff;
-    font-size: 38px;
-}
-
-.quality-card:not(:nth-child(4)) h3 {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
-    font-size: 17px;
-    font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 7px;
-}
-
-.quality-card:not(:nth-child(4)) p {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
-    font-size: 13px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-
-/* CARD 4 */
-
-.quality-card:nth-child(4) {
-    flex: 1 1 0 !important;
-    width: 25% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    padding: 18px 5px !important;
-    background: #2b4815 !important;
-    border: 2px solid #718c3a !important;
-    border-radius: 12px;
-    min-height: 230px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    text-align: center;
-}
-
-.quality-card:nth-child(4) .package-option {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-}
-
-.quality-card:nth-child(4) .tin-icon {
-    width: 65px !important;
-    height: 65px !important;
-    min-width: 65px !important;
-    min-height: 65px !important;
-    flex: 0 0 65px !important;
-    padding: 7px !important;
-    margin: 0 0 15px 0 !important;
-    display: block;
-    object-fit: contain;
-    border-radius: 50%;
-    background: #e8eddc;
-    overflow: hidden;
-}
-
-.quality-card:nth-child(4) .package-name,
-.quality-card:nth-child(4) .package-description,
-.quality-card:nth-child(4) .package-option * {
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
-}
-
-
-/* QUALITY TABLET */
-
-@media (max-width: 900px) {
-
-    .quality-cards-container {
-        gap: 6px !important;
-    }
-
-    .quality-card:not(:nth-child(4)) {
-        padding: 15px 7px;
-    }
-
-    .quality-card:not(:nth-child(4)) h3 {
-        font-size: 12px;
-    }
-
-    .quality-card:not(:nth-child(4)) p {
-        font-size: 9px;
-    }
-
-    .quality-card:not(:nth-child(4)) .quality-icon {
-        font-size: 28px;
-    }
-}
-
-
-/* QUALITY MOBILE */
-
-@media (max-width: 600px) {
-
-    .quality-cards-section {
-        padding: 25px 3%;
-    }
-
-    .quality-cards-container {
-        gap: 4px !important;
-    }
-
-    .quality-card:not(:nth-child(4)) {
-        min-height: 135px;
-        padding: 10px 3px;
-    }
-
-    .quality-card:not(:nth-child(4)) .quality-icon {
-        font-size: 23px;
-        margin-bottom: 5px;
-    }
-
-    .quality-card:not(:nth-child(4)) h3 {
-        font-size: 9px;
-        margin-bottom: 4px;
-    }
-
-    .quality-card:not(:nth-child(4)) p {
-        font-size: 7px;
-        line-height: 1.4;
-    }
-
-    .quality-card:nth-child(4) {
-        min-height: 200px !important;
-        padding: 14px 3px !important;
-    }
-
-    .quality-card:nth-child(4) .tin-icon {
-        width: 45px !important;
-        height: 45px !important;
-        min-width: 45px !important;
-        min-height: 45px !important;
-        flex-basis: 45px !important;
-        padding: 5px !important;
-        margin-bottom: 8px !important;
-    }
-
-    .quality-card:nth-child(4) .package-name {
-        font-size: 9px;
-        line-height: 1.35;
-        margin-bottom: 6px;
-    }
-
-    .quality-card:nth-child(4) .package-description {
-        font-size: 7px;
-        line-height: 1.4;
-    }
-}
-
-
-/* =========================
-   CONTACT DROPDOWN
-========================= */
-
-.contact-dropdown-container {
-    position: relative;
-}
-
-.contact-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    min-width: 190px;
-    background: #f7f4eb;
-    border: 1px solid #789542;
-    border-radius: 8px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    z-index: 1000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.contact-dropdown[hidden] {
-    display: none !important;
-}
-
-.contact-dropdown a {
-    display: block;
-    padding: 10px;
-    color: #244b0b;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 5px;
-}
-
-.contact-dropdown a:hover {
-    background: #dce5cf;
-}
-/* =====================================================
-   FOOTER LANGUAGE SWITCH
-===================================================== */
-
-/* الوضع الافتراضي: عربي */
-
-.footer-ar {
-    display: inline !important;
-}
-
-.footer-en {
-    display: none !important;
-}
-
-/* عند اختيار اللغة الإنجليزية */
-
-html[dir="ltr"] .footer-ar {
-    display: none !important;
-}
-
-html[dir="ltr"] .footer-en {
-    display: inline !important;
-}
-
-/* لو النصوص داخل عناصر block */
-
-.footer-brand-name.footer-ar,
-.footer-brand-name.footer-en,
-.footer-description.footer-ar,
-.footer-description.footer-en,
-.footer-quick-links h3.footer-ar,
-.footer-quick-links h3.footer-en,
-.footer-contact-links h3.footer-ar,
-.footer-contact-links h3.footer-en {
-    display: block !important;
-}
-
-
-
-
-
-/* =====================================
-   FAQ LINKS
-===================================== */
-
-.faq-answer a {
-    color: #294d12;
-    font-weight: bold;
-    text-decoration: underline;
-    transition: 0.3s ease;
-}
-
-.faq-answer a:hover {
-    color: #68743a;
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 600px) {
-
-   
-
-    /* Quality Cards */
-
-    .quality-cards-section {
-        padding: 25px 3%;
-    }
-
-    .quality-cards-container {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 4px;
-        width: 100%;
-    }
-
-    .quality-card {
-        min-width: 0;
-        min-height: 135px;
-        padding: 10px 3px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .quality-card i,
-    .quality-card .quality-icon {
-        font-size: 23px;
-    }
-
-    .quality-card h3 {
-        font-size: 9px;
-        line-height: 1.5;
-    }
-
-    .quality-card p,
-    .quality-card .package-description {
-        font-size: 7px;
-        line-height: 1.5;
-    }
-
-    .quality-card .tin-icon {
-        width: 35px;
-        height: 35px;
-    }
-
-}
-/* =========================================
-   WHATSAPP - SAME AS MAIN WEBSITE
-========================================= */
 
 .whatsapp-float {
     position: fixed !important;
     left: 22px !important;
+    right: auto !important;
     bottom: 22px !important;
     z-index: 500 !important;
 
     width: 65px !important;
     height: 65px !important;
+    min-width: 65px !important;
     padding: 0 !important;
 
     display: flex !important;
@@ -2350,6 +1965,8 @@ html[dir="ltr"] .footer-en {
 
     transition: transform 0.3s ease !important;
     text-decoration: none !important;
+
+    animation: none !important;
 }
 
 .whatsapp-float:hover {
@@ -2358,11 +1975,23 @@ html[dir="ltr"] .footer-en {
 }
 
 .whatsapp-icon {
+    width: auto !important;
+    height: auto !important;
+    flex: initial !important;
+
     font-size: 38px !important;
     line-height: 1 !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+}
+
+.whatsapp-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: block;
 }
 
 .whatsapp-text {
@@ -2381,6 +2010,7 @@ html[dir="ltr"] .footer-en {
 
     font-size: 15px !important;
     font-weight: bold !important;
+    white-space: nowrap;
 
     opacity: 0 !important;
     visibility: hidden !important;
@@ -2405,6 +2035,7 @@ html[dir="ltr"] .footer-en {
 }
 
 @keyframes whatsappMessage {
+
     0%, 15% {
         opacity: 0;
         visibility: hidden;
@@ -2445,25 +2076,4 @@ html[dir="ltr"] .footer-en {
     border: none !important;
     border-bottom: none !important;
     box-shadow: none !important;
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-    .whatsapp-float {
-        width: 60px !important;
-        height: 60px !important;
-        left: 12px !important;
-        bottom: 12px !important;
-    }
-
-    .whatsapp-icon {
-        font-size: 35px !important;
-    }
-
-    .whatsapp-text {
-        left: 70px !important;
-        font-size: 13px !important;
-        max-width: 200px !important;
-    }
 }
