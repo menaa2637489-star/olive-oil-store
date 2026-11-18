@@ -1175,18 +1175,12 @@ if (languageBtn) {
    FAQ
 ========================= */
 
-document.querySelectorAll(".faq-item").forEach(function (item) {
-    const question = item.querySelector(".faq-question");
-
-    if (!question) {
-        return;
-    }
-
+document.querySelectorAll(".faq-question").forEach(function (question) {
     question.setAttribute("aria-expanded", "false");
 
     question.addEventListener("click", function () {
+        const item = question.closest(".faq-item");
         const isOpen = item.classList.toggle("active");
-
         question.setAttribute("aria-expanded", String(isOpen));
     });
 });
