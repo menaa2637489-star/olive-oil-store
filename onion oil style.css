@@ -1512,15 +1512,6 @@ html[dir="ltr"] .footer-en {
     display: inline;
 }
 
-html[dir="ltr"] .footer-brand-name .footer-en,
-html[dir="ltr"] .footer-description .footer-en {
-    display: block;
-}
-
-html[dir="rtl"] .footer-brand-name .footer-ar,
-html[dir="rtl"] .footer-description .footer-ar {
-    display: block;
-}
 
 
 /* ENGLISH FOOTER DIRECTION */
