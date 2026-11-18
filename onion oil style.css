@@ -598,7 +598,6 @@ a {
     font-size: 16px;
     font-weight: bold;
 }
-
 .cancel-cart-btn {
     width: 100%;
     margin-top: 8px;
@@ -1376,8 +1375,6 @@ html[dir="ltr"] .contact-links a {
     direction: rtl;
 }
 
-/* BRAND - RIGHT */
-
 .footer-brand {
     text-align: right;
 }
@@ -1404,8 +1401,6 @@ html[dir="ltr"] .contact-links a {
 .footer-description .footer-en {
     display: block;
 }
-
-/* QUICK LINKS - CENTER */
 
 .footer-quick-links {
     display: flex;
@@ -1434,8 +1429,6 @@ html[dir="ltr"] .contact-links a {
     color: #d6e5bd;
     text-decoration: underline;
 }
-
-/* CONTACT - LEFT */
 
 .footer-contact-links {
     display: flex;
@@ -1471,8 +1464,6 @@ html[dir="ltr"] .contact-links a {
     direction: ltr;
 }
 
-/* FOOTER BOTTOM */
-
 .footer-bottom {
     width: 100%;
     margin-top: 28px;
@@ -1491,8 +1482,6 @@ html[dir="ltr"] .contact-links a {
     font-weight: 600;
     line-height: 1.8;
 }
-
-/* DASHBOARD */
 
 .dashboard-access {
     display: none !important;
@@ -1558,7 +1547,6 @@ html[dir="ltr"] .footer-description {
     direction: ltr;
     text-align: left;
 }
-
 /* =====================================================
    WHATSAPP FLOATING BUTTON
 ===================================================== */
@@ -1567,31 +1555,31 @@ html[dir="ltr"] .footer-description {
     position: fixed;
     left: 22px;
     right: auto;
-    bottom: 25px;
+    bottom: 22px;
     z-index: 9999;
 
-    display: inline-flex;
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    min-height: 65px;
+    padding: 0;
+
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    min-width: 190px;
-    min-height: 68px;
-    padding: 14px 24px;
-
-    background: #25D366;
+    background: #25d366;
     color: #ffffff;
-
-    border-radius: 40px;
-
-    font-size: 19px;
-    font-weight: 700;
+    border-radius: 50%;
 
     box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
 
-    gap: 12px;
     text-decoration: none;
+    transition: background 0.3s ease;
+}
 
-    animation: whatsappFloat 2.5s ease-in-out infinite;
+.whatsapp-float:hover {
+    background: #20bd5a;
 }
 
 .whatsapp-icon {
@@ -1604,38 +1592,63 @@ html[dir="ltr"] .footer-description {
 }
 
 .whatsapp-icon i {
-    font-size: 40px;
+    font-size: 38px;
     color: #ffffff;
 }
 
 .whatsapp-icon img {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    max-height: 40px !important;
+    width: 38px !important;
+    height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
     object-fit: contain;
     display: block;
 }
 
 .whatsapp-text {
-    white-space: nowrap;
-    font-size: 18px;
-    line-height: 1.4;
+    position: absolute;
+    left: 75px;
+    right: auto;
+
+    width: max-content;
+    max-width: 230px;
+
+    padding: 10px 14px;
+    background: #244b0b;
+    color: #ffffff;
+
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: normal;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    animation: whatsappTooltip 4s ease-in-out infinite;
 }
 
-.whatsapp-float:hover {
-    filter: brightness(0.95);
-}
-
-@keyframes whatsappFloat {
-    0%, 100% {
-        transform: translateY(0);
+@keyframes whatsappTooltip {
+    0%, 15% {
+        opacity: 0;
+        visibility: hidden;
     }
 
-    50% {
-        transform: translateY(-5px);
+    20%, 75% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    85%, 100% {
+        opacity: 0;
+        visibility: hidden;
     }
 }
+
+
 /* =====================================================
    PAGE BACK BUTTON
 ===================================================== */
@@ -2106,188 +2119,18 @@ html[dir="ltr"] .footer-description {
     }
 
 
-  /* WHATSAPP MOBILE */
+    /* WHATSAPP MOBILE */
 
-.whatsapp-float {
-    left: 12px;
-    right: auto;
-    bottom: 18px;
-    min-width: 165px;
-    min-height: 58px;
-    padding: 10px 17px;
-    gap: 9px;
-}
-
-.whatsapp-icon {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
-}
-
-.whatsapp-icon i {
-    font-size: 34px;
-}
-
-.whatsapp-icon img {
-    width: 35px !important;
-    height: 35px !important;
-    max-width: 35px !important;
-    max-height: 35px !important;
-}
-
-.whatsapp-text {
-    font-size: 15px;
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-    .product-stage {
-        width: 390px;
-        height: 460px;
-    }
-
-}
-
-
-/* =====================================================
-   ENGLISH FOOTER DIRECTION
-===================================================== */
-
-html[dir="ltr"] .footer-main {
-    direction: ltr;
-}
-
-html[dir="ltr"] .footer-brand {
-    text-align: left;
-}
-
-html[dir="ltr"] .footer-quick-links {
-    direction: ltr;
-}
-
-html[dir="ltr"] .footer-contact-links {
-    align-items: flex-start;
-    text-align: left;
-}
-
-html[dir="ltr"] .footer-brand-name,
-html[dir="ltr"] .footer-description {
-    direction: ltr;
-    text-align: left;
-}
-
-@media (max-width: 768px) {
-
-    html[dir="ltr"] .footer-brand,
-    html[dir="ltr"] .footer-brand-name,
-    html[dir="ltr"] .footer-description {
-        text-align: center;
-    }
-
-    html[dir="ltr"] .footer-contact-links {
-        align-items: center;
-        text-align: center;
-    }
-
-    html[dir="ltr"] .footer-quick-links {
-        align-items: center;
-    }
-}
-color: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
-
-    text-decoration: none;
-    box-sizing: border-box;
-    animation: none;
-    transition: background 0.3s ease;
-}
-
-.whatsapp-float:hover {
-    background: #20bd5a;
-    transform: none;
-}
-
-.whatsapp-icon {
-    width: 38px;
-    height: 38px;
-    flex: 0 0 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.whatsapp-icon i {
-    font-size: 38px;
-    color: #ffffff;
-}
-
-.whatsapp-icon img {
-    width: 38px !important;
-    height: 38px !important;
-    max-width: 38px !important;
-    max-height: 38px !important;
-    object-fit: contain;
-    display: block;
-}
-
-.whatsapp-text {
-    position: absolute;
-    left: 75px;
-    bottom: 50%;
-    transform: translateY(50%);
-
-    width: max-content;
-    max-width: 230px;
-    padding: 10px 14px;
-
-    background: #244b0b;
-    color: #ffffff;
-    border-radius: 8px;
-
-    font-size: 15px;
-    line-height: 1.5;
-    font-weight: 600;
-    white-space: normal;
-    text-align: center;
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    animation: whatsappMessage 4s ease-in-out infinite;
-}
-
-@keyframes whatsappMessage {
-    0%, 10% {
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    20%, 75% {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    90%, 100% {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-@media (max-width: 600px) {
     .whatsapp-float {
         left: 12px;
         right: auto;
         bottom: 12px;
+
         width: 60px;
         height: 60px;
         min-width: 60px;
         min-height: 60px;
+        padding: 0;
     }
 
     .whatsapp-icon {
@@ -2308,9 +2151,42 @@ color: #ffffff;
     }
 
     .whatsapp-text {
-        left: 68px;
+        left: 70px;
+        right: auto;
         max-width: 200px;
-        padding: 8px 11px;
+        padding: 9px 11px;
         font-size: 13px;
     }
+
+
+    /* ENGLISH FOOTER MOBILE */
+
+    html[dir="ltr"] .footer-brand,
+    html[dir="ltr"] .footer-brand-name,
+    html[dir="ltr"] .footer-description {
+        text-align: center;
+    }
+
+    html[dir="ltr"] .footer-contact-links {
+        align-items: center;
+        text-align: center;
+    }
+
+    html[dir="ltr"] .footer-quick-links {
+        align-items: center;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .product-stage {
+        width: 390px;
+        height: 460px;
+    }
+
 }
