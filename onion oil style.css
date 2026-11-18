@@ -2181,3 +2181,18 @@ html[dir="ltr"] .footer-description {
     }
 
 }
+/* ===== FOOTER LANGUAGE FIX ===== */
+html[dir="rtl"] .footer-en {
+    display: none !important;
+}
+
+html[dir="ltr"] .footer-ar {
+    display: none !important;
+}
+
+html[dir="rtl"] .footer-brand-name .footer-ar,
+html[dir="rtl"] .footer-description .footer-ar,
+html[dir="ltr"] .footer-brand-name .footer-en,
+html[dir="ltr"] .footer-description .footer-en {
+    display: block !important;
+}
