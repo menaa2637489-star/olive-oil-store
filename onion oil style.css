@@ -1088,30 +1088,31 @@ html[dir="ltr"] .quality-video-section .quality-text {
     align-items: stretch !important;
 }
 
-.quality-card:not(:nth-child(4)) {
+.quality-card {
     flex: 1 1 0 !important;
     width: 25% !important;
     min-width: 0 !important;
+    margin: 0 !important;
+    padding: 20px 10px;
     background: #244b0b;
     color: #fff;
     border: 1px solid #789542;
     border-radius: 12px;
-    padding: 20px 10px;
     min-height: 170px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-align: center;
 }
 
-.quality-card:not(:nth-child(4)) .quality-icon {
+.quality-card .quality-icon {
     width: auto;
     height: auto;
     min-width: 0;
     min-height: 0;
     flex: initial;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
     display: block;
     background: transparent;
     border-radius: 0;
@@ -1119,41 +1120,33 @@ html[dir="ltr"] .quality-video-section .quality-text {
     font-size: 38px;
 }
 
-.quality-card:not(:nth-child(4)) h3 {
+.quality-card h3,
+.quality-card .package-name {
+    margin: 0 0 7px;
     color: #fff !important;
     -webkit-text-fill-color: #fff !important;
     font-size: 17px;
     font-weight: 700;
     line-height: 1.4;
-    margin-bottom: 7px;
 }
 
-.quality-card:not(:nth-child(4)) p {
+.quality-card p,
+.quality-card .package-description {
+    margin: 0;
     color: #fff !important;
     -webkit-text-fill-color: #fff !important;
     font-size: 13px;
     line-height: 1.6;
-    margin: 0;
 }
-
 
 /* CARD 4 */
 
 .quality-card:nth-child(4) {
-    flex: 1 1 0 !important;
-    width: 25% !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-    padding: 18px 5px !important;
     background: #2b4815 !important;
     border: 2px solid #718c3a !important;
-    border-radius: 12px;
+    padding: 18px 5px !important;
     min-height: 230px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
     justify-content: flex-start !important;
-    text-align: center;
 }
 
 .quality-card:nth-child(4) .package-option {
@@ -1172,7 +1165,7 @@ html[dir="ltr"] .quality-video-section .quality-text {
     min-height: 65px !important;
     flex: 0 0 65px !important;
     padding: 7px !important;
-    margin: 0 0 15px 0 !important;
+    margin: 0 0 15px !important;
     display: block;
     object-fit: contain;
     border-radius: 50%;
@@ -1187,9 +1180,6 @@ html[dir="ltr"] .quality-video-section .quality-text {
     -webkit-text-fill-color: #fff !important;
 }
 
-
-/* QUALITY LANGUAGE */
-
 .quality-en {
     display: none;
 }
@@ -1201,7 +1191,6 @@ html[dir="ltr"] .quality-cards-section .quality-ar {
 html[dir="ltr"] .quality-cards-section .quality-en {
     display: block;
 }
-
 
 /* =========================
    CONTACT
